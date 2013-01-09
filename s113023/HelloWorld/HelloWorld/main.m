@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+//Test to see if local repo is working now after adding manualy
+
 int main(int argc, const char * argv[])
 {
 
