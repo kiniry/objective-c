@@ -10,7 +10,13 @@
 
 @interface NoblePerson : Citizen
 
+// ASSETS: Assuming this means $$ in the bank, therefore numerics
 @property NSNumber *assets;
+
+// BUTLER: Another citizen working for the noble person
 @property Citizen *butler;
+
+// Overriding SPOUSE: A noble person can only marry another noble person
+@property NoblePerson *spouse;
 
 @end

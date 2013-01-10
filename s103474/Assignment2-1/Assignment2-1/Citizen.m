@@ -10,7 +10,7 @@
 
 @implementation Citizen
 
-@synthesize firstName, lastName, socialSecurity, country, birthDate, sex, mother, father, spouse;
+@synthesize firstName, lastName, socialSecurity, country, birthDate, sex, mother, father, spouse, children;
 
 -(Citizen*) initWithFirstName: (NSString*) n1
 				  andLastName: (NSString*) n2 {
@@ -46,14 +46,26 @@
 			self.sexString];
 }
 
+-(NSMutableArray *) getChildren {
+	if(!children){ children = [@[] mutableCopy]; }
+	return children;
+}
 
-/*@property (copy) NSNumber* socialSecurity;
- 
- @property Country* country;
- @property (copy) NSDate* birthDate;
- @property Sex sex;
- 
- @property Citizen *mother;
- @property Citizen *father;
- @property Citizen *spouse;*/
+-(void) addChild:(Citizen*) child {
+	if(!children){ children = [@[] mutableCopy]; }
+	[children addObject: child];
+}
+
+-(void) setSpouse:(Citizen *) aSpouse {
+	// Constraints given: "May not marry children or parents or person of same sex."
+	// (ignoring the very last constraint to avoid homophobic code)
+	if (
+		[children indexOfObject: aSpouse] == NSNotFound &&
+		aSpouse != self.mother &&
+		aSpouse != self.father
+	) {
+		self.spouse = aSpouse;
+	}
+}
+
 @end
