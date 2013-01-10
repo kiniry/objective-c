@@ -1,6 +1,6 @@
 //
 //  Country.h
-//  Homework 2
+//  Assignment2-1
 //
 //  Created by Andreas Graulund on 10/01/13.
 //  Copyright (c) 2013 Andreas Graulund. All rights reserved.
@@ -10,7 +10,11 @@
 
 @interface Country : NSObject
 
-@property NSString* globalName;
-@property NSString* localName;
+@property (copy) NSString *globalName;
+@property (copy) NSString *localName;
+
+-(Country*) initWithGlobalName: (NSString*) n1 andLocalName: (NSString*) n2;
+
+-(NSString*) description;
 
 @end

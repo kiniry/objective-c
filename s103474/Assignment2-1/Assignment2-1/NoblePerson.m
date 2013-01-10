@@ -1,13 +1,13 @@
 //
-//  Person.m
-//  Homework 2
+//  NoblePerson.m
+//  Assignment2-1
 //
 //  Created by Andreas Graulund on 10/01/13.
 //  Copyright (c) 2013 Andreas Graulund. All rights reserved.
 //
 
-#import "Person.h"
+#import "NoblePerson.h"
 
-@implementation Person
+@implementation NoblePerson
 
 @end
