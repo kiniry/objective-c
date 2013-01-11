@@ -1,1 +1,0 @@
-Testing the configured email in user.name in git
