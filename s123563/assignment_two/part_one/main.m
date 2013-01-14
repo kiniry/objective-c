@@ -29,7 +29,7 @@ int main (int argc, const char * argv[])
   NSLog(@"Bobs spouse and assets after marriage:%@ and %@", bob.spouse.name, bob.assets);
   
   [bob addChild:junior];
-  NSLog(@"Bob now has a child: %@", ((Citizen*)[bob.children objectAtIndex:0]).name);
+  NSLog(@"Bob now has a child: %@", bob.children);
 
 
   [pool drain];

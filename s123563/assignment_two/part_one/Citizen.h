@@ -14,8 +14,8 @@ typedef enum
   Sex _sex;
   NSNumber* _age;
   Citizen* _spouse;
-  NSArray* _children;
-  NSArray* _parents;
+  NSSet* _children;
+  NSSet* _parents;
 }
 
 // Initializor
@@ -27,8 +27,8 @@ typedef enum
 @property (copy) NSNumber* age; 
 @property (assign) Citizen* spouse;
 // Not using mutable lists here to prevent direct manipulation
-@property (readonly, nonatomic) NSArray* children;
-@property (readonly, nonatomic) NSArray* parents;
+@property (readonly, nonatomic) NSSet* children;
+@property (readonly, nonatomic) NSSet* parents;
 // Queries not bound to an instance variable
 @property (readonly, nonatomic) BOOL isSingle;
 - (BOOL)  isMarriableTo:(Citizen*)suitor;
@@ -39,10 +39,6 @@ typedef enum
 
 - (void) addChild:(Citizen*)child;
 - (void) removeChild:(Citizen*)child;
-
-// Utility methods
-- (BOOL) hasParent:(Citizen*)person;
-- (BOOL) hasChild:(Citizen*)person;
 
 // Commands
 - (void) divorce;

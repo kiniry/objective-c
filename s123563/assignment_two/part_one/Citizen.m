@@ -1,5 +1,11 @@
 #import "Citizen.h"
 
+@interface Citizen ()
+// make the sets privately settable
+@property (readwrite, nonatomic, assign) NSSet* children;
+@property (readwrite, nonatomic, assign) NSSet* parents;
+@end
+
 @implementation Citizen
 
 @synthesize name = _name;
@@ -18,6 +24,8 @@
     _sex = sex;
     _name = name;
     _age = age;
+    _children = [[NSSet alloc] init];
+    _parents = [[NSSet alloc] init];
   }
 
   return self;
@@ -28,9 +36,9 @@
 {
   if ([self.parents count] < 2)
   {
-    NSMutableArray* tmp = [NSMutableArray arrayWithArray:_parents];
+    NSMutableSet* tmp = [NSMutableSet setWithSet:_parents];
     [tmp addObject:parent];
-    _parents = [tmp copy];
+    self.parents = [tmp copy];
   }
 }
 
@@ -38,46 +46,26 @@
 {
     NSMutableArray* tmp = [self.parents mutableCopy];
     [tmp removeObject:parent];
-    _parents = [NSArray arrayWithArray:tmp];
+    self.parents = [NSArray arrayWithArray:tmp];
 }
 
 // Constraint: All children must have this person among their parents
 - (void) addChild:(Citizen*)child
 {
   [child addParent:self];
-  if (![child hasParent:self])
+  if (![child.parents containsObject:self])
     return;
 
-  NSMutableArray* tmp = [NSMutableArray arrayWithArray:_children];
+  NSMutableSet* tmp = [self.children mutableCopy];
   [tmp addObject:child];
-  _children = [tmp copy];
+  self.children = [tmp copy];
 }
 
 - (void) removeChild:(Citizen*)child
 {
-    NSMutableArray* tmp = [self.children mutableCopy];
+    NSMutableSet* tmp = [self.children mutableCopy];
     [tmp removeObject:child];
-    _children = [NSArray arrayWithArray:tmp];
-}
-
-- (BOOL) hasParent:(Citizen*)person
-{
-  for (Citizen* parent in self.parents) 
-  {
-    if (person == parent)
-      return YES;
-  }
-  return NO;
-}
-
-- (BOOL) hasChild:(Citizen*)person
-{
-  for (Citizen* child in self.children) 
-  {
-    if (person == child)
-      return YES;
-  }
-  return NO; 
+    self.children = [tmp copy];
 }
 
 // Constraints: 
@@ -87,8 +75,8 @@
 - (BOOL) isMarriableTo:(Citizen*)suitor
 {
   // #1 + #2
-  NSMutableArray* nonMarriables = [NSMutableArray arrayWithArray:self.children];
-  [nonMarriables addObjectsFromArray: self.parents];
+  NSMutableSet* nonMarriables = [self.children mutableCopy];
+  [nonMarriables unionSet: self.parents];
   for (Citizen* prohibitedSpouse in nonMarriables)
   {
     if (suitor == prohibitedSpouse)
