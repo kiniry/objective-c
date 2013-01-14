@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "Tim.h"
 
-@interface Tom : NSObject
+@interface Tom : NSObject <Greeter>
 
 @property (weak) __weak NSString *timsColor;
+
+-(NSString *) fullName;
+
+-(void) greeting;
 
 @end
