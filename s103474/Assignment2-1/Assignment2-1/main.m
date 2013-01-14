@@ -16,8 +16,7 @@ int main(int argc, const char * argv[])
 	@autoreleasepool {
 		
 		Country *denmark = [[Country alloc] initWithGlobalName: @"Denmark" andLocalName: @"Danmark"];
-	    
-	    Citizen *citizen = [[Citizen alloc] initWithFirstName: @"Knud" andLastName: @"Jørgensen"];
+		Citizen *citizen = [[Citizen alloc] initWithFirstName: @"Knud" andLastName: @"Jørgensen"];
 		[citizen setSocialSecurity: @2202681025];
 		[citizen setSex: male];
 		[citizen setCountry: denmark];
