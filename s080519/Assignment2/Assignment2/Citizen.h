@@ -24,7 +24,7 @@ typedef enum {M, F} gender;
 
 
 // Commands
-- (BOOL) marry: (Citizen *) Person;
+- (BOOL) marry: (Citizen *) person;
 - (BOOL) divorce;
 
 

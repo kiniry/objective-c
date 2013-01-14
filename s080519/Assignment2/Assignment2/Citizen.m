@@ -12,9 +12,7 @@
 
 @property (strong) NSString *name;
 @property int age;
-@property (strong) Citizen *mother;
-@property (strong) Citizen *father;
-@property (strong) Citizen *spouse;
+@property (nonatomic, strong) Citizen *spouse;
 @property gender sex;
 
 @end
@@ -29,6 +27,7 @@
         self.name = name;
         self.age = age;
         self.sex = sex;
+        self.spouse = nil;
     }
     
     return self;
@@ -49,7 +48,7 @@
 
 - (BOOL) isSingle;
 {
-    return YES;
+    return self.spouse == nil;
 }
 
 - (Citizen *) getSpouse;
@@ -64,14 +63,28 @@
 
 // Commands
 
-- (BOOL) marry: (Citizen *) Person
+- (BOOL) marry: (Citizen *) person
 {
+    if([person getGender] != [self getGender] && [self isSingle] && [person isSingle]) {
+        // Let these two people be united in whatever faith they believe in.
+        [person setSpouse:self];
+        self.spouse = person;
+        return YES;
+    }
+    
     return NO;
 }
 
 
 - (BOOL) divorce
 {
+    if(self.isSingle != YES) {
+        // Out of the door, now!
+        [self.spouse setSpouse:nil];
+        self.spouse = nil;
+        return YES;
+    }
+    
     return NO;
 }
 
@@ -79,7 +92,8 @@
 // Description
 - (NSString *) description
 {
-    return [NSString stringWithFormat:@"Name: %@; age: %i; gender: %@", self.name, self.age, self.sex == M ? @"M" : @"F"];
+    // Don't output "self.spouse" here, that'll just result in an infinite loop.
+    return [NSString stringWithFormat:@"Name: %@; age: %i; gender: %@; Spouse: %@", self.name, self.age, self.sex == M ? @"M" : @"F", [self.spouse getName]];
 }
 
 
