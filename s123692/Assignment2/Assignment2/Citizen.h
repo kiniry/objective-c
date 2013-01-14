@@ -8,10 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-
+typedef enum {
+    Male,
+    Female
+} Sex;
 
 @interface Citizen : NSObject
 
+@property (nonatomic) NSString* name;
+@property (nonatomic) Sex* sex;
+@property (nonatomic) int* age;
+@property (nonatomic) BOOL* single;
+@property (nonatomic) Citizen* spouse;
+@property (nonatomic) NSMutableArray* children;
+@property (nonatomic) NSArray* parents;
 
+- (void) marry:(Citizen*) bride;
+- (void) divorce:(Citizen*) spouse;
 
 @end
