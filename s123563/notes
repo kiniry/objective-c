@@ -1,0 +1,34 @@
+NOTE: this file is to be used with emacs' org-mode
+
+* GNUstep setup
+System > Core > Devel (IN THAT PARTICULAR ORDER!) from http://www.gnustep.org/experience/Windows.html
+To build without makefile, something like: gcc -o hello main.m -L /c/GNUstep/GNUstep/System/Library/Libraries -I /c/GNUstep/GNUstep/System/Library/Headers/ -lobjc -lgnustep-base -fconstant-string-class=NSConstantString
+
+* gcc docs
+** Overall options
+-L/-I for libs/headers. VERY useful with GNUstep
+-o executable name
+
+** objc(++) options
+-lobjc to use objc
+-fconstant-string-class=class-name
+Used this to force NSConstantString as opposed to NXConstantString
+
+Of interest
+-Wundeclared-selector
+-
+
+** optimizations
+-O<n> = n _mostly_ just switches other opt flags
+-Os = space over speed
+-O1 = some optimizations
+-O2 = heavy optimizations
+-O3 = very heavy optimizations
+-O0 = default, fast, good for debugging
+
+mostly like clang
+
+** FSF docs in generel
+texinfo, one source to all outputs
+Emacs has awesome support for this (its docs are texinfo)!
+see textest.info
