@@ -152,6 +152,8 @@ int main(int argc, const char * argv[])
 		
 		// ------------------------------------------------------------------------------------------
 		
+		NSLog(@"-- PART 6:");
+		
 		// Part 6: Dynamic typing. The special “id” type given to a variable allows that variable to
 		// contain a pointer to any type of Objectie-C object. This is handy in cases where you don't
 		// care what type of object is given because you don't perform any operations on it, or in
@@ -160,11 +162,11 @@ int main(int argc, const char * argv[])
 		
 		id a = @"Hello";
 		
-		NSLog(@"The length of the id string is %lu", [a length]);
+		NSLog(@"The length of \"%@\" is %lu", a, [a length]);
 		
 		a = @[@1, @2, @3];
 		
-		NSLog(@"The length of the id array is %lu", [a count]);
+		NSLog(@"The length of \"%@\" is %lu", a, [a count]);
 		
 		// I don't know of any other OO programming languages that offer a sort of dynamic typing in
 		// only one type of variable. All the languages I know either offer dynamic typing
@@ -177,6 +179,30 @@ int main(int argc, const char * argv[])
 		// this in this language.
 		
 		// ------------------------------------------------------------------------------------------
+		
+		NSLog(@"-- PART 7:");
+		
+		// Part 7: Field hiding. Many object-oriented languages give us the ability to control how
+		// the object's properties (or “fields”) and methods are accessible to other objects and the
+		// outside world. In fact, most OO languages *force* us to explicitly state this. Objective-C
+		// is different in that properties and methods have an implied visibility if it's not
+		// explicitly defined. By default, methods are public and properties are protected; that is,
+		// hidden. In the literature I've read about the language, it is a very important principle
+		// that properties can be accessed only via getters and setters (also known as “accessors”,
+		// usually @synthesized), like the properties on our Tim object below:
+		
+		[tim setFavoriteColor: @"Red"];
+		
+		// This is a fundamental principle of object oriented programming in Objective-C. Synthesized
+		// accessor methods with the dot notation makes it look like you're not using the accessor
+		// methods, but you always are.
+		
+		tim.favoriteColor = @"Red";
+		
+		// Equivalent to above.
+		
+		// Compare to Java: tim.setFavoriteColor("Red");
+		
 		// ------------------------------------------------------------------------------------------
 		// ------------------------------------------------------------------------------------------
 	}
