@@ -15,4 +15,11 @@
 
 @property (copy, readonly) NSString *myPet;
 
+-(void) greeting;
+
+-(void) pimpify: (NSString*) keyword withWord: (NSString*) word;
+-(void) pimpify: (NSString*) keyword withNumber: (NSNumber*) number;
+
+-(void) pimpify: (NSString*) keyword withInt: (int) number;
+
 @end

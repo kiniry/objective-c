@@ -13,4 +13,8 @@
 
 @property (weak) __weak NSString *timsColor;
 
+-(NSString *) fullName;
+
+-(void) greeting;
+
 @end
