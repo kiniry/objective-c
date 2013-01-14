@@ -4,4 +4,4 @@ I am using explicitly defined ivars when synthesizing, to allow direct assignmen
 
 When a constraint is not met, the procedure will fail silently. Not sure if that's cool...
 
-I use non-mutable set types on public interfaces to prohibit incorrect assignments/modifications. Therefore I'm also implementing add/remove methods for sets (children/parents) that make temporary mutable copies for editing the sets.
+I use immutable sets on public interfaces to prohibit incorrect assignments/modifications, but overwrite privately with readwrite to get a generated setter. Therefore I've also implemented add/remove methods for sets (children/parents) that make temporary mutable copies for editing.
