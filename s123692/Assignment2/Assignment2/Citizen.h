@@ -45,7 +45,7 @@ typedef enum {
 -(void) removeChild: (Citizen *)child;
 
 // Civil status
--(void) marry: (Citizen *)bride;
--(void) divorce: (Citizen *)fiancee;
+-(void) marryTo: (Citizen *)bride;
+-(void) divorceFrom: (Citizen *)fiancee;
 
 @end
