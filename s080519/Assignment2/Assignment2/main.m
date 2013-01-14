@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Citizen.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
         
-        // insert code here...
-        NSLog(@"Hello, World!");
+        Citizen *c = [[Citizen alloc] initWithName:@"John Doe" AndAge:40 AndSex:M];
+        
+        NSLog(@"%@", c);
         
     }
     return 0;
 }
-
