@@ -17,6 +17,6 @@
 @property Citizen *butler;
 
 // Overriding SPOUSE: A noble person can only marry another noble person
-@property NoblePerson *spouse;
+@property (nonatomic) NoblePerson *spouse;
 
 @end
