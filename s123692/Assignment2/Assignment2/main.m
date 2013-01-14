@@ -7,14 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Citizen.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
         
-        // insert code here...
-        NSLog(@"Hello, World!");
+        Citizen* a = [[Citizen alloc] initWithName:@"Annicken Bruu"
+                                            andSex:Female
+                                            andAge:21
+                                         andSingle:NO];
+        
+        Citizen* m = [[Citizen alloc] initWithName:@"Markus Færevaag"
+                                            andSex:Male
+                                            andAge:21
+                                         andSingle:NO];
+        [a marry:m];
+        
+        NSLog(@"%@", a.spouse.name);
         
     }
     return 0;
