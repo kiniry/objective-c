@@ -10,24 +10,50 @@
 
 @interface Citizen()
 
-@property (strong) NSString *name;
+@property NSString *name;
 @property int age;
-@property (nonatomic, strong) Citizen *spouse;
+@property Citizen *spouse;
 @property gender sex;
+
+@property (weak) Citizen *father;
+@property (weak) Citizen *mother;
+@property NSSet * children;
 
 @end
 
 @implementation Citizen
 
-
-- (id) initWithName:(NSString *)name AndAge:(int) age AndSex:(gender) sex
+- (id) initWithName:(NSString *)name Age:(int) age Sex:(gender) sex Children: (NSSet *) children
 {
     self = [super init];
     if(self) {
-        self.name = name;
-        self.age = age;
-        self.sex = sex;
-        self.spouse = nil;
+        _name = name;
+        _age = age;
+        _sex = sex;
+        
+        _children = [children copy];
+        
+        // Assign "self" as parent for the child. (Unless child already has given parent)
+        for(Citizen * child in _children) {
+            if (![child isKindOfClass:[Citizen class]]) {
+                return nil;
+            }
+            
+            if(_sex == M) {
+                if(child.father == nil) {
+                    child.father = self;
+                } else {
+                    return nil;
+                }
+            } else {
+                if(child.mother == nil) {
+                    child.mother = self;
+                } else {
+                    return nil;
+                }
+            }
+        }
+        
     }
     
     return self;
@@ -93,7 +119,7 @@
 - (NSString *) description
 {
     // Don't output "self.spouse" here, that'll just result in an infinite loop.
-    return [NSString stringWithFormat:@"Name: %@; age: %i; gender: %@; Spouse: %@", self.name, self.age, self.sex == M ? @"M" : @"F", [self.spouse getName]];
+    return [NSString stringWithFormat:@"Name: %@; age: %i; gender: %@; Spouse: %@; Father: %@; Mother: %@", self.name, self.age, self.sex == M ? @"M" : @"F", [self.spouse getName], [self.father getName], [self.mother getName]];
 }
 
 
