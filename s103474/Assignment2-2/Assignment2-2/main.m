@@ -134,7 +134,48 @@ int main(int argc, const char * argv[])
 		NSLog(@"Now, I think Tim's pet is: %@", pet);
 		NSLog(@"Now, Tim's pet is: %@", tim.myPet);
 		
+		// The second way is to make a copy of an object explicitly. This is what happens in the
+		// background in the above situation. Most Foundation objects have the methods “-copy” and
+		// “-mutableCopy” which creates	a mutable copy of a perhaps immutable object:
+		
+		pet = tim.myPet;
+		NSMutableString *newPet = [pet mutableCopy];
+		[newPet appendString: @"-Man"];
+		
+		NSLog(@"His new pet is %@", newPet);
+		
+		// The objects that support the above operations all implement the Foundation protocol made
+		// for this purpose, named <NSCopying>. These copy methods are all “shallow copies”, which
+		// means that they only copy the top object, and any subobjects, like members of an array
+		// object, are still passed by reference. The opposite of this is called a “deep copy”, which
+		// is usually best done in Objective-C using serialisation (“property lists”).
+		
 		// ------------------------------------------------------------------------------------------
+		
+		// Part 6: Dynamic typing. The special “id” type given to a variable allows that variable to
+		// contain a pointer to any type of Objectie-C object. This is handy in cases where you don't
+		// care what type of object is given because you don't perform any operations on it, or in
+		// cases where you expect to receive a certain class or subclass of that original class,
+		// without necessarily specifying which one.
+		
+		id a = @"Hello";
+		
+		NSLog(@"The length of the id string is %lu", [a length]);
+		
+		a = @[@1, @2, @3];
+		
+		NSLog(@"The length of the id array is %lu", [a count]);
+		
+		// I don't know of any other OO programming languages that offer a sort of dynamic typing in
+		// only one type of variable. All the languages I know either offer dynamic typing
+		// *everywhere*, like Ruby or Python, or *nowhere*, like Java.
+		
+		// Obviously, this dynamic typing has a big downside: You don't (immediately) know what type
+		// of object is in the variable at runtime. Thus, if you call a method on the object that
+		// doesn't exist, the compiler doesn't complain, but you get a runtime error resulting in a
+		// program crash. This is the same in Java, although the compiler can also warn you about
+		// this in this language.
+		
 		// ------------------------------------------------------------------------------------------
 		// ------------------------------------------------------------------------------------------
 		// ------------------------------------------------------------------------------------------
