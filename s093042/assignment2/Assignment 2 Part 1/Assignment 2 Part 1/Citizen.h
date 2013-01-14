@@ -10,4 +10,21 @@
 
 @interface Citizen : NSObject
 
+// queries
+@property NSString *name;
+@property NSString *sex;
+@property int age;
+@property BOOL single;
+@property Citizen *spouse;
+@property NSSet *children;
+@property NSSet *parents;
+-(BOOL) impedimentToMarriage:(Citizen *)aCitizen;
+
+// init
+-(id)initWithDefaultInfo:(NSString *)name :(NSString *)sex :(int) age;
+
+// commands
+-(void)marry:(Citizen *)aCitizen;
+-(void)divorce;
+
 @end

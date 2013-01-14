@@ -10,4 +10,11 @@
 
 @interface NoblePerson : Citizen
 
+@property int assets;
+@property Citizen* butler;
+
+-(BOOL) impedimentToMarriage:(Citizen *)aCitizen;
+
+-(void) marry:(Citizen *)aCitizen;
+
 @end
