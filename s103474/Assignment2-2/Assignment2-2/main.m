@@ -332,12 +332,60 @@ int main(int argc, const char * argv[])
 		
 		x = 21; // <-- This does not change the value of y.
 		
-		NSLog(@"x = %d, y = %d", x, y);
+		NSLog(@"-- PART 15: x = %d, y = %d", x, y);
 		
 		// ------------------------------------------------------------------------------------------
+		
+		// Part 16: Protocols. Similar to Interfaces in Java, which are collections of methods that a
+		// class declaration can “implement” and thus, the class is required to implement all of the
+		// methods listed in the protocol it implements. Looking at it this way, it can be seen as
+		// a “contract” between the protocol and the implementing class declaration (@interface).
+		
+		// As an example of this, all of my classes (Tim, Tom and Tommy) implement the “Greeter”
+		// protocol, which requires them to implement a “-greeting” method, as seen in part 12.
+		
+		// In Objective-C:
+		//		@interface Tim : NSObject <Greeter>
+		
+		// In Java:
+		//		class Tim implements Greeter {
+		
+		// ------------------------------------------------------------------------------------------
+		
+		// Part 17: Singletons. Empty lists and dictionaries have a simple syntax in many languages;
+		// but not in Objective-C. At least not until “Modern Objective-C” arrived. In many
+		// languages, an empty list is [] and an empty dictionary is {}. Before the arrival of Modern
+		// Objective-C, this is how it was done:
+		
+		NSArray *oldEmptyArray = [NSArray array];
+		NSDictionary *oldEmptyDict = [NSDictionary dictionary];
+		
+		// With Modern Objective-C:
+		
+		NSArray *newEmptyArray = @[];
+		NSDictionary *newEmptyDict = @{};
+		
+		// Much better in my opinion. They are the same types of objects:
+		
+		NSLog(@"-- PART 17:");
+		NSLog(@"Old: %@, %@", oldEmptyArray, oldEmptyDict);
+		NSLog(@"New: %@, %@", newEmptyArray, newEmptyDict);
+		
+		// ------------------------------------------------------------------------------------------
+		
+		// Part 18: Enumerations. In Objective-C, enumerations are part of C, so they are defined in
+		// the exact same way as in this programming language. In assignment 2, part 1, I have an
+		// example of a defined enumeration wherein a person's sex can be found from three choices,
+		// and then it is mapped to a type using typedef:
+		
+		typedef enum { undefined, male, female } sex;
+		
 		// ------------------------------------------------------------------------------------------
 		
 	}
+	
+	// Thanks for reading.
+	
     return 0;
 }
 

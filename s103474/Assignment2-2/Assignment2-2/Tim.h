@@ -9,7 +9,13 @@
 #import <Foundation/Foundation.h>
 //#import "Tom.h"
 
-@interface Tim : NSObject
+@protocol Greeter <NSObject>
+
+-(void) greeting;
+
+@end
+
+@interface Tim : NSObject <Greeter>
 
 @property NSString *favoriteColor;
 

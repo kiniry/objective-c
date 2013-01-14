@@ -8,7 +8,7 @@
 
 #import "Tom.h"
 
-@interface Tommy : Tom
+@interface Tommy : Tom <Greeter>
 
 -(void) callFriend: (NSString *) name;
 
