@@ -13,7 +13,7 @@ typedef enum : NSUInteger {
 @property (readonly) NSUInteger age;
 @property (readonly) Citizen* spouse;
 @property (readonly) NSSet* children;
-// parents properties are weak to avoid strong reference cycles
+// parent properties are weak to avoid strong reference cycles
 @property (weak, readonly) Citizen* father;
 @property (weak, readonly) Citizen* mother;
 
