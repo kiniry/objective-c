@@ -35,6 +35,7 @@ typedef enum { undefined, male, female } Sex;
 -(NSString*) fullName;
 -(NSString*) sexString;
 -(NSString*) description;
+-(NSInteger) age;
 
 -(BOOL) isSingle;
 
