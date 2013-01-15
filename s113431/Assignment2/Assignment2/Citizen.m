@@ -11,7 +11,7 @@
 @implementation Citizen
 
 - (void) setMother:(Citizen *)mother {
-    if(_sex == @'female' && !self) {
+    if(_sex == @"female" && !self) {
         _mother = mother;
     }
 }
