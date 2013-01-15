@@ -1,5 +1,5 @@
 /*************************************************************************
- *  File name   : main.m
+ *  File name   : HelloWorld.m
  *  Description : Main module for Hello World program
  *				  (Testing commitment in Github)
  *
@@ -11,9 +11,13 @@
 
 int main(int argc, const char * argv[])
 {
-    @autoreleasepool {    
-        NSLog(@"Hello, World!");
-    }
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+    NSLog(@"Hello, World!");
+	[pool drain];
+
     return 0;
 }
+
+
 
