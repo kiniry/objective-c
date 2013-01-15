@@ -10,7 +10,7 @@
 
 @interface AClass : NSObject
 
-@property NSString* aProperty;
+@property NSString *aProperty;
 
 -(id)init;
 -(id)initWithParameter:(NSString *)aParameter;

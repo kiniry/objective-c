@@ -31,7 +31,7 @@
 
 // this is ''method'' is the toString equivalent, from C# and Java.
 -(NSString *)description {
-    return [NSString stringWithFormat:@"The content of aProperty is: %@", self.aProperty];
+    return [NSString stringWithFormat:@"The contents of aProperty is: %@", self.aProperty];
 }
 
 @end
