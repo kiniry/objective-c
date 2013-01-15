@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "FoundationFramework/FoundationFramework.h"
+
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
+        [FoundationFramework runExperiments];
         
         // insert code here...
         NSLog(@"Hello, World!");
