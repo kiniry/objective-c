@@ -11,7 +11,7 @@
 @implementation FoundationFramework
 
 +(void)runExperiments {
-    // The Foundation Framework includes many of the classes that a developer would use, and these objects have most of the commonly used methods.
+    // The Foundation Framework include many of the classes that a developer would use, and these objects have most of the commonly used methods.
     
     // An example is the NSString class
     NSString *aString = @"A test string";

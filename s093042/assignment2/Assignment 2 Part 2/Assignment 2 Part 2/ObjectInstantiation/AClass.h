@@ -1,5 +1,5 @@
 //
-//  FoundationFramework.h
+//  AClass.h
 //  Assignment 2 Part 2
 //
 //  Created by Sivanujann Selliah on 15/01/13.
@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FoundationFramework : NSObject
+@interface AClass : NSObject
 
-+(void)runExperiments;
+@property NSString* aProperty;
+
+-(id)init;
+-(id)initWithParameter:(NSString *)aParameter;
 
 @end
