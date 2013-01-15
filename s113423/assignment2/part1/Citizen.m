@@ -20,7 +20,7 @@
 
     for (Citizen* child in _children) {
       // is child even a Citizen?
-      if (![child isKindOfClass:[Citizen class]]) return nil; // DOES THIS EVEN WORK!?
+      if (![child isKindOfClass:[Citizen class]]) return nil;
 
       // set parent of child
       if (_sex == SexMale) {
