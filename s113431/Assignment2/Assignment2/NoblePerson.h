@@ -10,11 +10,8 @@
 
 @interface NoblePerson : NSObject
 
-@property (atomic) NSValue *fortune;
-@property (nonatomic) Citizen *spouse;
+@property NSValue* fortune;
+@property (nonatomic) NoblePerson* spouse;
 
-- (void) setSpouse:(int *)spouse {
-    if()
-}
 
 @end
