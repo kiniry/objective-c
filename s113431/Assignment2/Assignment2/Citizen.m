@@ -10,15 +10,6 @@
 
 @implementation Citizen
 
-@synthesize age = _age;
-@synthesize firstName = _firstName;
-@synthesize sex = _sex;
-@synthesize single = _single;
-@synthesize mother = _mother;
-@synthesize father = _father;
-@synthesize spouse = _spouse;
-
-
 
 
 
