@@ -69,6 +69,14 @@
 
 -(void) addChild:(Citizen*) child {
 	if(!children){ children = [@[] mutableCopy]; }
+	
+	if(sex == male){
+		child.father = self;
+	}
+	if(sex == female){
+		child.mother = self;
+	}
+	
 	[children addObject: child];
 }
 
