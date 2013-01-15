@@ -21,6 +21,15 @@
     return anyImpediments;
 }
 
+-(id)initWithName:(NSString *)aGivenName Sex:(NSString *)aSex Age:(int)anAge Assets:(int)moneyInTheBank Butler:(Citizen *)aButler {
+    if(self = [super initWithName:aGivenName Sex:aSex Age:anAge]) {
+        self.assets = moneyInTheBank;
+        self.butler = aButler;
+    }
+    
+    return self;
+}
+
 -(void)marry:(Citizen *)aCitizen {
     if(![self impedimentToMarriage:aCitizen]) {
         [super marry:aCitizen];
@@ -37,4 +46,8 @@
     }
 }
 
+
+-(NSString *)description {
+    return [NSString stringWithFormat:@"%@, is a noble person, who has %d dollars in the bank, and has a butler named %@.", [super description], self.assets, self.butler.name];
+}
 @end

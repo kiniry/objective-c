@@ -18,23 +18,26 @@
 @synthesize children = _children;
 @synthesize parents = _parents;
 
--(id)initWithDefaultInfo:(NSString *)name :(NSString *)sex :(int)age {
-    self = [super init];
+-(id)initWithName:(NSString *)aName Sex:(NSString *)aSex Age:(int) anAge {
+    if(self = [super init]) {
     
-    self.name = name;
-    self.sex = sex;
-    self.age = age;
+        self.name = aName;
+        self.sex = aSex;
+        self.age = anAge;
     
-    // single will be false/NO from start, so it needs to be set:
-    self.single = YES;
+        // spouse will be nil from start
+        // children and parents must be set afterwards
     
-    // spouse will be nil from start
-    // children and parents must be set afterwards
-    
-    NSLog(@"InitWithDefaultInfo Name: %@, Sex: %@, Age: %d", self.name, self.sex, self.age);
+        NSLog(@"InitWithDefaultInfo Name: %@, Sex: %@, Age: %d", self.name, self.sex, self.age);
+    }
     
     return self;
 }
+
+-(BOOL)single {
+    return (self.spouse == nil);
+}
+
 
 -(BOOL)impedimentToMarriage:(Citizen *)aCitizen {
     BOOL anyImpediments = !(self.single && self.spouse == nil && aCitizen.single && aCitizen.spouse == nil && (self.sex != aCitizen.sex) && ![self.children containsObject:aCitizen] && ![self.parents containsObject:aCitizen] && ![aCitizen.children containsObject:self] && ![aCitizen.parents containsObject:self]);
@@ -49,9 +52,6 @@
         self.spouse = aCitizen;
         self.spouse.spouse = self;
         
-        self.single = false;
-        self.spouse.single = false;
-        
         NSLog(@"Married");
     }
     else {
@@ -60,13 +60,17 @@
 }
 
 -(void)divorce {
-    self.spouse.single = true;
-    self.single = true;
-    
     self.spouse.spouse = nil;
     self.spouse = nil;
     
     NSLog(@"Divorced");
+}
+
+
+-(NSString *)description {
+    NSArray *parents = [self.parents allObjects];
+    
+    return [NSString stringWithFormat:@"%@ is a %@, who is %d years old, is %@, %@ parents are %@ and %@", self.name, (self.sex == @"male" ? @"man" : @"woman"), self.age, (self.single ? @"single" : [NSString stringWithFormat:@"married to %@", self.spouse.name]), (self.sex == @"male" ? @"his" : @"her"), ((Citizen *)[parents objectAtIndex:0]).name, ((Citizen *)[parents objectAtIndex:1]).name];
 }
 
 @end
