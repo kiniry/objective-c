@@ -14,7 +14,11 @@
 @synthesize butler = _butler;
 
 -(BOOL) impedimentToMarriage:(Citizen *)aCitizen {
-    BOOL anyImpediments = [super impedimentToMarriage:aCitizen] || !([aCitizen isMemberOfClass:[NoblePerson class]]);
+    BOOL anyImpedimentsFromSuper = [super impedimentToMarriage:aCitizen];
+    BOOL bothAreNoblePersons = ([aCitizen isMemberOfClass:[NoblePerson class]]);
+    BOOL thereIsAButler = self.butler != nil || ((NoblePerson *)aCitizen).butler != nil;
+    
+    BOOL anyImpediments = anyImpedimentsFromSuper || !bothAreNoblePersons || !thereIsAButler;
     
     NSLog(@"Any impediments for noble persons: %d", anyImpediments);
     
@@ -30,9 +34,9 @@
     return self;
 }
 
--(void)marry:(Citizen *)aCitizen {
-    if(![self impedimentToMarriage:aCitizen]) {
-        [super marry:aCitizen];
+-(void)marry:(Citizen *)fiancee {
+    if(fiancee != nil && ![self impedimentToMarriage:fiancee]) {
+        [super marry:fiancee];
     
         int shareOfAssets = (((NoblePerson *)self.spouse).assets + self.assets)/2;
         shareOfAssets -= 50000/2;

@@ -14,7 +14,7 @@
 @property NSString *name;
 @property NSString *sex;
 @property int age;
-@property (nonatomic, readonly) BOOL single;
+@property (readonly) BOOL single;
 @property Citizen *spouse;
 @property NSSet *children;
 @property NSSet *parents;
@@ -24,7 +24,7 @@
 -(id)initWithName:(NSString *)aGivenName Sex:(NSString *)aSex Age:(int) anAge;
 
 // commands
--(void)marry:(Citizen *)aCitizen;
+-(void)marry:(Citizen *)sweetheart;
 -(void)divorce;
 
 @end

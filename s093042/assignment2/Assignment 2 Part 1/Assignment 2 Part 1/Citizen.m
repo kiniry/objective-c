@@ -40,16 +40,20 @@
 
 
 -(BOOL)impedimentToMarriage:(Citizen *)aCitizen {
-    BOOL anyImpediments = !(self.single && self.spouse == nil && aCitizen.single && aCitizen.spouse == nil && (self.sex != aCitizen.sex) && ![self.children containsObject:aCitizen] && ![self.parents containsObject:aCitizen] && ![aCitizen.children containsObject:self] && ![aCitizen.parents containsObject:self]);
+    BOOL bothAreSingle = self.single && aCitizen.single;
+    BOOL theyAreNotRelated = ![self.children containsObject:aCitizen] && ![self.parents containsObject:aCitizen] && ![aCitizen.children containsObject:self] && ![aCitizen.parents containsObject:self];
+    BOOL theyAreOfOppositeSex = self.sex != aCitizen.sex;
+    
+    BOOL anyImpediments = !bothAreSingle || !theyAreNotRelated || !theyAreOfOppositeSex;
     
     NSLog(@"impedimentToMarriage %d", anyImpediments);
     
     return anyImpediments;
 }
 
--(void)marry:(Citizen *)aCitizen {
-    if(![self impedimentToMarriage:aCitizen]) {
-        self.spouse = aCitizen;
+-(void)marry:(Citizen *)sweetheart {
+    if(sweetheart != nil && ![self impedimentToMarriage:sweetheart]) {
+        self.spouse = sweetheart;
         self.spouse.spouse = self;
         
         NSLog(@"Married");
@@ -60,10 +64,14 @@
 }
 
 -(void)divorce {
-    self.spouse.spouse = nil;
-    self.spouse = nil;
+    if(self.single == false) {
+        self.spouse.spouse = nil;
+        self.spouse = nil;
     
-    NSLog(@"Divorced");
+        NSLog(@"Divorced");
+    } else {
+        NSLog(@"Already single!");
+    }
 }
 
 
