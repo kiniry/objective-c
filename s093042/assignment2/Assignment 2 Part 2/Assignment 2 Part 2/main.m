@@ -1,14 +1,12 @@
 //
 //  main.m
-//  HelloWorld
+//  Assignment 2 Part 2
 //
-//  Created by Andreas Haure on 09/01/13.
-//  Copyright (c) 2013 Andreas Roll Haure. All rights reserved.
+//  Created by Sivanujann Selliah on 15/01/13.
+//  Copyright (c) 2013 Sivanujann Selliah. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
-//Testing commitment abilities again
 
 int main(int argc, const char * argv[])
 {

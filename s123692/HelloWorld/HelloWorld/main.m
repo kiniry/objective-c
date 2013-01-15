@@ -2,20 +2,17 @@
 //  main.m
 //  HelloWorld
 //
-//  Created by Andreas Haure on 09/01/13.
-//  Copyright (c) 2013 Andreas Roll Haure. All rights reserved.
+//  Created by Markus Færevaag on 11.01.13.
+//  Copyright (c) 2013 Markus Færevaag. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
-//Testing commitment abilities again
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
         
-        // insert code here...
         NSLog(@"Hello, World!");
         
     }

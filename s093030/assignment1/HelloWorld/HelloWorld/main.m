@@ -2,13 +2,11 @@
 //  main.m
 //  HelloWorld
 //
-//  Created by Andreas Haure on 09/01/13.
-//  Copyright (c) 2013 Andreas Roll Haure. All rights reserved.
+//  Created by Søren Olofsson on 1/13/13.
+//  Copyright (c) 2013 Søren Olofsson. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
-//Testing commitment abilities again
 
 int main(int argc, const char * argv[])
 {
