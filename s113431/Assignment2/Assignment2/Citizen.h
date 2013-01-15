@@ -10,17 +10,17 @@
 
 @interface Citizen : NSObject
 
-@property  NSValue *age;
-@property  NSString *firstName;
-@property  NSString *lastName;
-@property  NSString *sex;
-@property  BOOL *single;
-@property (nonatomic) Citizen *mother;
-@property (nonatomic) Citizen *father;
-@property (nonatomic) Citizen *spouse;
+@property  NSValue* age;
+@property  NSString* firstName;
+@property  NSString* lastName;
+@property  NSString* sex;
+@property  BOOL* single;
+@property (nonatomic) Citizen* mother;
+@property (nonatomic) Citizen* father;
+@property (nonatomic) Citizen* spouse;
 
-- (void) setMother:(Citizen *)mother;
-- (void) setFather:(Citizen *)father;
+- (void) setMother:(Citizen*) mother;
+- (void) setFather:(Citizen*) father;
 
 
 @end
