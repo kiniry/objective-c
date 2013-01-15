@@ -8,24 +8,33 @@
 
 #import <Foundation/Foundation.h>
 #import "Citizen.h"
+#import "Nobleperson.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
         
-        Citizen* a = [[Citizen alloc] initWithName:@"Annicken Bruu"
-                                            andSex:Female
-                                            andAge:21
-                                         andSingle:NO];
+        Nobleperson *a = [[Nobleperson alloc] initWithName:@"Annicken"
+                                                    andSex:Female
+                                                    andAge:21];
+        [a setButler:[[Citizen alloc] init]];
+        [a setAssets:[NSNumber numberWithInt:1000001]];
         
-        Citizen* m = [[Citizen alloc] initWithName:@"Markus Færevaag"
+        Nobleperson *m = [[Nobleperson alloc] initWithName:@"Markus"
                                             andSex:Male
-                                            andAge:21
-                                         andSingle:NO];
-        [a marry:m];
+                                            andAge:21];
         
-        NSLog(@"%@", a.spouse.name);
+        [a setAssets:[NSNumber numberWithInt:1000001]];
+        
+        
+        [a marryTo:m];
+        
+        NSLog(@"%@ assets: %@", a.name, a.assets);
+        
+        [a setAssets:[NSNumber numberWithInt:6666666]];
+        
+        NSLog(@"%@ assets: %@", m.name, m.assets);
         
     }
     return 0;

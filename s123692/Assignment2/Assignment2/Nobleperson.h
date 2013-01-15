@@ -16,8 +16,9 @@
 }
 
 @property (nonatomic) NSNumber* assets;
-@property (nonatomic) Citizen* butler;
+@property Citizen* butler;
 
 -(void) setAssets:(NSNumber *)assets;
+
 
 @end

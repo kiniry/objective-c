@@ -11,6 +11,7 @@
 @interface Citizen()
 
 // Private
+@property BOOL single;
 @property (readwrite, nonatomic) NSSet* children;
 @property (readwrite, nonatomic) NSSet* parents;
 
@@ -19,20 +20,21 @@
 
 @implementation Citizen
 
-@synthesize name = _name;
-@synthesize sex = _sex;
-@synthesize age = _age;
-@synthesize single = _single;
-@synthesize spouse = _spouse;
-@synthesize children = _children;
-@synthesize parents = _parents;
+@synthesize name = _name,
+sex = _sex,
+age = _age,
+single = _single,
+spouse = _spouse,
+children = _children,
+parents = _parents;
 
 // Constructor
 -(id) initWithName: (NSString *)name
             andSex: (Sex)sex
             andAge: (int)age
 {
-    if (self = [super init])
+    self = [super init];
+    if (self)
     {
         _name = name;
         _sex = sex;
@@ -94,14 +96,16 @@
 // Civil status
 -(void) marryTo: (Citizen *)fiancee
 {
-    if (!self.spouse &&
-        fiancee.sex != self.sex &&
+    if (self.single &&
+        !self.spouse &&
+        (fiancee.sex != self.sex) &&
         ![self.children containsObject:fiancee] &&
         ![self.parents containsObject:fiancee])
     {
         self.single = NO;
         self.spouse = fiancee;
-        [fiancee marryTo:self];
+        fiancee.single = NO;
+        fiancee.spouse = self;
     }
 }
 

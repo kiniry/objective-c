@@ -23,11 +23,10 @@ typedef enum {
     NSSet* _parents;
 }
 
-@property (nonatomic) NSString* name;
-@property (nonatomic) Sex sex;
-@property (nonatomic) int age;
-@property (nonatomic) BOOL single;
-@property (nonatomic) Citizen* spouse;
+@property (copy) NSString* name;
+@property Sex sex;
+@property int age;
+@property Citizen* spouse;
 @property (readonly, nonatomic) NSSet* children;
 @property (readonly, nonatomic) NSSet* parents;
 
