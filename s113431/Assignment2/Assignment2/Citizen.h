@@ -10,14 +10,14 @@
 
 @interface Citizen : NSObject
 
-@property (atomic) NSValue *age;
-@property (atomic) NSString *firstName; 
-@property (atomic) NSString *lastName;
-@property (atomic) NSString *sex;
-@property (atomic) BOOL *single;
+@property  NSValue *age;
+@property  NSString *firstName;
+@property  NSString *lastName;
+@property  NSString *sex;
+@property  BOOL *single;
 @property (nonatomic) Citizen *mother;
 @property (nonatomic) Citizen *father;
-@property (atomic) Citizen *spouse;
+@property Citizen *spouse;
 
 
 @end
