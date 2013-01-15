@@ -83,11 +83,11 @@ In C# it is also just a matter of creating another constructor:
 e.g. NoblePerson(string name) { ... }
 
 ---------- Class types ----------
-Class types in C# must always adhere to an interface. This is a little
-different than for example C#. Subsequently one only has to include the
-header file (.h) file and not the implementation (.m) file. For design
+Class types in Objective-C must always adhere to an interface. This is a little
+different than for example C#. To use a class type one only has to include the
+header file (.h) file and not necessarily the implementation (.m) file. For design
 purposes this is a rather good approach but it can sometimes also become
-quite tedious as every single class needs an interface.
+quite tedious as every single class requires an interface.
 
 ---------- Constructors and factories ----------
 Another substantial difference between C# and Objective-C is the
@@ -106,11 +106,11 @@ whereas homemade objects and the like uses the init alloc pattern
 explained above.
 
 ---------- Copying and cloning of objects ----------
-The NSCopying protocol makes it possible to do deep copying of objects.
+The NSCopying protocol makes it possible to perform deep copying of objects.
 Classes from the Foundation Framework usually implement this protocol by
 implementing the method -(id) copyWithZone: (NSZone *) zone;
-In custom objects implementing hte copyWithZone one has to a manual
-property by property copy.
+In custom objects implementing the copyWithZone one has to perform a manual
+property-by-property copy.
 The actual copying is then done by invoking copy or mutableCopy. E.g.
 
 NSString *myStringA = @"This is a string";
@@ -120,27 +120,29 @@ myStringB = [myStringA mutableCopy];
 In custom objects that has properties of other custom types there are two
 options:
 - The other custom types also have to implement the NSCopying protocol.
-The copying should then also call copy on its properties of custom types.
+The object being copied should then also call copy on its properties of custom
+types.
 - Or the "top object" could just instantiate new instances and set the
 cloned object's properties of custom types to these new instances.
 
 The first case, however, seems to be preferred because it is easier if
-each object in the object graph which is to be copied is responsible of
+each object in the object graph, which is to be copied, is responsible of
 copying itself.
 
-C# has the exact same pattern with the ICloneable interface. Another easy
-approach however is to serialize and then deserialize objects, this
+C# has the exact same pattern with the ICloneable interface.
+
+Another easy approach however is to serialize and then deserialize objects, this
 however, can introduce a small performance overhead and requires objects
-to be serializable. If, however, the objects are serialized and very
+to be serializable. If, however, the objects are serializable and very
 complex it might be worth it, instead of writing manual copy routines.
 
-In Javascript you can also do JSON serialization and deserialization to
-deep clone objects like this:
+In Javascript you can also do JSON serialization and deserialization in order
+to deep clone objects like this:
 
 obj = JSON.decode(JSON.encode(o));
 
-The preferred way however is to use a Javascript library like jQuery and
-then use either of the following:
+The preferred way however is to use implement a copy routing yourself or use 
+a Javascript library like jQuery and then use either of the following:
 
 // Shallow copy
 var newObject = $.extend({}, oldObject);
@@ -174,29 +176,30 @@ for (index = 0; index < myArray.count; index++) {
     [item namedMethodCallIsNotGuaranteedToWorkWithoutTypeCast];
 }
 
-In these cased a type cast would be necessary in order to ensure that named
+In these cases a type cast would be necessary in order to ensure that named
 methods are invoked on the proper object because an NSArray can hold objects
-of mixed type. In these case the isKindOfClass: method could be used to make
-sure that objects are type casted properly. The method calls above will
-not fail with an exception, however. The same example is shown in the
-ExperimentMethodResolution.m file.
+of mixed type. For example the isKindOfClass-method could be used to make
+sure that objects are type-casted properly. The method calls above will
+not fail with an exception, however. An example of method resolution is
+provided in the ExperimentMethodResolution.m file.
 
 In Javascript everything is dynamically typed as opposed to C# which
 is (mostly) statically typed. If method resolution in Javascript fails
 however an exception is thrown and the execution context is halted. As a
-note here, there is a new type called dynamic which is introduced in
+note here, there is a new type called dynamic which was introduced in
 C# 4.0 which is actually dynamically typed:
 
 dynamic d = new object();
 d.SomeMethodWhichDoesNotExist();
 
-The above method-call to SomeMethodWhichDoesNotExist will cause a runtime
-exception but not a compile-time exception. Type information is obviously
+The above method-call to SomeMethodWhichDoesNotExist will cause a run-time
+exception but not a compile-time error. Type information is obviously
 not present when working with dynamics. Dynamics are heavily used in the
 MVC 4 Framework to pass information from Controllers to Views via the
-Viewbag- object which encapsulates a dictionary used in the MVC 3 Framework.
+Viewbag-object which encapsulates a dictionary which was previously used in
+the MVC 3 Framework.
 
-It should be noted that also exist an implicit var type which is however
+It should be noted that there also exists an implicit var type which is however
 strongly typed. The type is determined by the compiler using type inference.
 
 ---------- Expanded Types ----------
@@ -209,18 +212,22 @@ Normally it is not considered good practice but it can be useful to
 implement for example a public getter and a private setter. This is 
 shown in the Citizen.m file with the spouse having a public getter
 and private setter. This is because we want anyone to be able to ask
-a Citizen what its current spouse is but we only want to change the spouse
-in a certain way from the outside (i.e. through the marry and divorce
+a Citizen what its current spouse is, but we only want to change the spouse
+in a certain way from "the outside" (i.e. through the marry and divorce
 methods). The Citizen class however needs to change the spouse
-property internally which means that we need to allow a private setter.
+property internally, which means that we need to allow a private setter.
+This is in order to prevent us from accessing the instance variable directly
+from other methods than the getter and setter as mentioned by Paul Hegarty.
 
 When it comes to public getter and private setter in C# it is a bit easier
 because we do not need to use field hiding, and we can just type:
+
 string myProperty { get; private set; }
+
 to achieve the same thing.
 
-When it comes to shadowing in C# the new keyword can be used (again)
-(notice it is not only an operator to make new objects but can also be
+When it comes to shadowing in C# the new keyword can be used (again!
+Notice it is not only an operator to make new objects but can also be
 used as a modifier to shadow properties). To override properties the
 override keyword is used.
 
@@ -245,15 +252,19 @@ class B : A
 A a = new A();
 B b = new B();
 
-Console.WriteLine(a.Hello()); // Prints Hello A
-Console.WriteLine(a.Hi()); // Prints Hi A
-Console.WriteLine(b.Hello()); // output Hello B
-Console.WriteLine(b.Hi()); // Prints Hi B
+Console.WriteLine(a.Hello()); 		// Prints Hello A
+Console.WriteLine(a.Hi()); 			// Prints Hi A
+Console.WriteLine(b.Hello()); 		// Prints Hello B
+Console.WriteLine(b.Hi()); 			// Prints Hi B
 
-// The following prints Hello A, which is kinda suprising
+// The following prints Hello A as a result of shadowing.
+// This is kinda suprising because b is really an instance
+// of B and not A
 Console.WriteLine(((A)b).Hello());
 
-Console.WriteLine(((A)b).Hi()); // Prints Hi B
+// The following prints Hi B as a result of overriding
+// This is more intuitive than the shadowing behaviour
+Console.WriteLine(((A)b).Hi());
 
 Shadowing in Objective-C however is not really possible because the type
 does not matter, i.e. the messages are handled dynamically at run-time.
@@ -265,7 +276,7 @@ the subclass will invoke that method instead of the superclass' method
 This is because in Objective-C the overriding of properties/methods happen
 automatically in subclasses which declare a property of the same name
 and type. See for example the method -(BOOL) marry:(Citizen*) fiancée
-in the  NoblePerson.m file.
+in the NoblePerson.m file.
 
 Operator overloading is not possible either in Objective C.
 
@@ -278,7 +289,7 @@ Simple types are always immutable.
 
 ---------- Inheritance ----------
 Inheritance in Objective-C works a little different when it comes to the
-declaration, since inheritance is declared in the header file and not
+declaration, since inheritance is declared in the header file and not in
 the implementation file. Examples of inheritance is given in the Citizen
 and NoblePerson header files.
 
@@ -297,7 +308,7 @@ The latter approach will always invoke the class method on ClassType
 disregarding any subtypes implementation.
 
 ---------- Logging ----------
-The Foundation framework has NSLog-method which prints debug messages to
+The Foundation framework has a NSLog-method which prints debug messages to
 the console. It corresponds to C#'s System.Diagnostics.Debug.WriteLine-, 
 System.Console.WriteLine-, and Javascript's console.log-method.
 Usually however frameworks like log4net is used in larger C# applications.
@@ -305,7 +316,7 @@ This framework provides scalability, configurability and thread safety.
 
 ---------- Polymorphism ----------
 
-Polymorphism can be several things.
+Polymorphism can be several things:
 
 Ad-hoc polymorphism or overloading is used to describe the ability
 to use the same syntax for different types. E.g. + for strings means
@@ -321,20 +332,22 @@ e.g. a function that accepts a Citizen can also accept a NoblePerson.
 This is supported by Objective-C (and most other OOP-languages).
 
 ---------- NSArray ----------
-NSArray (and NSMutableArray) differs a lot from other strongly typed languages because 
-they can contain mixed types of objects. This is for exampled utilized in
-Paul Hegarty's Calculator example.
-Usually this is not allowed in for example C#'s List. This is usually
-ensured by utilizing generic parametrized types, e.g.
+NSArray (and NSMutableArray) differs a lot from other strongly typed languages
+because they can contain mixed types of objects. This is for exampled utilized
+in Paul Hegarty's Calculator example.
+Usually this is not allowed in for example C#'s List. This is usually ensured by
+utilizing generic parametrized types, e.g.
+
 List<string> listOfStrings = new List<string>();
 
 C# however also has an ArrayList class which can do this. Furthermore
 the type safety of List can be "broken" by just declaring a List<object>
-type.
+variable.
 
 In Javascript which is also object-oriented (some argue it is not, but
 that is another discussion), arrays can also contain different kinds of
 objects:
+
 var myArray = new Array();
 myArray.push({ foo: 'bar' });
 myArray.push(1337);
@@ -384,9 +397,9 @@ For an example, see the ExperimentProtocol.m and .h files.
 ---------- Singletons ----------
 Singletons in Objective-C and C# are pretty much the same. In C# the class
 would expose a single static method (usually called Instance), which returns
-an instance. This instance could either be lazy instantiated (probably 
-preferred) or created in a static constructor. In Objective-C the pattern
-using lazy instantiation would look like this:
+an instance of the class. This instance could either be lazy instantiated
+(probably preferred) or created in a static constructor. In Objective-C the
+pattern using lazy instantiation would look like this:
 
 static MyGlobalSingletonClass *gInstance;
 
@@ -402,11 +415,11 @@ static MyGlobalSingletonClass *gInstance;
 
 ---------- Strong vs weak pointers ----------
 Automatic Reference Counting (ARC) was a feature introduced in 2011 by 
-Apple. It is supported by  Xcode 4.2 or later,
-Mac OS X 10.6 Snow Leopard or later, and iOS 4.0 or later.
+Apple. It is supported by  Xcode 4.2 or later, Mac OS X 10.6 Snow Leopard
+or later, and iOS 4.0 or later.
 
 It is a memory management system which makes concepts such as
-retain, release, retainCount, autorelease, or dealloc deprecated.
+retain, release, retainCount, autorelease, or dealloc kinda deprecated.
 
 Instead it has introduced the strong and weak keywords.
 
@@ -420,8 +433,9 @@ holds a strong reference to it. It is used to avoid retain cycles in for
 example parent/child relationships. In this case you would want the parent
 to have a strong relationship to the children and the children to have
 a weak relationship to their parent. Assuming you have a strong reference
-to the parent which you then give up, the OS would automatically destroy
-the children also because there is no strong reference chain to them.
+to the parent from you program, and you then give up this reference, the
+OS would automatically destroy the children also because there is no strong
+reference chain to them.
 
 ---------- Variance ----------
 First some definitions:
@@ -429,7 +443,7 @@ First some definitions:
 - Contravariance is about converting from a general type to a smaller type.
 
 This can effect return types in derived subclasses if they inherit from a
-class but then override a method but changes the return type to a subtype
+class but then override a method but change the return type to a subtype
 of the type that the super class' method returns.
 
 For an example of this effect on return types see the ExperimentVariance.m
@@ -457,21 +471,20 @@ They are handled the following way:
 	...
 }
 
-Throwing exceptions are really discouraged in Objective-C as they are likely
-to cause memory leaks. This is because they bypass ARC.
-Instead the documentation states that:
-"You should not use exceptions for general flow-control, or simply to
+Throwing exceptions are strongly discouraged in Objective-C as they are likely
+to cause memory leaks. This is because they bypass ARC. Instead the documentation
+states that: "You should not use exceptions for general flow-control, or simply to
 signify errors. Instead you should use the return value of a method or
 function to indicate that an error has occurred, and provide information
 about the problem in an error object."
 
-As a difference to Java (but a similarity to C#) is that Objective-C does
+A difference to Java (but a similarity to C#) is that Objective-C does
 not use the throws keyword in method declarations if a method is likely to
 throw an exception. This makes sense since exceptions in general are
 discouraged as opposed to Java and C#.
 
 ---------- Boxing ----------
-Value boxing and unboxing works alot the same way in Objectice-C as C#.
+Value boxing and unboxing works alot the same way in Objective-C as C#.
 As an example you can do:
 
 NoblePerson *god = [[NoblePerson alloc] init];
@@ -487,12 +500,13 @@ of the specified class.
 - isMemberOfClass: returns true if the receiver is an instance of the
 specified class. This excludes subclasses.
 
-In C# there is the corresponding two methods:
-- The is operator which corresponds exactly to isKindOfClass.
-- The typeof operator which corresponds exactly to isMemberOfClass.
+In C# there are the corresponding two methods:
+- The is-operator which corresponds exactly to isKindOfClass.
+- The typeof-operator which corresponds exactly to isMemberOfClass.
 
-These introspection methods can be used to typecast dynamic types to 
-static types in order to achieve strong typing.
+These introspection methods can be used to make sure that a typecast
+of dynamic types to static types will succeed in order to achieve strong
+typing.
 
 ---------- Enumeration ----------
 Enumeration of arrays can be done in two ways:
@@ -526,15 +540,16 @@ over-head.
 
 ---------- Blocks ----------
 Blocks are directly comparable to C# lambdas, i.e. they are anonymous
-methods which can be stored in a variable and passed around as parameter
+methods which can be stored in a variable and passed around as a parameter
 to other functions. Their parameter list is strongly typed.
 
 When using blocks one should make sure not create memory cycles, where
 the block has a strong reference to the instance containing the block.
-This is because the containing class has a strong reference to the block,
-which it contains.
+The cycle can occur because the containing class also has a strong
+reference to the block, which it contains.
 
 As in C#, blocks are usually used to map on to collections by enumerating
-the collection and invoke the block on each element.
+the collection and invoke the block on each element. Also they are used as
+delegates.
 
-See the Experiment.m file for an example of using blocks.
+See the Experiment.m file for an example using blocks.
