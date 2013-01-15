@@ -10,13 +10,6 @@
 
 int main(int argc, const char * argv[])
 {
-
-    struct Citizen {
-        char name, sex;
-        bool single;
-        
-        
-    };
     
     
 }
