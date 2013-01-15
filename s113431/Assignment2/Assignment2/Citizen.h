@@ -17,7 +17,10 @@
 @property  BOOL *single;
 @property (nonatomic) Citizen *mother;
 @property (nonatomic) Citizen *father;
-@property Citizen *spouse;
+@property (nonatomic) Citizen *spouse;
+
+- (void) setMother:(Citizen *)mother;
+- (void) setFather:(Citizen *)father;
 
 
 @end
