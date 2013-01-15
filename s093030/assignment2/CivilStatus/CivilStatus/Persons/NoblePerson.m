@@ -34,7 +34,7 @@
     
     if(newAssets >= oldAssets - 50000 && [super marry:nobleFiancee])
         return (self.butler = butler) != nil; // Assign and return true
-        
+    
     return false;
 }
 
