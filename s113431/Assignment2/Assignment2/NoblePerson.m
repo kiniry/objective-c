@@ -11,6 +11,5 @@
 
 @implementation NoblePerson
 
-@synthesize fortune = _fortune;
 
 @end
