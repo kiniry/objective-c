@@ -15,6 +15,9 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         
         Test *foo = [[Test alloc] init];
+        // Shows that referencing nil values only
+        // returns (null), without any exception
+        // being trown.
         [foo printArrayEntries:nil];
         
     }

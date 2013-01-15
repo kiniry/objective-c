@@ -14,11 +14,13 @@
 
 -(void) printArrayEntries:(NSArray *)array
 {
+    NSLog(@"Printing array: %@", array);
     int i;
     for(i = 0; i < [array count]; ++i)
     {
-        NSLog(@"%@", [[array objectAtIndex:i] stringValue]);
+        NSLog(@"%d: %@", i, [[array objectAtIndex:i] stringValue]);
     }
+    NSLog(@"%@", [[array objectAtIndex:0] stringValue]);
 }
 
 @end
