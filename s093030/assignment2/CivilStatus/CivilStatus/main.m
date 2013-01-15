@@ -12,6 +12,7 @@
 #import "ExperimentNil.h"
 #import "ExperimentMethodResolution.h"
 #import "ExperimentMethodOVerloading.h"
+#import "ExperimentVariance.h"
 
 int main(int argc, const char * argv[])
 {
@@ -86,6 +87,8 @@ int main(int argc, const char * argv[])
         ExperimentMethodResolution *experimentMethodResolution = [[ExperimentMethodResolution alloc] init];
         [experimentMethodResolution run];
         
+        ExperimentVariance *experimentVariance = [[ExperimentVariance alloc] init];
+        [experimentVariance run];
     }
     return 0;
 }
