@@ -10,4 +10,15 @@
 
 @implementation NoblePerson
 
+-(NSString*) description {
+	return [NSString stringWithFormat:@"NOBLE PERSON: %@\nSocial security number: %@\nCountry: %@\nBirth date: %@\nSex: %@\nAssets: DKK %@\nButler: \n%@",
+			self.fullName,
+			self.socialSecurity,
+			self.country,
+			self.birthDate,
+			self.sexString,
+			self.assets,
+			self.butler];
+}
+
 @end

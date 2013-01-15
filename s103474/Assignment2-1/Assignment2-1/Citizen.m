@@ -46,6 +46,10 @@
 			self.sexString];
 }
 
+-(BOOL) isSingle {
+	return (self.spouse == nil);
+}
+
 -(NSMutableArray *) getChildren {
 	if(!children){ children = [@[] mutableCopy]; }
 	return children;
@@ -65,7 +69,16 @@
 		aSpouse != self.father
 	) {
 		self.spouse = aSpouse;
+		aSpouse.spouse = self;
 	}
+}
+
+-(void) marry:(Citizen *)aSpouse {
+	self.spouse = aSpouse; // alias to setSpouse
+}
+-(void) divorce {
+	self.spouse.spouse = nil;
+	self.spouse = nil;
 }
 
 @end

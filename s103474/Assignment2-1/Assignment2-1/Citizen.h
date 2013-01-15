@@ -36,9 +36,14 @@ typedef enum { undefined, male, female } Sex;
 -(NSString*) sexString;
 -(NSString*) description;
 
+-(BOOL) isSingle;
+
 -(NSMutableArray *) getChildren; // Overriding getter for lazy initialisation
 -(void) addChild:(Citizen*) child;
 
--(void) setSpouse:(Citizen *)spouse; // Overriding setter to apply constraints
+-(void) setSpouse:(Citizen *) aSpouse; // Overriding setter to apply constraints
+
+-(void) marry:(Citizen *) aSpouse;
+-(void) divorce;
 
 @end
