@@ -552,4 +552,4 @@ As in C#, blocks are usually used to map on to collections by enumerating
 the collection and invoke the block on each element. Also they are used as
 delegates.
 
-See the Experiment.m file for an example using blocks.
+See the ExperimentBlocks.m file for an example using blocks.
