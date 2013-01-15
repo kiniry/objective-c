@@ -1,15 +1,16 @@
 //
-//  FoundationFramework.h
+//  AFactoryClass.h
 //  Assignment 2 Part 2
 //
 //  Created by Sivanujann Selliah on 15/01/13.
 //  Copyright (c) 2013 Sivanujann Selliah. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "AClass.h"
 
-@interface FoundationFramework : NSObject
+@interface AFactoryClass : AClass
 
-+(void)runExperiments;
++(id)aFactoryClassWithAParameterSet;
++(id)aFactoryClassWithNoParameterSet;
 
 @end
