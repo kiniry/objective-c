@@ -7,7 +7,6 @@
 //
 
 #import "NoblePerson.h"
-#import "Citizen.h"
 
 @implementation NoblePerson
 

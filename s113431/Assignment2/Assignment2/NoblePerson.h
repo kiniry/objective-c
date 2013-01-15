@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Citizen.h"
 
-@interface NoblePerson : NSObject
+@interface NoblePerson : Citizen
 
 @property NSValue* fortune;
 @property (nonatomic) NoblePerson* spouse;
