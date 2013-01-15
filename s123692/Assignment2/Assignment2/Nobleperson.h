@@ -19,6 +19,7 @@
 @property Citizen* butler;
 
 -(void) setAssets:(NSNumber *)assets;
+-(void) setAssetsWithoutSharing:(NSNumber *)assets;
 
 
 @end
