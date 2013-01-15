@@ -1,4 +1,4 @@
-﻿2013-01-14, Søren Olofsson, s093030
+2013-01-14, Søren Olofsson, s093030
 
 INTRODUCTION:
 
@@ -9,11 +9,12 @@ elaborated on here.
 
 Before reading this document it should be noted that before this course
 I have never looked at or done anything with Objective-C.
-My background knowledge of object oriented programming include the
+My background knowledge of object oriented programming includes the
 following languages: Java, C#, F#, VBA, Javascript, Typescript.
 I am on the second semester of my master in Computer Science.
 
-Comparisons between languages in this document will mainly involve C#.
+Comparisons between languages in this document will mainly involve C#
+and Javascript.
 
 REFLECTIONS:
 
@@ -263,7 +264,7 @@ the subclass will invoke that method instead of the superclass' method
 - no matter if the subclass is casted into the superclass or not.
 This is because in Objective-C the overriding of properties/methods happen
 automatically in subclasses which declare a property of the same name
-and type. See for example the method -(BOOL) marry:(Citizen*) fiancee
+and type. See for example the method -(BOOL) marry:(Citizen*) fiancée
 in the  NoblePerson.m file.
 
 Operator overloading is not possible either in Objective C.
@@ -280,6 +281,20 @@ Inheritance in Objective-C works a little different when it comes to the
 declaration, since inheritance is declared in the header file and not
 the implementation file. Examples of inheritance is given in the Citizen
 and NoblePerson header files.
+
+An important note is that if a class wants to invoke a class method it
+can do so in two ways:
+
+[[self class] myMethod];
+
+or
+
+[ClassType myMethod];
+
+The subtle difference is that the former approach supports inheritance,
+i.e. a subclass will have its implementation of myMethod invoked.
+The latter approach will always invoke the class method on ClassType
+disregarding any subtypes implementation.
 
 ---------- Logging ----------
 The Foundation framework has NSLog-method which prints debug messages to
@@ -310,7 +325,7 @@ NSArray (and NSMutableArray) differs a lot from other strongly typed languages b
 they can contain mixed types of objects. This is for exampled utilized in
 Paul Hegarty's Calculator example.
 Usually this is not allowed in for example C#'s List. This is usually
-ensured by utilizing generic parameterized types, e.g.
+ensured by utilizing generic parametrized types, e.g.
 List<string> listOfStrings = new List<string>();
 
 C# however also has an ArrayList class which can do this. Furthermore
@@ -346,6 +361,25 @@ Source:
 http://msdn.microsoft.com/en-us/library/system.type.isprimitive.aspx
 
 ---------- Protocols ----------
+Protocols allow static typing on "unknown objects" using the dynamic id
+type. This is done by defining that an object conforms to a protocol
+using the following syntax:
+
+id <Foo> obj = [[MyClass alloc] init];
+
+where Foo is a protocol.
+A protocol is declared in a header file using the following syntax:
+
+@protocol Foo<Other, NSObject>
+-(void)doSomething;
+@optional
+... // Everything here is optional
+@required
+... // Everything here is required
+@property (nonatomic, strong) NSString *fooProp;
+@end
+
+For an example, see the ExperimentProtocol.m and .h files.
 
 ---------- Singletons ----------
 Singletons in Objective-C and C# are pretty much the same. In C# the class
@@ -491,3 +525,16 @@ over-head.
 ---------- Property lists ----------
 
 ---------- Blocks ----------
+Blocks are directly comparable to C# lambdas, i.e. they are anonymous
+methods which can be stored in a variable and passed around as parameter
+to other functions. Their parameter list is strongly typed.
+
+When using blocks one should make sure not create memory cycles, where
+the block has a strong reference to the instance containing the block.
+This is because the containing class has a strong reference to the block,
+which it contains.
+
+As in C#, blocks are usually used to map on to collections by enumerating
+the collection and invoke the block on each element.
+
+See the Experiment.m file for an example of using blocks.

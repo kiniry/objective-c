@@ -35,13 +35,13 @@
     A *originalA = [[A alloc] init];
     A *createdA = [originalA create];
     
-    NSLog(@"myA: %@", createdA);
+    NSLog(@"originalA: %@", createdA);
     
     B *originalB = [B new];
     B *createdB = [originalB create];
     A *createdBA = [originalB create];
     
-    NSLog(@"myB: %@\nmyBA: %@", createdB, createdBA);
+    NSLog(@"originalB: %@, createdBA: %@", createdB, createdBA);
     
     [originalA sayHi]; // Prints A hi
     [originalB sayHi]; // Prints B hi

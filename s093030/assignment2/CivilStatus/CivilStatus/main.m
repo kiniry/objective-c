@@ -13,6 +13,9 @@
 #import "ExperimentMethodResolution.h"
 #import "ExperimentMethodOVerloading.h"
 #import "ExperimentVariance.h"
+#import "ExperimentProtocol.h"
+#import "Experiments/FooProtocol.h"
+#import "ExperimentBlocks.h"
 
 int main(int argc, const char * argv[])
 {
@@ -89,6 +92,15 @@ int main(int argc, const char * argv[])
         
         ExperimentVariance *experimentVariance = [[ExperimentVariance alloc] init];
         [experimentVariance run];
+        
+        id<Foo> experimentProtocol = [[ExperimentProtocol alloc] init];
+        [experimentProtocol doSomething];
+        [experimentProtocol doSomethingRequired];
+        // [experimentProtocol doSomethingOptional]; // Optional and not implmented so will fail at runtime.
+        
+        ExperimentBlocks *experimentBlocks = [[ExperimentBlocks alloc] init];
+        [experimentBlocks run];
+        
     }
     return 0;
 }

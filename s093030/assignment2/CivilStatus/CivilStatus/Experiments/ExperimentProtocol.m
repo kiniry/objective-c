@@ -7,7 +7,20 @@
 //
 
 #import "ExperimentProtocol.h"
+#import "FooProtocol.h"
 
 @implementation ExperimentProtocol
+
+@synthesize fooProp = _fooProp;
+
+-(void) doSomething
+{
+    NSLog(@"[ExperimentProtocol doSomething]");
+}
+
+-(void) doSomethingRequired
+{
+    NSLog(@"[ExperimentProtocol doSomethingRequired]");
+}
 
 @end

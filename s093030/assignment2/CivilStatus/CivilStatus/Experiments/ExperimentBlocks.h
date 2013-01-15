@@ -10,4 +10,6 @@
 
 @interface ExperimentBlocks : NSObject
 
+-(void) run;
+
 @end

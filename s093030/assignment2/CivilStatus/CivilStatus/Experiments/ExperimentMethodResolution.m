@@ -8,7 +8,7 @@
 
 #import "ExperimentMethodResolution.h"
 
-//In Objective-C the method resolution is dynamic. This example shows
+// In Objective-C the method resolution is dynamic. This example shows
 // that a string is accidentally
 // passed into an add-function.
 // Surprisingly however, the program does not crash.
