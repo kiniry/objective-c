@@ -17,6 +17,6 @@
 
 -(id)initWithName:(NSString *)aGivenName Sex:(NSString *)aSex Age:(int)anAge Assets:(int)money Butler:(Citizen *)aButler;
 
--(void) marry:(Citizen *)aCitizen;
+-(void) marry:(Citizen *)fiancee;
 
 @end
