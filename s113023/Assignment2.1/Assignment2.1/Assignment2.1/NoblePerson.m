@@ -24,21 +24,27 @@ static int priceForNobleMarriage = 50000;
     }
     return self;
 }
-- (void)marryNoble:(Citizen *)APerson
+- (void)marry:(Citizen *)APerson
 {
     // Check if possible spouse is a Noble Person
     if([APerson isKindOfClass:[NoblePerson class]]){
         //Person is a NoblePerson, we create such an instance:
         NoblePerson *ANoblePerson = (NoblePerson *)APerson;
         
-        //Check whether any of the Noble persons prepared for marriage have a butler
-        if(ANoblePerson.butler || self.butler){
-            [super marryCitizen:ANoblePerson];
-            ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
-            self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
-            NSLog(@"Combined assets: %f",ANoblePerson.assets);
-        } else {
-            NSLog(@"No butler - No Marriage!");
+        //Check wheter the two persons can be married
+        if ([super canMarry:APerson]){
+            //Check whether any of the Noble persons prepared for marriage have a butler
+            if((ANoblePerson.butler || self.butler)){
+                [super marry:ANoblePerson];
+                ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
+                self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
+                NSLog(@"Combined assets: %f",ANoblePerson.assets);
+            } else {
+                NSLog(@"No butler - No Marriage!");
+            }
+        }
+        else {
+            NSLog(@"Not a legal marriage - leads to incest or homosexuality or polygyni");
         }
     } else {
         NSLog(@"No nobility - No Marriage!");

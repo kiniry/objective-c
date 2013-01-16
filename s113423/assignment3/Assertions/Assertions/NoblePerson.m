@@ -41,6 +41,7 @@
   NSAssert(sweetheart, @"Precondition failed");
   NSAssert([self canMarry:sweetheart], @"Precondition failed");
   NSAssert([sweetheart canMarry:self], @"Precondition failed");
+  double oldAssets = [self.assets doubleValue] + [((NoblePerson*)sweetheart).assets doubleValue];
 
   // this method should only be called if [self canMarry:sweetheart] returns true
   // sweetheart must therefore be a NoblePerson
@@ -50,11 +51,13 @@
   fiancee.spouse = self;
 
   // share assets after wedding is paid for
-  NSNumber* sharedAssets = @( [self.assets doubleValue] + [self.assets doubleValue] - 50000.0 );
+  NSNumber* sharedAssets = @( [self.assets doubleValue] + [fiancee.assets doubleValue] - 50000.0 );
   self.assets = sharedAssets; // aliasing intended
   fiancee.assets = sharedAssets;
 
   NSAssert(self.spouse == sweetheart, @"Postcondition failed");
+  NSAssert(self.butler || fiancee.butler, @"Postcondition failed");
+  NSAssert([self.assets doubleValue] <= oldAssets - 50000.0, @"Postcondition failed");
 }
 
 - (void)divorce {

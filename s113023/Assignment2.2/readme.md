@@ -24,6 +24,7 @@ Example in both Objective-C and Java in main
 Class types
 -----------
 In Objective-C all objects are allocted on the heap, and therefore we need pointers to access them.
+
 In Java we don't use pointers to the objects, Java keeps references to the objects in another way. The objects are still allocated on the heap though.
 
 Constructors and factories
@@ -58,7 +59,7 @@ Dynamic typing
 Dynamic typing of ID's
 ----------------------
 In Objective-C you have the ability to use the "id" type for a variable that allows that variable to hold a pointer to any kind of Objective-C object, whitout knowing what kind of object it is. This approach is called dynamic typing. 
-This can be used f.x. in sitations where you aren't interested in what type of object you're given since you don't have to modify it.
+This can be used f.x. in sitations where you aren't interested in what type of object you're given since you don't have to modify it. Often you are using some method in method to check what kind of object you are passed before you do anything. This is usually done with the isKindOfClass-method.
 I'm not familiar with any other OO programming languages that supports dynamic typing in a special type ofvariable. The same approach is not possible in Java.
 
 The problem with dynamic typing using id's is that you lose information about the type of the object and you won't know what type of object you have during runtime. If you're not careful about this you might end up calling a method that doesn't exist for the object and that will result in a runtime error -> program will definately crash.
@@ -68,9 +69,21 @@ Expanded types
 
 Field hiding
 ------------
+In Objective-C the instance variables are hidden as default, and therefore we don't have access to them from the main class, and methods are public. In Objective-C we always want to access the the instance variables/fields of the objects using only accessor methods: setter and getter. These accessor methods will be synthesized automatically unless you define your own accessor methods. The accessor methods are the only methods that have direct access to the instance variables in the object. This is at least the common practice when programming in Objective-C. You can use dot notation to access properties via accessors. This notation "hides" the fact that you are actually using these methods. For example you could write:
+
+	personInstance.Name = @"Peter";
+
+In Java you don't have to use accessor methods to access the fields/instance variables by default if you declare your instance variables as public. You can change their values directly from the main class. If you declare them private you have to use accessors. The main difference is that in Java you have to declare the field either public or private. If you want to use your setter accessor in Java you could for example write:
+
+	personInstance.setName("Peter");
+
+Examples on field hiding in main class.
 
 Immutability
 ------------
+In Objective-C most of the most used classes such as NSString, NSArray, NSSet and so on have both an immutabel and a mutable version. The immutable version has a fixed size when allocated, and the content can't change. If you want to add or change an element you have to allocate a new object of the type and copy all the elements to the new location. The mutable arrays can append new objects or change its contents without allocating new memory, but are far more complex. The mutable versions inherit most of their methods from the inmutable versions and add some extra methods to take care of the mutability. But normally you want to use immutable objects where you can since these classes are often faster and safer (thread-safe) to perform operations on. You always have to wrap primitives in objects before inserting them into a collection method.
+
+In Java you only have immutable strings and arrays. You have the option to use arrayLists though that is a kind of mutable array. The thing about arrayLists though is that you are not able to add primitive types to an arrayList. Here you would have to wrap the primitive in an object first. If you want to change the content of in immutable collection you have to allocate a new object first and then copy the old objects to this.
 
 Inheritance
 -----------
@@ -105,6 +118,7 @@ An example is given in main using some material from the [irony] best singer in 
 If we do things like this we are able to implements two or more methods with the same name since in Objective-C the method name corresponds to the argument names as well. We can only have one method with only one parameter though. Like shown above. We are not able to make two methods each with only one argument were these two arguments are different.
 
 The reason we can still do some kind of overloading is that in Objective-C the two working methods from above will have different signatures: 
+	
 	doSomethingWithInput:
 	doSomethingWithInput:andOtherInput:
 

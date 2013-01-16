@@ -28,20 +28,20 @@ int main(int argc, const char * argv[])
         NSLog(@"%@",[NickyMinaj printInfo]);
         
         //Not legal marriages
-        [JustinBieber marryCitizen:NickyMinaj];
-        [OwenWilson marryCitizen:JustinBieber];
+        [JustinBieber marry:NickyMinaj];
+        [OwenWilson marry:JustinBieber];
         
         //Legal marriages
-        [NickyMinaj marryCitizen:OwenWilson];
-        [RebeccaBlack marryCitizen:JustinBieber];
+        [NickyMinaj marry:OwenWilson];
+        [RebeccaBlack marry:JustinBieber];
         NSLog(@"%@",[NickyMinaj printInfo]);
         NSLog(@"%@",[JustinBieber printInfo]);
    
         //Not possible divorces
-        [RebeccaBlack divorceCitizen:OwenWilson];
+        [RebeccaBlack divorce:OwenWilson];
         
         //Possible divorce
-        [RebeccaBlack divorceCitizen:JustinBieber];
+        [RebeccaBlack divorce:JustinBieber];
         
         //TEST 1.2 - MARRIAGES BETWEEN NOBLE PERSONS
         NoblePerson *MarryDonaldson = [[NoblePerson alloc] initWithName:@"Mary Donaldson" withSex:@"Female" withAge:@40 withAssets:3000];
@@ -50,18 +50,21 @@ int main(int argc, const char * argv[])
         NoblePerson *PrinceHenrik = [[NoblePerson alloc] initWithName:@"Prince Henrik" withSex:@"Male" withAge:@80 withAssets:5000000];
         Citizen *ButlerSirMoneyMaker = [[Citizen alloc] initWithName:@"Butler Sir Money Maker" withSex:@"Male" withAge:@30];
 
-        //Not legal marriage - No butler
+        //Not legal marriage - Leads to incest
         [QueenMargrethe addChild:PrinceFrederik];
-        [QueenMargrethe marryNoble:PrinceFrederik];
+        [QueenMargrethe marry:PrinceFrederik];
         
-        //Not legal marriage
-        [QueenMargrethe setButler:ButlerSirMoneyMaker];
-        [QueenMargrethe marryNoble:PrinceFrederik];
-        
+        //Not legal marriage - No butler
+        [QueenMargrethe marry:PrinceHenrik];
+            
         //Legal marriage
-        [QueenMargrethe marryNoble:PrinceHenrik];
+        [QueenMargrethe setButler:ButlerSirMoneyMaker];
+        [QueenMargrethe marry:PrinceHenrik];
         [MarryDonaldson setButler:ButlerSirMoneyMaker];
-        [MarryDonaldson marryNoble:PrinceFrederik];
+        [MarryDonaldson marry:PrinceFrederik];
+        
+        //Divorce between noble people:
+        [MarryDonaldson divorce:PrinceFrederik];
         
     }
     return 0;
