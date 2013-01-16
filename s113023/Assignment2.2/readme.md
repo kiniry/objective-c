@@ -12,7 +12,7 @@ Example with NSArray & NSString in main
 
 Aliasing
 --------
-
+The term aliasing refers to the situation where two or more pointers er pointing to the same memory location and therefore also same object.
 
 Object allocation and initialisation
 ------------------------------------
@@ -24,6 +24,7 @@ Example in both Objective-C and Java in main
 Class types
 -----------
 In Objective-C all objects are allocted on the heap, and therefore we need pointers to access them.
+
 In Java we don't use pointers to the objects, Java keeps references to the objects in another way. The objects are still allocated on the heap though.
 
 Constructors and factories
@@ -38,6 +39,8 @@ In Objective-C we use the init-methods as constructors for objects. The correct 
 		return self;
 	}
 	
+In Objective-C it is important that your object calls its super init method first and checks whether this init was successful. If nil is returned the childs init should return nil as well.
+
 In java we would use the constructor when using the new keyword.
 
 In Objective-C factories can be used for creating new instances of an object:
@@ -58,7 +61,7 @@ Dynamic typing
 Dynamic typing of ID's
 ----------------------
 In Objective-C you have the ability to use the "id" type for a variable that allows that variable to hold a pointer to any kind of Objective-C object, whitout knowing what kind of object it is. This approach is called dynamic typing. 
-This can be used f.x. in sitations where you aren't interested in what type of object you're given since you don't have to modify it.
+This can be used f.x. in sitations where you aren't interested in what type of object you're given since you don't have to modify it. Often you are using some method in method to check what kind of object you are passed before you do anything. This is usually done with the isKindOfClass-method.
 I'm not familiar with any other OO programming languages that supports dynamic typing in a special type ofvariable. The same approach is not possible in Java.
 
 The problem with dynamic typing using id's is that you lose information about the type of the object and you won't know what type of object you have during runtime. If you're not careful about this you might end up calling a method that doesn't exist for the object and that will result in a runtime error -> program will definately crash.
@@ -68,9 +71,21 @@ Expanded types
 
 Field hiding
 ------------
+In Objective-C the instance variables are hidden as default, and therefore we don't have access to them from the main class, and methods are public. In Objective-C we always want to access the the instance variables/fields of the objects using only accessor methods: setter and getter. These accessor methods will be synthesized automatically unless you define your own accessor methods. The accessor methods are the only methods that have direct access to the instance variables in the object. This is at least the common practice when programming in Objective-C. You can use dot notation to access properties via accessors. This notation "hides" the fact that you are actually using these methods. For example you could write:
+
+	personInstance.Name = @"Peter";
+
+In Java you don't have to use accessor methods to access the fields/instance variables by default if you declare your instance variables as public. You can change their values directly from the main class. If you declare them private you have to use accessors. The main difference is that in Java you have to declare the field either public or private. If you want to use your setter accessor in Java you could for example write:
+
+	personInstance.setName("Peter");
+
+Examples on field hiding in main class.
 
 Immutability
 ------------
+In Objective-C most of the most used classes such as NSString, NSArray, NSSet and so on have both an immutabel and a mutable version. The immutable version has a fixed size when allocated, and the content can't change. If you want to add or change an element you have to allocate a new object of the type and copy all the elements to the new location. The mutable arrays can append new objects or change its contents without allocating new memory, but are far more complex. The mutable versions inherit most of their methods from the inmutable versions and add some extra methods to take care of the mutability. But normally you want to use immutable objects where you can since these classes are often faster and safer (thread-safe) to perform operations on. You always have to wrap primitives in objects before inserting them into a collection method.
+
+In Java you normally only use immutable strings and arrays. You have the option to use arrayLists though that is a kind of mutable array. The thing about arrayLists though is that you are not able to add primitive types to an arrayList. Here you would have to wrap the primitive in an object first. If you want to change the content of in immutable collection you have to allocate a new object first and then copy the old objects to this. In Java you could use for example the StringBuilder class to create mutable strings.
 
 Inheritance
 -----------
@@ -89,7 +104,7 @@ Method overloading
 Objective-C doesn't support method overloading. This means that unlike Java a class is not able to have two or more methods with the same name and different parameters. For example we can't have:
 
 	(void)doSomethingWithInput:(NSString *)string;
-	(void)doSomethingWithInput(NSNumber)number; //This will give an error
+	(void)doSomethingWithInput:(NSNumber *)number; //This will give an error
 
 Different returntypes will result in an error as well:
 	
@@ -105,6 +120,7 @@ An example is given in main using some material from the [irony] best singer in 
 If we do things like this we are able to implements two or more methods with the same name since in Objective-C the method name corresponds to the argument names as well. We can only have one method with only one parameter though. Like shown above. We are not able to make two methods each with only one argument were these two arguments are different.
 
 The reason we can still do some kind of overloading is that in Objective-C the two working methods from above will have different signatures: 
+	
 	doSomethingWithInput:
 	doSomethingWithInput:andOtherInput:
 
@@ -148,6 +164,12 @@ Standard and dynamic method resolution
 
 Strong vs weak pointers
 -----------------------
+In Objective-C there are two different kinds of pointers: Strong and Weak. These are featured in the modern version of Objective-C that features ARC (Automatic Reference Counting) to take care of memory management.
+
+Declaring a pointer as 'Strong' means that the object should not be released from the heap until the the pointer is set to 'nil' or is manually released.
+Declaring a pointer as 'Weak' means that the object is only kept in the heap as long as another object points strongly to it. When the object gets removed from the heap the weak pointer is set to 'nil' automatically (to prevent dangling pointers). 
+
+As you don't use pointers to objects in Java, you don't have any pointers to objects to declare as weak or strong.
 
 Variance
 --------
@@ -160,9 +182,15 @@ Value boxing and unboxing
 
 Introspection
 -------------
+In Objective-C introspection is used to examine an object's type and also to find out whether an object will respond to a certain method call. This is often used in Objective-C since you have the ability to declare objects as the id type. Therefore you often need to examine an object with type id before calling any non-existing methods on it that could lead to a program crash.
+
+In the main class are som examples of the use of two of the most used methods related to the topic introspection.
+
+In Java you have reflection which is the same as introspection in Objective-C. 
 
 Enumarations
 ------------
+
 In Objective-C you can use fast enumarations for most of the collections like NSArray, NSSet and so on. You can use fast enumartion if the class implements the protocol NSFastEnumaration. A Fast Enumaration on  a collection object would look like:
 
 	id item;
@@ -171,7 +199,7 @@ In Objective-C you can use fast enumarations for most of the collections like NS
 		NSLog(@"This is an item: %@",item);
 	}
 	
-In Java you are able to do the same thing by using for each. 
+In Java you are able to do the same thing by using a for each loop.  
 
 Examples in main.
 

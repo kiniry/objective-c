@@ -65,12 +65,7 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 2: How common is aliasing and how is it avoided compared to the other OO language.]------------\\
         
-        //Aliasing refers to the situation where a data location in memory (f.x. an object) is refered to by different objects.
-        
-        //In objective-C there's two different kinds of pointers between objects: weak & strong.
-        
-        NSLog(@".oO( Comparison 2 )Oo.");
-        
+        //See readme
         
         
         //+-----------------------------------------------------------------------------------------------------------+\\
@@ -100,7 +95,7 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 4: How are class-types used with those in the other OO language]-------------------------------\\
         
-        
+        //See readme
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 5: How constructors and factories are used]----------------------------------------------------\\
@@ -173,7 +168,7 @@ int main(int argc, const char * argv[])
         //Here we are also copying the fullName property from the instance of the PersonAlternative object. But
         //the copy will not be able to change the propery for the object since the property was declared as (copy).
         
-        //I have never tried to copy an object in Java.
+        //In Java you can use the method copy() to copy an object if the object has this method specified.
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 7: Dynamic typing]-----------------------------------------------------------------------------\\
 
@@ -206,12 +201,51 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 10: How does field hiding work?]---------------------------------------------------------------\\
         
+        NSLog(@".oO( Comparison 10 )Oo.");
+        
+        Person *PersonForFieldHidingTest = [[Person alloc] init];
+        //PersonForFieldHidingTest._firstName = @"Hans";
+        //Line above wont work by default.
+        
+        PersonForFieldHidingTest.firstName = @"Hans";
+        //By default we have to use accesor-method like above.
+        
+        //Java Implementation:
+        //private String _name; - Would result in a private field that can't be accessed from outside the class
+        //public String _name; - Would result in a public field that is accessible from outside the class
         
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 11: How is immutability used?]-----------------------------------------------------------------\\
         
+        NSLog(@".oO( Comparison 11 )Oo.");
         
+        //Example on inmutable classes in Objective-C:
+        
+        NSArray *inmutableArrayTest = [[NSArray alloc]initWithObjects:@"foo", nil];
+        NSLog(@"%@",inmutableArrayTest);
+        
+        //We can add a new object to the array in the following way:
+        inmutableArrayTest = [inmutableArrayTest arrayByAddingObject:@"bar"];
+        NSLog(@"%@",inmutableArrayTest);
+
+        //Example on mutable classes in Objective-C:
+                
+        NSMutableArray *mutableArrayTest = [[NSMutableArray alloc]initWithObjects:@"foo",nil];
+        NSLog(@"%@",mutableArrayTest);
+        
+        //We can add a new object to the array in the following way:
+        [mutableArrayTest addObject:@"bar"];
+        NSLog(@"%@",mutableArrayTest);
+        
+        [mutableArrayTest replaceObjectAtIndex:0 withObject:@"bar"];
+        NSLog(@"%@",mutableArrayTest);
+        
+        //Java Implementation of mutable array (arrayList):
+        //ArrayList arrayListTest = new ArrayList();
+		//arrayListTest.add("foo");
+		//arrayListTest.add("bar");
+		//System.out.println(arrayListTest);
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 12: How does inheritance work?]----------------------------------------------------------------\\
@@ -335,6 +369,7 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 22: How does strong vs weak pointers work?]----------------------------------------------------\\
         
+        //Explaned in readme
         
         
         //+-----------------------------------------------------------------------------------------------------------+\\
@@ -355,8 +390,25 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 26: How does introspection work?]--------------------------------------------------------------\\
         
+        NSLog(@".oO( Comparison 26 )Oo.");
         
+        Boy *JamesBrown = [[Boy alloc] init];
+        JamesBrown.firstName = @"James";
+        JamesBrown.lastName = @"Brown";
         
+        //Check whether James Brown is a kind of class:
+        if ([JamesBrown isKindOfClass:[Person class]]){
+            NSLog(@"%@ is both a Boy and a Person",[JamesBrown fullName]);
+        }
+        
+        //Check whether James Brown has the ability to transformASongIntoFamousPitbullSong:
+        if ([JamesBrown respondsToSelector:@selector(transformStringIntoFamousPitbullSong:byAddingCountIn:andFourCities:)]){
+            NSLog(@"%@ know how to make a famous song now-a-days",[JamesBrown fullName]);
+        }
+        
+        //Java Implementation - Find class that instance is an instance of:
+        //System.out.println(personInstance.getClass());
+                
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 27: How do enumarations work?]-----------------------------------------------------------------\\
         

@@ -18,7 +18,7 @@
                   withAge:(NSNumber *)age
                withAssets:(float)assets;
 
-- (void)marryNoble:(Citizen *)APerson;
+- (void)marry:(Citizen *)APerson;
 - (void)setButler:(Citizen *)APerson;
 
 @end
