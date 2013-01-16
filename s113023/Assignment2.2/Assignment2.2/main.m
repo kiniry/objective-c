@@ -10,6 +10,7 @@
 #import "Person.h"
 #import "Boy.h"
 #import "AustinPowers.h"
+#import "PersonAlternative.h"
 
 int main(int argc, const char * argv[])
 {
@@ -120,8 +121,59 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 6: How dows copying and cloning of objects work?]----------------------------------------------\\
         
+        NSLog(@".oO( Comparison 6 )Oo.");
         
+        //Example of copying an object
+        Person *personReadyForCloning = [[Person alloc] init];
+        personReadyForCloning.firstName = @"Franz";
+        personReadyForCloning.lastName = @"Ferdinand";
+
+        Person *clonedPerson = personReadyForCloning;
+        NSLog(@"%@",[personReadyForCloning fullName]);
+        NSLog(@"%@",[clonedPerson fullName]);
         
+        //Trying to change last name of cloned person:
+        
+        clonedPerson.lastName = @"Jäger";
+        NSLog(@"%@",[personReadyForCloning fullName]);
+        NSLog(@"%@",[clonedPerson fullName]);
+        
+        //we see that personReadyForCloning's lastName was changed as well. This is because the cloned person holds
+        //just a new reference to the personReadyForCloning.
+        
+        //If we try using the copy method as below the program will crash with an NSInvalidArgumentException, since our
+        //Person class hass to implement the NSCopying protocol.
+        //Person *newClonedPerson = [personReadyForCloning copy];
+        
+        //we try with strings instead:
+        NSString *stringReadyForCloning = @"I'm ready for cloning";
+        NSString *clonedString = [stringReadyForCloning copy];
+        NSLog(@"%@",stringReadyForCloning);
+        NSLog(@"%@",clonedString);
+        
+        clonedString = @"I'm successfully cloned";
+        NSLog(@"%@",stringReadyForCloning);
+        NSLog(@"%@",clonedString);
+        
+        //So for NSStrings the protocol NSCopying has been implemented and therefore we are able to copy the whole string-object
+        //To a new string object instance.
+        
+        PersonAlternative *anotherPerson = [[PersonAlternative alloc] init];
+        anotherPerson.firstName = @"Jessica";
+        anotherPerson.lastName = @"Alba";
+        
+        NSString *jessicasFullName = anotherPerson.fullName;
+        NSLog(@"Jessicas %@",anotherPerson.fullName);
+        NSLog(@"Jessicas %@",jessicasFullName);
+        
+        jessicasFullName =@"Full Name: Peter Griffin";
+        NSLog(@"Jessicas %@",anotherPerson.fullName);
+        NSLog(@"Jessicas %@",jessicasFullName);
+        
+        //Here we are also copying the fullName property from the instance of the PersonAlternative object. But
+        //the copy will not be able to change the propery for the object since the property was declared as (copy).
+        
+        //I have never tried to copy an object in Java.
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 7: Dynamic typing]-----------------------------------------------------------------------------\\
 
@@ -308,6 +360,22 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 27: How do enumarations work?]-----------------------------------------------------------------\\
         
+        NSLog(@".oO( Comparison 27 )Oo.");
+
+        //Example in Objective-C on fast enumaration:
+        
+        NSArray *beerNames = [NSArray arrayWithObjects:@"Groen Tuborg",@"Carls Special",@47,@"Christmas Brew", nil];
+        
+        id beer;
+        for (beer in beerNames){
+            NSLog(@"Yeah, heres another beer: %@",beer);
+        }
+        
+        //Java Implementation:
+        //String[] tekstArray = {"Groen Tuborg","Carls Special","47","Christmas Brew"};
+		//for (String s: tekstArray){
+		//      System.out.println(s);
+		//}
         
         
         //+-----------------------------------------------------------------------------------------------------------+\\
