@@ -1,4 +1,5 @@
-**Instantions** 
+Instantions
+-----------
 
 init returns "id" type. This is different from both C# and Java, where constructors always implicitly return
 static types. Also, allocation is completely hidden (automated) in C#.
@@ -9,7 +10,8 @@ available. To top it off, you actually return it from the initializor. An funny 
 static method, the `self` keyword points to the class. *See experiment*.
 
 
-**Dynamic types** 
+Dynamic types 
+-----------
 
 This makes you do dynamic language stuff like you can in Python. You can pass
 around anything as "id" and the compiler won't complain as long as you only send messages to it that
@@ -29,7 +31,8 @@ other hand if you try to turn a knob on something that does not have that knob, 
 will happen.
 
 
-**Introspection** 
+Introspection
+-----------
 
 Reflection-like features through `isKindOfClass`, `isMemberOfClass` and `respondsToSelector`. Also
 `conformsToProtocol`.
@@ -42,7 +45,8 @@ classes. See https://github.com/mikeash/MAObjCRuntime. However the testing frame
 _does_ do reflection (finding test* methods) somehow.
 
 
-**Foundation Framework**
+Foundation Framework
+-----------
 
 The foundation framework generally feels a little bit smaller, as in less features. A thing I miss
 from .NET's System is LINQ.
@@ -52,13 +56,16 @@ wouldn't see something like List.NewWithObjects(IEnumerable objects). Even uses 
 raise exceptions.  
 
 
-**Enumeration**
+Enumeration
+-----------
 
 During fast enumeration an iterator is generated during loop initialization. It is
 _not_ safe to modify a mutable set during fast enumeration just as in C# and Java. *See experiment*.
 
 
-**Immutable types**
+Immutable types
+-----------
+
 In the case of strings, they are immutable as they are in C#. In C# there is the StringBuilder,
 which lets you mutably create a string. 
 
@@ -70,13 +77,15 @@ Pros of immutability
  * Compiler optimizations can be done
 
 
-**Exception handling**
+Exception handling
+-----------
 
 There's no `throws` keyword in Obj-C like there is in Java. An `NSException` will bubble up until
 caught, and if it isn't it will terminate execution. *See experiment*.
 
 
-**Property Lists**
+Property Lists
+-----------
 
 I don't like the property list format at all. The even-key odd-value principle just does not feel
 robust, and is not very keen on the eyes (together with XML by nature having so much excess
@@ -84,7 +93,8 @@ text). It does however deserve some credit for it's extreme simplicity. But JSON
 does this very cleanly too, still keeping the format very simple and portable.
 
 
-**Method overloading** 
+Method overloading
+-----------
 
 Due to Objective-C's very dynamic nature you cannot overload methods. Type checking is not performed
 during runtime (except when introspecting). This is also one of the reasons that many methods are
@@ -99,14 +109,16 @@ has the method name
 	doAnOperationOnString:andNumber:
 
 
-**Arrays**
+Arrays
+-----------
 
 Monomorphic arrays dont exist by nature in Objective-C. You can, however, sort of fake it in an
 NSMutableArray, by subclassing it and overriding the object insertion method, in which you then
 check for the correct type (which you take in as a parameter during initialization).
 
 
-**Value boxing**
+Value boxing
+-----------
 
 C# does boxing and unboxing of primitives using the `object` type (and casts back to primitives to
 unbox). Since LLVM 4.0 (but only with clang afaik, since gcc complains), object literals can be used
@@ -120,7 +132,9 @@ In clang you can also auto-box an array with the literal syntax, such as
 `@[@"first", @"second"]` which compiles equally with `[NSArray arrayWithObject:@"first", @"second"]`.
 
 
-**Blocks**
+Blocks
+-----------
+
 Blocks work almost just like C#'s lambdas. Lambdas create a closure only if they need to, that is,
 if they are referencing local environment members, the generated method will have a reference to the
 lexical scope, and if not, they are just plain static methods.
