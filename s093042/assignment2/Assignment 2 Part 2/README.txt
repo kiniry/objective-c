@@ -1,8 +1,16 @@
+//
+//  README.txt
+//  Assignment 2 Part 2
+//
+//  Created by Sivanujann Selliah on 15/01/13.
+//  Copyright (c) 2013 Sivanujann Selliah. All rights reserved.
+//
+
 Experiments are found in the folder Assignment 2 Part 2, in this directory...
 
 All experiments are invoked in the main.m file...
 
-The following are elaborations on the comments found in the source code and some comparisons to other languages, mostly C# and Java.
+The following are elaborations on the comments found in the source code and some comparisons to other languages, mostly C# and Java. The experiments in the source code are named like each section in this document, with the word "experiments" appended.
 
 // Foundation framework
 The experiments showed some uses of the NSString class and the NSArray class, the operations done using the objects showed some of the capabilities of the classes and showed how the Foundation framework makes it easier for the developer to use commonly used operations on common objects easier by providing them in a framework.
@@ -47,5 +55,93 @@ In C# the compiler will determine and assign the most appropriate type later, th
 -
 
 // Field hiding
+The experiments showed how field hiding is done in Objective-C.
 
+// Immutability
+The experiments showed two types of the same concept one was immutable and the other was mutable.
+One best practice is to hold mutable objects in one's data structure and give immutable objects to callers, who wants to inspect the data.
+C# does not have any immutable types, instead the keyword 'readonly' can be used to make types "act" like immutable types.
+
+// Inheritance
+The experiments used inheritance, and showed how this is done in Objective-C.
+Type inheritance works by allowing super classes to hold subclasses (e.g. used for object boxing).
+
+// Logging
+The experiments showed how 'NSLog' was used, to format strings that was written to the output in the "Debug area" view. The formatting of string could be used to implicitly invoking the 'description' method of an object.
+In C# the 'System.Diagnostics.Debug' and 'System.Diagnostics.Trace' classes provides multiple options to provide feedback to the developer/debugger. There are also ways to interact directly with the Windows event log using the 'System.Diagnostics.EventLog' class.
+In Java the 'java.util.logging.Logger' class can be used.
+
+// Method overloading
+Method overloading is not permitted in Objective-C, it is allowed in Java and C#.
+Method overloading is declaring a method with the same name but with different method signatures (e.g. different input parameter types), since method signatures are not used the same way in Objective-C, where "selectors" are used instead, makes it impossible to make sure to match the type, like it is done in Java and C#.
+Having method overloading makes it possible to call the same methods, with different kinds of data types, without "bothering" to lookup a specific method for a specific data type.
+
+// Polymorphism
+-
+
+// NSArray and monomorphic arrays
+In the experiments it was shown how a 'NSArray' can have different types of data contained in the array. This is usually not allowed in languages like C# and Java, unless one puts all the data in a container (value boxing).
+
+// Nil
+'nil' in Objective-C is very comparable to the construct 'null' in Java and C#.
+But there is a subtle difference as shown in the experiments, one can call and invoke methods on an object that is 'nil', without the program crashing, without compile-time or run-time error and without raising a 'NullReferenceException' or a 'NullPointerException' like C# or Java would do, respectively.
+
+// Primitive types
+As it is stated in the experiments, the primitive types of Objective-C is mostly the same found in C, these include: '_Bool', 'char', 'short', 'int', 'long', 'long long', 'float', 'double' and 'long double', most of these types can be unsigned or signed as well. In addition to the types from C, Objective-C has introduced another primitive type: 'BOOL', which uses YES and NO as its literals.
+
+Other languages have pretty much the same list of primitive types. C# has the following "simple types": 'sbyte', 'byte', 'short', 'ushort', 'int', 'uint', 'long', 'ulong', 'char', 'float', 'double', 'bool' and 'decimal'.
+
+// Protocols
+As seen in the experiments protocols offers the ability to make "data contracts", and make sure that a subclass implementing a protocol has the required methods and properties, and can have optional methods and properties. The 'NSCopying' referred to earlier is a protocol, that requires subclass that implement it, to have a 'copyWithZone' method implemented (as seen in the NSObject.h file).
+Protocols are also used for delegation. Also as seen in the experiments, when using protocols the type can be 'id' and we still have all the type information, because of the protocol.
+A comparable structure in C# and Java is 'interface'. Which can be used the same way as protocols in Objective-C.
+
+// Singletons
+-
+
+// Method resolution
+-
+
+// Strong vs. weak pointers
+As it is described in the experiments, because of ARC, we have to know whether a pointer/reference is strong or weak. When using a strong pointer we declare that we are "owning" the object, and when we discard the object it should be released from the memory. When we use weak pointers, we are not "owning" the object and as long as there is a reference to the object, it should be kept in the memory.
+In C# when all references to an object is out of scope, the CLR will mark the object for the garbage collector, which will release object from the memory, at some time afterwards.
+
+// Variance
+-
+
+// Exception
+The experiments show how to handle exceptions using a try-catch-finally "block", and how to throw a new exception.
+This type of try-catch-finally is comparable to the ones used in Java and C# (only using a slightly different syntax).
+According to Apple exceptions are however not recommended to use in a regular program flow, like it is in languages as C# and Java. And should only be used for actual exceptional cases.
+
+// Value boxing and unboxing
+As seen in the experiments boxing and unboxing of values of both primitive types and class types, are done just like it is done in C# and Java.
+A value can be put into a container object (called value boxing), and be cast back to the original object (called value unboxing).
+For class types, the container must be a superclass.
+
+// Introspection
+How introspection is done in Objective-C can be seen in the experiments.
+The methods that are invoked for introspection are: 'isKindOfClass' and 'isMemberOfClass' for classes (and for 'id' referenced objects) and 'respondsToSelector' for checking whether a selector can be used on an object (the selector could be stored using a 'SEL' type).
+In Java the 'instanceof' operator is comparable to the 'isKindOfClass' method.
+
+// Enumerations
+How fast enumeration is used in Objective-C can be seen in the experiments.
+Fast enumeration is comparable to foreach in C#:
+[C# code]
+foreach(var someValue in someArray)
+    // Do something with someValue
+[/C# code]
+In Java it can be done using:
+[Java code]
+for(Object someValue : someArray)
+    // Do something with someValue
+[/Java code]
+
+// Property lists
+-
+
+// Blocks
+The experiments show how one can use Blocks.
+Blocks are comparable to anonymous classes in Java, and lambda expressions in C#.
+Blocks are usually used, for declaring a function to be passed as an argument to a method call, this way the "block" of statements that one, wants to execute are declared in the same place as the invoked method, and not in some other class.
 
