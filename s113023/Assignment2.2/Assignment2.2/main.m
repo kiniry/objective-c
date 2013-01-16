@@ -74,11 +74,7 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 3: Object allocation and initialisation]-------------------------------------------------------\\
         
-        /*In Objective C the object allocation and intialisation consists of two steps: First the class method (+ alloc) is
-         called, and this allocates the required free memory to hold the object, and returns a pointer to this space, second
-         the instance method (- init) is called which returns a pointer to the initialised object. These two methods are
-         always used nested when creating an instance of an object.
-         In Java we just use the "new" keyword which does allocation and initalisation automatically.*/
+        //Examples on object allocation and initialisations in Objective-C below and comparison to Java.
         
         NSLog(@".oO( Comparison 3 )Oo.");
         
@@ -107,9 +103,7 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 5: How constructors and factories are used]----------------------------------------------------\\
         
-        //In Objective-C factories can be used for creating new instances of an object.
-        //A class-method (+) is used to create a new instance of the class and setting its properties according to the parameter values that are passed in.
-        //I have never seen this way of creating new instances of objects in Java.
+        //Example of how factories are used in Objective-C:
         
         NSLog(@".oO( Comparison 5 )Oo.");
         
@@ -135,13 +129,8 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 8: Dynamic typing of ID's]---------------------------------------------------------------------\\
         
-        //In Objective-C you have the ability to use the "id" type for a variable that allows that variable to hold
-        //a pointer to any kind of Objective-C object, whitout knowing what kind of object it is. This approach is called
-        //dynamic typing. This can be used f.x. in sitations where you aren't interested in what type of object you're given
-        //since you don't have to modify it.
-        
-        //I'm not familiar with any other OO programming languages that supports dynamic typing in a special type of
-        //variable. I only no that this is not possible in Java.
+        //Example on how dynamic typing using id's can be used in Objective-C. In the example below we use an instance
+        //of an NSString and an NSArray:
         
         NSLog(@".oO( Comparison 8 )Oo.");
         
@@ -154,10 +143,6 @@ int main(int argc, const char * argv[])
         randomObject = [NSArray arrayWithObjects:@1, @2, @3, nil];
         
         NSLog(@"The length of \"%@\" is %lu", randomObject, [randomObject count]);
-        
-        //The problem with dynamic typing using id's is that you lose information about the type of the object and you won't
-        //know what type of object you have during runtime. If you're not careful about this you might end up calling a
-        //method that doesn't exist for the object and that will result in a runtime error -> program will definately crash.
         
         
         //+-----------------------------------------------------------------------------------------------------------+\\
@@ -177,10 +162,6 @@ int main(int argc, const char * argv[])
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 12: How does inheritance work?]----------------------------------------------------------------\\
-        
-        //In Objective-C we can declare classes that inherit from other classes just like in other OO programming languages.
-        //Objective-C only supports single inheritance, just like Java. When an object is inheriting from another object
-        //it inherits all of the parent class' methods and properties.
         
         //An example of inheritance below:
         
@@ -203,8 +184,9 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 13: How are the built in methods for logging?]-------------------------------------------------\\
         
+        //Examples on logging in Objective-C
+        
         NSLog(@".oO( Comparison 13 )Oo.");
-
         
         //In Objective C we use the NSLog object to print to the console:
         
@@ -218,9 +200,7 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 14: How does method overloading work?]---------------------------------------------------------\\
         
-        //Objective-C doesn't support method overloading. This means that unlike Java a class is not able to have two or
-        //more methods with the same name and different parameters. We are though able to An example is given below here using some material
-        //from the [irony] best singer in the world [/irony]:
+        //Example on method overloading in Objective-C:
         
         NSLog(@".oO( Comparison 14 )Oo.");
         
@@ -228,21 +208,13 @@ int main(int argc, const char * argv[])
         [Peter transformStringIntoFamousPitbullSong:@"Mr Worldwide" byAddingCountIn: @"English" andFourCities:@"New York, Paris, London, Milano"];
         [Peter transformStringIntoFamousPitbullSong:@"Yeah" byAddingCountIn:@""];
         
-        //If we do things like this we are able to implements two or more methods with the same name since in Objective-C
-        //the method name corresponds to the argument names as well. We can only have one method with only one parameter
-        //though. We are not able to make two methods each with only one argument were these two arguments are different.
-        
-        
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 15: How does polymorphism work?]---------------------------------------------------------------\\
         
-        NSLog(@".oO( Comparison 15 )Oo.");
+        //Example on one kind of polymorphism:
         
-        //In Objective-C it is just like in Java possible to declare two different methods with the same name for
-        //a super class and a sub class. For example the Person instance Hans gives a different version of the
-        //sayHello method than Peter who is an instance of a Boy. As a result the sayHello method for a Boy instance
-        //overwrites the sayHello method for a Person instance. This is polymorphism.
+        NSLog(@".oO( Comparison 15 )Oo.");
         
         [Hans sayHello];
         [Peter sayHello];
@@ -252,10 +224,7 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 16: How is NSArray compared with arrays from other OO languages?]------------------------------\\
         
-        //The array types in Objective-C: NSArray & NSMutableArray are quite different from the Array objects in Java.
-        //The reason is that both NSArray & NSMutableArray are able to hold different types of objects at the same time.
-        //F.x. the same NSArray can hold both an NSNumber object and an NSString object at the same time.
-        //This is not possible in Java, where you specify the object types when allocation the array.
+        //Example on Objective-C arrays with mixed types of objects:
         
         NSLog(@".oO( Comparison 16 )Oo.");
         
@@ -273,28 +242,18 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 17: How does nil work?]------------------------------------------------------------------------\\
         
-        //In Objective-C the term 'nil' refers to the object zero. Is much like the 'null' in Java.
-        //The difference between Java and Objective-C when it comes to nil/null is that in Objective-C
-        //it is okay to send a message to nil, the program won't crash because of that, just nothing will happens.
-        //In Java though you will get a NullPointerException that will stop the program.
+        //Example on nil pointer:
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 18: How does primitive types look compared to other OO languages?]-----------------------------\\
         
-        //In Objective-C the primitive types are the following: char, double, float, int, long, short, BOOL.
-        //All these types can be hold in an NSNumber object.
-        
-        //In Java the primitive types are the following: byte, short, int, long, float, double, boolean, char
-        
-        //So the primitive types in Objective-C and Java matches pretty well. Normally when passing primitives around
-        //Objective-C they are wrapped inside a NSNumber object. This is because primitive types are inherited from C and
-        //primitive types are passed by value and not reference.
+        //See readme for explanation on this topic
         
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 19: How does protocols work?]------------------------------------------------------------------\\
         
-        
+        //Example on a protocol in Objective-C:
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 20: How are singletons defined and used?]------------------------------------------------------\\
