@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Test : NSObject
+@interface NilTest : NSObject
 
-@property (copy) NSString *title;
++(void) printArrayEntries:(NSArray *)array;
 
--(void) printArrayEntries:(NSArray *)array;
++(NSString*) thisIsANilMethod;
 
 @end

@@ -6,13 +6,11 @@
 //  Copyright (c) 2013 Markus Færevaag. All rights reserved.
 //
 
-#import "Test.h"
+#import "NilTest.h"
 
-@implementation Test
+@implementation NilTest
 
-@synthesize title = _title;
-
--(void) printArrayEntries:(NSArray *)array
++(void) printArrayEntries:(NSArray *)array
 {
     NSLog(@"Printing array: %@", array);
     int i;
@@ -20,7 +18,7 @@
     {
         NSLog(@"%d: %@", i, [[array objectAtIndex:i] stringValue]);
     }
-    NSLog(@"%@", [[array objectAtIndex:0] stringValue]);
+    NSLog(@"> idx 0: %@", [[array objectAtIndex:0] stringValue]);
 }
 
 @end
