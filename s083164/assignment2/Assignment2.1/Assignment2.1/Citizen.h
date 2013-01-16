@@ -30,8 +30,8 @@ typedef enum
 
 -(Citizen *)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName sex:(Sex)sex andAge:(NSNumber *)age;
 
--(BOOL)marry:(Citizen *)citizen;
+-(void)marry:(Citizen *)citizen;
 
--(BOOL)divorce:(Citizen *)citizen;
+-(void)divorce:(Citizen *)citizen;
 
 @end

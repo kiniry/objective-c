@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Citizen.h"
 
-@interface NoblePerson : NSObject
+@interface NoblePerson : Citizen
 
 @property NSInteger numberOfAssets;
 @property Citizen *butler;
 @property (strong) NoblePerson *spouse;
-
 
 @end
