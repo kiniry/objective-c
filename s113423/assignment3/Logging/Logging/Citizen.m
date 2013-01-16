@@ -44,7 +44,7 @@
 - (BOOL)isSingle {
   BOOL result = !self.spouse;
 
-  if (!(result == !self.spouse)) DDLogError(@"isSingle postcondition failure: result should be %c but is %c", !self.spouse, result);
+  POSTCONDITION(result == !self.spouse, @"result == !self.spouse");
   return result;
 }
 
