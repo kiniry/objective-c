@@ -34,4 +34,8 @@ typedef enum
 
 -(void)divorce:(Citizen *)citizen;
 
+-(void) addChild:(Citizen*) child;
+
+-(NSSet *) getChildren;
+
 @end

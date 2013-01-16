@@ -27,6 +27,7 @@
 
 -(void)marry:(Citizen *)citizen
 {
+    //Can only get married if both are single
     if (self.isSingle && citizen.isSingle) {
         self.spouse = citizen;
         citizen.spouse = self;
@@ -35,13 +36,35 @@
 
 -(void)divorce:(Citizen *)citizen
 {
-    self.spouse = nil;
-    citizen.spouse = nil;
+    // Can only get divorced if the citizen in the argument is the spouse
+    if (self.spouse == citizen) {
+        self.spouse = nil;
+        citizen.spouse = nil;
+    }
 }
 
--(BOOL)isSingle;
+-(BOOL)isSingle
 {
     return self.spouse == nil;
+}
+
+-(void) addChild:(Citizen*) child
+{
+    if (!self.children) self.children = [[NSMutableSet alloc] init];
+    
+    if (self.sex == male && child.father == nil) {
+        child.father = self;
+        [self.children addObject:child];
+    }else if(self.sex == female && child.mother == nil){
+        child.mother = self;
+        [self.children addObject:child];
+    }
+}
+
+-(NSSet *) getChildren
+{
+    if (!self.children) self.children = [[NSMutableSet alloc] init];
+    return (NSSet *)[self.children mutableCopy];
 }
 
 @end
