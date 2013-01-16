@@ -1,16 +1,12 @@
-//
-//  README.txt
-//  Assignment 2 Part 2
-//
-//  Created by Sivanujann Selliah on 15/01/13.
-//  Copyright (c) 2013 Sivanujann Selliah. All rights reserved.
-//
+Assignment 2 Part 2 - README.txt - Sivanujann Selliah - s093042 - 15/01/13
 
-Experiments are found in the folder Assignment 2 Part 2, in this directory...
+Experiments are found in the folder Assignment 2 Part 2, in this directory.
 
-All experiments are invoked in the main.m file...
+All experiments are invoked and can be found in the main.m file. All the experiments have comments to help understand the concepts.
 
-The following are elaborations on the comments found in the source code and some comparisons to other languages, mostly C# and Java. The experiments in the source code are named like each section in this document, with the word "experiments" appended.
+The following are elaborations on the comments found in the source code and some comparisons to other languages, mostly C# and Java. The experiments in the source code are named like each section in this document, with the word "experiments" appended to them.
+
+Before reading each section, it would be a good idea to look at the experiment and read the explanations given in the comments, this will give a much better understanding of the elaborations given the section.
 
 // Foundation framework
 The experiments showed some uses of the NSString class and the NSArray class, the operations done using the objects showed some of the capabilities of the classes and showed how the Foundation framework makes it easier for the developer to use commonly used operations on common objects easier by providing them in a framework.
@@ -129,12 +125,12 @@ How fast enumeration is used in Objective-C can be seen in the experiments.
 Fast enumeration is comparable to foreach in C#:
 [C# code]
 foreach(var someValue in someArray)
-    // Do something with someValue
+    /* Do something with someValue */
 [/C# code]
 In Java it can be done using:
 [Java code]
 for(Object someValue : someArray)
-    // Do something with someValue
+    /* Do something with someValue */
 [/Java code]
 
 // Property lists
