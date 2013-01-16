@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Andreas Graulund. All rights reserved.
 //
 
-// This object based on the BOM model given.
+// This object based on the BON model given.
 
 #import "Country.h"
 
-typedef enum { undefined, male, female } Sex;
+typedef enum { undefined, male, female } sex;
 
 @interface Citizen : NSObject
 
@@ -21,7 +21,7 @@ typedef enum { undefined, male, female } Sex;
 
 @property Country* country;
 @property (copy) NSDate* birthDate;
-@property Sex sex;
+@property sex sex;
 
 @property Citizen *mother;
 @property Citizen *father;
@@ -35,6 +35,7 @@ typedef enum { undefined, male, female } Sex;
 -(NSString*) fullName;
 -(NSString*) sexString;
 -(NSString*) description;
+-(NSInteger) age;
 
 -(BOOL) isSingle;
 

@@ -1,4 +1,4 @@
-Citizen is an abstract/deferred class and should not be instanciated.
+Citizen is an abstract/deferred class and should not be instantiated.
 It provides the method initWithName:sex:age:children: for the sake of convenience of subclasses.
 
 I assume the precondition is satisfied
@@ -17,9 +17,9 @@ This ensures that a Commoner (subtype of Citizen, but not of NoblePerson) can't 
 The postcondition of marry: in NoblePerson states that
 the object on which it's called,
 will have a butler when the method returns.
-I've made this a precondition insteadby moving it into the canMarry method,
+I've made this a precondition instead by moving it into the canMarry: method,
 where at least one of the two are required to have a butler in advance.
 
 Instead of using NSSet to store the parents,
-I used two weak properties mother and father
+I used two weak properties, mother and father,
 to avoid a strong reference cycle between children and parents.

@@ -38,12 +38,24 @@
 }
 
 -(NSString*) description {
-	return [NSString stringWithFormat:@"CITIZEN: %@\nSocial security number: %@\nCountry: %@\nBirth date: %@\nSex: %@",
+	return [NSString stringWithFormat:@"CITIZEN: %@\nSocial security number: %@\nCountry: %@\nBirth date: %@ (%ld years old)\nSex: %@\n",
 			self.fullName,
 			self.socialSecurity,
 			self.country,
 			self.birthDate,
+			self.age,
 			self.sexString];
+}
+
+-(NSInteger) age {
+	// Using the "NSDateComponents" Foundation class to calculate years passed since date
+	NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
+			components: NSYearCalendarUnit
+			fromDate:   birthDate
+			toDate:     [NSDate date] // <-- Now
+			options:    0
+	];
+	return [ageComponents year];
 }
 
 -(BOOL) isSingle {
@@ -57,6 +69,14 @@
 
 -(void) addChild:(Citizen*) child {
 	if(!children){ children = [@[] mutableCopy]; }
+	
+	if(sex == male){
+		child.father = self;
+	}
+	if(sex == female){
+		child.mother = self;
+	}
+	
 	[children addObject: child];
 }
 

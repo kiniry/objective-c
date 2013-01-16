@@ -26,18 +26,17 @@
 -(void) appendToFile:(NSString *)path something:(NSString *)something
 {
 }
-// The second declaration however fails in Objective-C with a:
-// "Duplicate declaration of method 'appendToFile:something:'" error message
 
 /*
-    Commented out to avoid compile error
+ The second declaration shown below, however, fails in Objective-C with a:
+ "Duplicate declaration of method 'appendToFile:something:'" error message
  
 -(void) appendToFile:(NSString *)path something:(int)something
 {
 
 }
 
-// In C# one could declare two overloaded functions in the following way:
+// As a comparison in C# one could declare two overloaded functions in the following way:
 public appendToFile(string path, string something)
 {
 }

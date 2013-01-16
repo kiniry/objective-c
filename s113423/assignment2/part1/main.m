@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 
     // Make John marry Kate if possible
     if (kate && [john canMarry:kate] && [kate canMarry:john]) {
-      [john marry:kate]; // won't be called, neither have a butler
+      [john marry:kate]; // will be called
     }
 
     NSLog(@"# after potential marriage");
@@ -72,8 +72,8 @@ int main(int argc, char* argv[]) {
     NSLog(@" ");
 
     // Make Joe marry Kate if possible
-    if (kate && [joe canMarry:kate] && [kate canMarry:joe]) {
-      [joe marry:kate]; // won't be called, Joe is not a NoblePerson
+    if (citizenB && [citizenA canMarry:citizenB] && [citizenB canMarry:citizenA]) {
+      [citizenA marry:citizenB]; // won't be called, Joe is not a NoblePerson
     }
 
     NSLog(@"# after potential marriage");
