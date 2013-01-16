@@ -33,8 +33,13 @@
 
 
 -(NSString*) info {
+
     NSString *desc =
-    [NSString stringWithFormat:@"Citizen: %@ %@", self.firstName, self.lastName];
+    [NSString stringWithFormat:@"\n Citizen: \n Name: %@ %@ \n Sex: %@ \n Spouse: %@ \n Father: %@ \n Mother: %@", self.firstName, self.lastName, self.gender,
+     [NSString stringWithFormat:@"%@ %@", self.spouse.firstName, self.spouse.lastName],
+     [NSString stringWithFormat:@"%@ %@", self.father.firstName, self.father.lastName],
+     [NSString stringWithFormat:@"%@ %@", self.mother.firstName, self.mother.lastName]
+     ];
     return desc;
 }
 
@@ -109,6 +114,16 @@
     else {
         NSLog(@"You cannot divorce somebody if you are not married");
     }
+}
+
+-(NSString*) gender {
+    if (self.sex == male) {
+        return @"Male";
+    }
+    else if (self.sex == female) {
+        return @"Female";
+    }
+    return @"";
 }
 
 @end
