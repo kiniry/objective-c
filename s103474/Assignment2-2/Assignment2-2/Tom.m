@@ -12,4 +12,12 @@
 
 @synthesize timsColor;
 
+-(NSString *) fullName {
+	return @"Tom Fulton";
+}
+
+-(void) greeting {
+	NSLog(@"Hello, you're talking to Tom!");
+}
+
 @end

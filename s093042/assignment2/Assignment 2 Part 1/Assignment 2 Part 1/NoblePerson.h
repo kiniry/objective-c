@@ -10,4 +10,13 @@
 
 @interface NoblePerson : Citizen
 
+@property int assets;
+@property Citizen* butler;
+
+-(BOOL) impedimentToMarriage:(Citizen *)aCitizen;
+
+-(id)initWithName:(NSString *)aGivenName Sex:(NSString *)aSex Age:(int)anAge Assets:(int)money Butler:(Citizen *)aButler;
+
+-(void) marry:(Citizen *)fiancee;
+
 @end

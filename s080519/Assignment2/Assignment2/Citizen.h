@@ -13,7 +13,7 @@
 // Gender definition
 typedef enum {M, F} gender;
 
-- (id) initWithName:(NSString *)name AndAge:(int) age AndSex:(gender) sex;
+- (id) initWithName:(NSString *)name Age:(int) age Sex:(gender) sex Children: (NSSet *) children;
 
 // Queries
 - (NSString *) getName;
@@ -24,7 +24,7 @@ typedef enum {M, F} gender;
 
 
 // Commands
-- (BOOL) marry: (Citizen *) Person;
+- (BOOL) marry: (Citizen *) person;
 - (BOOL) divorce;
 
 
