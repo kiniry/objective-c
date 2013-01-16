@@ -1,13 +1,13 @@
 //
-//  AlarmClockLogging.m
-//  Assignment3
+//  Citizen.h
+//  Assignment3-Defensive
 //
 //  Created by Andreas Haure on 16/01/13.
 //  Copyright (c) 2013 Andreas Roll Haure. All rights reserved.
 //
 
-#import "AlarmClockLogging.h"
+#import <Foundation/Foundation.h>
 
-@implementation AlarmClockLogging
+@interface Citizen : NSObject
 
 @end

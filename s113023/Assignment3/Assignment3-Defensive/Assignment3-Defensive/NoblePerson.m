@@ -1,13 +1,13 @@
 //
-//  AlarmClockDefensive.m
-//  Assignment3
+//  NoblePerson.m
+//  Assignment3-Defensive
 //
 //  Created by Andreas Haure on 16/01/13.
 //  Copyright (c) 2013 Andreas Roll Haure. All rights reserved.
 //
 
-#import "AlarmClockDefensive.h"
+#import "NoblePerson.h"
 
-@implementation AlarmClockDefensive
+@implementation NoblePerson
 
 @end
