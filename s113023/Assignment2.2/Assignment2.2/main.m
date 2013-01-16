@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Person.h"
 #import "Boy.h"
+#import "AustinPowers.h"
 
 int main(int argc, const char * argv[])
 {
@@ -242,7 +243,14 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 17: How does nil work?]------------------------------------------------------------------------\\
         
+         NSLog(@".oO( Comparison 17 )Oo.");
+        
         //Example on nil pointer:
+        Peter = nil;
+        NSLog(@"%@",[Peter fullName]);
+        
+        //We see that even though we are setting the pointer to nil, we are still able to call the method fullName
+        //on it. The method will just return (null)
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 18: How does primitive types look compared to other OO languages?]-----------------------------\\
@@ -254,6 +262,13 @@ int main(int argc, const char * argv[])
         //--[COMPARISON 19: How does protocols work?]------------------------------------------------------------------\\
         
         //Example on a protocol in Objective-C:
+        
+        NSLog(@".oO( Comparison 19 )Oo.");
+        
+        AustinPowers *AustinFromSixties = [[AustinPowers alloc] initWithVelourColor:@"cyan"];
+        NSLog(@"Today the color of Austin's jacket is: %@",AustinFromSixties.velourColor);
+        [AustinFromSixties sayAustinQoute];
+        
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 20: How are singletons defined and used?]------------------------------------------------------\\

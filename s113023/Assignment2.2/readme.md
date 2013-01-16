@@ -23,15 +23,30 @@ Example in both Objective-C and Java in main
 
 Class types
 -----------
+In Objective-C all objects are allocted on the heap, and therefore we need pointers to access them.
+In Java we don't use pointers to the objects, Java keeps references to the objects in another way. The objects are still allocated on the heap though.
 
 Constructors and factories
 --------------------------
+In Objective-C we use the init-methods as constructors for objects. The correct way to define the designated initializer would be the following:
+
+	- (id) initWithStringParameter:(NSString *)stringParameter{
+		self = [super init];
+		if (self){
+			_stringParameter = stringParameter;
+		}
+		return self;
+	}
+	
+In java we would use the constructor when using the new keyword.
+
 In Objective-C factories can be used for creating new instances of an object:
 A class-method (+) is used to create a new instance of the class and setting its properties according to the parameter values that are passed in.
 I have never seen this way of creating new instances of objects in Java. In Java I've always created an instance of a class by using a constructor for the class.
 
 Copying and cloning of objects
 ------------------------------
+In Objective-C when we set a pointer-variable equal to a another pointer-variable that points at an object, we will not copy the intire object to the new pointervariable. Instead the new pointervariable will contain a reference to the object. If we wish to instead copy the object to the new pointer-variable we could define the property for the instance of the object to @property(copy)...
 
 Dynamic typing
 --------------
@@ -59,7 +74,7 @@ In Objective-C we can declare classes that inherit from other classes just like 
 Objective-C only supports single inheritance, just like Java. 
 When an object is inheriting from another object it inherits all of the parent class' methods and properties.
 
-logging methods
+Logging methods
 ---------------
 I haven't used that many logging methods yet so I don't really have a lot of knowledge on this topic. In Java I've always used the System.out.print for communicating strings to the console. You can do the same thing using NSLog in Objective-C.
 
@@ -103,6 +118,9 @@ So the primitive types in Objective-C and Java matches pretty well. Normally whe
 
 Protocols
 ---------
+In Objective-C a protocol is a collection of methods and properties (these can be set either as required or optional). The optional methods are primarily for documentation. The key thing here is that a protocol doesn't have an implementation of them. If a class wishes to implement a protocol it must implement all the methods and properties that are required by the protocol. Protocols are nice if you want to make sure that you implement the same methods in different classes but with these methods beeing different for the different classes.
+
+In Java we have interfaces instead of protocols. They are just like protocols in Objective-C except that you can't have any optional methods in Java.
 
 Singletons
 ----------
