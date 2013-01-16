@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Citizen.h"
 
 @interface NoblePerson : NSObject
+
+@property NSInteger numberOfAssets;
+@property Citizen *butler;
+@property (strong) NoblePerson *spouse;
+
 
 @end
