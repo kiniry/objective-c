@@ -14,4 +14,6 @@
 @property NSNumber* assets;
 @property Citizen* butler;
 
+- (void)shareAssetsWith:(NoblePerson*)spouse;
+- (void)marry:(NoblePerson *)spouse andAssignButler:(Citizen*)butler;
 @end
