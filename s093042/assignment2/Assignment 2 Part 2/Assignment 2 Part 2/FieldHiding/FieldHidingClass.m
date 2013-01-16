@@ -45,7 +45,7 @@
 // A factory method
 +(id)fieldHidingClassWithDefaultInfo {
     FieldHidingClass *fieldHidingClass = [[FieldHidingClass alloc] initWithParameter:@"This parameter was set in the 'fieldHidingClassWithDefaultInfo' factory method."];
-    fieldHidingClass.aPrivateProperty = @"This is a 'private' field that is completly hidden from outside the implementation.";
+    fieldHidingClass.aPrivateProperty = @"This is a 'private' field that is completely hidden from outside the implementation.";
     
     return fieldHidingClass;
 }
