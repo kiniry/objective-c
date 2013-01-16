@@ -6,7 +6,7 @@ All experiments are invoked and can be found in the main.m file. All the experim
 
 The following are elaborations on the comments found in the source code and some comparisons to other languages, mostly C# and Java. The experiments in the source code are named like each section in this document, with the word "experiments" appended to them.
 
-Before reading each section, it would be a good idea to look at the experiment and read the explanations given in the comments, this will give a much better understanding of the elaborations given the section.
+Before reading each section, it would be a good idea to look at the experiment and read the explanations given in the comments, this will give a much better understanding of the elaborations given in the section.
 
 // Foundation framework
 The experiments showed some uses of the NSString class and the NSArray class, the operations done using the objects showed some of the capabilities of the classes and showed how the Foundation framework makes it easier for the developer to use commonly used operations on common objects easier by providing them in a framework.
