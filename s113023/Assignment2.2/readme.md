@@ -1,8 +1,8 @@
 README FOR ASSIGNMENT 2.2
 =========================
 
-BELOW HERE ARE REFLECTIONS AND A COMPARISON BETWEEN THE TWO OBJECT ORIENTED PROGRAMMING LAGUAGES THAT I KNOW: JAVA AND OBJECTIVE-C.
-MOST OF THE TOPICS BELOW HAS EXAMPLES IN THE MAIN FILE USING INSTANCES OF THE OTHER CLASSES IN THE DIRECTORY.
+Below here are reflections and a comparison between the two object oriented programming laguages that i know: java and objective-c.
+Most of the topics below has examples in the main file using instances of the other classes in the directory.
 
 Foundation Framework
 --------------------
@@ -46,7 +46,11 @@ I have never seen this way of creating new instances of objects in Java. In Java
 
 Copying and cloning of objects
 ------------------------------
-In Objective-C when we set a pointer-variable equal to a another pointer-variable that points at an object, we will not copy the intire object to the new pointervariable. Instead the new pointervariable will contain a reference to the object. If we wish to instead copy the object to the new pointer-variable we could define the property for the instance of the object to @property(copy)...
+In Objective-C when we set a pointer-variable equal to a another pointer-variable that points at an object, we will not copy the intire object to the new pointervariable. Instead the new pointervariable will contain a reference to the object. 
+
+If we wish to copy the object instead, we could use the copy-method that a lot of the methods in the Foundation framework implements. For an object to be able to copy itself its class must implement the protocol NSCopying. We can't use the copy-method on just any object since it is not defined in the NSObject class. Trying til do so will result in an exception.
+
+This is all tested and described in the main.
 
 Dynamic typing
 --------------
@@ -82,13 +86,27 @@ An example is given in main.
 
 Method overloading
 ------------------
-Objective-C doesn't support method overloading. This means that unlike Java a class is not able to have two or more methods with the same name and different parameters. 
-We are though able to 
+Objective-C doesn't support method overloading. This means that unlike Java a class is not able to have two or more methods with the same name and different parameters. For example we can't have:
 
+	(void)doSomethingWithInput:(NSString *)string;
+	(void)doSomethingWithInput(NSNumber)number; //This will give an error
+
+Different returntypes will result in an error as well:
+	
+	(NSString *)returnSomething;
+	(NSNumber *)returnSomething;	//This will give an error
+	
+We are though able to do the following:
+	 
+	(void)doSomethingWithInput:(NSString *)string andOtherInput:(NSString *)otherString
+ 
 An example is given in main using some material from the [irony] best singer in the world [/irony].
 
-If we do things like this we are able to implements two or more methods with the same name since in Objective-C the method name corresponds to the argument names as well. We can only have one method with only one parameter though.
-We are not able to make two methods each with only one argument were these two arguments are different.
+If we do things like this we are able to implements two or more methods with the same name since in Objective-C the method name corresponds to the argument names as well. We can only have one method with only one parameter though. Like shown above. We are not able to make two methods each with only one argument were these two arguments are different.
+
+The reason we can still do some kind of overloading is that in Objective-C the two working methods from above will have different signatures: 
+	doSomethingWithInput:
+	doSomethingWithInput:andOtherInput:
 
 Polymorphism
 ------------
@@ -145,6 +163,17 @@ Introspection
 
 Enumarations
 ------------
+In Objective-C you can use fast enumarations for most of the collections like NSArray, NSSet and so on. You can use fast enumartion if the class implements the protocol NSFastEnumaration. A Fast Enumaration on  a collection object would look like:
+
+	id item;
+	for(id item in myCollectionOfObjects)
+	{
+		NSLog(@"This is an item: %@",item);
+	}
+	
+In Java you are able to do the same thing by using for each. 
+
+Examples in main.
 
 Property Lists
 --------------
