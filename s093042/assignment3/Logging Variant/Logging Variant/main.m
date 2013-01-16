@@ -1,9 +1,9 @@
 //
 //  main.m
-//  Assignment3
+//  Logging Variant
 //
-//  Created by Andreas Haure on 16/01/13.
-//  Copyright (c) 2013 Andreas Roll Haure. All rights reserved.
+//  Created by Sivanujann Selliah on 16/01/13.
+//  Copyright (c) 2013 Sivanujann Selliah. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
