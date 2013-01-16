@@ -12,7 +12,7 @@ Example with NSArray & NSString in main
 
 Aliasing
 --------
-
+The term aliasing refers to the situation where two or more pointers er pointing to the same memory location and therefore also same object.
 
 Object allocation and initialisation
 ------------------------------------
@@ -39,6 +39,8 @@ In Objective-C we use the init-methods as constructors for objects. The correct 
 		return self;
 	}
 	
+In Objective-C it is important that your object calls its super init method first and checks whether this init was successful. If nil is returned the childs init should return nil as well.
+
 In java we would use the constructor when using the new keyword.
 
 In Objective-C factories can be used for creating new instances of an object:
@@ -83,7 +85,7 @@ Immutability
 ------------
 In Objective-C most of the most used classes such as NSString, NSArray, NSSet and so on have both an immutabel and a mutable version. The immutable version has a fixed size when allocated, and the content can't change. If you want to add or change an element you have to allocate a new object of the type and copy all the elements to the new location. The mutable arrays can append new objects or change its contents without allocating new memory, but are far more complex. The mutable versions inherit most of their methods from the inmutable versions and add some extra methods to take care of the mutability. But normally you want to use immutable objects where you can since these classes are often faster and safer (thread-safe) to perform operations on. You always have to wrap primitives in objects before inserting them into a collection method.
 
-In Java you only have immutable strings and arrays. You have the option to use arrayLists though that is a kind of mutable array. The thing about arrayLists though is that you are not able to add primitive types to an arrayList. Here you would have to wrap the primitive in an object first. If you want to change the content of in immutable collection you have to allocate a new object first and then copy the old objects to this.
+In Java you normally only use immutable strings and arrays. You have the option to use arrayLists though that is a kind of mutable array. The thing about arrayLists though is that you are not able to add primitive types to an arrayList. Here you would have to wrap the primitive in an object first. If you want to change the content of in immutable collection you have to allocate a new object first and then copy the old objects to this. In Java you could use for example the StringBuilder class to create mutable strings.
 
 Inheritance
 -----------
@@ -102,7 +104,7 @@ Method overloading
 Objective-C doesn't support method overloading. This means that unlike Java a class is not able to have two or more methods with the same name and different parameters. For example we can't have:
 
 	(void)doSomethingWithInput:(NSString *)string;
-	(void)doSomethingWithInput(NSNumber)number; //This will give an error
+	(void)doSomethingWithInput:(NSNumber *)number; //This will give an error
 
 Different returntypes will result in an error as well:
 	
@@ -162,6 +164,12 @@ Standard and dynamic method resolution
 
 Strong vs weak pointers
 -----------------------
+In Objective-C there are two different kinds of pointers: Strong and Weak. These are featured in the modern version of Objective-C that features ARC (Automatic Reference Counting) to take care of memory management.
+
+Declaring a pointer as 'Strong' means that the object should not be released from the heap until the the pointer is set to 'nil' or is manually released.
+Declaring a pointer as 'Weak' means that the object is only kept in the heap as long as another object points strongly to it. When the object gets removed from the heap the weak pointer is set to 'nil' automatically (to prevent dangling pointers). 
+
+As you don't use pointers to objects in Java, you don't have any pointers to objects to declare as weak or strong.
 
 Variance
 --------
@@ -174,9 +182,15 @@ Value boxing and unboxing
 
 Introspection
 -------------
+In Objective-C introspection is used to examine an object's type and also to find out whether an object will respond to a certain method call. This is often used in Objective-C since you have the ability to declare objects as the id type. Therefore you often need to examine an object with type id before calling any non-existing methods on it that could lead to a program crash.
+
+In the main class are som examples of the use of two of the most used methods related to the topic introspection.
+
+In Java you have reflection which is the same as introspection in Objective-C. 
 
 Enumarations
 ------------
+
 In Objective-C you can use fast enumarations for most of the collections like NSArray, NSSet and so on. You can use fast enumartion if the class implements the protocol NSFastEnumaration. A Fast Enumaration on  a collection object would look like:
 
 	id item;
@@ -185,7 +199,7 @@ In Objective-C you can use fast enumarations for most of the collections like NS
 		NSLog(@"This is an item: %@",item);
 	}
 	
-In Java you are able to do the same thing by using for each. 
+In Java you are able to do the same thing by using a for each loop.  
 
 Examples in main.
 
