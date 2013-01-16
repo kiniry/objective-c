@@ -1,0 +1,13 @@
+//
+// Prefix header for all source files of the 'Logging' target in the 'Logging' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+#endif
+
+#import "DDLog.h"
+extern const int ddLogLevel;
+
+#define PRECONDITION(condition, condition_string) if (!(condition)) { DDLogError(@"Precondition failure: %@ evaluated to false", (condition_string)); }
+#define POSTCONDITION(condition, condition_string) if (!(condition)) { DDLogError(@"Postcondition failure: %@ evaluated to false", (condition_string)); }

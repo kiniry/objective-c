@@ -20,27 +20,28 @@
 }
 
 - (BOOL)canMarry:(Citizen*)other {
-  NSAssert(other, @"Precondition failed");
+  PRECONDITION(other, @"other");
   
   BOOL result = [super canMarry:other]
                 && [other isKindOfClass:[NoblePerson class]]
                 && (self.butler || ((NoblePerson*)other).butler); // this line is only evaluated if other is a NoblePerson
 
-  NSAssert(!result || [self isSingle], @"Postcondition failed");
-  NSAssert(!result || [other isSingle], @"Postcondition failed");
-  NSAssert(!result || ![self.children containsObject:other], @"Postcondition failed");
-  NSAssert(!result || self.father != other, @"Postcondition failed");
-  NSAssert(!result || self.mother != other, @"Postcondition failed");
-  NSAssert(!result || self.sex != other.sex, @"Postcondition failed");
-  NSAssert(!result || [other isKindOfClass:[NoblePerson class]], @"Postcondition failed");
-  NSAssert(!result || ([self butler] || ((NoblePerson*)other).butler), @"Postcondition failed");
+  POSTCONDITION(!result || [self isSingle], @"!result || [self isSingle]");
+  POSTCONDITION(!result || [other isSingle], @"!result || [other isSingle]");
+  POSTCONDITION(!result || ![self.children containsObject:other], @"!result || ![self.children containsObject:other]");
+  POSTCONDITION(!result || self.father != other, @"!result || self.father != other");
+  POSTCONDITION(!result || self.mother != other, @"!result || self.mother != other");
+  POSTCONDITION(!result || self.sex != other.sex, @"!result || self.sex != other.sex");
+  POSTCONDITION(!result || [other isKindOfClass:[NoblePerson class]], @"!result || ![other isKindOfClass:[NoblePerson class]]");
+  if ([other isKindOfClass:[NoblePerson class]])
+    POSTCONDITION(!result || ([self butler] || ((NoblePerson*)other).butler), @"!result || ([self butler] || ((NoblePerson*)other).butler)");
   return result;
 }
 
 - (void)marry:(Citizen*)sweetheart {
-  NSAssert(sweetheart, @"Precondition failed");
-  NSAssert([self canMarry:sweetheart], @"Precondition failed");
-  NSAssert([sweetheart canMarry:self], @"Precondition failed");
+  PRECONDITION(sweetheart, @"sweetheart");
+  PRECONDITION([self canMarry:sweetheart], @"[self canMarry:sweetheart]");
+  PRECONDITION([sweetheart canMarry:self], @"[sweetheart canMarry:self]");
   double oldAssets = [self.assets doubleValue] + [((NoblePerson*)sweetheart).assets doubleValue];
 
   // this method should only be called if [self canMarry:sweetheart] returns true
@@ -55,13 +56,13 @@
   self.assets = sharedAssets; // aliasing intended
   fiancee.assets = sharedAssets;
 
-  NSAssert(self.spouse == sweetheart, @"Postcondition failed");
-  NSAssert(self.butler || fiancee.butler, @"Postcondition failed");
-  NSAssert([self.assets doubleValue] <= oldAssets - 50000.0, @"Postcondition failed");
+  POSTCONDITION(self.spouse == sweetheart, @"self.spouse == sweetheart");
+  POSTCONDITION(self.butler || fiancee.butler, @"self.spouse == sweetheart");
+  POSTCONDITION([self.assets doubleValue] <= oldAssets - 50000.0, @"[self.assets doubleValue] <= oldAssets - 50000.0");
 }
 
 - (void)divorce {
-  NSAssert(![self isSingle], @"Precondition failed");
+  PRECONDITION(![self isSingle], @"![self isSingle]");
   Citizen* oldSpouse = self.spouse;
 
   self.assets = @( [self.assets doubleValue] / 2.0 );
@@ -69,8 +70,8 @@
 
   [super divorce];
 
-  NSAssert([self isSingle], @"Postcondition failed");
-  NSAssert([oldSpouse isSingle], @"Postcondition failed");
+  POSTCONDITION([self isSingle], @"[self isSingle]");
+  POSTCONDITION([oldSpouse isSingle], @"[oldSpouse isSingle]");
 }
 
 - (NSString*)description {
