@@ -28,10 +28,10 @@
     self = [super init];
     if (self)
     {
-        self.name = name;
-        self.sex = sex;
-        self.age = age;
-        self.children = [[NSMutableArray alloc] init];
+        _name = name;
+        _sex = sex;
+        _age = age;
+        _children = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -60,13 +60,18 @@
     }
 }
 
-- (void)marryCitizen:(Citizen *)Aperson
+- (BOOL)canMarry:(Citizen *)Aperson
 {
-    if (    [self.children indexOfObject:Aperson] == NSNotFound &&
-            self.mother != Aperson &&
-            self.father != Aperson &&
-            self.sex != Aperson.sex &&
-            !self.spouse    )
+    return [self.children indexOfObject:Aperson] == NSNotFound &&
+    self.mother != Aperson &&
+    self.father != Aperson &&
+    self.sex != Aperson.sex &&
+    !self.spouse;
+}
+
+- (void)marry:(Citizen *)Aperson
+{
+    if ([self canMarry:Aperson])
     {
         //Legal marriage
         NSLog(@"Legal Marriage between %@ and %@",self.name,Aperson.name);
@@ -77,7 +82,7 @@
         NSLog(@"Not a legal marriage - leads to incest or homosexuality or polygyni");
     }
 }
-- (void)divorceCitizen:(Citizen *)Aperson
+- (void)divorce:(Citizen *)Aperson
 {
     if (self.spouse == Aperson && Aperson.spouse == self){
         Aperson.spouse = nil;

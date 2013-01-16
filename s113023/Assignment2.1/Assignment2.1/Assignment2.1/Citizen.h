@@ -23,10 +23,11 @@
 - (void)setFather:(Citizen *)Afather;
 
 //Commands for a citizen object (changes state of object)
-- (void)marryCitizen:(Citizen *)Aperson;
-- (void)divorceCitizen:(Citizen *)Aperson;
+- (void)marry:(Citizen *)Aperson;
+- (void)divorce:(Citizen *)Aperson;
 
 //Queries for a citizen object (returns value of object)
+- (BOOL)canMarry:(Citizen *)Aperson;
 - (NSString *)generateChildrenString;
 - (NSString *)printInfo;
 @end

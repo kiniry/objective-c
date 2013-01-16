@@ -173,7 +173,7 @@ int main(int argc, const char * argv[])
         //Here we are also copying the fullName property from the instance of the PersonAlternative object. But
         //the copy will not be able to change the propery for the object since the property was declared as (copy).
         
-        //I have never tried to copy an object in Java.
+        //In Java you can use the method copy() to copy an object if the object has this method specified.
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 7: Dynamic typing]-----------------------------------------------------------------------------\\
 
@@ -206,11 +206,45 @@ int main(int argc, const char * argv[])
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 10: How does field hiding work?]---------------------------------------------------------------\\
         
+        NSLog(@".oO( Comparison 10 )Oo.");
+        
+        Person *PersonForFieldHidingTest = [[Person alloc] init];
+        //PersonForFieldHidingTest._firstName = @"Hans";
+        //Line above wont work by default.
+        
+        PersonForFieldHidingTest.firstName = @"Hans";
+        //By default we have to use accesor-method like above.
+        
+        //Java Implementation:
+        //private String _name; - Would result in a private field that can't be accessed from outside the class
+        //public String _name; - Would result in a public field that is accessible from outside the class
         
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 11: How is immutability used?]-----------------------------------------------------------------\\
         
+        NSLog(@".oO( Comparison 11 )Oo.");
+        
+        //Example on inmutable classes in Objective-C:
+        
+        NSArray *inmutableArrayTest = [[NSArray alloc]initWithObjects:@"foo", nil];
+        NSLog(@"%@",inmutableArrayTest);
+        
+        //We can add a new object to the array in the following way:
+        inmutableArrayTest = [inmutableArrayTest arrayByAddingObject:@"bar"];
+        NSLog(@"%@",inmutableArrayTest);
+
+        //Example on mutable classes in Objective-C:
+                
+        NSMutableArray *mutableArrayTest = [[NSMutableArray alloc]initWithObjects:@"foo",nil];
+        NSLog(@"%@",mutableArrayTest);
+        
+        //We can add a new object to the array in the following way:
+        [mutableArrayTest addObject:@"bar"];
+        NSLog(@"%@",mutableArrayTest);
+        
+        [mutableArrayTest replaceObjectAtIndex:0 withObject:@"bar"];
+        NSLog(@"%@",mutableArrayTest);
         
         
         //+-----------------------------------------------------------------------------------------------------------+\\
