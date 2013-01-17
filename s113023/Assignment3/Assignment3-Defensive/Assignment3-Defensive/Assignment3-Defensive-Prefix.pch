@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Assignment3-Defensive' target in the 'Assignment3-Defensive' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

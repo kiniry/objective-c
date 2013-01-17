@@ -18,7 +18,6 @@ and then one of its initializer methods (e.g. init) on the result.
 
     MyClass* object = [[MyClass alloc] initWithNumber:123];
 
-
 This allocates the memory for the object on the heap,
 initializes the object, and returns a pointer to it.
 It's strongly discouraged to call alloc without an initializer method in the same statement.
@@ -114,10 +113,12 @@ and get a new object.
    a comparable construct in your other language(s)?  (Hint: When/how
    is type information lost?)
 
+
 ### Expanded types
  - ... how expanded types are declared and used with the OTLTYAFW.
    (Hint: Can you alias expanded types?  Can user-defined types be
    expanded?)
+
 
 ### Field hiding
 It's possible to declare instance variables directly
@@ -132,17 +133,32 @@ it simply reuses the instance variable.
 It's possible to hide fields in Java,
 but it's bad practice as it makes the code harder to read.
 
+
 ### Immutability
  - ... how is immutability used and why as compared with the
    OTLTYAFW.  (Hint: What are the immutable base types in your other
    languages(s)?  Are they *really* immutable?  What good are
    immutable data types?)
 
+
 ### Inheritance
  - ... how inheritance works as compared to the OTLTYAFW.  (Hint:
    Consider single vs. multiple inheritance and behavioral vs. code
    inheritance.  How does class inheritance work and how does type
    inheritance work?)
+
+Neither Objective-C or Java support multiple inheritance.
+Inheritance works much like in Java,
+where subclasses inherit the fields and method of the superclass.
+In Java, you have specify the access level of fields and methods as
+private, package-private (default), protected, public.
+Private fields and methods are not inherited by subclasses.
+
+Methods in Objective-C have no access level modifiers.
+One way to have a "private" implementation specific method
+is to declare it in a class extension in the implementation file (.m).
+Although this does not prevent the method from being overriden in a subclass.
+
 
 ### Logging
  - ... the built-in methods for logging as compared to the OTLTYAFW.
@@ -196,13 +212,13 @@ with the exception of optional methods.
 Optional methods in protocols are really only for documentation,
 as you'd have to use introspection anyway to make sure that the object responds to the given selector.
 
-   if ([object respondsToSelector:@selector(doSomething)]) {
+    if ([object respondsToSelector:@selector(doSomething)]) {
        [object doSomething];
-   }
+    }
 
 You usally have protocols extend the NSObject protocol,
 as all classes should inherit from the NSObject class anyway.
-It's possible have an object with type id that conforms to a protocol.
+It's possible to have an object with type id that conforms to a protocol.
 
     id <SomeProtocol> unknownObject;
 
@@ -212,17 +228,20 @@ It's possible have an object with type id that conforms to a protocol.
    OTLTYAFW.  (Hint: Do the patterns for defining and using singletons
    maps to/from your other language(s)?)
 
+
 ### Method resolution
  - ... how does (static and dynamic) method resolution work as
    compared to the OTLTYAFW.  (Hint: In Java and C# the compiler knows
    exactly which method will be called, just not which *version* of
    that method will be called at runtime.)
 
+
 ### Strong vs. weak pointers
  - ... how do strong vs. weak pointers work as compared with
    semi-equivalent construct in the OTLTYAFW.  (Hint: Look into
    java.lang.ref and .Net's System.WeakReference if you have never
    done so before.)
+
 
 ### Variance
 Objective-C doesn't impose any restrictions on
@@ -234,15 +253,28 @@ The type of overriden properties, however, must be covariant.
 The return type of an overriden method in Java (since 1.5) must be covariant,
 while the argument types are invariant (method is overloaded, not overriden).
 
+
 ### Exceptions
  - ... how do exceptions work as compared with the OTLTYAFW.  (Hint:
    What do method declarations look like with regards to exceptional
    behavior?)
 
+
 ### Value boxing
  - ... how does value boxing and unboxing work as compared to the
    OTLTYAFW.  (Hint: Note that I did not just say *primitive* value
    boxing.)
+
+The Foundation framework provides the class NSNumber
+that can wrap around the numberic C types (int, float, double, BOOL, ...),
+so that they can fit in the Foundation collection classes.
+In Java you have the classes Integer, Double, Float and so on,
+again used to store primitives in collections.
+
+Java supports automatic boxing and unboxing of the numeric types,
+whereas in Objective-C you have to create a new object and call the getter to unbox.
+You can however use the NSNumber literal (e.g. NSNumber* n = @123;) to easily create new NSNumber objects.
+
 
 ### Introspection
  - ... how introspection in Objective-C compares to built-in support
@@ -267,10 +299,6 @@ the latter will raise an exception.
    classes in .Net.  Also think about JSON, if you know it.)
 
 ### Blocks
- - ... how do Blocks compare with the semi-equivalent
-   construct in the OTLTYAFW.  (Hint: Think about Java's anonymous
-   classes and C#'s lambdas.)
-
 Blocks can be used to pass around functions as variables,
 which is useful for callbacks,
 running code on a different thread at some point in time,
