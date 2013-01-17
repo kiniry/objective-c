@@ -35,19 +35,29 @@
     _butler = buttler;
 }
 
-- (BOOL) marry: (NoblePerson *) person
+- (BOOL) marry: (Citizen *) person
 {
-    // If neither has a butler, no marriage!
-    if(!self.butler && !person.butler) {
-        return nil;
+    if(![person isKindOfClass:[NoblePerson class]]) {
+        return NO;
     }
     
-    // Divide loot (Substract marriage price)
-    int capital = (self.capital + person.capital - 10000) / 2;
-    self.capital = capital;
-    person.capital = capital;
+    NoblePerson *p = (NoblePerson *) person;
     
-    return [super marry:person];
+    // If neither has a butler, no marriage!
+    if(!self.butler && !p.butler) {
+        return NO;
+    }
+    
+    if([super marry:person]) {
+        // Divide loot (Substract marriage price)
+        int capital = (self.capital + p.capital - 10000) / 2;
+        self.capital = capital;
+        p.capital = capital;
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 

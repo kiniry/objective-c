@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Citizen.h"
 #import "NoblePerson.h"
+#import "FunWithNil.h"
+#import "FunWithBlocks.h"
+#import "FunWithProtocols.h"
 
 int main(int argc, const char * argv[])
 {
@@ -28,6 +31,42 @@ int main(int argc, const char * argv[])
         [tony marry:carmela andAssignButler:christopher];
         [tony.Children addObject:meadow];
         [christopher marry:adriana];
+        
+        // ------------------------- Experimantions from here and down ------------------------- 
+        
+        //-------------------------  Nil experiment. ------------------------- 
+        FunWithNil* nilexp = [[FunWithNil alloc] init];
+        [nilexp play];
+        
+        // ------------------------- Fun with blocks ------------------------- 
+        FunWithBlocks* blockExp = [[FunWithBlocks alloc] initWithDouble:3.0];
+        //It is possible to manipulate variables in other objects with a variable from the object where the
+        // block is defined
+        double multiplier = 2.3;
+        [blockExp changeNumberWithABlock:^{
+            return multiplier;
+        }];
+        NSLog(@"%f",blockExp.num);
+        
+        //You can add blocks to the different collections, which is not the case in Java
+        
+        [blockExp.blocks addObject:^(){
+            NSLog(@"You look gooooood!");
+        }];
+        
+        [blockExp.blocks addObject:^(){
+            NSLog(@"Very nice!");
+        }];
+        
+        // ------------------------- Fun with protocols -------------------------
+        
+        /*
+         This does not work, and I can't figure out why. I would like some help here!
+         */
+        FunWithProtocols* protFun = [[FunWithProtocols alloc] init];
+        [protFun.delegate doSomething];
+        
+        
         
         
     }

@@ -1,0 +1,239 @@
+OTLTYAGW, Java.
+
+
+
+
+ - ... the Foundation framework with the core classes of the
+   language(s) that you are familiar with? (abbreviated henceforth as
+   OTLTYAFW) (Hint: Compare the classes in Foundation, and in
+   particular their fundamental design idioms, with classes in
+   java.lang/java.util and .Net's System namespace.)
+
+
+
+
+
+ - ... how common aliasing is and how it is avoided compared to the
+   OTLTYAFW.  (Hint: The keyword here is "ownership".)
+
+Objects in Java is passed by reference, so I personally don't  alias them when I write 
+java code. Except if passing an object to a function counts as aliasing, 
+in which case aliasing is *very* common.
+
+
+
+
+ - ... the alloc/init pattern of object instantiation with how objects
+   are constructed in the OTLTYAFW.  (Hint: What are best practices
+   for constructors in the language of your choice.)
+
+In Java objects all have constructs, which is normally used for initializing values. 
+However in some cases an init method can be used to initialize values after the object 
+has been created, e.g. if there's dependencies on other objects which has yet to be 
+created or the likes.
+
+
+
+
+ - ... how class types are used with those in the OTLTYAFW.
+ 
+ 
+ 
+
+ - ... how constructors and factories are realized as compared to the
+   OTLTYAFW.  (Hint: Compare best practices in factories.)
+
+
+
+
+ - ... how copying and cloning of objects works (see NSObject's API)
+   as compared to the OTLTYAFW.  (Hint: Deep vs. shallow copies,
+   twinning, cloning, mutability of iterations, etc.)
+
+ArrayLists and the like are all shallow copies, when you make a copy of them. 
+You're also not allowed to alter an ArrayList while using fast iteration notation, e.g. 
+for(Object in Objects), you'll have to use an iterator to alter the list in that case.
+   
+   
+
+
+ - ... how dynamic typing of pointers compare with the OTLTYAFW.
+   (Hint: When/how is type information lost?)
+
+
+
+
+
+ - ... how dynamic typing of ids compare with the OTLTYAFW.  Is there
+   a comparable construct in your other language(s)?  (Hint: When/how
+   is type information lost?)
+
+In Java all classes is a "child" of Object, so in theory you could pass things 
+around as "Object" and then not know anything about them, unless you figure out what 
+class it actually is, however, I've never seen it used in that way.
+
+
+
+ - ... how expanded types are declared and used with the OTLTYAFW.
+   (Hint: Can you alias expanded types?  Can user-defined types be
+   expanded?)
+   
+In java "CostumType foo = new CostumType();" is perfectly fine, and the "type" CostumType
+can be expanded by extending it. E.g. "class foo extends CostumType"
+
+
+
+ - ... how does field hiding work as compared with the OTLTYAFW.
+   (Hint: Does hiding/shadowing work, is it a good practice, do the
+   types matter?)
+   
+In Java there's visibility modifies, public, protected, no modifier and private. 
+So there's "more" control over what's visible than compared to Objective-C(Unless I've 
+missed something in Objective-C that makes it possible to have more than either private 
+or public functions, etc)
+
+However, Java is odd in the way that "protected" also means that classes that's 
+in the same package as your class can modify fields.
+
+
+
+ - ... how is immutability used and why as compared with the
+   OTLTYAFW.  (Hint: What are the immutable base types in your other
+   languages(s)?  Are they *really* immutable?  What good are
+   immutable data types?)
+   
+It's obviously possible to create your own objects that are immutable, 
+however most List and Maps aren't immutable.
+
+
+
+ - ... how inheritance works as compared to the OTLTYAFW.  (Hint:
+   Consider single vs. multiple inheritance and behavioral vs. code
+   inheritance.  How does class inheritance work and how does type
+   inheritance work?)
+
+In java an object can only inheret directly from 1 other class(e.g. it's only 
+possible to extend _one_ class, that class can of course also extend a class, etc. etc.),
+but you can have as many interfaces as you require.
+
+
+
+ - ... the built-in methods for logging as compared to the OTLTYAFW.
+   (Hint: There is more to the world than printf in logging and
+   debugging.)
+
+ - ... how method overloading works (or doesn't) as compared to the
+   OTLTYAFW.  (Hint: Is overloading permitted?  Is it a best practice?
+   What are the pros and cons?)
+
+You can overload methods in java, however, only the parameters can be different, 
+the return type must be the same. In the core AWT and Swing library they use method 
+overloading, so yes.
+
+
+
+
+ - ... how polymorphism works (or doesn't) as compared to the
+   OTLTYAFW.  (Hint: Note that I did not say what *kind* of
+   polymorphism.)
+
+ - ... how NSArray compared with (typically monomorphic) arrays in the
+   OTLTYAFW.  (Hint: Look up monomorphic and consider the typical
+   anti-patterns for array use.)
+
+ - ... how does nil work as compared to the semi-equivalent construct
+   in the OTLTYAFW.  (Hint: What are the programming errors relating
+   to such?  Can one call methods on/send messages to nil/null/0?)
+   
+Trying to call methods or the like on null in Java will result in a NullPointerException
+being thrown.   
+   
+
+ - ... how do the primitive types look in Objective-C as compared to
+   the OTLTYAFW.  (Hint: Consider those types that are fundamental and
+   part of the language definition and those that are actually deemed
+   "primitive".)
+
+Well, as far as I understand, then "int" is a primitive type in Objective-C, so in that
+regard it's the same as in Java. However if "NSInteger" is called a primitive type, then
+they aren't comparably, since you can call methods on NSInteger. The only "equavelant" in
+Java would be "Integer," however that's not a primitive type.
+
+
+
+ - ... how do protocols work and how do they compare with the
+   semi-equivalent construct in the OTLTYAFW.  (Hint: Consider classes
+   that implement multiple protocols and how protocols and class &
+   type inheritance work.)
+   
+There's no optional methods in an interface in Java, so if a class implements an 
+interface, it'll have to implement *all* the functions given. A class can implement as
+many interfaces as it like. (Obviously there could be conflicting method names in the
+interfaces)
+   
+   
+
+ - ... how are singletons defined and used as compared with the
+   OTLTYAFW.  (Hint: Do the patterns for defining and using singletons
+   maps to/from your other language(s)?)
+
+ - ... how does (static and dynamic) method resolution work as
+   compared to the OTLTYAFW.  (Hint: In Java and C# the compiler knows
+   exactly which method will be called, just not which *version* of
+   that method will be called at runtime.)
+
+ - ... how do strong vs. weak pointers work as compared with
+   semi-equivalent construct in the OTLTYAFW.  (Hint: Look into
+   java.lang.ref and .Net's System.WeakReference if you have never
+   done so before.)
+
+ - ... how does variance work as compared with the OTLTYAFW.  (Hint:
+   If you have never heard of method covariance, contravariance, and
+   invariance, you have some fun reading to do.  E.g., Consider how return
+   types in method definitions can change wrt inheritance.)
+
+ - ... how do exceptions work as compared with the OTLTYAFW.  (Hint:
+   What do method declarations look like with regards to exceptional
+   behavior?)
+
+If you create a method in Java that throws an exception, then it'll have to be part of
+the method signature, e.g. "public int someNumber() throws Exception," and that exception
+has to be handled wherever you want to call "someNumber()".
+
+
+
+ - ... how does value boxing and unboxing work as compared to the
+   OTLTYAFW.  (Hint: Note that I did not just say *primitive* value
+   boxing.)
+
+
+
+
+ - ... how introspection in Objective-C compares to built-in support
+   for dynamic type checking (e.g., Java's instanceof keyword) and
+   reflection in the OTLTYAFW.  (Consider the types id and SEL as
+   compared to java.lang.reflect and .Net's reflective types in the
+   System namespace.)
+
+ - ... how do enumerations work as compared with the OTLTYAFW.  (Hint:
+   Compare Objective-C's fast enumerations with those of the
+   language(s) you know.  How do immutability and exceptions work with
+   regards to enumerations?)
+
+This has already been mentioned.
+
+ - ... how do Properly Lists look as compared to the semi-equivalent
+   construct in the OTLTYAFW.  (Hint: Think about Java's
+   java.util.ResourceBundle and java.util.Properties and the similar
+   classes in .Net.  Also think about JSON, if you know it.)
+
+ - ... how do Blocks compare with the semi-equivalent
+   construct in the OTLTYAFW.  (Hint: Think about Java's anonymous
+   classes and C#'s lambdas.)
+
+
+
+
+
+
+
