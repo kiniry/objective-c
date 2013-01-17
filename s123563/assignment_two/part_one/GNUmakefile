@@ -1,5 +1,3 @@
-# Build and run stuff. Should find a way to automatically include headers and impl. files...
-
 GNUSTEP_MAKEFILES = /c/GNUstep/GNUstep/System/Library/Makefiles
 
 include $(GNUSTEP_MAKEFILES)/common.make

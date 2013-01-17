@@ -37,5 +37,5 @@ typedef enum
 -(NSString*) info;
 -(bool) single;
 -(void) divorce;
-
+-(NSString*) gender;
 @end
