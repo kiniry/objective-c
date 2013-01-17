@@ -66,6 +66,7 @@ int main(int argc, const char * argv[])
         [MarryDonaldson divorce:PrinceFrederik];
         NSLog(@"%@",MarryDonaldson);
         NSLog(@"%@",QueenMargrethe);
+
         
     }
     return 0;

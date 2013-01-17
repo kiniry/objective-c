@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Citizen.h"
+#import "NoblePerson.h"
 
 int main(int argc, const char * argv[])
 {
@@ -22,8 +23,8 @@ int main(int argc, const char * argv[])
         Citizen *Jenny = [[Citizen alloc]initWithName:@"Jenny" withSex:@"Female" withAge:@15];
         //[Peter canMarry:nil]; - Exception
         [Gitte marry:Peter];
-        [Hans marry:Gitte];
-        
+        [Hans addChild:Peter];
+        NoblePerson *QueenMargrethe = [[NoblePerson alloc]initWithName:@"Queen Margrethe" withSex:@"Female" withAge:@90 withAssets:5000000];
     }
     return 0;
 }
