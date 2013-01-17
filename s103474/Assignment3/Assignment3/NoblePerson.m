@@ -1,8 +1,8 @@
 //
 //  NoblePerson.m
-//  Assignment2-1
+//  Assignment3 (taken from Assignment 2-1)
 //
-//  Created by Andreas Graulund on 10/01/13.
+//  Created by Andreas Graulund on 17/01/13.
 //  Copyright (c) 2013 Andreas Graulund. All rights reserved.
 //
 
