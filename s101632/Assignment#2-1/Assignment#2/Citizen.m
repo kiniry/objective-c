@@ -25,16 +25,12 @@
 }
 
 - (BOOL)impedimentToMarriage:(Citizen *)citizen{
-    if (![self.Children containsObject:citizen]) {
-        NSLog(@"halllloooo");
-    }
     if (![self.Children containsObject:citizen]
         && self.father != citizen
         && self.mother != citizen
         && self.sex != citizen.sex
         && self.single
         && citizen.single){
-        NSLog(@"Hkjafnkjndf");
         return YES;
         
     }else{
@@ -42,11 +38,7 @@
     }
 }
 
-/*
-  Should check if the aSpouse is the current citizens child, mother or father.
-  If this is not the case it should set the citizens spouse to be aSpouse, 
-  and set aSpouse's spouse to be the citizen
- */
+
 - (void)marry:(Citizen *)aSpouse{
     if ([aSpouse class] == [Citizen class]
         &&[self impedimentToMarriage:aSpouse]) {
@@ -66,6 +58,7 @@
         return YES;
     }
 }
+
 
 
 @end
