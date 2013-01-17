@@ -1,0 +1,3 @@
+Assignment 3 - README.txt - Sivanujann Selliah - s093042 - 16/01/13
+
+The three variants are given in the three projects in this directory...

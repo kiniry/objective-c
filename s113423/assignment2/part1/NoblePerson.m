@@ -35,7 +35,7 @@
 
   // share assets after wedding is paid for
   NSNumber* sharedAssets = @( [self.assets doubleValue] + [self.assets doubleValue] - 50000.0 );
-  self.assets = sharedAssets;
+  self.assets = sharedAssets; // aliasing intended
   fiancee.assets = sharedAssets;
 }
 

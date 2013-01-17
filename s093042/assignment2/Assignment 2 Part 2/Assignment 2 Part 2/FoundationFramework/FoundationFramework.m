@@ -11,14 +11,14 @@
 @implementation FoundationFramework
 
 +(void)runExperiments {
-    // The Foundation Framework includes many of the classes that a developer would use, and these objects have most of the commonly used methods.
+    // The Foundation Framework include many of the classes that a developer would use, and these objects have most of the commonly used methods.
     
     // An example is the NSString class
     NSString *aString = @"A test string";
     // With this string we can do many operations that are commonly used on strings like, formatting a string:
     NSString *anotherString = [NSString stringWithFormat:@"The previous string defined was: %@, and here is a number: %d", aString, 12];
     // Or concatenating two strings:
-    NSString *aThirdString = [anotherString stringByAppendingString:@" This is a concatenned string."];
+    NSString *aThirdString = [anotherString stringByAppendingString:@" This is a concatenated string."];
     // Or replace occurences in a string:
     NSString *aFourthString = [aThirdString stringByReplacingOccurrencesOfString:@"test" withString:@"awesome"];
     // Almost all classes in the Fodundation framework includes the implementation of the description method, which we can call, and print it to the log by:

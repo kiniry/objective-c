@@ -10,8 +10,6 @@
 
 @interface FoundationFramework : NSObject
 
-@property NSMutableData *theWebPage;
-
 +(void)runExperiments;
 
 @end
