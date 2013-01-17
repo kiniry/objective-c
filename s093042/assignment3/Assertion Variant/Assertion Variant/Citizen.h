@@ -19,6 +19,8 @@
 @property NSSet *children;
 @property NSSet *parents;
 -(BOOL) impedimentToMarriage:(Citizen *)aCitizen;
+// querie for invariant
+-(void)checkInvariant;
 
 // init
 -(id)initWithName:(NSString *)aGivenName Sex:(NSString *)aSex Age:(int) anAge;
