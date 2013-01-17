@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Citizen.h"
 
 int main(int argc, const char * argv[])
 {
@@ -14,7 +15,14 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         
         // insert code here...
-        NSLog(@"Hello, World!");
+        Citizen *Peter = [[Citizen alloc]initWithName:@"Peter" withSex:@"Male" withAge:@10];
+        Citizen *Hans = [[Citizen alloc]initWithName:@"Hans" withSex:@"Male" withAge:@20];
+        Citizen *Gitte = [[Citizen alloc]initWithName:@"Gitte" withSex:@"Female" withAge:@10];
+        Citizen *Franz = [[Citizen alloc]initWithName:@"Franz" withSex:@"Male" withAge:@30];
+        Citizen *Jenny = [[Citizen alloc]initWithName:@"Jenny" withSex:@"Female" withAge:@15];
+        //[Peter canMarry:nil]; - Exception
+        [Gitte marry:Peter];
+        [Hans marry:Gitte];
         
     }
     return 0;

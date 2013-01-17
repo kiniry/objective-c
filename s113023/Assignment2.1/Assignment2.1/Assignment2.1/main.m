@@ -20,12 +20,11 @@ int main(int argc, const char * argv[])
         Citizen *NickyMinaj = [[Citizen alloc] initWithName:@"Nicky Minaj" withSex:@"Female" withAge:@30];
         Citizen *OwenWilson = [[Citizen alloc] initWithName:@"Owen Wilsen" withSex:@"Male" withAge:@30];
         Citizen *RebeccaBlack = [[Citizen alloc] initWithName:@"Rebecca Black" withSex:@"Female" withAge:@16];
-        [JustinBieber setMother:NickyMinaj];
-        [JustinBieber setFather:OwenWilson];
         [NickyMinaj addChild:JustinBieber];
         [OwenWilson addChild:JustinBieber];
-        NSLog(@"%@",[JustinBieber printInfo]);
-        NSLog(@"%@",[NickyMinaj printInfo]);
+        [RebeccaBlack addChild:JustinBieber];       //Not allowed to add more than one mother
+        NSLog(@"%@",[JustinBieber description]);
+        NSLog(@"%@",[NickyMinaj description]);
         
         //Not legal marriages
         [JustinBieber marry:NickyMinaj];
@@ -34,8 +33,8 @@ int main(int argc, const char * argv[])
         //Legal marriages
         [NickyMinaj marry:OwenWilson];
         [RebeccaBlack marry:JustinBieber];
-        NSLog(@"%@",[NickyMinaj printInfo]);
-        NSLog(@"%@",[JustinBieber printInfo]);
+        NSLog(@"%@",[NickyMinaj description]);
+        NSLog(@"%@",[JustinBieber description]);
    
         //Not possible divorces
         [RebeccaBlack divorce:OwenWilson];
@@ -65,6 +64,8 @@ int main(int argc, const char * argv[])
         
         //Divorce between noble people:
         [MarryDonaldson divorce:PrinceFrederik];
+        NSLog(@"%@",MarryDonaldson);
+        NSLog(@"%@",QueenMargrethe);
         
     }
     return 0;

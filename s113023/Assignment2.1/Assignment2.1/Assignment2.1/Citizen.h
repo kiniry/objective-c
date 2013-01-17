@@ -19,8 +19,6 @@
 
 //Setters for object
 - (void)addChild:(Citizen *)Achild;
-- (void)setMother:(Citizen *)Amother;
-- (void)setFather:(Citizen *)Afather;
 
 //Commands for a citizen object (changes state of object)
 - (void)marry:(Citizen *)Aperson;
@@ -29,5 +27,5 @@
 //Queries for a citizen object (returns value of object)
 - (BOOL)canMarry:(Citizen *)Aperson;
 - (NSString *)generateChildrenString;
-- (NSString *)printInfo;
+- (NSString *)description;
 @end
