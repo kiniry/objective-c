@@ -28,7 +28,15 @@
 -(void)marry:(Citizen *)citizen
 {
     //Can only get married if both are single
-    if (self.isSingle && citizen.isSingle) {
+    if (self.isSingle &&
+        citizen.isSingle &&
+        ![self isEqual:citizen] &&
+        ![citizen isEqual:self.father] &&
+        ![citizen isEqual:self.mother] &&
+        ![citizen isEqual:self.father] &&
+        ![self.children containsObject:citizen] &&
+        self.sex != citizen.sex) {
+        
         self.spouse = citizen;
         citizen.spouse = self;
     }
