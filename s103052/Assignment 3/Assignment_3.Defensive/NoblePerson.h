@@ -20,7 +20,4 @@
 @property (readonly, nonatomic) float assets;
 @property (readonly, nonatomic) Citizen* butler;
 
-- (void)marryNoble:(Citizen*)APerson;
-- (void)setButler:(Citizen*)APerson;
-
 @end

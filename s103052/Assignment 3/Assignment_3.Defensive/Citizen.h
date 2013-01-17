@@ -30,15 +30,4 @@
 @property (readonly, nonatomic) Citizen* mother;
 @property (readonly, nonatomic) Citizen* father;
 
-- (void)addChild:(Citizen*)Achild;
-- (void)setMother:(Citizen*)Amother;
-- (void)setFather:(Citizen*)Afather;
-
-- (void)marry:(Citizen*)Aperson;
-- (void)divorce:(Citizen*)Aperson;
-
-- (BOOL)IllegalMarriage:(Citizen *)Aperson;
-- (NSString*)generateChildrenString;
-- (NSString*)printInfo;
-
 @end
