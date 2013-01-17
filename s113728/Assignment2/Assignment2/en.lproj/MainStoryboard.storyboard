@@ -83,6 +83,7 @@
         <class className="Assignment2ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Assignment2ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="actionPressed:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="personPressed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="display" candidateClass="UILabel"/>
             </relationships>

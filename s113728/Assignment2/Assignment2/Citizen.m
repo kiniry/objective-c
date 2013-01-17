@@ -17,7 +17,7 @@
 @synthesize children = _children;
 @synthesize parents = _parents;
 
-- (Citizen *)initWithNameSexAge:(NSString *)name sexAsStr:(NSString *)sex ageAsInt:(NSInteger)age {
+- (Citizen *)initWithName:(NSString *)name andSex:(NSString *)sex andAgeAsInt:(NSInteger)age {
     self = [super init];
     if (self) {
         self.name = name;
@@ -33,29 +33,35 @@
 }
 
 - (BOOL)impedimentToMarriage:(Citizen *)aSpouse{
-    if (self.single) {
-        if (aSpouse != self
-            && ![self.children containsObject:aSpouse]
-            && ![self.parents containsObject:aSpouse]) {
+    if (aSpouse != self
+        && self.single
+        && ![self.children containsObject:aSpouse]
+        && ![self.parents containsObject:aSpouse])
+        // TODO figure out how to check spouse gender
+        //&& [self.sex != aSpouse.]
+        {
             NSLog(@"Ready to marry");
             return YES;
         }
-    }
     else return NO;
 }
 
 - (void)marry:(Citizen *)imminentSpouse{
-    if ( [self impedimentToMarriage:imminentSpouse] ){
-        NSLog(@"Marrying : %@", imminentSpouse.self);
+    if ( ![self impedimentToMarriage:imminentSpouse] ){
+        NSLog(@"%@ is marrying %@", self.description, imminentSpouse.description);
         self.spouse = imminentSpouse;
     }
 }
 
-// Overriding description for debugging. Dunno if last int ought to be a NSNumber, but i'd like to keep it as a primitive type
+- (void)divorce:(Citizen *)spouse{
+    NSLog(@"Divorcing scumbag spouse");
+    self.spouse = nil;
+    [spouse divorce:self];
+}
+
+// Overriding description for debugging.
 - (NSString *)description {
     return [NSString stringWithFormat:@"Citizen = name: %@, sex : %@, age : %i years", self.name, self.sex, [[NSNumber numberWithInteger:*(self.age)] intValue] ];
 }
-
- 
 
 @end    

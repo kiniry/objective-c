@@ -24,10 +24,11 @@
     return _earthModel;
 }
 - (IBAction)personPressed:(UIButton *)sender {
-    [self.earthModel pushPerson:[/* CITIZEN CODE HERE*/]];
+    //[self.earthModel pushPerson:[/* CITIZEN CODE HERE*/]];
 }
 - (IBAction)actionPressed:(UIBarButtonItem *)sender {
-    [self.earthModel 
+    self.display.text = sender.title;
+    //[self.earthModel
 }
 
 

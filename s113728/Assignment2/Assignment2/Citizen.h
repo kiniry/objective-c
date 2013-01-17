@@ -10,6 +10,7 @@
 
 @interface Citizen : NSObject
 
+// Strong, weak, copy, readonly comming in next commit
 // we don't want to change theese queries
 @property NSString *name, *sex;
 @property NSSet *parents;
@@ -21,8 +22,7 @@
 - (BOOL)impedimentToMarriage;
 - (BOOL)single;
 
-
-- (Citizen *)initWithNameSexAge:(NSString *)name sexAsStr:(NSString *)sex ageAsInt:(NSInteger)age;
+- (Citizen *)initWithName:(NSString *)name andSex:(NSString *)sex andAgeAsInt:(NSInteger)age;
 
 // the commands
 - (void)marry:(Citizen *)imminentSpouse;

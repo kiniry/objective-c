@@ -10,8 +10,9 @@
 
 @interface NoblePerson : Citizen
 
-@property (readonly)NSNumber *assets;
-@property (readonly)Citizen *butler;
+// Butler and assets not implemented yet
+@property NSNumber *assets;
+@property Citizen *butler;
 
 - (void)marry:(Citizen *)spouse;
 - (void)divorce:(Citizen *)spouse;

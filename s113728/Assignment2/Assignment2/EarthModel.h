@@ -11,7 +11,7 @@
 
 @interface EarthModel : NSObject
 
-@property (nonatomic, weak) NSSet *newPeople;
+@property (nonatomic, weak) NSArray *somePeople;
 
 - (void)pushPerson:(Citizen *)person;
 - (void)performOperation:(NSString *)operation;

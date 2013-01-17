@@ -7,7 +7,7 @@
 //
 
 #import "EarthModel.h"
-#import "Citizen.h"
+//#import "Citizen.h"
 
 @interface EarthModel()
 @property (nonatomic, strong) NSMutableArray *personStack;
@@ -15,7 +15,7 @@
 
 @implementation EarthModel
 
-@synthesize newPeople = _newPeople;
+@synthesize somePeople = _somePeople;
 @synthesize personStack = _personStack;
 
 - (NSMutableArray *)personStack {
