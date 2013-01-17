@@ -21,6 +21,8 @@ typedef enum {M, F} gender;
 - (BOOL) isSingle;
 - (Citizen *) getSpouse;
 - (gender) getGender;
+- (Citizen *) getFather;
+- (Citizen *) getMother;
 
 
 // Commands
