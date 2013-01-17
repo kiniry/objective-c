@@ -21,7 +21,7 @@ int main (int argc, const char * argv[])
   NoblePerson* junior = [[NoblePerson alloc] initWithSex:male
 						  andName:@"Junior"
 						   andAge:[NSNumber numberWithInt:5]];
-
+  
   bob.assets = [NSNumber numberWithInt:100000];
   bob.butler = winston;
   NSLog(@"Bobs spouse and assets before marriage:%@ and %@", bob.spouse, bob.assets);
@@ -30,8 +30,7 @@ int main (int argc, const char * argv[])
   
   [bob addChild:junior];
   NSLog(@"Bob now has a child: %@", bob.children);
-
-
+  
   [pool drain];
   return 0;
 }

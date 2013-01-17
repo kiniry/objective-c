@@ -1,189 +1,210 @@
-Assignment2-2 Reflections.
-==========================
+Assignment2-2 Reflections
+-------------------------
 
 Reflect upon...
 
-** Foundation Framework **
- * ... the Foundation framework with the core classes of OTLTYAFW.
- * (Hint: Compare the classes in Foundation, and in particular their fundamental design idioms, with classes in java.lang/java.util and .Net's System namespace.)
+**Foundation Framework**  
+ The Foundation Framework contain an OO API, extending the predecessor
+ C. This means that you can port original C programs directly into
+ Objective-C.
+ Java and Objective-C are simular in the way that all objects in fx. Java inherit
+ from the super-class Object, as all Objective-C objects inherits from
+ NSObject.
 
+**Aliasing**  
+ Aliasing is when several pointers reference the same location (object).
 
-** Aliasing **
- * ... how common aliasing is and how it is avoided compared to the
-   OTLTYAFW.
- * (Hint: The keyword here is "ownership".)
+**Instantiation**  
+ Alloc/init is the standard way of initializing new varibles in
+ Objective-C. Here the alloc is a class method that returns and
+ uninitialized instance of the chosen object, and init, which is a
+ instance method, initializes it. It is common to override init as a
+ kind of constructor. As instance variable they are initialized to 0.
+ As a local variable they are initialized to an undefined value.
 
-** Instantiation **
- * ... the alloc/init pattern of object instantiation with how objects
-   are constructed in the OTLTYAFW.
- * (Hint: What are best practices
-   for constructors in the language of your choice.)
+**Constructors and factories**  
+ As I have come to learn, the best practive when it comes to
+ contructors in Objective-C, is to override the init instance
+ method, as mentioned above. Here you declare the selectors instance
+ as a initialization of the super-class, set the instance variables
+ (to 0, if not else specified), and return the instance. Which is
+ usually passed to alloc, that stores it in the heap.
+ Factories are static methods, commonly used by the framework.
 
-** Class types **
- * ... how class types are used with those in the OTLTYAFW.
+**Class types**  
+ In both Object-C and Java objects are allocated on the heap. The
+ difference is the way the are referenced to. Objective-C uses
+ pointers, where the values can be manipulated directly, while Java
+ uses referencing and cannot be directly referenced.
 
-** Constructors and factories **
- * ... how constructors and factories are realized as compared to the
-   OTLTYAFW.
- * (Hint: Compare best practices in factories.)
+**Copying and cloning**  
+ For an object in Object-C to be copyable it must implement the the
+ NSCopying or NSMutableCopyting protocol. First then can the NSObject's
+ copy and mutableCopy be used to create a shallow copy (without getting
+ an exception, anyway). Most Objective-C classes conform NSCopying.
 
-** Copying and cloning **
- * ... how copying and cloning of objects works (see NSObject's API)
-   as compared to the OTLTYAFW.
- * (Hint: Deep vs. shallow copies,
-   twinning, cloning, mutability of iterations, etc.)
+**Dynamic typing**  
+ As mentioned elsewhere in this readme, Objective-C implements an
+ object type called 'id', which is a random object of a random class.
+ This creates the use for introspection. At run time all objects are
+ ids; the classes we are familiar with are just for the programmer.
+ Objects of type id can be cast to whatever, possibly resulting in a
+ crash.
 
-** Dynamic typing **
- * ... how dynamic typing of pointers compare with the OTLTYAFW.
- * (Hint: When/how is type information lost?)
- * ... how dynamic typing of ids compare with the OTLTYAFW.  Is there
-   a comparable construct in your other language(s)?
- * (Hint: When/how is type information lost?)
+**Encapsulation**  
+ The point of encapsulation is hiding sertant information and thereby
+ insulating the programmer from inadvertent access of unintentional
+ actions. Therefor an interface must encapsulate the
+ implementation—that is, hide it from other parts of the program.
+ With this intention, it is always advised to use properties whenever
+ possible, thereby forcing you to use getter and setters.
+ Java har simular conventions, but it is possible to access fields
+ directly through public instance variables, though it is seen as bad practice.
 
-** Expanded types **
- * ... how expanded types are declared and used with the OTLTYAFW.
- * (Hint: Can you alias expanded types?  Can user*defined types be
-   expanded?)
+**Immutability**  
+ In Objective-C, objects are by default mutable, meaning you could
+ change a pointers value after it first have being set. When an object
+ is immutable, this is not possible. Firstly this would seem
+ impractical, as classes with instance variables are required to be
+ mutable, but actually it has many advantages. Firstly it safer, as
+ multiple threads can't change it at the same time, resulting in a
+ partial value. Secondly, multiple pointer may reference the same
+ value, saving resources. This can't be done with a mutable varible,
+ as the value could be changed by one thread, messing things up for
+ another thread. Lastly, immutability creates a big potential for
+ comiler optimization.
+ NSString, a part of the Foundation framework, are immutable.
 
-** Encapsulation **
- * ... how does field hiding work as compared with the OTLTYAFW.
- * (Hint: Does hiding/shadowing work, is it a good practice, do the
-   types matter?)
+**Inheritance**  
+ Objects in Java and Objective-C work in a simular way. Objects are
+ instances of Classes, and can extend a maximum of one super-class.
 
-** Immutability **
- * ... how is immutability used and why as compared with the
-   OTLTYAFW.
- * (Hint: What are the immutable base types in your other
-   languages(s)?  Are they *really* immutable?  What good are
-   immutable data types?)
+**Logging**  
+ Objective-C does not use C's printf() function, but implements it's
+ own NSLog method, found in the Foundation framework. This is usually
+ used with a formatted NSString, with '%' as identifier.
 
-** Inheritance **
- * ... how inheritance works as compared to the OTLTYAFW.
- * (Hint: Consider single vs. multiple inheritance and behavioral vs. code
-   inheritance.  How does class inheritance work and how does type
-   inheritance work?)
- * Objects in Java and Objective-C work in a simular way. Objects are
-   instances of Classes, and can extend a maximum of one super-class.
+**Polymorphism**  
+ Objective-C implements polymorphism of method names, which means
+ that classes can have mothods with the same name.
 
-** Logging **
- * ... the built-in methods for logging as compared to the OTLTYAFW.
- * (Hint: There is more to the world than printf in logging and
-   debugging.)
+**Overloading**  
+ Objective-C does not implement parameter or operator overloading.
+ Though, Objective-C takes use of the id type, which is a pointer to
+ a arbitrary type. id can therefore be used with introspection,
+ removing the need for overloading.
 
-** Polymorphism **
- * ... how polymorphism works (or doesn't) as compared to the
-   OTLTYAFW.
- * (Hint: Note that I did not say what *kind* of
-   polymorphism.)
- * Objective-C implements polymorphism of method names, which means
-   that classes can have mothods with the same name.
+**Arrays**  
+ Like most OO languages the NSArray, which is a part of the
+ Foundation framework, is a immutable, ordered set of elements. In
+ Java fx., an array i declared with a content object type, where it
+ only can contain elements of this type. In Objective-C, elements
+ are always return as id type.
 
-** Overloading **
- * ... how method overloading works (or doesn't) as compared to the
-   OTLTYAFW.
- * (Hint: Is overloading permitted? Is it a best practice? What are
-   the pros and cons?)
- * Objective-C does not implement parameter or operator overloading.
-   Though, Objective-C takes use of the id type, which is a pointer to
-   a arbitrary type. id can therefore be used with introspection,
-   removing the need for overloading.
+**Nil-reference**  
+ When referencing nil/null-values in Java, a NullPointerException is
+ thrown. In Objective-C this is not looked upon as an error, rather
+ it is the default value of a pointer. This is commonly looked at as
+ an advantage. If you reference a method with a nil argument, you
+ would simply get nil in return.
 
-** Arrays **
- * ... how NSArray compared with (typically monomorphic) arrays in the
-   OTLTYAFW.
- * (Hint: Look up monomorphic and consider the typical
-   anti-patterns for array use.)
+**Primitive dataypes**  
+ Java contains small set of primitive data types, which the compiled
+ treats explicitly. Objective-C inherits all C's types. Some details
+ are:
+ * C only defines the minimum range for a type.
+ * A short in Java is always 16 bit, while a short in C is usually 16 bits.
+ * An int in Java is always 32 bit, while an int in C is 16, 32 or 64
+   bits on today's platforms. Usually the 32 bits platform you'll use
+   with Objective-C.
 
-** Nil-reference **
- * ... how does nil work as compared to the semi-equivalent construct
-   in the OTLTYAFW.
- * (Hint: What are the programming errors relating
-   to such?  Can one call methods on/send messages to nil/null/0?)
- * When referencing nil/null-values in Java, a NullPointerException is
-   thrown. In Objective-C this is not looked upon as an error, on the
-   contrary it's used to it's advantage. You would simply get nil in
-   return. (Example in source code)
+**Protocols**  
+ Protocols are the Objective-C equivalent to Java's interfaces; they
+ declare interfaces which other classes can implement, thus creating
+ a communication link through the given protocol.
 
-** Primitive dataypes **
- * ... how do the primitive types look in Objective-C as compared to
-   the OTLTYAFW.
- * (Hint: Consider those types that are fundamental and part of the
-   language definition and those that are actually deemed
-   "primitive".)
- * Java contains small set of primitive data types, which the compiled
-   treats explicitly. Objective-C inherits all C's types.
+**Singletons**  
+ ... how are singletons defined and used as compared with the
+ OTLTYAFW. (Hint: Do the patterns for defining and using singletons maps
+ to/from your other language(s)?)
 
-** Protocols **
- * ... how do protocols work and how do they compare with the
-   semi*equivalent construct in the OTLTYAFW.
- * (Hint: Consider classes that implement multiple protocols and how
-   protocols and class & type inheritance work.)
+**Method resolution (Dynamism)**  
+ ... how does (static and dynamic) method resolution work as
+ compared to the OTLTYAFW.  (Hint: In Java and C# the compiler knows
+ exactly which method will be called, just not which *version* of
+ that method will be called at runtime.)
 
-** Singletons **
- * ... how are singletons defined and used as compared with the
-   OTLTYAFW.
- * (Hint: Do the patterns for defining and using singletons maps
-   to/from your other language(s)?)
+**Strong vs. Weak Pointers (ARC)**  
+ Automatic Reference Counting (ARC), which was introduced in Xcode
+ 4.2, is a memory management enhancement where the burden of keeping
+ track of an object's reference count is lifted from the programmer
+ to the compiler. The keywords 'strong' and 'weak' helps ARC keeping
+ track of just this.
+ A 'strong' pointer is the default, if nothing else is specified,
+ and means that the refered object is kept on the heap til it is no
+ more refered to (i.e. the pointer is set to nil), or it is manually
+ released.
+ A 'weak' pointer's purpose is to avoid retain cycles. This is when
+ an object becomes obsolete and should be released, but is kept in
+ the heap because an also obsolete child is referencing it. Therefor
+ the child should have a weak pointer to its parent, thus being
+ being released when it's parent is being released (technically,
+ before so it can't reference something that's not there).
 
-** Method resolution (Dynamism) **
- * ... how does (static and dynamic) method resolution work as
-   compared to the OTLTYAFW.  (Hint: In Java and C# the compiler knows
-   exactly which method will be called, just not which *version* of
-   that method will be called at runtime.)
+**Excpeptions**  
+ Formerly Objective-C inherited the functions setjmp() and longjmp()
+ from C. These were very expensive and supported no cleanup. Newer
+ implementations use C++ GNU's zero-cost exception model. Here you
+ can enter @try blocks, without cost, but throwing is still very
+ expensive.
+ In Java, exceptions are used frequently as a good practice, but in
+ Objective-C it is advisable to only use them in special cases.
+ An common Objective-C alternative is to pass a pointer to an
+ NSError object, in as an extra argument to methods that are likely
+ to fail.
 
-** Strong vs. Weak Pointers **
- * ... how do strong vs. weak pointers work as compared with
-   semiequivalent construct in the OTLTYAFW.
- * (Hint: Look into java.lang.ref and .Net's System.WeakReference if you have never
-   done so before.)
+**Value boxing**  
+ Boxing is the process as sending values of a given type 'boxed' as another
+ type. E.g. NSLog takes a NSString as its argument, but we normally
+ just type @"something". The '@' represents the process of boxing with
+ the use of literals. We can therefor use a primitive data type where
+ the Framework can them use them for its collection of classes.
+ NSNumber can box several primitive C types, e.g. string, double,
+ float, BOOL, int, etc.
+ Java implements automatic boxing of data types.
 
-** Variance **
- * ... how does variance work as compared with the OTLTYAFW.
- * (Hint: If you have never heard of method covariance, contravariance, and
-   invariance, you have some fun reading to do.  E.g., Consider how return
-   types in method definitions can change wrt inheritance.)
+**Introspection**  
+ Objective-C implements the data type id, which is actually a
+ reference to a random object, of a random class. This is what makes
+ the need for introspection. A method can recieve an object of a
+ unknown class, and self deciede what to with it, depending on the
+ object's class. (Mentioned earlier regarding overloading)
 
-** Excpeptions **
- * ... how do exceptions work as compared with the OTLTYAFW.
- * (Hint: What do method declarations look like with regards to exceptional
-   behavior?)
- * Formerly Objective-C inherited the functions setjmp() and longjmp()
-   from C. These were very expensive and supported no cleanup. Newer
-   implementations use C++ GNU's zero-cost exception model. Here you
-   can enter @try blocks, without cost, but throwing is still very
-   expensive.
-   In Java, exceptions are used frequently as a good practice, but in
-   Objective-C it is advisable to only use them in special cases.
-   An common Objective-C alternative is to pass a pointer to an
-   NSError object, in as an extra argument to methods that are likely
-   to fail.
+**Enumeration**  
+ Enumeration in Objective-C is often expensive and inefficient as
+ new variables are allocated room for, initiatied, done something
+ with, and released, over and over. Fast enumeration is essentially
+ Objective-C's implementation of the common for-each, which is much
+ more efficient and recommended over regular enumeration everywhere
+ it is possible.
+ During fast enumeration it is unsafe to modify mutable sets, as
+ some other method can modify it behing our backs, creating
+ unpredictable results/effects (e.g. partially implemented values or
+ crash).
+ (See example in source code)
 
-** Value boxing **
- * ... how does value boxing and unboxing work as compared to the
-   OTLTYAFW.
- * (Hint: Note that I did not just say *primitive* value boxing.)
+**Property lists**  
+ Propertry lists are a unordered collection of named values of
+ different types. This is normally implemented through Objective-C's
+ NSDictionary.
 
-** Introspection **
- * ... how introspection in Objective-C compares to built-in support
-   for dynamic type checking (e.g., Java's instanceof keyword) and
-   reflection in the OTLTYAFW.
- * (Consider the types id and SEL as compared to java.lang.reflect and
-   .Net's reflective types in the System namespace.)
-
-** Enumeration **
- * ... how do enumerations work as compared with the OTLTYAFW.  (Hint:
-   Compare Objective-C's fast enumerations with those of the
-   language(s) you know.  How do immutability and exceptions work with
-   regards to enumerations?)
-
-** Property lists **
- * ... how do Properly Lists look as compared to the semi-equivalent
-   construct in the OTLTYAFW.
- * (Hint: Think about Java's java.util.ResourceBundle and
-   java.util.Properties and the similar classes in .Net.  Also think
-   about JSON, if you know it.)
-
-** Blocks **
- * ... how do Blocks compare with the semi-equivalent
-   construct in the OTLTYAFW.
- * (Hint: Think about Java's anonymous classes and C#'s lambdas.)
+**Blocks**  
+ Blocks work as an inline function that can be passed around. This
+ is a very powerful feature, but also presents itself with som
+ challenges. E.g. you have to be careful to avoid retain cycles with
+ using the '__weak' prefix, and you must use '__block' when editing
+ local values in a block which is becomes run at a later time.
+ A prominent feature is the Grand Dispatch Central (GDC), which is a C
+ API. Here you can create new 'ques' which run aside from the 'main
+ que', where all UIKit commands are run. If you have multiple
+ cpu/cores's your app can run multithreaded.

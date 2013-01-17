@@ -32,4 +32,5 @@ typedef enum{
 - (BOOL)single;
 - (BOOL)impedimentToMarriage:(Citizen*)citizen;
 
+
 @end

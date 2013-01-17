@@ -10,6 +10,8 @@
 
 @implementation NoblePerson
 
+@synthesize assets, butler;
+
 -(NSString*) description {
 	return [NSString stringWithFormat:@"NOBLE PERSON: %@\nSocial security number: %@\nCountry: %@\nBirth date: %@ (%ld years old)\nSex: %@\nAssets: DKK %@\nButler: \n%@",
 			self.fullName,
