@@ -19,7 +19,7 @@
 @property NSSet *children;
 @property NSSet *parents;
 -(BOOL) impedimentToMarriage:(Citizen *)aCitizen;
-// querie for invariant
+// query for invariant
 -(void)checkInvariant;
 
 // init

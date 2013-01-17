@@ -62,9 +62,9 @@
     
     NSLog(@"impedimentToMarriage %d", anyImpediments);
     
-    NSAssert(!bothAreSingle, @"Both of you should be single, before you can get married!");
-    NSAssert(!theyAreNotRelated, @"A marriage of related people is not legal!");
-    NSAssert(!theyAreOfOppositeSex, @"A same sex marriage is not allowed here!");
+    NSAssert(bothAreSingle, @"Both of you should be single, before you can get married!");
+    NSAssert(theyAreNotRelated, @"A marriage of related people is not legal!");
+    NSAssert(theyAreOfOppositeSex, @"A same sex marriage is not allowed here!");
     
     return anyImpediments;
 }
