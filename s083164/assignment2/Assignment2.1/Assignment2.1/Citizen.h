@@ -38,4 +38,6 @@ typedef enum
 
 -(NSSet *) getChildren;
 
+-(NSString *) fullName;
+
 @end
