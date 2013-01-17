@@ -17,10 +17,10 @@
     self = [super init];
     
     if (self) {
-        _firstName = firstName;
-        _lastName = lastName;
-        _sex = sex;
-        _age = age;
+        self.firstName = firstName;
+        self.lastName = lastName;
+        self.sex = sex;
+        self.age = age;
     }
     return self;
 }
@@ -29,7 +29,7 @@
 {
     //Can only get married if both are single
     if (self.isSingle && citizen.isSingle) {
-        _spouse = citizen;
+        self.spouse = citizen;
         citizen.spouse = self;
     }
 }
@@ -37,34 +37,28 @@
 -(void)divorce:(Citizen *)citizen
 {
     // Can only get divorced if the citizen in the argument is the spouse
-    if (_spouse == citizen) {
-        _spouse = nil;
+    if (self.spouse == citizen) {
+        self.spouse = nil;
         citizen.spouse = nil;
     }
 }
 
 -(BOOL)isSingle
 {
-    return _spouse == nil;
+    return self.spouse == nil;
 }
 
 -(void) addChild:(Citizen*) child
 {
-    if (!_children) _children = [[NSMutableSet alloc] init];
+    if (!self.children) self.children = [[NSMutableSet alloc] init];
     
-    if (_sex == male && child.father == nil) {
+    if (self.sex == male && child.father == nil) {
         child.father = self;
-        [_children addObject:child];
-    }else if(_sex == female && child.mother == nil){
+        [self.children addObject:child];
+    }else if(self.sex == female && child.mother == nil){
         child.mother = self;
-        [_children addObject:child];
+        [self.children addObject:child];
     }
-}
-
--(NSSet *) getChildren
-{
-    if (!_children) _children = [[NSMutableSet alloc] init];
-    return (NSSet *)[_children mutableCopy];
 }
 
 -(NSString *) fullName

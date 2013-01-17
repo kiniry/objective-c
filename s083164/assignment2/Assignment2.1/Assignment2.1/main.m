@@ -29,6 +29,18 @@ int main(int argc, const char * argv[])
         
         NSLog(@"%@ is the father of: %@", [firstCitizen fullName], [firstCitizen children]);
         
+        NoblePerson *firstNoblePerson = [[NoblePerson alloc] initWithFirstName:@"Prince" lastName:@"William" sex:male andAge:@29];
+        NoblePerson *secondNoblePerson = [[NoblePerson alloc] initWithFirstName:@"Kate" lastName:@"Middleton" sex:male andAge:@28];
+        
+        Citizen *firstButler = [[Citizen alloc] initWithFirstName:@"Alfred" lastName:@"Pennyworth" sex:female andAge:@65];
+        
+        firstNoblePerson.numberOfAssets = 1000000;
+        secondNoblePerson.numberOfAssets = 30000;
+        
+        firstNoblePerson.butler = firstButler;
+        
+        [firstNoblePerson marry:secondNoblePerson];
+        
     }
     return 0;
 }
