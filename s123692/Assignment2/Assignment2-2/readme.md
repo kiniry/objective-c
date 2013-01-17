@@ -19,7 +19,8 @@ Reflect upon...
  Objective-C. Here the alloc is a class method that returns and
  uninitialized instance of the chosen object, and init, which is a
  instance method, initializes it. It is common to override init as a
- kind of constructor.
+ kind of constructor. As instance variable they are initialized to 0.
+ As a local variable they are initialized to an undefined value.
 
 **Constructors and factories**
  As I have come to learn, the best practive when it comes to
@@ -31,37 +32,48 @@ Reflect upon...
  Factories are static methods, commonly used by the framework.
 
 **Class types**
- * ... how class types are used with those in the OTLTYAFW.
+ In both Object-C and Java objects are allocated on the heap. The
+ difference is the way the are referenced to. Objective-C uses
+ pointers, where the values can be manipulated directly, while Java
+ uses referencing and cannot be directly referenced.
 
 **Copying and cloning**
- * ... how copying and cloning of objects works (see NSObject's API)
-   as compared to the OTLTYAFW.
- * (Hint: Deep vs. shallow copies,
-   twinning, cloning, mutability of iterations, etc.)
+ For an object in Object-C to be copyable it must implement the the
+ NSCopying or NSMutableCopyting protocol. First then can the NSObject's
+ copy and mutableCopy be used to create a shallow copy (without getting
+ an exception, anyway). Most Objective-C classes conform NSCopying.
 
 **Dynamic typing**
- * ... how dynamic typing of pointers compare with the OTLTYAFW.
- * (Hint: When/how is type information lost?)
- * ... how dynamic typing of ids compare with the OTLTYAFW.  Is there
-   a comparable construct in your other language(s)?
- * (Hint: When/how is type information lost?)
-
-**Expanded types**
- * ... how expanded types are declared and used with the OTLTYAFW.
- * (Hint: Can you alias expanded types?  Can user*defined types be
-   expanded?)
+ As mentioned elsewhere in this readme, Objective-C implements an
+ object type called 'id', which is a random object of a random class.
+ This creates the use for introspection. At run time all objects are
+ ids; the classes we are familiar with are just for the programmer.
+ Objects of type id can be cast to whatever, possibly resulting in a
+ crash.
 
 **Encapsulation**
- * ... how does field hiding work as compared with the OTLTYAFW.
- * (Hint: Does hiding/shadowing work, is it a good practice, do the
-   types matter?)
+ The point of encapsulation is hiding sertant information and thereby
+ insulating the programmer from inadvertent access of unintentional
+ actions. Therefor an interface must encapsulate the
+ implementation—that is, hide it from other parts of the program.
+ With this intention, it is always advised to use properties whenever
+ possible, thereby forcing you to use getter and setters.
+ Java har simular conventions, but it is possible to access fields
+ directly through public instance variables, though it is seen as bad practice.
 
 **Immutability**
- * ... how is immutability used and why as compared with the
-   OTLTYAFW.
- * (Hint: What are the immutable base types in your other
-   languages(s)?  Are they *really* immutable?  What good are
-   immutable data types?)
+ In Objective-C, objects are by default mutable, meaning you could
+ change a pointers value after it first have being set. When an object
+ is immutable, this is not possible. Firstly this would seem
+ impractical, as classes with instance variables are required to be
+ mutable, but actually it has many advantages. Firstly it safer, as
+ multiple threads can't change it at the same time, resulting in a
+ partial value. Secondly, multiple pointer may reference the same
+ value, saving resources. This can't be done with a mutable varible,
+ as the value could be changed by one thread, messing things up for
+ another thread. Lastly, immutability creates a big potential for
+ comiler optimization.
+ NSString, a part of the Foundation framework, are immutable.
 
 **Inheritance**
  Objects in Java and Objective-C work in a simular way. Objects are
@@ -139,12 +151,6 @@ Reflect upon...
  being released when it's parent is being released (technically,
  before so it can't reference something that's not there).
 
-**Variance**
- * ... how does variance work as compared with the OTLTYAFW.
- * (Hint: If you have never heard of method covariance, contravariance, and
-   invariance, you have some fun reading to do.  E.g., Consider how return
-   types in method definitions can change wrt inheritance.)
-
 **Excpeptions**
  Formerly Objective-C inherited the functions setjmp() and longjmp()
  from C. These were very expensive and supported no cleanup. Newer
@@ -158,9 +164,14 @@ Reflect upon...
  to fail.
 
 **Value boxing**
- * ... how does value boxing and unboxing work as compared to the
-   OTLTYAFW.
- * (Hint: Note that I did not just say *primitive* value boxing.)
+ Boxing is the process as sending values of a given type 'boxed' as another
+ type. E.g. NSLog takes a NSString as its argument, but we normally
+ just type @"something". The '@' represents the process of boxing with
+ the use of literals. We can therefor use a primitive data type where
+ the Framework can them use them for its collection of classes.
+ NSNumber can box several primitive C types, e.g. string, double,
+ float, BOOL, int, etc.
+ Java implements automatic boxing of data types.
 
 **Introspection**
  Objective-C implements the data type id, which is actually a
@@ -183,13 +194,17 @@ Reflect upon...
  (See example in source code)
 
 **Property lists**
- * ... how do Properly Lists look as compared to the semi-equivalent
-   construct in the OTLTYAFW.
- * (Hint: Think about Java's java.util.ResourceBundle and
-   java.util.Properties and the similar classes in .Net.  Also think
-   about JSON, if you know it.)
+ Propertry lists are a unordered collection of named values of
+ different types. This is normally implemented through Objective-C's
+ NSDictionary.
 
 **Blocks**
- * ... how do Blocks compare with the semi-equivalent
-   construct in the OTLTYAFW.
- * (Hint: Think about Java's anonymous classes and C#'s lambdas.)
+ Blocks work as an inline function that can be passed around. This
+ is a very powerful feature, but also presents itself with som
+ challenges. E.g. you have to be careful to avoid retain cycles with
+ using the '__weak' prefix, and you must use '__block' when editing
+ local values in a block which is becomes run at a later time.
+ A prominent feature is the Grand Dispatch Central (GDC), which is a C
+ API. Here you can create new 'ques' which run aside from the 'main
+ que', where all UIKit commands are run. If you have multiple
+ cpu/cores's your app can run multithreaded.
