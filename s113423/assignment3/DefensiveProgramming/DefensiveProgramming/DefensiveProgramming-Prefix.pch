@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'DefensiveProgramming' target in the 'DefensiveProgramming' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+#endif

@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FoundationFramework.h"
-#import "AClass.h"
-#import "AFactoryClass.h"
-#import "FieldHidingClass.h"
-#import "SimpleProtocolClass.h"
+#import "FoundationFramework.h" // found in FoundationFramework folder
+#import "AClass.h" // found in ObjectInstantiation folder
+#import "AFactoryClass.h" // found in Factories folder
+#import "FieldHidingClass.h" // found in FieldHiding folder
+#import "SimpleProtocolClass.h" // found in Protocols folder
 
 int main(int argc, const char * argv[])
 {
@@ -26,7 +26,7 @@ int main(int argc, const char * argv[])
         // Aliasing
         // -
         
-        // ObjectInstantiation experiments
+        // Object instantiation experiments
         // Allocate memory for the instance calling 'alloc', and call the "constructor"/initializer using 'init'
         AClass *someClass = [[AClass alloc] init];
         NSLog(@"%@", someClass);

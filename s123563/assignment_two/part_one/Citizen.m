@@ -111,7 +111,12 @@
   // Must be two-way marriable
   if ([self isMarriableTo:fiancee] && [fiancee isMarriableTo:self]) 
   {
+    if (self.spouse)
+      [self.spouse release];
     self.spouse = fiancee;
+
+    if (fiancee.spouse)
+      [fiancee.spouse release];
     fiancee.spouse = self;
   }
 }
