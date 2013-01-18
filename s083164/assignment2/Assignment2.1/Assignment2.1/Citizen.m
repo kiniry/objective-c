@@ -17,10 +17,10 @@
     self = [super init];
     
     if (self) {
-        self.firstName = firstName;
-        self.lastName = lastName;
-        self.sex = sex;
-        self.age = age;
+        _firstName = firstName;
+        _lastName = lastName;
+        _sex = sex;
+        _age = age;
     }
     return self;
 }
