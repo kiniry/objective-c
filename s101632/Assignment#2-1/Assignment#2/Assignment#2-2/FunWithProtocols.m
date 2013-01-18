@@ -12,9 +12,6 @@
 
 @implementation FunWithProtocols
 
-- (void)useDelegate{
-    [self.delegate doSomething];
-    //[self.delegate doSomethingElse]; This is not possible because we can only access the methods in the controller that is defined in the protocol
-}
+
 
 @end
