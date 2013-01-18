@@ -10,7 +10,6 @@
 
 @interface Citizen()
 
-@property(atomic,strong) NSString *name;
 @property(atomic,strong) NSString *sex;
 @property(atomic,strong) NSNumber *age;
 @property(atomic,strong) Citizen *spouse;
@@ -30,8 +29,6 @@
     
     //Check if the entered name is either set to nil or an empty name was entered, this leads to an exception: Precondition violation.
     if (!name || [name isEqualToString:@""]){
-        NSException *nameException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You must specify a name!" userInfo:nil];
-        @throw nameException;
     }
     //Check if the entered sex is either Male or Female, else give exception: Precondition violation.
     if (!([sex isEqualToString:@"Male"]||[sex isEqualToString:@"Female"])){
@@ -57,7 +54,10 @@
 }
 
 - (NSString* )single{
-    return (self.spouse ? @"NO" : @"YES");
+    BOOL status = !self.spouse;
+    NSAssert(status == !self.spouse, @"Postcondition violation, the wrong value for whether the person was single or not was returned");
+    
+    return (status ? @"YES" : @"NO");
 }
 - (void)addChild:(Citizen *)Achild
 {
@@ -149,9 +149,9 @@
     }
     return childrenNames;
 }
-- (NSString *)printInfo
+- (NSString *)description
 {
-    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@",self.name,self.sex,self.age,[self single],[self generateChildrenString],self.mother.name,self.father.name];
+    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@, Spouse: %@",self.name,self.sex,self.age,[self single],[self generateChildrenString],self.mother.name,self.father.name,self.spouse.name];
 }
 
 @end
