@@ -10,3 +10,5 @@ A 'NSAssert' can be replaced with 'if(_DEBUG && !' and ', ' replaced with ') NSL
 One should however still make sure that all the conditions (pre- and post-conditions) and the invariant is still correct!
 
 When one has a logging variant, one can replace the 'NSLog' with '@throw [NSException exceptionWithName:@"Precondition does not hold" reason:' and the end of the string one has to remember to add the rest of the message that is sent to the factory, i.e. ' userInfo:nil];', and if one used NSLogs ability to handle string formatting, one should remember to get the formatted string from a 'NSString' object.
+
+Compiling the projects using GCC would repuire to modify the code, so there is no use of ARC...
