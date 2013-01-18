@@ -107,9 +107,20 @@
 
 
 -(NSString *)description {
-    NSArray *parents = [self.parents allObjects];
+    // Make sure there is no infinite loops, by only getting the names of the two parents!
+    NSString *parent1 = ((Citizen *)[[self.parents allObjects] objectAtIndex:0]).name;
+    NSString *parent2 = ((Citizen *)[[self.parents allObjects] objectAtIndex:1]).name;
+    NSString *hisHer = (self.sex == @"male" ? @"his" : @"her");
+    NSString *manWoman = (self.sex == @"male" ? @"man" : @"woman");
+    NSString *singleMarriedSpouse = (self.single ? @"single" : [NSString stringWithFormat:@"married to %@", self.spouse.name]);
+    NSString *heShe = (self.sex == @"male" ? @"he" : @"she");
+    int childrenCount = (int)[self.children count];
+    NSString *childrenNamesFormat = (childrenCount > 1 ? @"children: %@" : @"child: %@");
+    NSString *childrenNames = [[self.children allObjects] componentsJoinedByString:@", "];
+    NSString *childrenWithNames = [NSString stringWithFormat:childrenNamesFormat, childrenNames];
+    NSString *children = (childrenCount > 0 ? childrenWithNames : @"children");
     
-    return [NSString stringWithFormat:@"%@ is a %@, who is %d years old, is %@, %@ parents are %@ and %@", self.name, (self.sex == @"male" ? @"man" : @"woman"), self.age, (self.single ? @"single" : [NSString stringWithFormat:@"married to %@", self.spouse.name]), (self.sex == @"male" ? @"his" : @"her"), ((Citizen *)[parents objectAtIndex:0]).name, ((Citizen *)[parents objectAtIndex:1]).name];
+    return [NSString stringWithFormat:@"%@ who is a %@, %d years old, is %@, %@ parents are %@ and %@ and %@ has %d %@", self.name, manWoman, self.age, singleMarriedSpouse, hisHer, (parent1 == nil ? @"unknown" : parent1), (parent2 == nil ? @"unknown" : parent2), heShe, childrenCount, children];
 }
 
 @end
