@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define _DEBUG true
+
 @interface Citizen : NSObject
 
 // queries
@@ -19,6 +21,8 @@
 @property NSSet *children;
 @property NSSet *parents;
 -(BOOL) impedimentToMarriage:(Citizen *)aCitizen;
+// query for invariant
+-(void)checkInvariant;
 
 // init
 -(id)initWithName:(NSString *)aGivenName Sex:(NSString *)aSex Age:(int) anAge;
