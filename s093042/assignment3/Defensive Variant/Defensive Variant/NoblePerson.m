@@ -13,7 +13,7 @@
 @synthesize assets = _assets;
 @synthesize butler = _butler;
 
--(BOOL) impedimentToMarriage:(Citizen *)aCitizen {
+-(BOOL) impedimentToMarriage:(NoblePerson *)aCitizen {
     BOOL anyImpedimentsFromSuper = [super impedimentToMarriage:aCitizen];
     BOOL bothAreNoblePersons = ([aCitizen isMemberOfClass:[NoblePerson class]]);
     BOOL thereIsAButler = self.butler != nil || ((NoblePerson *)aCitizen).butler != nil;
@@ -21,6 +21,11 @@
     BOOL anyImpediments = anyImpedimentsFromSuper || !bothAreNoblePersons || !thereIsAButler;
     
     NSLog(@"Any impediments for noble persons: %d", anyImpediments);
+    
+    if(!(bothAreNoblePersons))
+        @throw [NSException exceptionWithName:@"Postcondition does not hold" reason:@"You should not marry a normal citizen!" userInfo:nil];
+    if(!(thereIsAButler))
+        @throw [NSException exceptionWithName:@"Postcondition does not hold" reason:@"How are you suppose to live witout a butler?" userInfo:nil];
     
     return anyImpediments;
 }
@@ -34,16 +39,27 @@
     return self;
 }
 
--(void)marry:(Citizen *)fiancee {
+-(void)marry:(NoblePerson *)fiancee {
+    if(!(self.butler != nil || fiancee.butler != nil))
+        @throw [NSException exceptionWithName:@"Precondition does not hold" reason:@"Neither of you have a butler!" userInfo:nil];
+    if(!([fiancee isMemberOfClass:[NoblePerson class]]))
+        @throw [NSException exceptionWithName:@"Precondition does not hold" reason:@"You should not marry a normal citizen!" userInfo:nil];
+    
     if(fiancee != nil && ![self impedimentToMarriage:fiancee]) {
         [super marry:fiancee];
-    
-        int shareOfAssets = (((NoblePerson *)self.spouse).assets + self.assets)/2;
+        
+        int oldSelfAssets = self.assets;
+        int oldFianceeAssets = fiancee.assets;
+        
+        int shareOfAssets = (fiancee.assets + self.assets)/2;
         shareOfAssets -= 50000/2;
         self.assets = shareOfAssets;
-        ((NoblePerson *)self.spouse).assets = shareOfAssets;
-    
+        fiancee.assets = shareOfAssets;
+        
         NSLog(@"Noble persons married with style");
+        
+        if(!((self.assets + fiancee.assets) == (oldSelfAssets + oldFianceeAssets - 50000)))
+            @throw [NSException exceptionWithName:@"Postcondition does not hold" reason:@"Did you lose any assets?" userInfo:nil];
     }
     else {
         NSLog(@"Noble persons could not be married");

@@ -8,13 +8,7 @@
 
 #import "AlarmClock.h"
 #import "AlarmClockProtocol.h"
-
-@interface AlarmClock()
-
-@property (readwrite, nonatomic) int hour;
-@property (readwrite, nonatomic) int minute;
-
-@end
+#import "AlarmClockPrivate.h"
 
 @implementation AlarmClock
 

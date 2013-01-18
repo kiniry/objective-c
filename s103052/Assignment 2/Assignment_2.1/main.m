@@ -35,10 +35,10 @@ int main(int argc, const char * argv[])
     [HansJensen addChild:MartinJensen];
     [AnnaNielsen addChild:MartinJensen];
 	
-    NSLog(@"%@",[HansJensen printInfo]);
-    NSLog(@"%@",[AnnaNielsen printInfo]);
-	NSLog(@"%@",[MartinJensen printInfo]);
-	NSLog(@"%@",[MiaNielsen printInfo]);   
+    NSLog(@"%@",[HansJensen description]);
+    NSLog(@"%@",[AnnaNielsen description]);
+	NSLog(@"%@",[MartinJensen description]);
+	NSLog(@"%@",[MiaNielsen description]);   
 	
     // Step 2) Not legal marriage
     [MartinJensen marry:AnnaNielsen];	// FAIL!

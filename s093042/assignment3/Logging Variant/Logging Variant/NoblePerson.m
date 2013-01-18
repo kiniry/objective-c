@@ -13,7 +13,7 @@
 @synthesize assets = _assets;
 @synthesize butler = _butler;
 
--(BOOL) impedimentToMarriage:(Citizen *)aCitizen {
+-(BOOL) impedimentToMarriage:(NoblePerson *)aCitizen {
     BOOL anyImpedimentsFromSuper = [super impedimentToMarriage:aCitizen];
     BOOL bothAreNoblePersons = ([aCitizen isMemberOfClass:[NoblePerson class]]);
     BOOL thereIsAButler = self.butler != nil || ((NoblePerson *)aCitizen).butler != nil;
@@ -21,6 +21,11 @@
     BOOL anyImpediments = anyImpedimentsFromSuper || !bothAreNoblePersons || !thereIsAButler;
     
     NSLog(@"Any impediments for noble persons: %d", anyImpediments);
+    
+    if(_DEBUG && !(bothAreNoblePersons))
+        NSLog(@"You should not marry a normal citizen!");
+    if(_DEBUG && !(thereIsAButler))
+        NSLog(@"How are you suppose to live witout a butler?");
     
     return anyImpediments;
 }
@@ -34,16 +39,27 @@
     return self;
 }
 
--(void)marry:(Citizen *)fiancee {
+-(void)marry:(NoblePerson *)fiancee {
+    if(_DEBUG && !(self.butler != nil || fiancee.butler != nil))
+        NSLog(@"Neither of you have a butler!");
+    if(_DEBUG && !([fiancee isMemberOfClass:[NoblePerson class]]))
+        NSLog(@"You should not marry a normal citizen!");
+    
     if(fiancee != nil && ![self impedimentToMarriage:fiancee]) {
         [super marry:fiancee];
-    
-        int shareOfAssets = (((NoblePerson *)self.spouse).assets + self.assets)/2;
+        
+        int oldSelfAssets = self.assets;
+        int oldFianceeAssets = fiancee.assets;
+        
+        int shareOfAssets = (fiancee.assets + self.assets)/2;
         shareOfAssets -= 50000/2;
         self.assets = shareOfAssets;
-        ((NoblePerson *)self.spouse).assets = shareOfAssets;
-    
+        fiancee.assets = shareOfAssets;
+        
         NSLog(@"Noble persons married with style");
+        
+        if(_DEBUG && !((self.assets + fiancee.assets) == (oldSelfAssets + oldFianceeAssets - 50000)))
+            NSLog(@"Did you lose any assets?");
     }
     else {
         NSLog(@"Noble persons could not be married");

@@ -37,8 +37,8 @@
 - (void)marry:(Citizen*)Aperson;
 - (void)divorce:(Citizen*)Aperson;
 
-- (BOOL)IllegalMarriage:(Citizen *)Aperson;
-- (NSString*)generateChildrenString;
-- (NSString*)printInfo;
+- (BOOL)can_marry:(Citizen *)Aperson;
+- (NSString*)getChildrenString;
+- (NSString*)description;
 
 @end
