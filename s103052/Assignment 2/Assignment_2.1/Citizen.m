@@ -69,7 +69,7 @@
 - (void)marry:(Citizen*)Aperson
 {
 	//Legal marriage
-    if ([self IllegalMarriage:Aperson])
+    if ([self can_marry:Aperson])
     {
         NSLog(@"Legal marriage between %@ and %@",self.name,Aperson.name);
         self.spouse = Aperson;
@@ -92,13 +92,13 @@
         NSLog(@"The divorce is not possible!");
 }
 
-- (BOOL)IllegalMarriage:(Citizen*)Aperson
+- (BOOL)can_marry:(Citizen*)Aperson
 {
     return [self.children indexOfObject:Aperson] == NSNotFound && self.mother != Aperson && 
-	self.father != Aperson && self.sex != Aperson.sex && !self.spouse;
+	self.father != Aperson && self.sex != Aperson.sex && !self.spouse && !Aperson.spouse;;
 }
 
-- (NSString*)generateChildrenString
+- (NSString*)getChildrenString
 {
     NSMutableString* childrenNames = [[NSMutableString alloc] init];
     // Load all children from array
@@ -108,9 +108,9 @@
     return childrenNames;
 }
 
-- (NSString*)printInfo
+- (NSString*)description
 {
-    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@",self.name,self.sex,self.age,[self single],[self generateChildrenString],self.mother.name,self.father.name];
+    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@",self.name,self.sex,self.age,[self single],[self getChildrenString],self.mother.name,self.father.name];
 }
 
 @end
