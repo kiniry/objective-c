@@ -13,6 +13,6 @@
 - (void) setCapital: (int) capital;
 - (int) capital;
 - (void) setButler: (Citizen *) buttler;
-- (BOOL) marry: (NoblePerson *) person;
+- (BOOL) marry: (Citizen *) person;
 - (NSString *) description;
 @end

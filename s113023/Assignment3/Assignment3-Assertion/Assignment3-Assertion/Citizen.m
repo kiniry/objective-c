@@ -1,8 +1,8 @@
 //
 //  Citizen.m
-//  Assignment3-Defensive
+//  Assignment3-Assertion
 //
-//  Created by Andreas Haure on 16/01/13.
+//  Created by Andreas Haure on 17/01/13.
 //  Copyright (c) 2013 Andreas Roll Haure. All rights reserved.
 //
 

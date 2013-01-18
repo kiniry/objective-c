@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Citizen.h"
+#import "NoblePerson.h"
 
 int main(int argc, const char * argv[])
 {
