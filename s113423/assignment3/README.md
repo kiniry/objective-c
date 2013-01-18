@@ -13,17 +13,17 @@ as it helps to discover potential problems right away.
 Assertions crashing the program in the release build
 would be very anonying for the user,
 and it might be a better idea to just keep the program
-running in a slightly inconsitent state
+running in a slightly inconsistent state
 and instead record the assertion failure in a log.
 That way, when the program actually crashes
 or the the user experiences some bug,
 we can somehow retrieve the log file
-and reason about the origin of theflaw.
+and reason about the origin of the flaw.
 
 On the other hand,
 a program crashing on assertion failures
 would most likely be prefered in a critical system
-where an inconsitent state could lead to something harmful.
+where an inconsistent state could lead to something harmful.
 
 For the logging variant i played around with a third-party logging framework
 called [Lumberjack](https://github.com/robbiehanson/CocoaLumberjack).
