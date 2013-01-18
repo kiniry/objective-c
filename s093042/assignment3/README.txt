@@ -1,5 +1,7 @@
 Assignment 3 - README.txt - Sivanujann Selliah - s093042 - 16/01/13
 
+Three variants of the Citizen
+
 The three variants are given in the three projects in this directory...
 
 // NOT FINISHED!
