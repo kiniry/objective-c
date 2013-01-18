@@ -11,6 +11,8 @@
 #import "Citizen.h"
 #import "NoblePerson.h"
 
+#define INVARIANTCHECK true
+
 int main(int argc, const char * argv[])
 {
 
@@ -62,7 +64,8 @@ int main(int argc, const char * argv[])
         NSLog(@"%@", aMother);
         
         // Our invariant doesn't hold for aFather and aMother, since we don't know their parents!
-        //[aFather checkInvariant];
+        if(INVARIANTCHECK)
+            [aFather checkInvariant];
         // So we check the children...
         [aSon checkInvariant];
         [aDaughter checkInvariant];
@@ -84,7 +87,8 @@ int main(int argc, const char * argv[])
         NSLog(@"%@", anotherNoblePerson);
         
         // again, the invariant doesn't hold for the parents, because we don't know the parents' parents.
-        //[aNoblePerson checkInvariant];
+        if(INVARIANTCHECK)
+            [aNoblePerson checkInvariant];
         // So we check the child
         [aNobleDaughter checkInvariant];
         
