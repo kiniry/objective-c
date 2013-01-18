@@ -14,7 +14,7 @@
  */
 @protocol MyProtocol
 
-- (void)doSomething;
+- (void)doSomethingWithBlock:(void(^)(void)) block;
 
 @end
 
@@ -26,6 +26,5 @@
 
 @property (weak) id <MyProtocol> delegate;
 
--(void)useDelegate;
 
 @end

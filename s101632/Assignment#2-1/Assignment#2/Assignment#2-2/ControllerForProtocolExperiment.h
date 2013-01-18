@@ -11,7 +11,7 @@
 
 @interface ControllerForProtocolExperiment : NSObject <MyProtocol>
 
-
+@property FunWithProtocols* protFun;
 - (void)doSomethingElse;
 
 @end

@@ -35,9 +35,17 @@ static int priceForNobleMarriage = 50000;
         if ([super canMarry:APerson]){
             //Check whether any of the Noble persons prepared for marriage have a butler
             if((ANoblePerson.butler || self.butler)){
+                NSLog(@"sweethearts butler: %@",ANoblePerson.butler);
+                NSLog(@"own butler: %@",self.butler);
                 [super marry:ANoblePerson];
                 ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
                 self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
+                //Share butler if i have a butler already
+                if (self.butler){
+                    ANoblePerson.butler = self.butler;
+                } else if (ANoblePerson.butler){
+                    self.butler = ANoblePerson.butler;
+                }
                 NSLog(@"Combined assets: %f",ANoblePerson.assets);
             } else {
                 NSLog(@"No butler - No Marriage!");
@@ -58,7 +66,15 @@ static int priceForNobleMarriage = 50000;
     }
     if (![APerson isKindOfClass:[NoblePerson class]]){
         _butler = APerson;
+        NSLog(@"The butler has been set to %@",self.butler.name);
     }
+}
+- (NSString *)description
+{
+    NSString *citizenDescription = [super description];
+    NSString *currentAssets = [NSString stringWithFormat:@", Current assets: %f",self.assets];
+    NSString *butlerName = [NSString stringWithFormat:@", Butler name: %@", self.butler.name];
+    return [[citizenDescription stringByAppendingString:currentAssets] stringByAppendingString:butlerName];
 }
 
 @end

@@ -11,7 +11,7 @@
 #import "NoblePerson.h"
 #import "FunWithNil.h"
 #import "FunWithBlocks.h"
-#import "FunWithProtocols.h"
+#import "ControllerForProtocolExperiment.h"
 
 int main(int argc, const char * argv[])
 {
@@ -58,13 +58,13 @@ int main(int argc, const char * argv[])
             NSLog(@"Very nice!");
         }];
         
-        // ------------------------- Fun with protocols -------------------------
+        // ------------------------- Fun with protocols + a little block stuff -------------------------
         
-        /*
-         This does not work, and I can't figure out why. I would like some help here!
-         */
-        FunWithProtocols* protFun = [[FunWithProtocols alloc] init];
-        [protFun.delegate doSomething];
+        
+        ControllerForProtocolExperiment *protCTRL = [[ControllerForProtocolExperiment alloc] init];
+        [protCTRL.protFun.delegate doSomethingWithBlock:^{
+            NSLog(@"Doing something");
+        }];
         
         
         

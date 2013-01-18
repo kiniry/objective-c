@@ -14,8 +14,8 @@
  FunWithProtocols can access this method because it is
  defined in the protocol
  */
-- (void)doSomething{
-    NSLog(@"Doing something");
+- (void)doSomethingWithBlock:(void (^)(void))block{
+    block();
 }
 
 /*
@@ -24,6 +24,15 @@
  */
 - (void)doSomethingElse{
     NSLog(@"Doing something different");
+}
+
+- (id)init{
+    self = [super init];
+    if (self) {
+        self.protFun = [[FunWithProtocols alloc] init];
+        [self.protFun setDelegate:self];
+    }
+    return  self;
 }
 
 @end
