@@ -10,4 +10,8 @@
 
 @interface EKKPerson : NSObject
 
+@property (strong) NSString *name;
+
+-(EKKPerson *)initWithName:(NSString *)name;
+
 @end
