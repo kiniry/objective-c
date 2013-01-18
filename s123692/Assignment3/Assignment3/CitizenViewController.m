@@ -32,8 +32,6 @@
     [c3 marryTo:c4];
     [c1 addParent:c3];
     [c1 addParent:c4];
-    [c3 addChild:c1];
-    [c4 addChild:c1];
     [self.tableData addObjectsFromArray:[NSArray arrayWithObjects:c1, c2, c3, c4, nil]];
     
     // Buttons

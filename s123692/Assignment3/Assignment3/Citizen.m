@@ -56,22 +56,23 @@ parents = _parents;
     {
         return;
     }
-
-//    [parent addChild:self];
     
     NSMutableSet* tmp = [self.parents mutableCopy];
     [tmp addObject:parent];
     self.parents = [tmp copy];
+    
+    [parent addChild:self];
 }
 -(void) removeParent:(Citizen *)parent
 {
     if ([self.parents containsObject:parent])
     {
-//        [parent removeChild:self];
         
         NSMutableSet* tmp = [self.parents mutableCopy];
         [tmp removeObject:parent];
         self.parents = [tmp copy];
+        
+        [parent removeChild:self];
     }
 }
 
@@ -84,21 +85,22 @@ parents = _parents;
     {
         return;
     }
-    
-//    [child addParent:self];
 
     NSMutableSet* tmp = [self.children mutableCopy];
     [tmp addObject:child];
     self.children = [tmp copy];
+    
+    [child addParent:self];
 }
 -(void) removeChild:(Citizen *)child
 {
     if ([self.children containsObject:child])
     {
-//        [child removeParent:self];
         NSMutableSet* tmp = [self.children mutableCopy];
         [tmp removeObject:child];
         self.children = [tmp copy];
+        
+        [child removeParent:self];
     }
 }
 
