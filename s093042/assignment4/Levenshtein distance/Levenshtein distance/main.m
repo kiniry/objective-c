@@ -18,9 +18,8 @@ int main(int argc, const char * argv[])
         // insert code here...
         //NSLog(@"Hello, World!");
         
-        
-        NSString *str1 = @"google";
-        NSString *str2 = @"bing";
+        NSString *str1 = @"foundation";
+        NSString *str2 = @"foundation";
         
         int dist = [LevenshteinDistance distanceBetween:str1 And:str2];
         

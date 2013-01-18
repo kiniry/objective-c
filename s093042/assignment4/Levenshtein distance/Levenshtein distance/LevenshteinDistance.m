@@ -12,6 +12,7 @@
 
 // the number of edits (edits being deletion, insertion and substututing one character) between two strings
 // created using the psedocode from http://en.wikipedia.org/wiki/Levenshtein_distance#Computing_Levenshtein_distance
+// for testing string manipulation, recursion, method invocation, heap use
 +(int) distanceBetween:(NSString *)s And:(NSString *)t
 {
     int len_s = (int)[s length];
