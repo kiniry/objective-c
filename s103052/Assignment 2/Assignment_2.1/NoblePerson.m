@@ -39,7 +39,7 @@
 	{
         NoblePerson *ANoblePerson = (NoblePerson*)APerson;
         //Noble persons have a butler and can marry
-        if ([super IllegalMarriage:APerson])
+        if ([super can_marry:APerson])
 		{
             if(ANoblePerson.butler || self.butler)
 			{

@@ -7,7 +7,8 @@
 //
 
 #import "AlarmClockAssertion.h"
-#import "AlarmClock.m"
+#import "AlarmClock.h"
+#import "AlarmClockPrivate.h"
 
 @implementation AlarmClockAssertion
 

@@ -10,6 +10,8 @@
 
 @interface Citizen : NSObject
 
+@property(readonly, atomic,strong) NSString *name;
+
 - (Citizen *)initWithName:(NSString *)name
                   withSex:(NSString *)sex
                   withAge:(NSNumber *)age;
@@ -20,6 +22,6 @@
 - (void)marry:(Citizen *)Aperson;
 - (void)divorce:(Citizen *)Aperson;
 - (NSString *)generateChildrenString;
-- (NSString *)printInfo;
+- (NSString *)description;
 
 @end

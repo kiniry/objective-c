@@ -22,7 +22,7 @@ int main(int argc, const char * argv[])
         Citizen *Franz = [[Citizen alloc]initWithName:@"Franz" withSex:@"Male" withAge:@30];
         Citizen *Jenny = [[Citizen alloc]initWithName:@"Jenny" withSex:@"Female" withAge:@15];
         //[Peter canMarry:nil]; - Exception
-        [Gitte marry:Peter];
+        [Gitte canMarry:nil];
         [Hans addChild:Peter];
         NoblePerson *QueenMargrethe = [[NoblePerson alloc]initWithName:@"Queen Margrethe" withSex:@"Female" withAge:@90 withAssets:5000000];
     }
