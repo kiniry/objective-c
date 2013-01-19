@@ -27,7 +27,7 @@
             self.butler = noblePerson.butler;
         }
         
-        // Share assets (NEEDS TO POINT TO THE SAME. Can that be done with a NSNumber?)
+        // Share assets
         NSInteger costOfWedding = 20000;
         NSInteger sharedAssets = self.numberOfAssets + noblePerson.numberOfAssets - costOfWedding;
         self.numberOfAssets = sharedAssets;
