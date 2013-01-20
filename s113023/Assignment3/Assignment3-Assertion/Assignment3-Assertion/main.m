@@ -38,8 +38,8 @@ int main(int argc, const char * argv[])
         NSLog(@"%@",[PrinceFrederik description]);
         NSLog(@"%@",[QueenMargrethe description]);
         NSLog(@"%@",QueenMargrethe.single);
-        [QueenMargrethe marry:Per];
-        [Per marry:QueenMargrethe];
+        [QueenMargrethe marry:PrinceFrederik];
+        //[Gitte canMarry:nil];
         
         
     }
