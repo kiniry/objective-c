@@ -21,11 +21,18 @@ The replaced text can be reversed to convert to another variant style.
 WARNING: One should always make sure that all the conditions (pre- and post-conditions) and the invariant is still correctly stated!
 
 // Reflection on compiling and portability
-Compiling the projects were successful using clang 4.1 and Xcode 4.5.2 on a MacBook Pro.
+A Makefile is included in the projects which makes it easier to compile the projects using different compilers, through a command line.
+When switching compilers from clang to gcc, make sure to edit the main.m file, so that the macro '@autoreleasepool' is not used, and insert 'NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];' instead, and remember to add the drain call at the end using '[pool drain];'. When switching back to using the clang compiler make sure to remove the 'NSAutoreleasePool' and use the macro '@autoreleasepool' again.
 
-Compiling the projects using gcc 4.7.2 from MacPorts, was not so successful on Mac or gcc from cygwin on Windows, it seems like there are some problems in using the macros used in the projects, and ARC does not seem to be supported in the same way as in clang.
+Compiling the projects was successful using clang 4.1 through the Terminal and Xcode 4.5.2 on a MacBook Pro.
 
-It does not seem like code developed in Xcode on a Mac is very portable to other environments, because of the additional "features" available on the Mac clang compiler. Or at least some work is needed to port a version from one environment to another.
+Compiling the projects using gcc 4.7.2 from MacPorts, was not successful on Mac. It seems like the Foundation framework is using blocks, but they are not supported in the MacPorts gcc. However when using the Apple patched gcc 4.2.1, the compiling was successful, for the defensive and logging variant, but not for the assertion variant, it seems like 'NSAssert' is not defined.
+
+Compiling the projects using clang in Windows was not tested.
+
+Compiling the projects using gcc from Cygwin and MinGW on Windows, was not successful, it seems like there are some problems with the macros used and with the use of the Foundation framework.
+
+It does not seem like code developed in Xcode on a Mac is very portable to other environments, when using gcc, because of the additional "features" used. Or at least some work is needed to port a version from one environment to another.
 
 // Reflection on implementation
 During implementation, the hardest part was to set up the conditions (pre- and post-), and the invariants. Once these were set up, switching between the three styles were done using the technique shown in the quick guide above. The conditions were of cause verified during the switch to ensure that the proper "meaning" of the conditions were still right.
