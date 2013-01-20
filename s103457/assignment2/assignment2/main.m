@@ -21,10 +21,10 @@ int main(int argc, const char * argv[])
         Citizen *father = [[Citizen alloc] initWithName: @"Bent" andSex: male andAge:@50];
         Citizen *mother = [[Citizen alloc] initWithName: @"Kirsten" andSex: female andAge:@45];
         Citizen *citizen = [[Citizen alloc] initWithName: @"Carl" andSex: male andAge:@30];
-        [father makeChild:citizen withParent:mother];
+        [citizen setMother:mother andFather:father];
         [citizen marry: sweetiepie];
-        [citizen makeChild:child withParent:citizen.spouse];
-        [citizen makeChild:child2 withParent:citizen.spouse];
+        [child setMother:sweetiepie andFather:citizen];
+        [child2 setMother:sweetiepie andFather:citizen];
         NSLog(@"%@", citizen);
 
         NoblePerson *lord = [[NoblePerson alloc] initWithName: @"Lord Nelson" andSex: male andAge:@60];
@@ -32,7 +32,7 @@ int main(int argc, const char * argv[])
         [lord setButler:citizen];
         [lord setAssets:@1025000];
         [princess setAssets:@1025000];
-        [father makeChild:lord withParent:mother];
+        [lord setMother:mother andFather:father];
         [lord marry:princess];
         NSLog(@"%@", lord);
     }

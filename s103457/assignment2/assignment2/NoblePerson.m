@@ -20,9 +20,9 @@ static int costOfStyledWedding = 50000;
 
 -(void)marry:(NoblePerson *)sweetheart
 {
+    [super marry:sweetheart];
     [self shareButlerWith:sweetheart];
     [self payForMarriageAndshareAssetsWith:sweetheart];
-    [super marry:sweetheart];
     
 }
 

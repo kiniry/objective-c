@@ -18,20 +18,20 @@ typedef enum { male, female } SEX;
                   andAge:(NSNumber *)age;
 
 /* Queries */
-@property (strong) NSString *name;
+@property NSString *name;
 @property SEX sex;
-@property (strong) NSNumber *age;
+@property NSNumber *age;
+@property (readonly) Citizen *spouse;
+@property (nonatomic) NSMutableSet *children;
 
 -(BOOL)single;
--(Citizen *)spouse;
--(NSSet *)children;
 -(NSArray *)parents;
 -(BOOL)canMarry:(Citizen *)sweetheart;
 
 /* Commands */
 -(void)marry:(Citizen *)sweetheart;
 -(void)divorse;
--(void)makeChild:(Citizen *)child withParent:(Citizen *)otherParent;
+-(void)setMother:(Citizen *)mother andFather:(Citizen *)father;
 
 /* Description */
 -(NSString *)description;

@@ -10,10 +10,9 @@
 
 @interface Citizen ()
 
-@property (strong, nonatomic) Citizen *spouse;
 @property (weak) Citizen *mother;
 @property (weak) Citizen *father;
-@property (strong, nonatomic) NSMutableSet *children;
+@property (readwrite) Citizen *spouse;
 
 @end
 
@@ -67,27 +66,16 @@
     }
 }
 
--(NSSet *)children
+-(void)setMother:(Citizen *)mother andFather:(Citizen *)father
 {
-    if (!_children) _children = [[NSMutableSet alloc] init];
-    return (NSSet *)[_children mutableCopy];
-}
-
--(void)makeChild:(Citizen *)child withParent:(Citizen *)otherParent
-{
-    if (child.parents || self.sex == otherParent.sex) {
-        NSLog(@"ERROR: Invalid making of child");
+    if (self.parents || mother.sex != female || father.sex != male) {
+        NSLog(@"ERROR: Invalid parents %@ and %@ for child %@", mother, father, self);
         return;
     }
-    [_children addObject:child];
-    [self setAsParentFor:child];
-    [otherParent setAsParentFor:child];
-}
-
--(void)setAsParentFor:(Citizen *)child
-{
-    if (self.sex == male) [child setFather:self];
-    else if (self.sex == female) [child setMother:self];
+    self.mother = mother;
+    self.father = father;
+    [mother.children addObject:self];
+    [father.children addObject:self];
 }
 
 -(NSArray *)parents
@@ -98,15 +86,10 @@
     return @[self.mother, self.father];
 }
 
--(BOOL)isValidParents:(NSArray *)parents
+-(NSMutableSet *)children
 {
-    return parents.count == 2 ||
-        ((Citizen *)[parents objectAtIndex:0]).sex != ((Citizen *)[parents objectAtIndex:1]).sex;
-}
-
--(Citizen *)spouse
-{
-    return _spouse;
+    if (!_children) _children = [[NSMutableSet alloc] init];
+    return _children;
 }
 
 -(BOOL)single
@@ -117,13 +100,13 @@
 -(NSString *)description
 {
     return [NSString stringWithFormat:
-            @"\nName: %@\nAge: %@ years\nSex: %@.\nCivil status: %@\nParents: %@ and %@\nAmount of children: %lu",
+            @"Citizen: name: %@, age: %@ years, sex: %@, civil status: %@, parents: %@ and %@, amount of children: %lu",
             self.name,
             self.age,
             self.sex == male ? @"Male" : @"Female",
             self.single ? @"single" : [NSString stringWithFormat:@"%s %@","married to",self.spouse.name],
-            ((Citizen *)[self.parents objectAtIndex:0]).name,
-            ((Citizen *)[self.parents objectAtIndex:1]).name,
+            self.mother.name,
+            self.father.name,
             self.children.count
     ];
 }
