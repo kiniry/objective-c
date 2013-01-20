@@ -142,11 +142,6 @@ but it's bad practice as it makes the code harder to read.
 
 
 ### Inheritance
- - ... how inheritance works as compared to the OTLTYAFW.  (Hint:
-   Consider single vs. multiple inheritance and behavioral vs. code
-   inheritance.  How does class inheritance work and how does type
-   inheritance work?)
-
 Neither Objective-C or Java support multiple inheritance.
 Inheritance works much like in Java,
 where subclasses inherit the fields and method of the superclass.
@@ -192,15 +187,31 @@ However, return types are not considered, so you can't have two methods with the
    anti-patterns for array use.)
 
 ### nil
-- ... how does nil work as compared to the semi-equivalent construct
-   in the OTLTYAFW.  (Hint: What are the programming errors relating
-   to such?  Can one call methods on/send messages to nil/null/0?)
+In both Objective-C and Java fields/instance variables are
+intialized to nil/null by default.
+This simply means that the pointer/reference doesn't
+point to anything.
+
+If you attempt to call a method on a null reference in Java,
+then the exception NullPointerException is thrown
+and the program crashes.
+
+If you send a message to nil in Objective-C,
+then nothing happens and the call returns nil.
+This can sometimes help to simplify code
+in places where you'd extensively check for nil.
+
 
 ### Primitive types
- - ... how do the primitive types look in Objective-C as compared to
-   the OTLTYAFW.  (Hint: Consider those types that are fundamental and
-   part of the language definition and those that are actually deemed
-   "primitive".)
+
+Objective-C is a subset of C,
+which means that all the primitive types in C are available in Objective-C as well.
+These include int, unsigned int, float, double, char, long, long long, and so on.
+Java has eight primitive types; byte, short, int, long, float, double, boolean, and char.
+
+The sizes of primtives in Java are well defined,
+whereas they depend on the architecture in C (and Objective-C).
+
 
 ### Protocols
 Protocols declare a collection methods and properties (as required or optional) without their implementation.
@@ -237,10 +248,27 @@ It's possible to have an object with type id that conforms to a protocol.
 
 
 ### Strong vs. weak pointers
- - ... how do strong vs. weak pointers work as compared with
-   semi-equivalent construct in the OTLTYAFW.  (Hint: Look into
-   java.lang.ref and .Net's System.WeakReference if you have never
-   done so before.)
+In Objective-C,
+strong and weak pointers are used with Automatic Reference Counting (ARC).
+Pointers are strong by default,
+which means that the object it points to
+won't be deallocated.
+If there's only weak pointers pointing to an object,
+then it might be deallocated and set to nil.
+The reason you'd want to use weak pointers
+is to avoid what's called a strong reference cycle,
+where objects with strong pointers form a cycle,
+which makes it impossible for ARC to deallocate the objects.
+Properties are strong by default (they retain the object passed to the setter),
+but can be changed to weak with the ```weak`` attribute.
+
+In Java,
+all references are strong by default as well.
+This means that the garbage collector won't
+suddenly deallocate the objects referenced to.
+It's also possible to have weak references
+with different levels of *weakness*
+using ```WeakReference<T>``` and ```SoftReference<T>``` of java.lang.ref.
 
 
 ### Variance
@@ -266,7 +294,7 @@ while the argument types are invariant (method is overloaded, not overriden).
    boxing.)
 
 The Foundation framework provides the class NSNumber
-that can wrap around the numberic C types (int, float, double, BOOL, ...),
+that can wrap around the numberic C types (int, float, double, ...),
 so that they can fit in the Foundation collection classes.
 In Java you have the classes Integer, Double, Float and so on,
 again used to store primitives in collections.

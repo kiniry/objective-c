@@ -66,8 +66,8 @@
     }
 }
 
-
 -(NSString *)description {
-    return [NSString stringWithFormat:@"%@, is a noble person, who has %d dollars in the bank, and has a butler named %@.", [super description], self.assets, self.butler.name];
+    return [NSString stringWithFormat:@"%@, is a noble person, who has %d dollars in the bank, and %@", [super description], self.assets, (self.butler.name == nil ? @"has no butler!" : [NSString stringWithFormat:@"has a butler named %@", self.butler.name])];
 }
+
 @end
