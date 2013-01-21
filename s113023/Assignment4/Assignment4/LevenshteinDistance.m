@@ -7,6 +7,7 @@
 //
 
 #import "LevenshteinDistance.h"
+#define MIN3(A,B,C) MIN(MIN(A,B),C)
 
 @implementation LevenshteinDistance
 
@@ -30,7 +31,7 @@
         NSString *substringtwo = [stringTwo substringToIndex:(len_stringTwo-1)];
         int distanceTwo = [LevenshteinDistance distanceFromString:stringOne toString:substringtwo]+1;
         int distanceThree = [LevenshteinDistance distanceFromString:substringOne toString:substringtwo]+cost;
-        return MIN(MIN(distanceOne,distanceTwo),distanceThree);
+        return MIN3(distanceOne,distanceTwo,distanceThree);
     }
     
     

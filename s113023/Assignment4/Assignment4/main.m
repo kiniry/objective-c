@@ -15,8 +15,8 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         
         // insert code here...
-        NSString *stringOne = @"Hello World";
-        NSString *stringTwo = @"Test";
+        NSString *stringOne = @"Frisk tun";
+        NSString *stringTwo = @"Fisk paa stranden";
         int distance = [LevenshteinDistance distanceFromString:stringOne toString:stringTwo];
         NSLog(@"The Levenshtein distance between the two strings '%@' and '%@' are: %d",stringOne,stringTwo,distance);
 
