@@ -11,9 +11,8 @@
 @implementation NoblePerson 
 
 - (void) setSpouse:(NoblePerson *)spouse {
-    if(spouse.sex != self.sex) {
         spouse = spouse;
-    }
 }
+
 
 @end
