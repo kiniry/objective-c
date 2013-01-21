@@ -15,11 +15,9 @@
 @property Citizen* butler;
 @property (nonatomic) NoblePerson* spouse;
 @property (nonatomic) NoblePerson* marry;
-@property (nonatomic) Citizen* mother;
-@property (nonatomic) Citizen* father;
+
 - (void) setMarry:(NoblePerson *)marry;
 - (void) setSpouse:(NoblePerson*) spouse;
-- (void) setMother:(Citizen *)mother;
 
 
 @end
