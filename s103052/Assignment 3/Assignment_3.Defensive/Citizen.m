@@ -122,8 +122,8 @@
 	//Check 2) Not legal marriage
 	else
 	{
-		NSException* exception_SpouseEmpty = [NSException exceptionWithName:@"Precondition violation" reason:@"Not a legal marriage. Invalid spouse!" userInfo:nil];
-		@throw exception_SpouseEmpty;
+		NSException* exception_NoMarriage = [NSException exceptionWithName:@"Precondition violation" reason:@"Not a legal marriage. Invalid spouse!" userInfo:nil];
+		@throw exception_NoMarriage;
 	}
 }
 
