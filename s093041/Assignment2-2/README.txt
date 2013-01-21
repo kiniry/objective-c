@@ -32,40 +32,73 @@ super init method. If this fails and returns nil, so should
 this object. If not, proper instantiation can be performed. 
 
 
----------- Class types ----------
-
-
-
 ---------- Constructors and factories ----------
-
+Using the abstract factory pattern for constructing new
+instances of objects is quite unique to Objective-C in the
+scale of usage.
+Using a class method for constructing a new instance of an
+object could for example by the old method of constructing
+an array:
+NSArray *newArray = [NSArray arrayWithObjects:@"Object1",
+@"Object", nil];
+However, this method has recently been replaced by the
+literal @[], but under the hood, the same thing is
+happening.
+Factory constructors in other OO languages like C# are
+mostly used for conversion like bool.TryParse() and
+System.Convert.ToBoolean().
 
 
 ---------- Copying and cloning ----------
-
-
-
----------- Dynamic typing of pointers ----------
-Dynamic typing 
+In C# the ICloneable interface makes it possible to
+implement copying and cloning to custom objects.
+In Objective-C the correspondent is the NSCopying protocol
+from NSObject. This can be implemented in any custom
+subclass of NSObject, and defines the method 'copyWithZone'.
+All of this, however, is only shallow copying - deep copying
+would have to be implemented manually, just like in Java. 
 
 
 ---------- Dynamic typing of ids ----------
-
-
-
----------- Expanded types ----------
-
+Dynamic typing of ids is when a variable point to an object,
+whose type is not checked at compile time. For this, the
+'id' type is used to indicate dynamic types.
+For instance NSArrays only contain objects of type 'id',
+i.e. the type of each object is independent of each other
+and not checked at compile time. This also means that type
+information about the objects is lost, when put into the
+array. In this case introspection can be used to check
+types.
+A laguange like C# is statically typed, but using the
+'dynamic' type can give some of the same effects as
+Objective-C
 
 
 ---------- Field hiding ----------
-
+In Objective-C field or properties are generally either public or private with nothing in between. At least this design choice pretty much enforces the programmer to think about his model in this way when designing the software.
+However, something like a public getter and a private setter can be achieved simply by stating that the public property is 'readonly'. This way, the outside world cannot wirte to it. But internally, the corresponding instance variable is still read/write, which means that the private implementation can indeed write to the property.
+In C# one would simply write:
+int age { get; private set; }
 
 
 ---------- Immutability ----------
+All of the base collection types of the Foundation framework
+are immutable, like NSArray and NSDictionary. This means
+that obejcts cannot be removed or added after
+initialization.
+However, their mutable counterparts like NSMutableArray and
+NSMutableDictionary all inherit from the immutable
+collection types, making the conversion painless.
+When 'giving away' a mutable object (as being a public
+property) good practice is to return a copy of the internal
+mutable abject in order not to risk any data getting
+overriden from the outside:
 
+return [someMutableArray copy];
 
+Or if an ordinary array is to be returned in a mutable form:
 
----------- Inheritance ----------
-
+return [someImmutableArray mutableCopy];
 
 
 ---------- Logging ----------
@@ -80,11 +113,33 @@ Formatting can be achieved, though, using the static method
 
 
 ---------- Method overloading ----------
+Method overloading does not work in the same way as many
+other OO languages.
+For instance in C# the same method can be overloaded in the
+following way:
 
+public static string AppendToString(string originalString,
+string something) { }
+public static string AppendToString(string originalString,
+int something) { }
 
+However, in Objective-C one cannot have the method
+declarations:
 
----------- Polymorphismn ----------
++ (NSString)appendToString:(NSString *)originalString
+something:(NSString *)something;
++ (NSString)appendToString:(NSString *)originalString
+something:(int)something;
 
+This would give a 'Duplicate declaration of method:
+appendToString
+
+Instead different signatures should be used:
+
++ (NSString)appendToString:(NSString *)originalString
+anotherString:(NSString *)something;
++ (NSString)appendToString:(NSString *)originalString
+anInteger:(int)something;
 
 
 ---------- NSArray ----------
@@ -113,7 +168,13 @@ and maybe use introspection to be completely sure.
 
 
 ---------- Primitive types ----------
+Objective-C contains signed and unsigned versions of the
+following primitives - all of which can be contained in
+NSNumber:
+BOOL, char, double, float, int, long, short.
 
+Just like in Java, String is not a primitive type, but an
+object (NSString).
 
 
 ---------- Protocols ----------
@@ -129,14 +190,31 @@ wishes to communication with a delegate object. The
 declaring object then specifies that its delegate property
 must implement the protocol using the angle brackets
 notation:
+
 @property (strong) id <SomeDeclaredProcol> *delegate;
 
+
 ---------- Singletons ----------
+Singeltons in Objective-C are very similar to other OO
+languages. An example implementation in Objective-C could
+be:
 
++ (MySingleton *)sharedSingleton;
 
++ (MySingleton *)sharedSingleton
+{
+	static MySingleton *sharedSingleton;
 
----------- Method resolution ----------
+	@synchronized(self)
+	{
+		if (!sharedSingleton)
+			sharedSingleton = [[MySingleton alloc] init];
 
+		return sharedSingleton;
+	}
+}
+
+Source: http://stackoverflow.com/a/145164/746968
 
 
 ---------- Strong vs. weak ----------
@@ -167,7 +245,34 @@ Returning 'id' loses type information
 
 
 ---------- Exceptions ----------
+Exceptions are not as commonly used in Objective-C as in
+other OO languages. Lanuguages like Java and C# very much
+uses the concept of throwing exceptions in library methods,
+forcing the upper layers of the execution to handle
+(try/catch) these exceptions.
+They are used in Objective-C, however, but mostly when the
+program has reached a very bad state. Exceptions can be
+thrown in two ways:
 
+[NSException raise:@"Some exception description"];
+
+NSException* exception = [NSException
+        exceptionWithName:@"InternalInconsistencyException"
+        reason:@"Something went completely wrong"
+        userInfo:nil];
+@throw exception;
+
+The 'try/catch' also excists, but is rarely used:
+
+@try {
+	...
+}
+@catch(Exception ex){
+	...
+}
+@finally{
+	...
+}
 
 
 ---------- Value boxing ----------
@@ -195,7 +300,26 @@ returns YES
 
 
 ---------- Enumerations ----------
+There are two types of enumeration in Objective-C:
 
+Normal looping:
+for (int i = 0; i < someArray.count; i++) {
+	id someObject = someArray[i];
+	// Do something with someObject
+}
+
+Fast enumeration:
+for (id someObject in someArray) {
+	// Do something with someObject
+}
+
+The fast enumeration only works for collections conforming
+to the NSFastEnumeration protocol.
+
+The above procedures are the same in other OO languages, but
+not performance wise. Fast enumeration is indeed faster in
+Objective-C than ordinary looping, while it would cause
+overhead in many other OO languages.
 
 
 ---------- Property lists ----------
