@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NoblePerson.h"
+#import "TestProtocols.h"
 
 int main(int argc, const char * argv[])
 {
@@ -49,6 +50,27 @@ int main(int argc, const char * argv[])
             NSLog(@"NobleJoh is married to %@", nobleJohn.spouse.firstName);
             NSLog(@"NobleMary is married to %@", nobleMary.spouse.firstName);
         }
+        
+        
+        // PeopleDB
+        
+        NSMutableSet *people = [NSMutableSet set];
+        [people addObject:john];
+        [people addObject:mary];
+        [people addObject:nobleJohn];
+        [people addObject:nobleMary];
+        
+        TestProtocols *test = [TestProtocols new];
+        [test testPeopleDB];
+        
+        PeopleDB *db = [PeopleDB new];
+        db.people = people;
+        
+        NSMutableSet *mSet = [db selectNoble];
+        NSLog(@"Number of  noble people %li", [mSet count]);
+        
+        
+        
     }
     return 0;
 }

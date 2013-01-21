@@ -23,8 +23,8 @@ typedef enum{
 @property int age;
 @property (readonly,getter = isSingle) BOOL single;  // change the name of getter accessor method. from getSingle to isSingle
 @property (nonatomic) Citizen *spouse;
-@property (nonatomic)NSSet *children;
-@property (nonatomic)NSSet *parents;
+@property (nonatomic)NSMutableSet *children;
+@property (nonatomic)NSMutableSet *parents;
 
 /*
  
@@ -33,4 +33,6 @@ typedef enum{
 -(BOOL) canMarry:(Citizen *) sweetHeart;
 -(void) marry:(Citizen *) sweetHeart;
 -(void) divorce;
+-(void) addParent:(Citizen *) parent;
+-(void) addChild:(Citizen *) child;
 @end
