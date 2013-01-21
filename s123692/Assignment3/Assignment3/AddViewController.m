@@ -1,34 +1,34 @@
 //
-//  DetailViewController.m
+//  AddViewController.m
 //  Assignment3
 //
-//  Created by Markus Færevaag on 17.01.13.
+//  Created by Markus Færevaag on 21.01.13.
 //  Copyright (c) 2013 Markus Færevaag. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "AddViewController.h"
 
-@interface DetailViewController ()
+@interface AddViewController ()
 
 @end
 
-@implementation DetailViewController
+@implementation AddViewController
 
-@synthesize label, citizen, dictArray;
+@synthesize citizen;
 
-// Init
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"addCitizen"])
+    {
+        //NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
+        AddViewController *destViewController = segue.destinationViewController;
+        //[destViewController addCitizen:[self.tableData objectAtIndex:indexPath.row]];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
-    // Name
-    self.label.text = [NSString stringWithFormat:@"   %@", self.citizen.name];
-    
-    // Info
-    if (!self.citizen.spouse) {
-        self.citizen.spouse = [[Citizen alloc] initWithName:@"" andSex:(Sex)nil andAge:(int)nil];
-    }
-    
     NSArray *keys = [NSArray arrayWithObjects:@"Sex", @"Age", @"Spouse", nil];
     NSArray *objects = [NSArray arrayWithObjects:
                         [Citizen sexToString:self.citizen.sex],
@@ -36,12 +36,6 @@
                         self.citizen.spouse.name,
                         nil];
     self.dictArray = [NSMutableArray arrayWithObject:[NSDictionary dictionaryWithObjects:objects forKeys:keys]];
-    
-    // Parents
-    [self.dictArray addObject:[DetailViewController indexKeyedDictionaryFromArray:[self.citizen.parents allObjects]]];
-    
-    // Children
-    [self.dictArray addObject:[DetailViewController indexKeyedDictionaryFromArray:[self.citizen.children allObjects]]];
 }
 
 // Table contents
@@ -113,5 +107,6 @@
     
     return (NSDictionary *) mutableDictionary;
 }
+
 
 @end

@@ -55,6 +55,12 @@
         DetailViewController *destViewController = segue.destinationViewController;
         destViewController.citizen = [self.tableData objectAtIndex:indexPath.row];
     }
+    if ([segue.identifier isEqualToString:@"addCitizen"])
+    {
+        //NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
+        AddViewController *destViewController = segue.destinationViewController;
+        //[destViewController addCitizen:[self.tableData objectAtIndex:indexPath.row]];
+    }
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated

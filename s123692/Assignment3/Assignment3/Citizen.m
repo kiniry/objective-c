@@ -130,4 +130,19 @@ parents = _parents;
     }
 }
 
++(NSString*) sexToString: (Sex)sex
+{
+    switch (sex) {
+        case Male:
+            return @"Male";
+            break;
+        case Female:
+            return @"Female";
+            break;
+        default:
+            return nil;
+            break;
+    }
+}
+
 @end

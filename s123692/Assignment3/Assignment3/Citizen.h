@@ -47,4 +47,7 @@ typedef enum {
 -(void) marryTo: (Citizen *)bride;
 -(void) divorceFrom: (Citizen *)fiancee;
 
+// Util
++(NSString*) sexToString: (Sex)sex;
+
 @end

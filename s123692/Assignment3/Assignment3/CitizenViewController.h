@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailViewController.h"
+#import "AddViewController.h"
 #import "Citizen.h"
 #import "Nobleperson.h"
 
