@@ -1,9 +1,14 @@
----------- Foundation framework ----------
+Assingment 2
+============
+
+Foundation framework
+----------
 The Foundation framework contains all the core data types
 used in Objective-C, which spans from handling of raw data
 (NSData) and dates (NSDate) to strings (NSString), arrays
 (NSArray), dictionaries (NSDictionary) web requests
-(NSURLRequest). 
+(NSURLRequest).
+
 The base object of Foundation, which all other objects
 inherit from is 'NSObject', just like 'Object' in Java and
 C#.
