@@ -32,3 +32,26 @@ mostly like clang
 texinfo, one source to all outputs
 Emacs has awesome support for this (its docs are texinfo)!
 see textest.info
+
+
+
+
+I'm using GNUstep on Windows 8, which is working fairly well. It took some time to get the setup working, but the main points were these:
+
+From http://www.gnustep.org/experience/Windows.html download the System, Core and Devel packages, and install them IN THAT ORDER! Not sure why this is necessary, but it failed for me when I ignored the installation order. And by the way, don't mind the ProjectCenter and Gorm stuff, it's absolutely ridiculous (as far as i experienced).
+
+These packages include a mingw shell from which you can run gcc and clang. mingw also provides it's own make system (mingw-make i believe its called) but works just like a normale "make" command from a unix shell.
+
+If you want to compile directly with gcc you must figure out the correct flags and options to use. I only got it working a few times, it seemed to be terribly shaky, for instance in regards to which order the options were given. But it goes something like
+
+gcc -o hello main.m -L /c/GNUstep/GNUstep/System/Library/Libraries -I /c/GNUstep/GNUstep/System/Library/Headers/ -lobjc -lgnustep-base -fconstant-string-class=NSConstantString
+
+This will try to compile main.m (and only main.m) to an executable named hello. The -L and -I (capitol i) option tells gcc where to look for libraries and headers, which is pointed to GNUstep's included versions of these (Cocoa/Foundation). The -fconstant-string-class is neccessary in most cases, since gcc for some reason per default thinks it should use NXConstantString (this is for inlined string declerations i believe).
+
+BUT! Behold, GNUmakefile will make your life easier. Make a filed called "GNUmakefile" (see below github link), but note that it is much easier to use *.h and *.m for the header and objc file declerations. You also need to make sure to point make to GNUstep's makefile directory as you need to use these (as done in the link below).
+
+Finally, if you use emacs/vim be sure to run it from the mingw shell, that way in emacs for instance, "M-x compile RET RET" will compile using the make file. Awesomeness.
+
+One thing I'm still struggling with is using gdb. I had it running once, but now it crashes whenever i want to the break. Please let me know if you have tried something alike.
+
+GNUmakefile: https://github.com/kiniry/objective-c/blob/master/s123563/assignment_two/part_one/GNUmakefile

@@ -40,9 +40,10 @@ Reflection-like features through `isKindOfClass`, `isMemberOfClass` and `respond
 Java has a lot of functionality for reflection (read: not introspection), and can provide all the
 information about a class and its members that you want.
 
-Objective-C does not natively provide ways to access list of all methods/ivars/inherited
+Objective-C does not natively (as in Objective-C functions) provide ways to access list of all methods/ivars/inherited
 classes. See https://github.com/mikeash/MAObjCRuntime. However the testing framework SenTestingKit
-_does_ do reflection (finding test* methods) somehow.
+_does_ do reflection (finding test* methods). I believe this is achieved via the Objective-C runtime functions such 
+as `class_copyMethodList` and `class_copyIvarList`. See https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html
 
 
 Foundation Framework

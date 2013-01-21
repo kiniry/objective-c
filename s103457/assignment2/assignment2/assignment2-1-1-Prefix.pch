@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'assignment2' target in the 'assignment2' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-#endif
