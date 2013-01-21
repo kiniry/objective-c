@@ -107,6 +107,7 @@ int main(int argc, const char * argv[])
         NSLog(@"%@",[PrinceFrederik description]);  // OK
         
         // Step 3.b Marry - Illegal
+        //[PrincessMarie marry:SirEltonJohn];         // EXCEPTION: "The person you want to marry is not noble"
         
     }
     return 0;

@@ -71,10 +71,10 @@ static int priceForNobleMarriage = 50000;
 - (void)setButler:(Citizen *)APerson
 {
     NSAssert(APerson,@"Precondition violatin: You didn't specify a Citizen as butler");
-    if (![APerson isKindOfClass:[NoblePerson class]]){
-        _butler = APerson;
-        NSLog(@"The butler has been set to %@",self.butler.name);
-    }
+    NSAssert(![APerson isKindOfClass:[NoblePerson class]],@"Precondition violation: You can't add a noble butler");
+    _butler = APerson;
+    NSLog(@"The butler has been set to %@",self.butler.name);
+    NSAssert(self.butler == APerson,@"Postcondition violation: The butler wasn't set correctly");
 }
 - (NSString *)description
 {

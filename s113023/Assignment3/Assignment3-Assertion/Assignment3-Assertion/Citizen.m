@@ -43,11 +43,9 @@
 }
 - (void)addChild:(Citizen *)Achild
 {
-    //Check that child to be added are not an empty object
-    if (Achild == nil){
-        NSException *emptyChildException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You must specify a child Citizen object to add" userInfo:nil];
-        @throw emptyChildException;
-    }
+    //Check Preconditions
+    NSAssert(Achild,@"Precondition violation, you didn't specify a Citizen to add as child");
+    NSAssert(!(self.father == Achild || self.mother == Achild),@"Precondition violation, you can't add your own mother or father as your child");
     if ([self.sex isEqualToString:@"Male"]){
         if (Achild.father == nil){
             [self.children addObject:Achild];
@@ -115,7 +113,7 @@
 - (void)divorce:(Citizen *)Aperson
 {
     // Check preconditions
-    NSAssert([self.single isEqualToString:@"YES"],@"Precondition violation: You are single and therefore not able to divorce anyone");
+    NSAssert([self.single isEqualToString:@"NO"],@"Precondition violation: You are single and therefore not able to divorce anyone");
     if (self.spouse == Aperson && Aperson.spouse == self){
         Aperson.spouse = nil;
         self.spouse = nil;

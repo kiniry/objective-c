@@ -46,14 +46,17 @@ static int priceForNobleMarriage = 50000;
                 }
                 NSLog(@"Combined assets: %f",ANoblePerson.assets);
             } else {
-                NSLog(@"No butler - No Marriage!");
+                NSException *noButlerException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"Precondition violation: Either one of the noble persons interested in marriage must have a butler" userInfo:nil];
+               @throw noButlerException;
             }
         }
         else {
-            NSLog(@"Not a legal marriage - leads to incest or homosexuality or polygyni");
+            NSException *notLegalMarriageExeception = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Precondition violation: You are not allowed to marry this person - leads to either icest, homosexyality or polygyni" userInfo:nil];
+            @throw notLegalMarriageExeception;
         }
     } else {
-        NSLog(@"No nobility - No Marriage!");
+        NSException *noNobilityException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"Precondition violation: The person you want to marry is not noble" userInfo:nil];
+        @throw noNobilityException;
     }
 }
 - (void)setButler:(Citizen *)APerson
