@@ -40,13 +40,14 @@
 	{
         NoblePerson* ANoblePerson = (NoblePerson*)APerson;
         //Noble persons can marry and have a butler
-        if ([super canMarry:APerson])
+        if ([super can_marry:APerson])
 		{
             if ((ANoblePerson.butler || self.butler))
 			{
                 [super marry:ANoblePerson];
                 ANoblePerson.assets = (self.assets + ANoblePerson.assets - PRICE_FOR_NOBLE_MARRIAGE) / 2;
 				self.assets = (self.assets + ANoblePerson.assets - PRICE_FOR_NOBLE_MARRIAGE) / 2;
+				// Set butler
 				if (self.butler)
 					ANoblePerson.butler = self.butler;
 				else if (ANoblePerson.butler)
@@ -54,13 +55,22 @@
 				NSLog(@"Combined assets: %f",ANoblePerson.assets);
             } 
 			else 
-                NSLog(@"No Marriage. You don't have a Butler!");
+				{
+				NSException* exception_NoButler = [NSException exceptionWithName:@"Precondition violation" reason:@"No marriage. You don't have a Butler!" userInfo:nil];
+				@throw exception_NoButler;
+				}
 		}
         else 
-            NSLog(@"Not a legal marriage. This will leads to incest, homosexuality or polygyni!");
+		{
+			NSException* exception_NoMarriage = [NSException exceptionWithName:@"Precondition violation" reason:@"Not a legal marriage. Invalid spouse!" userInfo:nil];
+			@throw exception_NoMarriage;
+		}
     } 
 	else 
-        NSLog(@"No Marriage. You are not noble!");
+		{
+		NSException* exception_NotNoble = [NSException exceptionWithName:@"Precondition violation" reason:@"No marriage. You are not Noble!" userInfo:nil];
+		@throw exception_NotNoble;
+		}
 }
 
 - (void)setButler:(Citizen*)APerson

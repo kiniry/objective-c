@@ -71,6 +71,7 @@ int main(int argc, const char * argv[])
 	//[MartinJensen divorce:MartinJensen];		// Exception: "The divorce is not possible!"
 	//[MartinJensen divorce:nil];				// Exception: "The divorce is not possible!"
 	
+	// Print Description of Test Citizens
 	NSLog(@"%@",[HansJensen description]);
 	NSLog(@"%@",[AnnaNielsen description]);
 	NSLog(@"%@",[MartinJensen description]);
@@ -91,7 +92,9 @@ int main(int argc, const char * argv[])
     NoblePerson* JensKristensen = [[NoblePerson alloc] initWithName:@"Jens Kristensen" withSex:@"Male" 
 														withAge:[NSNumber numberWithInt:60] withAssets:100000];
 	NoblePerson* ChristineMadsen = [[NoblePerson alloc] initWithName:@"Christine Madsen" withSex:@"Female" 
-														withAge:[NSNumber numberWithInt:70] withAssets:30000];
+														withAge:[NSNumber numberWithInt:70] withAssets:300000];
+	NoblePerson* AnnaJensen = [[NoblePerson alloc] initWithName:@"Anna Jensen" withSex:@"Female" 
+														withAge:[NSNumber numberWithInt:70] withAssets:50000];													
 	// b) Create a Butler Citizen
     Citizen* Butler = [[Citizen alloc] initWithName:@"Butler" 
 										withSex:@"Male" withAge:[NSNumber numberWithInt:30]];
@@ -105,37 +108,36 @@ int main(int argc, const char * argv[])
 	[AmandaAndersen setButler:Butler];				// OK!
 	[ChristineMadsen setButler:EmilOlsen];			// OK!
 	
-	NSLog(@"%@",[ChristineMadsen description]);
-	NSLog(@"%@",[JensKristensen description]);
 	/** Step 3) Add Butler (FAIL **/
 	//[JensKristensen setButler:ChristineMadsen];	// Exception: "You are not allowed to have a Noble Butler!"
 	//[JensKristensen setButler:JensKristensen];	// Exception: "You are not allowed to have a Noble Butler!"
 	//[AmandaAndersen setButler:nil];				// Exception: "You must specify a Citizen as Butler!"
 	
 	/** Step 4) Legal Marriage (OK) **/
-	//[JensKristensen marryNoble:SimonHansen];		// FAIL! Exception: 
-	[ChristineMadsen marryNoble:JensKristensen];	// OK!
-	//[JanAndersen marryNoble:ChristineMadsen];		// OK!
+	[AmandaAndersen marryNoble:JensKristensen];		// OK!
         
     /** Step 5) Not Legal Marriage (FAIL) **/
-	//[AmandaAndersen marryNoble:JanAndersen];   	// Exception: "The divorce is not possible!"
-	//[AmandaAndersen marryNoble:JensKristensen];	// FAIL!
-	//[AmandaAndersen setButler:Butler];
-	//[AmandaAndersen marryNoble:JensKristensen];	// FAIL!
+	//[AmandaAndersen marryNoble:JanAndersen];   	// Exception: "Not a legal marriage. Invalid spouse!"
+	//[AmandaAndersen marryNoble:JensKristensen];	// Exception: "Not a legal marriage. Invalid spouse!"
+	//[ChristineMadsen marryNoble:AnnaJensen];		// Exception: "Not a legal marriage. Invalid spouse!"
+	//[AnnaJensen marryNoble:JanAndersen];			// Exception: "No marriage. You don't have a Butler!"
+	//[ChristineMadsen marryNoble:SimonHansen];		// Exception: "No marriage. You are not Noble!"
 	
-	
-    //[AmandaAndersen marryNoble:OleHansen];			// OK!
-    //[MetteHansen setButler:Butler];
-    //[MetteHansen marryNoble:JensKristensen];		// OK!
+    /** Step 5) Legal Divorce (OK) **/
+    [AmandaAndersen divorce:JensKristensen];		// OK!
+        
+	/** Step 6) Not Legal Divorce (FAIL) **/
+	//[ChristineMadsen divorce:JanAndersen];		// Exception: "You are single and therefore unable to divorce this person!"
 
-	/*
+	// Print Description of Test Noble Persons + Butler
 	NSLog(@"%@",[AmandaAndersen description]);
 	NSLog(@"%@",[JanAndersen description]);
 	NSLog(@"%@",[JensKristensen description]);
 	NSLog(@"%@",[ChristineMadsen description]);
 	NSLog(@"%@",[Butler description]);
-	*/
+	
 	/********** TEST DONE **********/
+	
 	NSLog(@"Test Done!");
 	[pool drain];
     return 0;
