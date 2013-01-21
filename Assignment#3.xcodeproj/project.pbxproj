@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		168601BF16ACAB1B001A8920 /* LoggingCitizen.m in Sources */ = {isa = PBXBuildFile; fileRef = 168601BE16ACAB1B001A8920 /* LoggingCitizen.m */; };
+		16A4E52D16AD7EC000598A75 /* CitizenAssertion.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4E52C16AD7EC000598A75 /* CitizenAssertion.m */; };
+		16A4E53016AD969C00598A75 /* Citizen.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A4E52F16AD969C00598A75 /* Citizen.m */; };
 		16B6C45A16A99CCB00920204 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B6C45916A99CCB00920204 /* Foundation.framework */; };
 		16B6C45D16A99CCB00920204 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B6C45C16A99CCB00920204 /* main.m */; };
 		16B6C46116A99CCB00920204 /* Assignment_3.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 16B6C46016A99CCB00920204 /* Assignment_3.1 */; };
@@ -26,6 +29,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		168601BD16ACAB1B001A8920 /* LoggingCitizen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingCitizen.h; sourceTree = "<group>"; };
+		168601BE16ACAB1B001A8920 /* LoggingCitizen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingCitizen.m; sourceTree = "<group>"; };
+		16A4E52B16AD7EC000598A75 /* CitizenAssertion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitizenAssertion.h; sourceTree = "<group>"; };
+		16A4E52C16AD7EC000598A75 /* CitizenAssertion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitizenAssertion.m; sourceTree = "<group>"; };
+		16A4E52E16AD969C00598A75 /* Citizen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Citizen.h; sourceTree = "<group>"; };
+		16A4E52F16AD969C00598A75 /* Citizen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Citizen.m; sourceTree = "<group>"; };
 		16B6C45516A99CCB00920204 /* Assignment#3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment#3"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B6C45916A99CCB00920204 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		16B6C45C16A99CCB00920204 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -45,6 +54,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		168601B316AC5D4A001A8920 /* DefensiveProgramming */ = {
+			isa = PBXGroup;
+			children = (
+				16A4E52E16AD969C00598A75 /* Citizen.h */,
+				16A4E52F16AD969C00598A75 /* Citizen.m */,
+			);
+			path = DefensiveProgramming;
+			sourceTree = "<group>";
+		};
+		168601B616AC5D5F001A8920 /* Assertion */ = {
+			isa = PBXGroup;
+			children = (
+				16A4E52B16AD7EC000598A75 /* CitizenAssertion.h */,
+				16A4E52C16AD7EC000598A75 /* CitizenAssertion.m */,
+			);
+			path = Assertion;
+			sourceTree = "<group>";
+		};
+		168601BC16ACA9EA001A8920 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				168601BD16ACAB1B001A8920 /* LoggingCitizen.h */,
+				168601BE16ACAB1B001A8920 /* LoggingCitizen.m */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
 		16B6C44A16A99CCB00920204 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				16B6C45C16A99CCB00920204 /* main.m */,
+				168601BC16ACA9EA001A8920 /* Logging */,
+				168601B616AC5D5F001A8920 /* Assertion */,
+				168601B316AC5D4A001A8920 /* DefensiveProgramming */,
 				16B6C46016A99CCB00920204 /* Assignment_3.1 */,
 				16B6C45E16A99CCB00920204 /* Supporting Files */,
 			);
@@ -140,6 +179,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				16B6C45D16A99CCB00920204 /* main.m in Sources */,
+				168601BF16ACAB1B001A8920 /* LoggingCitizen.m in Sources */,
+				16A4E52D16AD7EC000598A75 /* CitizenAssertion.m in Sources */,
+				16A4E53016AD969C00598A75 /* Citizen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +278,7 @@
 				16B6C46616A99CCB00920204 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
