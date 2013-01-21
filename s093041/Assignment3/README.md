@@ -1,4 +1,7 @@
-Defensive
+Assignment 3
+============
+
+Assertion
 ---------
 Using the assertion approach for ensuring internal state and
 integrity is an easy to use shortcut for sanity checks
@@ -13,6 +16,8 @@ programmer that something is very wrong. In a production
 environment another method should be used to ensure internal
 consistency.
 
+Logging
+-------
 The logging approach will only persist that an unwanted
 state has at some point been reached, thus it will not
 prevent such a thing from happening. Therefore, for software
@@ -29,6 +34,8 @@ writing log messages about both good and bad states will
 make it a lot easier for a programmer to get an idea of the
 reason for an eventual crash.
 
+Defensive
+---------
 To make sure that a critically unwanted state is not
 reached, even in a deployed application, exceptions can be
 used. However, it should be clearly underlined that it
@@ -49,6 +56,8 @@ represent worst case scenarios that are both unrecoverable
 and highly unwanted, meaning that the application is
 supposed to crash in such a situation.
 
+NSError
+-------
 A fourth and much more used approach is to use NSError. This
 method acts much like the use of exceptions in languages
 like Java and C#. The idea is that a reference (memory
