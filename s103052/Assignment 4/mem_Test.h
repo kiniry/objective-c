@@ -9,13 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Citizen : NSObject
+@interface mem_Test : NSObject
 { 
-  NSMutableArray* _test;
 }
 
-- (id) initWithName:(NSString*)name withSex:(NSString*)sex withAge:(NSNumber*)age;
-
-@property (readonly, nonatomic) NSMutableArray* test;
++ (int)LevenshteinDistanceBetween:(NSString*)s and:(NSString*)t;
 
 @end
