@@ -1,0 +1,29 @@
+//
+//  Citizen.h
+//  Assignment3-Logging
+//
+//  Created by Andreas Haure on 17/01/13.
+//  Copyright (c) 2013 Andreas Roll Haure. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+static BOOL debug = YES;
+
+@interface Citizen : NSObject
+
+@property(atomic,strong) NSString *name;
+
+- (Citizen *)initWithName:(NSString *)name
+                  withSex:(NSString *)sex
+                  withAge:(NSNumber *)age;
+
+- (NSString* )single;
+- (void)addChild:(Citizen *)Achild;
+- (BOOL)canMarry:(Citizen *)Aperson;
+- (void)marry:(Citizen *)Aperson;
+- (void)divorce:(Citizen *)Aperson;
+- (NSString *)generateChildrenString;
+- (NSString *)description;
+
+@end
