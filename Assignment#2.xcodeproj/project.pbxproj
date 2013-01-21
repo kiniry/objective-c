@@ -10,6 +10,12 @@
 		161F5B5916A46002001BDEF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161F5B5816A46002001BDEF4 /* Foundation.framework */; };
 		161F5B5C16A46002001BDEF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 161F5B5B16A46002001BDEF4 /* main.m */; };
 		161F5B6016A46002001BDEF4 /* Assignment_2.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 161F5B5F16A46002001BDEF4 /* Assignment_2.1 */; };
+		161F5B6816A4622D001BDEF4 /* Citizen.m in Sources */ = {isa = PBXBuildFile; fileRef = 161F5B6716A4622D001BDEF4 /* Citizen.m */; };
+		161F5B6B16A46490001BDEF4 /* NoblePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 161F5B6A16A46490001BDEF4 /* NoblePerson.m */; };
+		16AE75E116A6CBF400D9B919 /* FunWithNil.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AE75E016A6CBF400D9B919 /* FunWithNil.m */; };
+		16AE75E416A6D80700D9B919 /* FunWithBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AE75E316A6D80700D9B919 /* FunWithBlocks.m */; };
+		16AE75E716A8239100D9B919 /* FunWithProtocols.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AE75E616A8239100D9B919 /* FunWithProtocols.m */; };
+		16AE75EA16A8250E00D9B919 /* ControllerForProtocolExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AE75E916A8250E00D9B919 /* ControllerForProtocolExperiment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +37,18 @@
 		161F5B5B16A46002001BDEF4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		161F5B5E16A46002001BDEF4 /* Assignment#2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Assignment#2-Prefix.pch"; sourceTree = "<group>"; };
 		161F5B5F16A46002001BDEF4 /* Assignment_2.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Assignment_2.1; sourceTree = "<group>"; };
+		161F5B6616A4622D001BDEF4 /* Citizen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Citizen.h; sourceTree = "<group>"; };
+		161F5B6716A4622D001BDEF4 /* Citizen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Citizen.m; sourceTree = "<group>"; };
+		161F5B6916A46490001BDEF4 /* NoblePerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoblePerson.h; sourceTree = "<group>"; };
+		161F5B6A16A46490001BDEF4 /* NoblePerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoblePerson.m; sourceTree = "<group>"; };
+		16AE75DF16A6CBF400D9B919 /* FunWithNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunWithNil.h; path = "Assignment#2-2/FunWithNil.h"; sourceTree = "<group>"; };
+		16AE75E016A6CBF400D9B919 /* FunWithNil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunWithNil.m; path = "Assignment#2-2/FunWithNil.m"; sourceTree = "<group>"; };
+		16AE75E216A6D80700D9B919 /* FunWithBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunWithBlocks.h; path = "Assignment#2-2/FunWithBlocks.h"; sourceTree = "<group>"; };
+		16AE75E316A6D80700D9B919 /* FunWithBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunWithBlocks.m; path = "Assignment#2-2/FunWithBlocks.m"; sourceTree = "<group>"; };
+		16AE75E516A8239100D9B919 /* FunWithProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunWithProtocols.h; path = "Assignment#2-2/FunWithProtocols.h"; sourceTree = "<group>"; };
+		16AE75E616A8239100D9B919 /* FunWithProtocols.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunWithProtocols.m; path = "Assignment#2-2/FunWithProtocols.m"; sourceTree = "<group>"; };
+		16AE75E816A8250D00D9B919 /* ControllerForProtocolExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerForProtocolExperiment.h; path = "Assignment#2-2/ControllerForProtocolExperiment.h"; sourceTree = "<group>"; };
+		16AE75E916A8250E00D9B919 /* ControllerForProtocolExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ControllerForProtocolExperiment.m; path = "Assignment#2-2/ControllerForProtocolExperiment.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +92,12 @@
 			isa = PBXGroup;
 			children = (
 				161F5B5B16A46002001BDEF4 /* main.m */,
+				16AE75DE16A6CB9800D9B919 /* Assignment#2-2 */,
 				161F5B5F16A46002001BDEF4 /* Assignment_2.1 */,
+				161F5B6916A46490001BDEF4 /* NoblePerson.h */,
+				161F5B6A16A46490001BDEF4 /* NoblePerson.m */,
+				161F5B6616A4622D001BDEF4 /* Citizen.h */,
+				161F5B6716A4622D001BDEF4 /* Citizen.m */,
 				161F5B5D16A46002001BDEF4 /* Supporting Files */,
 			);
 			path = "Assignment#2";
@@ -86,6 +109,21 @@
 				161F5B5E16A46002001BDEF4 /* Assignment#2-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		16AE75DE16A6CB9800D9B919 /* Assignment#2-2 */ = {
+			isa = PBXGroup;
+			children = (
+				16AE75DF16A6CBF400D9B919 /* FunWithNil.h */,
+				16AE75E216A6D80700D9B919 /* FunWithBlocks.h */,
+				16AE75E316A6D80700D9B919 /* FunWithBlocks.m */,
+				16AE75E016A6CBF400D9B919 /* FunWithNil.m */,
+				16AE75E516A8239100D9B919 /* FunWithProtocols.h */,
+				16AE75E616A8239100D9B919 /* FunWithProtocols.m */,
+				16AE75E816A8250D00D9B919 /* ControllerForProtocolExperiment.h */,
+				16AE75E916A8250E00D9B919 /* ControllerForProtocolExperiment.m */,
+			);
+			name = "Assignment#2-2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +178,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				161F5B5C16A46002001BDEF4 /* main.m in Sources */,
+				161F5B6816A4622D001BDEF4 /* Citizen.m in Sources */,
+				161F5B6B16A46490001BDEF4 /* NoblePerson.m in Sources */,
+				16AE75E116A6CBF400D9B919 /* FunWithNil.m in Sources */,
+				16AE75E416A6D80700D9B919 /* FunWithBlocks.m in Sources */,
+				16AE75E716A8239100D9B919 /* FunWithProtocols.m in Sources */,
+				16AE75EA16A8250E00D9B919 /* ControllerForProtocolExperiment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +280,7 @@
 				161F5B6516A46002001BDEF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
