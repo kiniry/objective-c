@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Levenshtein distance' target in the 'Levenshtein distance' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

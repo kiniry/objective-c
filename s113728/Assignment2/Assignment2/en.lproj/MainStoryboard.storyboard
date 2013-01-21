@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+    </dependencies>
+    <scenes>
+        <!--Assignment2 View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="Assignment2ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vun-CD-3bA">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="264" id="F68-ys-adT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PR2-7I-Tfj">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="274" id="jQU-Je-uLc"/>
+                                    <constraint firstAttribute="width" constant="160" id="jWM-Lb-hGF"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hFe-E3-loW">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hAH-ym-I24">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZb-jc-i0T">
+                                <items>
+                                    <barButtonItem title="marry" id="axj-Zo-gfs">
+                                        <connections>
+                                            <action selector="actionPressed:" destination="2" id="jj9-5T-dAK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="divorce" id="KeY-b3-g8C">
+                                        <connections>
+                                            <action selector="divorce:" destination="2" id="r9u-Q1-lBh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="breed" id="5lx-KA-AmC">
+                                        <connections>
+                                            <action selector="breed:" destination="2" id="PPe-pl-f4v"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vun-CD-3bA" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Bgu-KR-AIJ"/>
+                            <constraint firstItem="PR2-7I-Tfj" firstAttribute="top" secondItem="3" secondAttribute="top" constant="109" id="JNd-w9-gB9"/>
+                            <constraint firstItem="Vun-CD-3bA" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Qca-xK-U5n"/>
+                            <constraint firstItem="PR2-7I-Tfj" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="-27" id="Woj-EO-fe0"/>
+                            <constraint firstItem="vZb-jc-i0T" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="llN-3F-WHx"/>
+                            <constraint firstItem="vZb-jc-i0T" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="uKg-Sv-xMx"/>
+                            <constraint firstItem="vZb-jc-i0T" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="yAT-QP-1ME"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="GHW-6W-wDp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="Assignment2ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Assignment2ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="actionPressed:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="personPressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="display" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
