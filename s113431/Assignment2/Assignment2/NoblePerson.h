@@ -11,8 +11,11 @@
 
 @interface NoblePerson : Citizen
 
-@property NSValue* fortune;
+@property NSValue* assets;
+@property Citizen* butler;
 @property (nonatomic) NoblePerson* spouse;
+
+- (void) setSpouse:(NoblePerson*) spouse;
 
 
 @end
