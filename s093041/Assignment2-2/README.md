@@ -10,7 +10,7 @@ used in Objective-C, which spans from handling of raw data
 (NSURLRequest).
 
 The base object of Foundation, which all other objects
-inherit from is 'NSObject', just like 'Object' in Java and
+inherit from is `NSObject`, just like `Object` in Java and
 C#.
 
 
@@ -23,20 +23,20 @@ memory location (object).
 alloc/init
 ----------
 The alloc init pattern is the equivalent to constructors in
-other languages like Java and C#, i.e. using the 'new'
-keyword. The NSObject class method, 'alloc', simply
+other languages like Java and C#, i.e. using the `new`
+keyword. The NSObject class method, `alloc`, simply
 allocates new memory for the object to be instantiated,
-including its instance variables. The 'alloc' method returns
-an anonymous object of type 'id', which will be explained
+including its instance variables. The `alloc` method returns
+an anonymous object of type `id`, which will be explained
 later.
 
 When memory is allocated for the new object, its instance
 variables can be instantiated, either by using the plain
-'init' class method, which can set instance variable to
+`init` class method, which can set instance variable to
 default values, or by using custom initializers, setting
 instance variables to specific values.
 
-All 'init' methods should always call its corresponding
+All `init` methods should always call its corresponding
 super init method. If this fails and returns nil, so should
 this object. If not, proper instantiation can be performed. 
 
@@ -68,7 +68,7 @@ In C# the ICloneable interface makes it possible to
 implement copying and cloning to custom objects.
 In Objective-C the correspondent is the NSCopying protocol
 from NSObject. This can be implemented in any custom
-subclass of NSObject, and defines the method 'copyWithZone'.
+subclass of NSObject, and defines the method `copyWithZone`.
 All of this, however, is only shallow copying - deep copying
 would have to be implemented manually, just like in Java. 
 
@@ -77,9 +77,9 @@ Dynamic typing of ids
 ----------
 Dynamic typing of ids is when a variable point to an object,
 whose type is not checked at compile time. For this, the
-'id' type is used to indicate dynamic types.
+`id` type is used to indicate dynamic types.
 
-For instance NSArrays only contain objects of type 'id',
+For instance NSArrays only contain objects of type `id`,
 i.e. the type of each object is independent of each other
 and not checked at compile time. This also means that type
 information about the objects is lost, when put into the
@@ -87,14 +87,14 @@ array. In this case introspection can be used to check
 types.
 
 A laguange like C# is statically typed, but using the
-'dynamic' type can give some of the same effects as
+`dynamic` type can give some of the same effects as
 Objective-C
 
 
 Field hiding
 ----------
 In Objective-C field or properties are generally either public or private with nothing in between. At least this design choice pretty much enforces the programmer to think about his model in this way when designing the software.
-However, something like a public getter and a private setter can be achieved simply by stating that the public property is 'readonly'. This way, the outside world cannot wirte to it. But internally, the corresponding instance variable is still read/write, which means that the private implementation can indeed write to the property.
+However, something like a public getter and a private setter can be achieved simply by stating that the public property is `readonly`. This way, the outside world cannot wirte to it. But internally, the corresponding instance variable is still read/write, which means that the private implementation can indeed write to the property.
 In C# one would simply write:
 
 	int age { get; private set; }
@@ -126,15 +126,15 @@ Or if an ordinary array is to be returned in a mutable form:
 Logging
 ----------
 Logging in Objective-C is done with the utility function
-'NSLog()' and uses the 'NSString' formatting scheme with the
-'%' sign as marker.
+`NSLog()` and uses the `NSString` formatting scheme with the
+`%` sign as marker.
 
-In Java you use 'System.out.println()', which does not use
-any formatting by default. As goes with 'Console.WriteLine()
+In Java you use `System.out.println()`, which does not use
+any formatting by default. As goes with `Console.WriteLine()`
 in C#.
 
 Formatting can be achieved, though, using the static method
-'format()' of the String objects in both languages.
+`format()` of the String objects in both languages.
 
 
 Method overloading
@@ -154,7 +154,7 @@ declarations:
 
 This would give a 
 
-	'Duplicate declaration of method: appendToString
+	Duplicate declaration of method: appendToString
 
 Instead different signatures should be used:
 
@@ -171,22 +171,22 @@ just like other OO languages.
 
 One difference, however, is that the contents of the array,
 i.e. the type, cannot be specified like in Java or C#. An
-object in an NSArray will always be of type 'id' when
+object in an NSArray will always be of type `id` when
 retrieved.
 
 
 nil
 ----------
-'nil' is the default value of a pointer, which does not
+`nil` is the default value of a pointer, which does not
 point to anything, just like primitive types always default
 to zero. In fact it is zero behind the scenes. Therefore it
-can be tested in an 'if' statement like a 'BOOL' value,
+can be tested in an `if` statement like a `BOOL` value,
 since nil = NO = 0.
 
-Sending messages to a 'nil' value will mostly not result in
+Sending messages to a `nil` value will mostly not result in
 a crash - it will just return nil.
 
-'nil' is comparable to the 'null' literal in Java and C#,
+`nil` is comparable to the `null` literal in Java and C#,
 which also represents a reference that does not refer to any
 object. Thus, one has to be very aware of this design choice
 and maybe use introspection to be completely sure.
@@ -249,33 +249,33 @@ Source: http://stackoverflow.com/a/145164/746968
 
 Strong vs. weak
 ----------
-The 'strong' and 'weak' pointers help the Automatic
+The `strong` and `weak` pointers help the Automatic
 Reference Counting (ARC) keeping track of retain/release
 counts. 
 
-A 'strong' pointer to an object means that the object should
+A `strong` pointer to an object means that the object should
 under no circumstances be released from the heap until the
-pointer is set to 'nil' or manually released.
-A 'weak' pointer means that the object is only kept in the
+pointer is set to `nil` or manually released.
+A `weak` pointer means that the object is only kept in the
 heap as long as someone else points strongly to it. If it
 gets removed from the heap, the weak pointer is
-automatically set to 'nil'.
+automatically set to `nil`.
 
 Weak and strong references also exist in garbage collecting
-languages like C#. Unless explicitly declaring a 'weak'
+languages like C#. Unless explicitly declaring a `weak`
 reference in C#, all references are strong. A weakly
 referenced object in C# can be collected at any time by the
 garbage collector, even though there still is a reference to
 it. This can for instance be used for big pieces of data,
 that should not be unnecessarily allocated in the heap. In
 this case, if it has been removed when a new query to the
-data occurs, the data is just read into a 'weak' reference
+data occurs, the data is just read into a `weak` reference
 again.
 
 
 Variance
 ----------
-Returning 'id' loses type information
+Returning `id` loses type information
 
 
 Exceptions
@@ -294,7 +294,7 @@ thrown in two ways:
 	NSException* exception = [NSException exceptionWithName:@"InternalInconsistencyException" reason:@"Something went completely wrong" userInfo:nil];
 	@throw exception;
 
-The 'try/catch' also excists, but is rarely used:
+The `try/catch` also excists, but is rarely used:
 
 	@try {
 		...
@@ -366,7 +366,7 @@ arrays at the top levels.
 
 Blocks
 ----------
-A 'block' is simply a block of code (sequence of
+A `block` is simply a block of code (sequence of
 statements), which can be assigned to variables and be
 passed around as arguments to methods.
 One cool feature of blocks is that locally declared
@@ -374,11 +374,11 @@ variables, declared before the declaration of the block, can
 be read within the block, even though it might be passed
 into a different method with a very different scope. The
 readonly aspect, however, can be circumvented by using the
-'__block' attribute, making the variable read/write from
+`__block` attribute, making the variable read/write from
 within the block.
 Blocks are very reminiscent of lambda expressions in C# -
-also regarding to syntax, where '^' declares a blocks in
-Objective C and '=>' a lambda expression in C#.
+also regarding to syntax, where `^` declares a blocks in
+Objective C and `=>` a lambda expression in C#.
 Lambdas in C# are often used to transform so called LINQ
 (Language-Integrated Query) statements into equivalent
 lambda expressions before performing the actual query.
