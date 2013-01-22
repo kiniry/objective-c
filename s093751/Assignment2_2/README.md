@@ -112,7 +112,7 @@ Field hiding
  
 In Objective-C all the public properties are specified in the header file and everything else is private. This means that everything inside the implementation, that is not in the header, is hidden. Its possible to add a "settings" to the properties e.g. `readonly` will make the property readable, but not writable by the invoker/caller. In C# this can be done with: 
 	
-	`int assets { get; private set; }
+	int assets { get; private set; }
 	
 Which essentially is a read-only setting.
 
@@ -123,10 +123,9 @@ Immutability
    languages(s)?  Are they *really* immutable?  What good are
    immutable data types?)
 
- - ... how inheritance works as compared to the OTLTYAFW.  (Hint:
-   Consider single vs. multiple inheritance and behavioral vs. code
-   inheritance.  How does class inheritance work and how does type
-   inheritance work?)
+Inheritance
+-----------
+- ... how inheritance works as compared to the OTLTYAFW. (Hint: Consider single vs. multiple inheritance and behavioral vs. code inheritance.  How does class inheritance work and how does type inheritance work?)
 
 
 Logging
