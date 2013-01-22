@@ -49,87 +49,141 @@ parents = _parents;
 // Parents
 -(void) addParent:(Citizen *)parent
 {
-    if ([self.parents count] > 2
-        || [self.parents containsObject:parent]
-        || [self.children containsObject:parent]
-        || (parent == self.spouse))
+    if ([self.parents count] >= 2)
     {
+        NSLog(@"addParent constraint failure: Already has two parents");
         return;
+    } else if ([self.parents containsObject:parent])
+    {
+        NSLog(@"addParent constraint failure: Already has that parent");
+        return;
+    } else if ([self.children containsObject:parent])
+    {
+        NSLog(@"addParent constraint failure: Cannot have child as parent");
+        return;
+    } else if (parent == self.spouse)
+    {
+        NSLog(@"addParent constraint failure: Cannot have spouse as parent");
+        return;
+    } else
+    {
+        NSMutableSet* tmp = [self.parents mutableCopy];
+        [tmp addObject:parent];
+        self.parents = [tmp copy];
+        
+        if (![parent.children containsObject:self]) [parent addChild:self];
     }
     
-    NSMutableSet* tmp = [self.parents mutableCopy];
-    [tmp addObject:parent];
-    self.parents = [tmp copy];
-    
-    [parent addChild:self];
 }
+
 -(void) removeParent:(Citizen *)parent
-{
-    if ([self.parents containsObject:parent])
+{    
+    if (![self.parents containsObject:parent])
     {
-        
+        NSLog(@"removeParent constraint failure: Cannot remove unexisting parent");
+        return;
+    } else
+    {
         NSMutableSet* tmp = [self.parents mutableCopy];
         [tmp removeObject:parent];
         self.parents = [tmp copy];
         
-        [parent removeChild:self];
+        if ([parent.children containsObject:self]) [parent removeChild:self];
     }
 }
 
 // Children
 -(void) addChild:(Citizen *)child
 {
-    if ([self.parents containsObject:child]
-        || [self.children containsObject:child]
-        || (child == self.spouse))
+    if ([self.parents containsObject:child])
     {
+        NSLog(@"addChild constraint failure: Cannot have parent as child");
         return;
+    } else if ([self.children containsObject:child])
+    {
+        NSLog(@"addChild constraint failure: Already has that child");
+        return;
+    } else if (child == self.spouse)
+    {
+        NSLog(@"addChild constraint failure: Cannot have spouse as child");
+        return;
+    } else
+    {
+        NSMutableSet* tmp = [self.children mutableCopy];
+        [tmp addObject:child];
+        self.children = [tmp copy];
+        
+        if (![child.parents containsObject:self]) [child addParent:self];
     }
-
-    NSMutableSet* tmp = [self.children mutableCopy];
-    [tmp addObject:child];
-    self.children = [tmp copy];
-    
-    [child addParent:self];
 }
+
 -(void) removeChild:(Citizen *)child
 {
-    if ([self.children containsObject:child])
+    if (![self.children containsObject:child])
     {
+        NSLog(@"removeParent constraint failure: Cannot remove unexisting child");
+        return;
+    } else {
         NSMutableSet* tmp = [self.children mutableCopy];
         [tmp removeObject:child];
         self.children = [tmp copy];
         
-        [child removeParent:self];
+        if ([child.parents containsObject:self]) [child removeParent:self];
     }
 }
 
 // Civil status
 -(void) marry: (Citizen *)fiancee
 {
-    if (self.single &&
-        !self.spouse &&
-        (fiancee.sex != self.sex) &&
-        ![self.children containsObject:fiancee] &&
-        ![self.parents containsObject:fiancee])
+    if (!self.single)
+    {
+        NSLog(@"marryTo constraint failure: Is not single");
+        return;
+    } else if (self.spouse)
+    {
+        NSLog(@"marryTo constraint failure: Already has a spouse");
+        return;
+    } else if (fiancee.sex == self.sex)
+    {
+        NSLog(@"marryTo constraint failure: Cannot marry same sex");
+        return;
+    } else if ([self.children containsObject:fiancee])
+    {
+        NSLog(@"marryTo constraint failure: Cannot marry child");
+        return;
+    } else if ([self.parents containsObject:fiancee])
+    {
+        NSLog(@"marryTo constraint failure: Cannot marry parent");
+        return;
+    } else
     {
         self.single = NO;
         self.spouse = fiancee;
-        fiancee.single = NO;
-        fiancee.spouse = self;
+        
+        if (!fiancee.spouse) [fiancee marry:self];
     }
 }
 
 -(void) divorce: (Citizen *)spouse
 {
-    if (self.spouse)
+    if (!self.spouse)
+    {
+        NSLog(@"divorceFrom constraint failure: Cannot divorce nonexistent spouse");
+        return;
+    } else if (self.single)
+    {
+        NSLog(@"divorceFrom constraint failure: Cannot divorce when single");
+        return;
+    } else
     {
         self.single = YES;
         self.spouse = nil;
-        [spouse divorce:self];
+        
+        if (spouse.spouse) [spouse divorce:self];
     }
 }
 
+// Util
 +(NSString*) sexToString: (Sex)sex
 {
     switch (sex) {

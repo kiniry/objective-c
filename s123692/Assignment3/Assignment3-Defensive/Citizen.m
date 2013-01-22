@@ -144,14 +144,6 @@ parents = _parents;
 // Civil status
 -(void) marry: (Citizen *)fiancee
 {
-    if (self.single &&
-        !self.spouse &&
-        (fiancee.sex != self.sex) &&
-        ![self.children containsObject:fiancee] &&
-        ![self.parents containsObject:fiancee])
-    {
-    }
-    
     if (!self.single)
     {
         @throw [NSException exceptionWithName:@"marryTo constraint failure"

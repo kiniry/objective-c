@@ -10,10 +10,6 @@
 #import "Citizen.h"
 
 @interface Nobleperson : Citizen
-{
-    NSNumber* _assets;
-    Citizen* _butler;
-}
 
 @property (nonatomic) NSNumber* assets;
 @property Citizen* butler;
