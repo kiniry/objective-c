@@ -14,10 +14,10 @@
 // See CitizenSuperClass for full list of queries, commands and constraints
 
 // BON commands
-/* Init in three different versions that does the same */
+/* Init in three different versions that returns a citizen */
 - (Citizen *)defensiveInitWithName:(NSString *)name andSex:(NSString *)sex andAgeAsInt:(NSInteger)age;
 - (Citizen *)loggingInitWithName:(NSString *)name andSex:(NSString *)sex andAgeAsInt:(NSInteger)age;
-- (Citizen *)AssertionInitWithName:(NSString *)name andSex:(NSString *)sex andAgeAsInt:(NSInteger)age;
+- (Citizen *)assertionInitWithName:(NSString *)name andSex:(NSString *)sex andAgeAsInt:(NSInteger)age;
 
 /* Marry another person */
 - (void)marry:(CitizenSuperClass *)imminentSpouse;

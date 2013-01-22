@@ -20,8 +20,8 @@
 @property  CitizenSuperClass *spouse;
 @property  NSMutableOrderedSet *children;
 
-/* return Does a contraint prevent you from marriage? */
-- (BOOL)impedimentToMarriage;
+/* Assert if you are ready for marriage? */
+- (void)impedimentToMarriage:(CitizenSuperClass *)aSpouse;
 
 /* return Are you single? */
 - (BOOL)single;

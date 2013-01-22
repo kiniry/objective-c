@@ -10,6 +10,7 @@
 
 @implementation CitizenSuperClass
 
+// no requirements or ensurements here in superclass
 - (CitizenSuperClass *)initWithName:(NSString *)name andSex:(NSString *)sex andAgeAsInt:(NSInteger)age {
     self = [super init];
     if (self) {
@@ -20,35 +21,32 @@
     NSLog(@"initialized with name: %@, sex: %@, age %i", name, sex, age);
     return self;
 }
+// requires single() and !impedimentToMarriage()
+// ensures imminentSpouse.spouse == self
+- (void)marry:(CitizenSuperClass *)imminentSpouse{
+    [self impedimentToMarriage:imminentSpouse];
+    self.spouse = imminentSpouse;
+    imminentSpouse.spouse = self;
+    NSAssert(self == imminentSpouse.spouse, @"Postcondition for marriage not satisfied");
+}
+// Asserts the preconditions for marriage from marry()
+- (void)impedimentToMarriage:(CitizenSuperClass *)aSpouse{
+    NSAssert(   self.single
+             && self != aSpouse
+             && ![self.children containsObject:aSpouse]
+             && ![self.parents containsObject:aSpouse]
+             && ![aSpouse.sex isEqualToString:self.sex], @"Precondition for marriage not satisfied");
+   }
 - (BOOL)single{
     return (self.spouse == nil);
 }
-
-- (BOOL)impedimentToMarriage:(CitizenSuperClass *)aSpouse{
-    if (aSpouse != self
-        && self.single
-        && ![self.children containsObject:aSpouse]
-        && ![self.parents containsObject:aSpouse])
-        // TODO figure out how to check spouse gender
-        //&& [self.sex != aSpouse.]
-    {
-        NSLog(@"Ready to marry");
-        return YES;
-    }
-    else return NO;
-}
-
-- (void)marry:(CitizenSuperClass *)imminentSpouse{
-    if ( ![self impedimentToMarriage:imminentSpouse] ){
-        NSLog(@"%@ is marrying %@", self.description, imminentSpouse.description);
-        self.spouse = imminentSpouse;
-    }
-}
-
+// requires self.spouse == spouse
+// ensures self.spouse == nil && spouse.spouse == nil
 - (void)divorce:(CitizenSuperClass *)spouse{
-    NSLog(@"Divorcing scumbag spouse");
+    NSAssert(self.spouse == spouse, @"precondition for divortion not satisfied");
     self.spouse = nil;
     self.spouse.spouse = nil;
+    NSAssert(self.spouse == nil && self.spouse.spouse == nil, @"postcondition for divortion not satisfied");
 }
 
 // Overriding description for debugging.
