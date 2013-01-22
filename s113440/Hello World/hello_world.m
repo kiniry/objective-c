@@ -1,5 +1,9 @@
-#import "hello_world.h"
+// Created by Jacob Gjerstrup, s113440
+#import <Foundation/Foundation.h>
 
-@implementation helloWorld
-		NSLog(@"Hello World!");
-@end
+int main (int argc, const char * argv[]){
+	@autoreleasepool(
+		NSLog(@"Hello World")
+	)
+	return 0;
+}
