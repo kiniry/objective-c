@@ -65,6 +65,8 @@
    in the OTLTYAFW.  (Hint: What are the programming errors relating
    to such?  Can one call methods on/send messages to nil/null/0?)
    
+   The special case about objective-c as compared to the LTIAFW is that a pointer to a nil works.
+   You can actually use this to your advantage in many cases instead of trying to guard against it.
 
  - ... how do the primitive types look in Objective-C as compared to
    the OTLTYAFW.  (Hint: Consider those types that are fundamental and
