@@ -88,21 +88,33 @@ Dynamic typing
  - ... how dynamic typing of pointers compare with the OTLTYAFW.
    (Hint: When/how is type information lost?)
 
-Dynamic typing of IDs
------------------------  
- - ... how dynamic typing of ids compare with the OTLTYAFW.  Is there
-   a comparable construct in your other language(s)?  (Hint: When/how
-   is type information lost?)
 
    
+Dynamic typing of ids
+-----------------------  
+ - ... how dynamic typing of ids compare with the OTLTYAFW.  Is there a comparable construct in your other language(s)?  (Hint: When/how is type information lost?)
    
- - ... how expanded types are declared and used with the OTLTYAFW.(Hint: Can you alias expanded types? Can user-defined types be expanded?)
+`id` is a pointer to a basic struct of the Objective-C language, that is inherited from C. The compiler will not give warning, since it is a weakly typred variable and it assumes the programmer knows what he or she is doing. This seem very scary! So it is often recommended to use a strong type whenever possible. 
+
+An example of usage is `NSArray` that only contains objects of type `id`. This means that when an object is inserted into the array, it loses its type.
+
+However, it does provide some dynamic in the language. It works almost like the `var` keyword in C# and it can also be used as a *return-type*, just like `Object` can be used in C#.
+   
+Expanded types
+------------------
+- ... how expanded types are declared and used with the OTLTYAFW.(Hint: Can you alias expanded types? Can user-defined types be expanded?)
+ 
+No Answer.
 
 Field hiding
 ------------
- - ... how does field hiding work as compared with the OTLTYAFW.
-   (Hint: Does hiding/shadowing work, is it a good practice, do the
-   types matter?)
+- ... how does field hiding work as compared with the OTLTYAFW.(Hint: Does hiding/shadowing work, is it a good practice, do the types matter?)
+ 
+In Objective-C all the public properties are specified in the header file and everything else is private. This means that everything inside the implementation, that is not in the header, is hidden. Its possible to add a "settings" to the properties e.g. `readonly` will make the property readable, but not writable by the invoker/caller. In C# this can be done with: 
+	
+	`int assets { get; private set; }
+	
+Which essentially is a read-only setting.
 
 Immutability
 -------------
