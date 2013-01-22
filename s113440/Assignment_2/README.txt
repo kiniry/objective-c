@@ -1,39 +1,21 @@
-2013-01-22, Carsten Nilsson, s093751
+Reflextions:
 
---- Assignment 2 - Part 2 ---
-
-INTRODUCTION:
-
-As part of the second half of the assignment, we were asked to reflect upon a number of different concepts of programming in OO-languages. 
-
-It should be noted that my background knowledge with OO-programming consists primarily of Java and C#. Therefore these will be the languages I will use for comparison.
-
-The reflections has been evaluated from my own research and experiments.
-
-
-
-REFLECTIONS:
-
-- ... the Foundation framework with the core classes of the
+ - ... the Foundation framework with the core classes of the
    language(s) that you are familiar with? (abbreviated henceforth as
    OTLTYAFW) (Hint: Compare the classes in Foundation, and in
    particular their fundamental design idioms, with classes in
    java.lang/java.util and .Net's System namespace.)
 
-Some of the Core Foundation framework are NSString, NSArray, NSMutableArray, NSNumber, NSObject, NSDictionary etc.
-
-In Objective-C everything is instantiated as a instance of these core classes and most of them are not mutable, hence a mutable version has been made for some e.g. NSMutableString and NSMutableArray.
-
-In C# most of these frameworks' capabilities can be found in the library 'System' and in Java they are found in 'java.lang' or 'java.util'. 
-
-However, they do all have one thing in common and that is that almost all of their core classes and types inherits from a "Master" object class, name the 'Object' or 'NSObject' classes.
-
  - ... how common aliasing is and how it is avoided compared to the
    OTLTYAFW.  (Hint: The keyword here is "ownership".)
+   Aliasing can easily  become an issue in objective-C unless the programmer 
+   himself keeps track of the pointers and makes sure that no two pointers point to the same object
+   or memory.
+   However, in the other language that I know of (Java), this seems to not be an issue, as
+   Java does not use pointers - instead, it uses references, which makes it much easier to
+   keep track of every single object reference.
 
- - ... the alloc/init pattern of object instantiation with how objects
-   are constructed in the OTLTYAFW.  (Hint: What are best practices
-   for constructors in the language of your choice.)
+ - ... the alloc/init pattern of object instantiation with how objects are constructed in the OTLTYAFW.  (Hint: What are best practices for constructors in the language of your choice.)
 
  - ... how class types are used with those in the OTLTYAFW.
 
@@ -43,6 +25,9 @@ However, they do all have one thing in common and that is that almost all of the
  - ... how copying and cloning of objects works (see NSObject's API)
    as compared to the OTLTYAFW.  (Hint: Deep vs. shallow copies,
    twinning, cloning, mutability of iterations, etc.)
+   When copying, Java uses shallow copying per standard, which means that Java just copies the
+   adress, rather than the whole object. Objective-C on the other hand has two standard functions,
+   one that copies the adress like Java, and one that copies the whole object.
 
  - ... how dynamic typing of pointers compare with the OTLTYAFW.
    (Hint: When/how is type information lost?)
@@ -93,6 +78,9 @@ However, they do all have one thing in common and that is that almost all of the
    the OTLTYAFW.  (Hint: Consider those types that are fundamental and
    part of the language definition and those that are actually deemed
    "primitive".)
+   The primitive types of objective C are almost the same as that of C,
+   which is quite natural, seeing that it is an overlay of C. Furthermore,
+   they also seems to be identical to that of Java's primitive classes
 
  - ... how do protocols work and how do they compare with the
    semi-equivalent construct in the OTLTYAFW.  (Hint: Consider classes
