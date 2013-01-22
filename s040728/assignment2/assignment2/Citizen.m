@@ -42,16 +42,22 @@
     }
 }
 
+-(void) addChild:(Citizen *)child{
+    
+}
 
+-(void) addParent:(Citizen *)parent{
+    
+}
 
--(void) setParents:(NSSet *)parents{
+-(void) setParents:(NSMutableSet *)parents{
     // check invariants: parents = 2
     if ([parents count] == 2) {
         _parents = parents;
     }
 }
 
--(void) setChildren:(NSSet *)children{
+-(void) setChildren:(NSMutableSet *)children{
     //NSArray *arr = [children allObjects];
     bool _legal = true;
     

@@ -15,7 +15,7 @@
 
 int main(int argc, const char * argv[])
 {
-
+    //NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
     @autoreleasepool {
         // The Gellers
         Citizen *aFather = [[Citizen alloc] initWithName:@"Jack Geller" Sex:@"male" Age:50];
@@ -98,6 +98,8 @@ int main(int argc, const char * argv[])
         NSLog(@"%@", anotherNoblePerson);
         
     }
+    //[pool drain];
+
     return 0;
 }
 

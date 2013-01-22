@@ -1,8 +1,11 @@
-# Assignment 2: Reflections
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#   Assignment 2: Reflections
 #
 #   by Anders Emil Nielsen, s103457
-#   15/1 - 2012
+#   20/1 - 2012
 #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ################## The Foundation framework (as core library) ##################
 
@@ -48,7 +51,7 @@ Assigning of arrays only creates shallow copies. To make deep copies of arrays, 
 array3 = [1,2,3]
 array4 = array3.dup
 array3 # = [1,2]
-array1 # = [1,2,3]
+array4 # = [1,2,3]
 
 The basic core objects in Ruby are muttable by default, but the difference from Objective-C is that when you make a reference from one variable to another, and you change the value of one of them, it would allocate new memory. If this happens when changing the string value or when referencing i'm not sure about.
 

@@ -10,7 +10,6 @@
 
 @interface Citizen()
 
-@property(atomic,strong) NSString *name;
 @property(atomic,strong) NSString *sex;
 @property(atomic,strong) NSNumber *age;
 @property(atomic,strong) Citizen *spouse;
@@ -29,19 +28,16 @@
     //Check preconditions are not violated:
     
     //Check if the entered name is either set to nil or an empty name was entered, this leads to an exception: Precondition violation.
-    if (!name || [name isEqualToString:@""]){
-        NSException *nameException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You must specify a name!" userInfo:nil];
-        @throw nameException;
+    if (debug && (!name || [name isEqualToString:@""])){
+        NSLog(@"Precondition violation: You didn't specify a name or specified an empty name");
     }
     //Check if the entered sex is either Male or Female, else give exception: Precondition violation.
-    if (!([sex isEqualToString:@"Male"]||[sex isEqualToString:@"Female"])){
-        NSException *sexException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"The sex must be either Male or Female" userInfo:nil];
-        @throw sexException;
+    if (debug && (!([sex isEqualToString:@"Male"]||[sex isEqualToString:@"Female"]))){
+        NSLog(@"Precondition violation: You must enter either 'Male' or 'Female' as sex");
     }
     //Check if the entered age is an integer (we dont want floats for age) and greater than or equal to zero.
-    if (!((strcmp([age objCType], @encode(int))) == 0)||[age isLessThan:@0]){
-        NSException *ageException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"The age must be a positive integer" userInfo:nil];
-        @throw ageException;
+    if (debug && (!((strcmp([age objCType], @encode(int))) == 0)||[age isLessThan:@0])){
+        NSLog(@"Precondition violation: You must enter a positive integer as age");
     }
     
     //No preconditions are violated, we can now initialize the object and initialize its instance variables:
@@ -57,20 +53,28 @@
 }
 
 - (NSString* )single{
+    BOOL status = !self.spouse;
+    if (debug && !(status == !self.spouse)){
+        NSLog(@"Postcondition violation, the wrong value for whether the person was single or not was returned");
+        return NO;
+    }
     return (self.spouse ? @"NO" : @"YES");
 }
 - (void)addChild:(Citizen *)Achild
 {
     //Check that child to be added are not an empty object
-    if (Achild == nil){
-        NSException *emptyChildException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You must specify a child Citizen object to add" userInfo:nil];
-        @throw emptyChildException;
+    if (debug && !Achild){
+        NSLog(@"Precondition violation: You didn't specify a Citizen object to add as child");
+        return;
+    }
+    if (debug && (self.father == Achild || self.mother == Achild)){
+        NSLog(@"Precondition violation: You can't add your own mother or father as your child");
+        return;
     }
     if ([self.sex isEqualToString:@"Male"]){
         if (Achild.father == nil){
             [self.children addObject:Achild];
             Achild.father = self;
-            
         }
         else {
             NSLog(@"The child already has a father");
@@ -92,48 +96,75 @@
 
 - (BOOL)canMarry:(Citizen *)Aperson
 {
-    if (Aperson == nil){
-        NSException *emptySweetheart = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You didn't specify a sweetheart to check for marriage possibilities with" userInfo:nil];
-        @throw emptySweetheart;
+    if (debug && Aperson == nil){
+        NSLog(@"Precondition violation: You didn't specify a person to check for marriage with");
+        return NO;
     }
-    return [self.children indexOfObject:Aperson] == NSNotFound &&
+    BOOL result = [self.children indexOfObject:Aperson] == NSNotFound &&
     self.mother != Aperson &&
     self.father != Aperson &&
     self.sex != Aperson.sex &&
     !self.spouse &&
     !Aperson.spouse;
+    
+    // Check for violation of postconditions
+    if (debug){
+        if(!(!result || [self.children indexOfObject:Aperson])){
+            NSLog(@"Postcondition violation: The result of the check was wrong since your children weren't read and checked correctly");
+        }
+        if(!(!result || self.mother != Aperson )){
+            NSLog(@"Postcondition violation: The result of the check was wrong since your own mother wasn't read and checked correctly");
+        }
+        if(!(!result || self.father != Aperson)){
+            NSLog(@"Postcondition violation: The result of the check was wrong since your own father wasn't read and checked correctly");
+        }
+        if(!(!result || self.sex != Aperson.sex)){
+            NSLog(@"Postcondition violation: The result of the check was wrong since the check of whether your and your sweetheart had the same sex failed");
+        }
+        if(!(!result || [self.single isEqualToString:@"YES"])){
+            NSLog(@"Postcondition violation: The result of the check was wrong since your own status wasn't read and checked correctly");
+        }
+        if(!(!result || [Aperson.single isEqualToString:@"YES"])){
+            NSLog(@"Postcondition violation: The result of the check was wrong since your sweetheart's status wasn't read and checked correctly");
+        }
+
+    }
+    return result;
 }
 
 - (void)marry:(Citizen *)Aperson
 {
-    if (Aperson == nil){
-        NSException *emptySweetheart = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You didn't specify a sweetheart to marry" userInfo:nil];
-        @throw emptySweetheart;
+    if (debug && Aperson == nil){
+        NSLog(@"Precondition violation: You (%@) didn't specify a person to marry (%@)",self.name,Aperson.name);
+        return;
     }
-    if ([self canMarry:Aperson])
+    if (debug && ![self canMarry:Aperson])
     {
+        NSLog(@"Precondition violation: You (%@) are not allowed to marry this person (%@)",self.name,Aperson.name);
+    } else {
         //Legal marriage
         NSLog(@"Legal Marriage between %@ and %@",self.name,Aperson.name);
         self.spouse = Aperson;
         Aperson.spouse = self;
-    } else {
-        NSException *illegalMarriageException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"You are not allowed to marry this person" userInfo:nil];
-        @throw illegalMarriageException;
+    }
+    if (debug && (self.spouse != Aperson || Aperson.spouse != self)){
+        NSLog(@"Postcondition violation: Your own spouse should be %@ and your sweetheart's spouse should be %@",Aperson.name,self.name);
     }
 }
 - (void)divorce:(Citizen *)Aperson
 {
-    if (self.single){
-        NSException *illegalDivorceException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"You are single and therefore you are unable to divorce this person" userInfo:nil];
-        @throw illegalDivorceException;
+    if (debug && !self.single){
+        NSLog(@"Precondition violation: You are single and therefore you are unable to divorce this person");
     }
-    if (self.spouse == Aperson && Aperson.spouse == self){
+    if (debug && !(self.spouse == Aperson && Aperson.spouse == self)){
+        NSLog(@"Precondition violation: You (%@) were never married to %@, and therefore not able to divorce him/her",self.name,Aperson.name);
+    } else {
         Aperson.spouse = nil;
         self.spouse = nil;
         NSLog(@"%@ has succesfully divorced %@",self.name,Aperson.name);
-    } else {
-        NSException *illegalDivorceException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"You were never married to this person and therefore not able to divorce him/her" userInfo:nil];
-        @throw illegalDivorceException;
+    }
+    if (debug && !([self.single isEqualToString:@"YES"] && [Aperson.single isEqualToString:@"YES"])){
+        NSLog(@"Postcondition violation: You (%@) and your old spouse (%@) should both be single after the divorce",self.name,self.spouse.name);
     }
 }
 - (NSString *)generateChildrenString
@@ -149,9 +180,9 @@
     }
     return childrenNames;
 }
-- (NSString *)printInfo
+- (NSString *)description
 {
-    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@",self.name,self.sex,self.age,[self single],[self generateChildrenString],self.mother.name,self.father.name];
+    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@, Spouse: %@",self.name,self.sex,self.age,[self single],[self generateChildrenString],self.mother.name,self.father.name,self.spouse.name];
 }
 
 @end

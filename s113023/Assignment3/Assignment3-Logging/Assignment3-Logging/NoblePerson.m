@@ -36,29 +36,44 @@ static int priceForNobleMarriage = 50000;
             //Check whether any of the Noble persons prepared for marriage have a butler
             if((ANoblePerson.butler || self.butler)){
                 [super marry:ANoblePerson];
-                ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
-                self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
+                ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage);
+                self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage);
                 NSLog(@"Combined assets: %f",ANoblePerson.assets);
             } else {
-                NSLog(@"No butler - No Marriage!");
+                if (debug){
+                    NSLog(@"Precondition violation: No butler - No Marriage!");
+                }
             }
         }
         else {
-            NSLog(@"Not a legal marriage - leads to incest or homosexuality or polygyni");
+            if (debug){
+                NSLog(@"Not a legal marriage - leads to incest or homosexuality or polygyni");
+            }
         }
     } else {
-        NSLog(@"No nobility - No Marriage!");
+        if (debug){
+            NSLog(@"No nobility - No Marriage!");
+        }
     }
 }
 - (void)setButler:(Citizen *)APerson
 {
-    if (APerson == nil){
-        NSException *emptyButlerException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You must specify a Citizen object as butler" userInfo:nil];
-        @throw emptyButlerException;
+    if (debug && APerson == nil){
+        NSLog(@"Precondition violation: You didn't specify a Citizen as butler");
     }
-    if (![APerson isKindOfClass:[NoblePerson class]]){
+    if (debug && [APerson isKindOfClass:[NoblePerson class]]){
+        NSLog(@"Precondition violation: You (%@) can't add a noble butler (%@)",self.name,self.butler.name);
+    } else {
         _butler = APerson;
+
     }
+}
+- (NSString *)description
+{
+    NSString *citizenDescription = [super description];
+    NSString *currentAssets = [NSString stringWithFormat:@", Current assets: %f",self.assets];
+    NSString *butlerName = [NSString stringWithFormat:@", Butler name: %@", self.butler.name];
+    return [[citizenDescription stringByAppendingString:currentAssets] stringByAppendingString:butlerName];
 }
 
 @end

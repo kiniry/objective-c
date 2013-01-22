@@ -10,7 +10,6 @@
 
 @interface Citizen()
 
-@property(atomic,strong) NSString *name;
 @property(atomic,strong) NSString *sex;
 @property(atomic,strong) NSNumber *age;
 @property(atomic,strong) Citizen *spouse;
@@ -57,6 +56,7 @@
 }
 
 - (NSString* )single{
+    
     return (self.spouse ? @"NO" : @"YES");
 }
 - (void)addChild:(Citizen *)Achild
@@ -66,6 +66,10 @@
         NSException *emptyChildException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You must specify a child Citizen object to add" userInfo:nil];
         @throw emptyChildException;
     }
+    if (self.father == Achild || self.mother == Achild){
+        NSException *incenstException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"You are not allowed to add your own father or mother as your child" userInfo:nil];
+        @throw incenstException;
+    }
     if ([self.sex isEqualToString:@"Male"]){
         if (Achild.father == nil){
             [self.children addObject:Achild];
@@ -73,8 +77,8 @@
             
         }
         else {
-            NSLog(@"The child already has a father");
-            return;
+            NSException *alreadyHasFatherException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"The child already has a father" userInfo:nil];
+            @throw alreadyHasFatherException;
         }
     }
     if ([self.sex isEqualToString:@"Female"]){
@@ -83,8 +87,8 @@
             Achild.mother = self;
         }
         else {
-            NSLog(@"The child already has a mother");
-            return;
+            NSException *alreadyHasMotherException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"The child already has a mother" userInfo:nil];
+            @throw alreadyHasMotherException;
         }
     }
 }
@@ -123,7 +127,7 @@
 }
 - (void)divorce:(Citizen *)Aperson
 {
-    if (self.single){
+    if ([self.single isEqualToString:@"YES"]){
         NSException *illegalDivorceException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"You are single and therefore you are unable to divorce this person" userInfo:nil];
         @throw illegalDivorceException;
     }
@@ -149,9 +153,8 @@
     }
     return childrenNames;
 }
-- (NSString *)printInfo
+- (NSString *)description
 {
-    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@",self.name,self.sex,self.age,[self single],[self generateChildrenString],self.mother.name,self.father.name];
+    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@, Spouse: %@",self.name,self.sex,self.age,[self single],[self generateChildrenString],self.mother.name,self.father.name,self.spouse.name];
 }
-
 @end

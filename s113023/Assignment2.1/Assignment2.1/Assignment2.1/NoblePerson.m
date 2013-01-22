@@ -36,8 +36,8 @@ static int priceForNobleMarriage = 50000;
             //Check whether any of the Noble persons prepared for marriage have a butler
             if((ANoblePerson.butler || self.butler)){
                 [super marry:ANoblePerson];
-                ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
-                self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
+                ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage);
+                self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage);
                 //Share butler if i have a butler already
                 if (self.butler){
                     ANoblePerson.butler = self.butler;

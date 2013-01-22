@@ -36,18 +36,27 @@ static int priceForNobleMarriage = 50000;
             //Check whether any of the Noble persons prepared for marriage have a butler
             if((ANoblePerson.butler || self.butler)){
                 [super marry:ANoblePerson];
-                ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
-                self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage)/2;
+                ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage);
+                self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage);
+                //Share butler if i have a butler already
+                if (self.butler){
+                    ANoblePerson.butler = self.butler;
+                } else if (ANoblePerson.butler){
+                    self.butler = ANoblePerson.butler;
+                }
                 NSLog(@"Combined assets: %f",ANoblePerson.assets);
             } else {
-                NSLog(@"No butler - No Marriage!");
+                NSException *noButlerException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"Precondition violation: Either one of the noble persons interested in marriage must have a butler" userInfo:nil];
+               @throw noButlerException;
             }
         }
         else {
-            NSLog(@"Not a legal marriage - leads to incest or homosexuality or polygyni");
+            NSException *notLegalMarriageExeception = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Precondition violation: You are not allowed to marry this person - leads to either icest, homosexyality or polygyni" userInfo:nil];
+            @throw notLegalMarriageExeception;
         }
     } else {
-        NSLog(@"No nobility - No Marriage!");
+        NSException *noNobilityException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"Precondition violation: The person you want to marry is not noble" userInfo:nil];
+        @throw noNobilityException;
     }
 }
 - (void)setButler:(Citizen *)APerson
@@ -58,7 +67,17 @@ static int priceForNobleMarriage = 50000;
     }
     if (![APerson isKindOfClass:[NoblePerson class]]){
         _butler = APerson;
+    } else {
+        NSException *nobleButlerException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"You can't have a noble butler" userInfo:nil];
+        @throw nobleButlerException;
     }
+}
+- (NSString *)description
+{
+    NSString *citizenDescription = [super description];
+    NSString *currentAssets = [NSString stringWithFormat:@", Current assets: %f",self.assets];
+    NSString *butlerName = [NSString stringWithFormat:@", Butler name: %@", self.butler.name];
+    return [[citizenDescription stringByAppendingString:currentAssets] stringByAppendingString:butlerName];
 }
 
 @end

@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+static BOOL debug = YES;
+
 @interface Citizen : NSObject
+
+@property(atomic,strong) NSString *name;
 
 - (Citizen *)initWithName:(NSString *)name
                   withSex:(NSString *)sex
@@ -20,6 +24,6 @@
 - (void)marry:(Citizen *)Aperson;
 - (void)divorce:(Citizen *)Aperson;
 - (NSString *)generateChildrenString;
-- (NSString *)printInfo;
+- (NSString *)description;
 
 @end

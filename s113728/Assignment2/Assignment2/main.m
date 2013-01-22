@@ -18,14 +18,19 @@ int main(int argc, char *argv[])
     @autoreleasepool {
         
         NoblePerson* leCerveau = [[NoblePerson alloc] initWithName:@"Thomas Andersen" andSex:@"male" andAgeAsInt:19];
+        
         NoblePerson* jubJubBird = [[NoblePerson alloc] initWithName:@"John" andSex:@"male" andAgeAsInt:22];
-        Citizen* sprocket = [[Citizen alloc] initWithName:@"Jimmy" andSex:@"male" andAgeAsInt:24];
-        Citizen* Zephyr = [[Citizen alloc] initWithName:@"Mogens" andSex:@"male" andAgeAsInt:32];
+        
+        Citizen* dixie = [[Citizen alloc] initWithName:@"Nitecrawler" andSex:@"male" andAgeAsInt:24];
+        
+        Citizen* zephyr = [[Citizen alloc] initWithName:@"Descore" andSex:@"male" andAgeAsInt:32];
+        
         Citizen* acidBurn = [[Citizen alloc] initWithName:@"Kate" andSex:@"female" andAgeAsInt:22];
+        
         Citizen* donKnuth = [[Citizen alloc] initWithName:@"Donald Knuth" andSex:@"male" andAgeAsInt:74];
         
         [leCerveau marry:acidBurn];
-        [sprocket marry:acidBurn];
+        [dixie marry:acidBurn];
         
         // UI not working yet!
         /*
