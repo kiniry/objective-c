@@ -1,0 +1,80 @@
+Programming in Objective-C
+Homework Assignment #5:
+Reflecting on APIs
+Joseph Kiniry (jkin@imm.dtu.dk)
+
+This homework assignment's purpose is to get you to design, and
+possibly implement a real, non-trivial API in Objective-C.  The API
+must be well-designed, high-performance, and not use an inordinent
+amount of memory.
+
+The point of the exercise is to see if you can think of how to "port"
+an API from another platform, which was written in another language,
+into Objective-C.  Language features significantly impact the size and
+shape of APIs---even their "taste" can be different---so what is of
+interest here is how one maps architectural elements in non-trivial
+ways.
+
+To complete this assignment you must:
+
+ 1. Choose an existing small API in a language/platform that you
+ already know.  By "small" I mean that you should choose either an API
+ with only a handful of classes (around half dozen), or you should
+ choose a small subset of inter-related classes in an existing API,
+ thereby focusing only on a subsystem of an architecture.
+
+ 2. Explain in a README.txt the fundamental aspects of that API
+ fragment, particularly from a design, architecture, and pattern
+ point-of-view.  If you are a junior programmer and have not yet had
+ courses in design, architecture, or patterns, just make a best effort
+ to explain how you perceive the "taste" of the API that you have
+ chosen.
+
+ 3. Translate the chosen API fragment into Objective-C.  Explain in
+ the aforementioned README file the decisions you made about the
+ translation, both straightforward and novel.  I.e., justify the shape
+ of the new API against the old one by relying upon what you have
+ learned in assignments #2-#4.
+
+ 4. Implement the "ported" API to the best of your ability.  The body
+ of any method that you do not implement should NSLog(@"unimplmented")
+ (or similar) and assert(false) to halt.
+
+Off the top of my head, the APIs I think are interesting to translate
+in this fashion include:
+
+ - logging APIs (log4j, java.util.logging, and the Mobius logging
+ - framework for Java and NLog, Log4Net, and the Debug API for .Net)
+ - classes that implement crypto (e.g., the javax.crypto package)
+ - the regular expression classes for word matching (the
+ - java.util.regexp package)
+ - the core networking classes for socket-based network I/O (e.g.,
+ - java.net.Socket and its friends)
+ - the Thread class and related low-level multi-threading classes
+ - (e.g., java.lang.Thread and its friends)
+ - the classes that represent delegates and function types (e.g.,
+ - System's Action and Func classes and their siblings)
+ - the classes that represent arbitrary-precision numbers (e.g.,
+   the java.math package)
+ - the classes that relate to operating systems processes (e.g.,
+   java.lang.Process and its friends)
+ - the classes that represent annotations (e.g., java.lang.annotation)
+ - the classes that represent references (e.g., java.lang.ref)
+ - the classes uses to perform built-in serialization (e.g.,
+   java.io.Serializable and its friends)
+ - the classes that wrap databases and their operations (e.g., the
+   java.sql package)
+ - any "interesting" datatype or two (e.g., java.util.[BitSet,
+   PriorityQueue, ArrayDequeue])
+ - any timer/timing-related classes (e.g., java.util.Timer and its
+   friends)
+ - classes that generate random numbers (e.g., java.util.Random,
+   java.security.SecureRandom, and
+   java.util.concurrent.ThreadLocalRandom)
+ - classes that implement concurrency patterns (e.g., the
+   java.util.concurrent package and its subpackages)
+
+If you have an API that is not on this list that you think is
+interesting, send me a message and a URL and I'll quickly reflect.
+
+Submit the assignment in the standard way via Git.

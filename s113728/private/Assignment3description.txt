@@ -1,0 +1,170 @@
+Programming in Objective-C
+Homework Assignment #3:
+Assertions and Logging
+Joseph Kiniry (jkin@imm.dtu.dk)
+
+This homework assignment's purpose is to get you to experiment with
+and think about assertions and logging in Objective-C, particularly in
+the context of Xcode, cross-platform Objective-C development, and
+(later) app deployment and feedback.
+
+For this assignment you are to rewrite for the "Civil Service" portion
+of the the last assignment.  You are to write three variants of the
+system: one that focuses on defensive programming, one that uses
+logging to track system behavior, and one that uses assertions to
+prevent illegal behavior.
+
+Here is a small example to remind you what these three variants should
+look like.
+
+Imagine that you are implementing an alarm clock.  The alarm clock has
+several features, including queries for the hour and minute of the
+alarm time and a single setter for alarm time.  The informal
+BON specification for such looks like:
+
+class_chart ALARM_CLOCK
+
+explanation
+  "A clock with an alarm."
+inherit 
+  CLOCK
+command
+  "Set alarm time to a new time."
+constraint
+  "The alarm time in hours must be non-negative and less than 24.",
+  "The alarm time in minutes must be non-negative and less than 24."
+end
+
+The formal BON specification for such a class is:
+
+static_diagram
+component
+  class ALARM_CLOCK
+    indexing
+      about:        "A clock with an alarm.";
+      title:        "TickTockClock";
+      author:       "Joe Kiniry";
+      copyright:    "Copyright (C) 2007 Joe Kiniry";
+      organisation: "School of Computer Science and Informatics, UCD";
+      date:         "January 2007";
+      version:      "Revision: 13";
+    inherit 
+      CLOCK
+
+  feature
+    my_alarm_time: INTEGER  -- This alarm's time, in monotonically increasing units.
+    my_alarm_hour: INTEGER  -- This alarm's time, in hours.
+    my_alarm_minute: INTEGER  -- This alarm time, in minutes.
+    my_alarm: ALARM  -- The alarm associated with this clock.
+	
+    make_alarm_clock: ALARM_CLOCK -- Create a new initialised alarm clock associated
+                                  -- with the given alarm.
+      -> an_alarm: ALARM  -- The alarm to be associated with this new alarm clock.
+      ensure
+        Result.time = 12*60*60;
+        Result.alarm = an_alarm;
+      end
+	
+    set_alarm_time  -- Set the alarm time of this clock.
+      -> the_new_alarm_hour: INTEGER  -- The new alarm time hour.
+      -> the_new_alarm_minute: INTEGER  -- The new alarm time minute.
+      require
+        0 <= the_new_alarm_hour;
+        the_new_alarm_hour < 24;
+        0 <= the_new_alarm_minute;
+        the_new_alarm_minute < 60;
+      ensure
+        my_alarm_hour = the_new_alarm_hour;
+        my_alarm_minute = the_new_alarm_minute;
+      end
+		
+    redefined tick  -- One second has passed; update this clock's time and check
+                  -- if we need to switch our alarm on/off.
+      ensure
+        -- If it is the alarm time, the alarm is turned on.
+        time = my_alarm_time -> my_alarm.isOn();  
+        -- If it is one minute after the alarm time, the alarm is turned off.
+        time = (my_alarm_time + 60) \\ 24*60*60 -> not( my_alarm.isOn() );
+      end
+		
+  invariant
+    0 <= my_alarm_time;
+    my_alarm_time < 24*60*60;
+    0 <= my_alarm_hour;
+    my_alarm_hour < 24;
+    0 <= my_alarm_minute;
+    my_alarm_minute < 60;
+
+  end -- class ALARM_CLOCK
+
+end --component
+
+Look carefully at the specification of the feature set_alarm_time.
+The precondition ("require") stipulates that a client may only call
+this method if the hour and minutes passed to the method are
+legitimate.  The method implementation guarantees its postcondition
+("ensure") that, if the client fulfills that precondition, it will set
+the alarm time, and such can be checked via the features my_alarm_hour
+and my_alarm_minute.
+
+Here are examples of the three possible Java implementations of this
+feature:
+
+* defensive programming variant
+
+  public void setAlarmTime(int hour, int minute) throws
+    IllegalArgumentException {
+    if (!((0 <= hour && hour <= 23)) |
+                  (0 <= minute && minute <= 59))
+      throw new IllegalArgumentException("setAlarmTime precondition failure: " +
+             "hour = " + hour + ", minute = " + minute);
+    alarmHour = hour;
+    alarmMinute = minute;
+  }      
+
+* logging variant (presuming DEBUG is a static final defined elsewhere
+  to conditionally enable/disable logging at compile-time)
+
+  import java.util.logging.*;
+
+  ...
+
+  public void setAlarmTime(int hour, int minute) {
+    if (DEBUG & !((0 <= hour && hour <= 23)) &
+                  (0 <= minute && minute <= 59))
+      log.log(Level.SEVERE, "setAlarmTime precondition failure: " +
+             "hour = " + hour + ", minute = " + minute);
+    alarmHour = hour;
+    alarmMinute = minute;
+    if (DEBUG & !((alarm_hour == hour) |
+                  (alarm_minute == minute)))
+      log.log(Level.SEVERE, "setAlarmTime postcondition failure: " +
+              (alarm_hour != hour ? 
+               "hour should be " + hour + " but is " + alarm_hour : 
+               "minute should be " + minute + " but is " + alarm_minute));
+  }
+
+* assertion variant
+
+  public void setAlarmTime(int hour, int minute) {
+    assert 0 <= hour && hour <= 23;
+    assert 0 <= minute && minute <= 59;
+    alarmHour = hour;
+    alarmMinute = minute;
+    assert alarm_hour == hour;
+    assert alarm_minute == minute;
+  }
+
+Compile all of your variants in both clang and gcc.  Reflect upon your
+implementations and their portability across compilers, runtimes, and
+operating systems.  Write down your reflections on these three
+implementation styles and their portability in a project README.txt,
+as you did in the previous assignment.
+
+Reflect also upon the utility of these three styles during initial
+implementation and testing, on-device testing, and after deployment.
+I.e., should an app on an iPhone be emitting logging messages or
+crashing due to assertion failures?  What do existing deployed apps do
+when they fail?  What about Objective-C programs that are meant to run
+on servers?  On desktop clients?
+

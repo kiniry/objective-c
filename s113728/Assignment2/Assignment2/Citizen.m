@@ -10,8 +10,6 @@
 
 @implementation Citizen
 
-@synthesize name = _name;
-@synthesize sex = _sex;
 @synthesize age = _age;
 @synthesize spouse = _spouse;
 @synthesize children = _children;
@@ -20,9 +18,9 @@
 - (Citizen *)initWithName:(NSString *)name andSex:(NSString *)sex andAgeAsInt:(NSInteger)age {
     self = [super init];
     if (self) {
-        self.name = name;
-        self.sex = sex;
-        self.age = &age;
+        _name = name;
+        _sex = sex;
+        _age = &age;
     }
     NSLog(@"initialized with name: %@, sex: %@, age %i", name, sex, age);
     return self;
@@ -56,7 +54,7 @@
 - (void)divorce:(Citizen *)spouse{
     NSLog(@"Divorcing scumbag spouse");
     self.spouse = nil;
-    [spouse divorce:self];
+    self.spouse.spouse = nil;
 }
 
 // Overriding description for debugging.
