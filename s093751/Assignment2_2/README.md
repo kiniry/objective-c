@@ -34,7 +34,7 @@ Aliasing
 
 Aliasing is when two or more pointers (e.g. references in C# and Java) refer to the same location or object.
 
-The design of Objective-C has been made in such a way that the programmer has to make sure to refer to the correct pointers/objects, otherwise the code will crash. In Java and C# these sort of references are usually not a problem, since pointers and such is not used as much.
+The design of Objective-C has been made in such a way that the programmer often has to make sure to refer to the correct pointers/objects, otherwise the code will crash. In Java and C# these sort of references are usually not a problem, since pointers and such is not used as much.
 
 Alloc/init
 ----------
@@ -42,8 +42,22 @@ Alloc/init
    are constructed in the OTLTYAFW.  (Hint: What are best practices
    for constructors in the language of your choice.)
 
+The alloc/init pattern is very similar to constructor pattern of C# and Java. Both of these patterns is used to allocate memory and instantiate the object with most of the basic properties.
 
+In C# and Java is is done with the keyword `new` and the properties set afterwards. Example:
+
+		One objOne = new One(3);
+
+Here, an object of type `One` is created and a property has been set to 3.
+
+The allocation of memory itself is done manually in Objective-C when the `alloc` method is used. It is done automatically in C# and Java when the `new` is used for constructing objects.
+
+The new `description` method that is used to give a string representation of the object is also found in C# and Java, where it is called `toString`, which will also return a string with all its properties.
+
+Class types
+------------
  - ... how class types are used with those in the OTLTYAFW.
+
 
 
 Constructors and factories
