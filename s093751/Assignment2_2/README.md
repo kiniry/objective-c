@@ -59,6 +59,8 @@ Class types
  - ... how class types are used with those in the OTLTYAFW.
 
 The **.h** header file can consists of the class types `@interface` and `@protocol`, where `@protocol` is more similar to the `interface` of C# and Java. 
+Then there is the implementation files called **.m** in Objective-C and they are required to implement an header file. This has it its ups and downs. It makes the code easier to understand, but it also requires even more things to keep track of when coding, which can become quite tedious.
+In C# and Java it is only required to followed the structure of a given interface or protocol if they *extend/implement* them.
 
 Constructors and factories
 --------------------------
