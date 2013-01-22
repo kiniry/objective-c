@@ -27,12 +27,12 @@
 {
     //Check preconditions are not violated:
     
-    //Check if the entered name is either set to nil or an empty name was entered, this leads to an exception: Precondition violation.
+    //Check if a legal name is entered
     if (!name || [name isEqualToString:@""]){
         NSException *nameException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You must specify a name!" userInfo:nil];
         @throw nameException;
     }
-    //Check if the entered sex is either Male or Female, else give exception: Precondition violation.
+    //Check if the entered sex is either Male or Female
     if (!([sex isEqualToString:@"Male"]||[sex isEqualToString:@"Female"])){
         NSException *sexException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"The sex must be either Male or Female" userInfo:nil];
         @throw sexException;
@@ -56,7 +56,6 @@
 }
 
 - (NSString* )single{
-    
     return (self.spouse ? @"NO" : @"YES");
 }
 - (void)addChild:(Citizen *)Achild
@@ -66,10 +65,12 @@
         NSException *emptyChildException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You must specify a child Citizen object to add" userInfo:nil];
         @throw emptyChildException;
     }
+    //Check that the child to be added is not either your own mom or dad
     if (self.father == Achild || self.mother == Achild){
         NSException *incenstException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"You are not allowed to add your own father or mother as your child" userInfo:nil];
         @throw incenstException;
     }
+    //Check whether the child to be added already has a father
     if ([self.sex isEqualToString:@"Male"]){
         if (Achild.father == nil){
             [self.children addObject:Achild];
@@ -77,18 +78,19 @@
             
         }
         else {
-            NSException *alreadyHasFatherException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"The child already has a father" userInfo:nil];
-            @throw alreadyHasFatherException;
+            NSLog(@"The child already has a father");
+            return;
         }
     }
+    //Check whether the child to be added already has a mother
     if ([self.sex isEqualToString:@"Female"]){
         if (Achild.mother == nil){
             [self.children addObject:Achild];
             Achild.mother = self;
         }
         else {
-            NSException *alreadyHasMotherException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"The child already has a mother" userInfo:nil];
-            @throw alreadyHasMotherException;
+            NSLog(@"The child already has a mother");
+            return;
         }
     }
 }
@@ -96,10 +98,12 @@
 
 - (BOOL)canMarry:(Citizen *)Aperson
 {
+    // Check whether a valid Citizen was passed in
     if (Aperson == nil){
         NSException *emptySweetheart = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You didn't specify a sweetheart to check for marriage possibilities with" userInfo:nil];
         @throw emptySweetheart;
     }
+    // If a valid Citizen was passed in - return value indicating whether or not the to persons could be married
     return [self.children indexOfObject:Aperson] == NSNotFound &&
     self.mother != Aperson &&
     self.father != Aperson &&
@@ -110,12 +114,13 @@
 
 - (void)marry:(Citizen *)Aperson
 {
+    // Check whether a valid Citizen was passed in
     if (Aperson == nil){
         NSException *emptySweetheart = [NSException exceptionWithName:NSInvalidArgumentException reason:@"You didn't specify a sweetheart to marry" userInfo:nil];
         @throw emptySweetheart;
     }
-    if ([self canMarry:Aperson])
-    {
+    // Check whether the two persons fulfill the requirements to get married
+    if ([self canMarry:Aperson]){
         //Legal marriage
         NSLog(@"Legal Marriage between %@ and %@",self.name,Aperson.name);
         self.spouse = Aperson;
@@ -127,10 +132,12 @@
 }
 - (void)divorce:(Citizen *)Aperson
 {
+    // Check whether the Citizen asking for a divorce is single or not
     if ([self.single isEqualToString:@"YES"]){
         NSException *illegalDivorceException = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"You are single and therefore you are unable to divorce this person" userInfo:nil];
         @throw illegalDivorceException;
     }
+    // Check whether the Citizen asking for a divorce and his/her spouse were ever married
     if (self.spouse == Aperson && Aperson.spouse == self){
         Aperson.spouse = nil;
         self.spouse = nil;
@@ -144,7 +151,7 @@
 {
     NSMutableString *childrenNames = [[NSMutableString alloc] init];
     
-    // Get all children
+    // Get all children and return string with names
     for (Citizen * childObject in self.children)
     {
         if (childObject.name){
