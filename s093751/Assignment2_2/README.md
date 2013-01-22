@@ -58,7 +58,7 @@ Class types
 ------------
  - ... how class types are used with those in the OTLTYAFW.
 
-
+The **.h** header file can consists of the class types `@interface` and `@protocol`, where `@protocol` is more similar to the `interface` of C# and Java. 
 
 Constructors and factories
 --------------------------
