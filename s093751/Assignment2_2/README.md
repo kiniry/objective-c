@@ -71,7 +71,8 @@ Factories
  
  A factory in Objective-C uses to *class methods*, since it not instantiated to invoke *instance methods*. This is very similar to C# and Java, where a class can be called only using its **static** methods. This approach makes it somewhat easier to use an object, because the invoker/caller does not need to instantiate the object properly.
  
- A typical usage of these factories is for conversion in C# and Java. C#: `bool.tryParse()` and Java: `System.Convert.ToBoolean()`.	
+ A typical usage of these factories is for conversion in C# and Java:
+ C#: `bool.tryParse()` and Java: `System.Convert.ToBoolean()`.	
 
 Copying and cloning
 -------------------
@@ -79,18 +80,23 @@ Copying and cloning
    as compared to the OTLTYAFW.  (Hint: Deep vs. shallow copies,
    twinning, cloning, mutability of iterations, etc.)
 
+In Objective-C the `NSObject` uses the `NSCopying` protocol that requires the object to implement a `copy` method. Many of the Core Foundation Frameworks has some of these methods already implemented e.g. `NSString` has the method `mutableCopy` that return a `NSMutableString`. 
+To be able to clone/copy any other given object, it was required to implement these, just like in C# and Java. In C# and Java it is possible to `clone` an object, but it only clones the references and not the object itself i.e. memory allocation and instantiation of variables. If this is not done properly it could create cases of aliased objects.
+   
 Dynamic typing
 --------------
  - ... how dynamic typing of pointers compare with the OTLTYAFW.
    (Hint: When/how is type information lost?)
 
+Dynamic typing of IDs
+-----------------------  
  - ... how dynamic typing of ids compare with the OTLTYAFW.  Is there
    a comparable construct in your other language(s)?  (Hint: When/how
    is type information lost?)
 
- - ... how expanded types are declared and used with the OTLTYAFW.
-   (Hint: Can you alias expanded types?  Can user-defined types be
-   expanded?)
+   
+   
+ - ... how expanded types are declared and used with the OTLTYAFW.(Hint: Can you alias expanded types? Can user-defined types be expanded?)
 
 Field hiding
 ------------
