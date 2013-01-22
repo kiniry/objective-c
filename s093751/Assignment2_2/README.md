@@ -32,7 +32,9 @@ Aliasing
  - ... how common aliasing is and how it is avoided compared to the
    OTLTYAFW.  (Hint: The keyword here is "ownership".)
 
+Aliasing is when two or more pointers (e.g. references in C# and Java) refer to the same location or object.
 
+The design of Objective-C has been made in such a way that the programmer has to make sure to refer to the correct pointers/objects, otherwise the code will crash. In Java and C# these sort of references are usually not a problem, since pointers and such is not used as much.
 
 Alloc/init
 ----------
