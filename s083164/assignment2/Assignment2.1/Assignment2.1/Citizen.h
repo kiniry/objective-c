@@ -30,7 +30,7 @@ typedef enum
 
 -(Citizen *)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName sex:(Sex)sex andAge:(NSNumber *)age;
 
--(void)marry:(Citizen *)citizen;
+-(bool)marry:(Citizen *)citizen;
 
 -(void)divorce:(Citizen *)citizen;
 

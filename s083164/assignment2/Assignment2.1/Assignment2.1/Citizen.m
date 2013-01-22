@@ -25,7 +25,7 @@
     return self;
 }
 
--(void)marry:(Citizen *)citizen
+-(bool)marry:(Citizen *)citizen
 {
     //Can only get married if both are single
     if (self.isSingle &&
@@ -39,7 +39,11 @@
         
         self.spouse = citizen;
         citizen.spouse = self;
+        
+        return YES;
     }
+    
+    return NO;
 }
 
 -(void)divorce:(Citizen *)citizen

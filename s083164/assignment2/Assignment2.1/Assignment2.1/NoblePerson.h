@@ -15,6 +15,6 @@
 @property (strong)Citizen *butler;
 @property (strong) NoblePerson *spouse;
 
--(void)marry:(Citizen *)citizen;
+-(bool)marry:(Citizen *)citizen;
 
 @end
