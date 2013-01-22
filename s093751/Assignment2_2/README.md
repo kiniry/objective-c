@@ -1,6 +1,5 @@
-2013-01-22, Carsten Nilsson, s093751
-
---- Assignment 2 - Part 2 ---
+Assignment 2 - Part 2
+=====================
 
 INTRODUCTION:
 
