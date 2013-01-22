@@ -12,7 +12,7 @@
 
 // Strong, weak, copy, readonly comming in next commit
 // we don't want to change theese queries
-@property NSString *name, *sex;
+@property (readonly) NSString *name, *sex;
 @property NSSet *parents;
 // we wanna change theese
 @property  NSInteger *age;
