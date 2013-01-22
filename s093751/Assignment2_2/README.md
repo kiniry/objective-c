@@ -58,15 +58,20 @@ Class types
 ------------
  - ... how class types are used with those in the OTLTYAFW.
 
-The **.h** header file can consists of the class types `@interface` and `@protocol`, where `@protocol` is more similar to the `interface` of C# and Java. 
-Then there is the implementation files called **.m** in Objective-C and they are required to implement an header file. This has it its ups and downs. It makes the code easier to understand, but it also requires even more things to keep track of when coding, which can become quite tedious.
+The **.h** header file can consists of the class types `@interface` and `@protocol`, where `@protocol` is more or less similar to the `interface` of C# and Java. The interface is used to make properties and methods *public*, whereas if they are not in the header file, then they are regarded as *private*.
+Then there is the implementation files called **.m** in Objective-C and they are required to implement an header file. This has it its ups and downs. It makes the code easier to understand, but it also requires even things to keep track of when coding, which can become quite tedious.
 In C# and Java it is only required to followed the structure of a given interface or protocol if they *extend/implement* them.
 
-Constructors and factories
+Factories
 --------------------------
  - ... how constructors and factories are realized as compared to the
    OTLTYAFW.  (Hint: Compare best practices in factories.)
 
+ A factory is used to allocate memory and initialize an object, so that the invoker/caller can use it immediately. 
+ 
+ A factory in Objective-C uses to *class methods*, since it not instantiated to invoke *instance methods*. This is very similar to C# and Java, where a class can be called only using its **static** methods. This approach makes it somewhat easier to use an object, because the invoker/caller does not need to instantiate the object properly.
+ 
+ A typical usage of these factories is for conversion in C# and Java. C#: `bool.tryParse()` and Java: `System.Convert.ToBoolean()`.	
 
 Copying and cloning
 -------------------
