@@ -14,14 +14,6 @@ typedef enum {
 } Sex;
 
 @interface Citizen : NSObject
-{
-    NSString* _name;
-    Sex _sex;
-    int _age;
-    BOOL _single;
-    NSSet* _children;
-    NSSet* _parents;
-}
 
 @property (copy) NSString* name;
 @property Sex sex;
