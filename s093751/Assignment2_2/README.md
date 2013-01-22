@@ -14,6 +14,12 @@ REFLECTIONS
 The Foundation Framework
 ------------------------
 
+ - ... the Foundation framework with the core classes of the
+   language(s) that you are familiar with? (abbreviated henceforth as
+   OTLTYAFW) (Hint: Compare the classes in Foundation, and in
+   particular their fundamental design idioms, with classes in
+   java.lang/java.util and .Net's System namespace.)
+
 Some of the Core Foundation framework are `NSString, NSArray, NSMutableArray, NSNumber, NSObject, NSDictionary` etc.
 
 In Objective-C everything is instantiated as a instance of these core classes and most of them are not mutable, hence a mutable version has been made for some e.g. NSMutableString and NSMutableArray.
@@ -21,6 +27,9 @@ In Objective-C everything is instantiated as a instance of these core classes an
 In C# most of these frameworks' capabilities can be found in the library 'System' and in Java they are found in 'java.lang' or 'java.util'. 
 
 However, they do all have one thing in common and that is that almost all of their core classes and types inherits from a "Master" object class, name the 'Object' or 'NSObject' classes.
+
+Aliasing
+----------
 
  - ... how common aliasing is and how it is avoided compared to the
    OTLTYAFW.  (Hint: The keyword here is "ownership".)
