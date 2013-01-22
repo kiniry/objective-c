@@ -94,7 +94,7 @@ parents = _parents;
 }
 
 // Civil status
--(void) marryTo: (Citizen *)fiancee
+-(void) marry: (Citizen *)fiancee
 {
     if (self.single &&
         !self.spouse &&
@@ -109,13 +109,13 @@ parents = _parents;
     }
 }
 
--(void) divorceFrom: (Citizen *)spouse
+-(void) divorce: (Citizen *)spouse
 {
     if (self.spouse)
     {
         self.single = YES;
         self.spouse = nil;
-        [spouse divorceFrom:self];
+        [spouse divorce:self];
     }
 }
 

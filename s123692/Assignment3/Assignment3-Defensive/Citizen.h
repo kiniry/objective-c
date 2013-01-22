@@ -1,6 +1,6 @@
 //
 //  Citizen.h
-//  Assignment2
+//  Assignment3-Defensive
 //
 //  Created by Markus Færevaag on 14.01.13.
 //  Copyright (c) 2013 Markus Færevaag. All rights reserved.
@@ -14,14 +14,6 @@ typedef enum {
 } Sex;
 
 @interface Citizen : NSObject
-{
-    NSString* _name;
-    Sex _sex;
-    int _age;
-    BOOL _single;
-    NSSet* _children;
-    NSSet* _parents;
-}
 
 @property (copy) NSString* name;
 @property Sex sex;
@@ -46,5 +38,8 @@ typedef enum {
 // Civil status
 -(void) marry: (Citizen *)bride;
 -(void) divorce: (Citizen *)fiancee;
+
+// Util
++(NSString*) sexToString: (Sex)sex;
 
 @end

@@ -1,6 +1,6 @@
 //
 //  Nobleperson.m
-//  Assignment2
+//  Assignment3-Defensive
 //
 //  Created by Markus Færevaag on 14.01.13.
 //  Copyright (c) 2013 Markus Færevaag. All rights reserved.
@@ -12,7 +12,8 @@
 
 int minAssets = 1000000;
 
-@synthesize assets = _assets, butler = _butler;
+@synthesize assets = _assets,
+            butler = _butler;
 
 -(void) marry:(Citizen *)fiancee
 {
