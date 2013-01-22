@@ -1,20 +1,20 @@
 Assignment 2 - Part 2
-=====================
+================
 
 INTRODUCTION
 ------------
 
 As part of the second half of the assignment, we were asked to reflect upon a number of different concepts of programming in OO-languages. 
-It should be noted that my background knowledge with OO-programming consists primarily of Java and C#. Therefore these will be the languages I will use for comparison.
+It should be noted that my background knowledge with OO-programming consists primarily of Javaa and C#. Therefore these will be the languages I will use for comparison.
 The reflections has been evaluated from my own research and experiments.
 
 REFLECTIONS
------------
+===========
 
 The Foundation Framework
 ------------------------
 
-Some of the Core Foundation framework are NSString, NSArray, NSMutableArray, NSNumber, NSObject, NSDictionary etc.
+Some of the Core Foundation framework are `NSString, NSArray, NSMutableArray, NSNumber, NSObject, NSDictionary` etc.
 
 In Objective-C everything is instantiated as a instance of these core classes and most of them are not mutable, hence a mutable version has been made for some e.g. NSMutableString and NSMutableArray.
 
