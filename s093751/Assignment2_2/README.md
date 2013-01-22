@@ -1,23 +1,18 @@
 Assignment 2 - Part 2
 =====================
 
-INTRODUCTION:
+INTRODUCTION
+------------
 
 As part of the second half of the assignment, we were asked to reflect upon a number of different concepts of programming in OO-languages. 
-
 It should be noted that my background knowledge with OO-programming consists primarily of Java and C#. Therefore these will be the languages I will use for comparison.
-
 The reflections has been evaluated from my own research and experiments.
 
+REFLECTIONS
+-----------
 
-
-REFLECTIONS:
-
-- ... the Foundation framework with the core classes of the
-   language(s) that you are familiar with? (abbreviated henceforth as
-   OTLTYAFW) (Hint: Compare the classes in Foundation, and in
-   particular their fundamental design idioms, with classes in
-   java.lang/java.util and .Net's System namespace.)
+The Foundation Framework
+------------------------
 
 Some of the Core Foundation framework are NSString, NSArray, NSMutableArray, NSNumber, NSObject, NSDictionary etc.
 
