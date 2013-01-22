@@ -8,29 +8,29 @@ Many method names from the Foundation framework contains information aboutwhat t
 
 ### The alloc/init pattern
 
-In Objective-C the initialization (of a NSObject) best practice is to explicity use the alloc followed by the init method. The Objective-C language supports the class method new, which is used by many other languages (Java, Ruby), but this isn't considered a best practice, when initializing new object instances. Instead the alloc and init is used as a on-liner. The Ruby Class (the superclass of every class) does also support a class method (allocate) for allocation only. But the standard initialization method (initialize) is private, so it is not alloud to use allocate followed by initialize as follow:
+In Objective-C the initialization (of a NSObject) good practice is to explicity use the alloc followed by the init method. The Objective-C language supports the class method new, which is used by many other languages (Java, Ruby), but this isn't considered a good practice, when initializing new object instances. Instead the alloc and init is used as a on-liner. The Ruby Class (the superclass of every class) does also support a class method (allocate) for allocation only. But the standard initialization method (initialize) is private, so it is not alloud to use allocate followed by initialize as follow:
 
 ```ruby
 inst = Foo.allocate.initialize // not allowed
 ```
 
-Instead Ruby Class has a class method new that both allocates and afterwards initializes (by running initialize). So in Ruby a best practice is to use:
+Instead Ruby Class has a class method new that both allocates and afterwards initializes (by running initialize). So in Ruby a good practice is to use:
 
 ```ruby
-inst = Foo.new // best practice
+inst = Foo.new
 ```
 
 In Objective-C 'expaned' initialization methods are implemented as instance methods that uses the dedicated initializer ([super init]). This is done in Ruby by just overwriting the initialize method. Due to the fact that is not allowed to have overload methods in Ruby, you only have one initializer method for each class.
 
 ### Factories
 
-In Objective-C the factory method pattern is used widely in the Foundation class' as a shortcut around the alloc. Although they use it a lot in the core objects, i wouldn't consider it a best practice for custom objects. If that would have been the case, the Objective-C designers wouldn't have seperated the alloc and init. The cases used for the core objects is for the most often used cases. In Ruby the factory pattern is also used rarely, but can be seen in core classes such as File with File.open. A nice use of factories in Ruby is to use them combined with the (awesome) Ruby blocks. E.g. if you want to open a file, process it and close it right after, you can do as follow:
+In Objective-C the factory method pattern is used widely in the Foundation class' as a shortcut around the alloc. Although they use it a lot in the core objects, i wouldn't consider it a good practice for custom objects. If that would have been the case, the Objective-C designers wouldn't have seperated the alloc and init. The cases used for the core objects is for the most often used cases. In Ruby the factory pattern is also used rarely, but can be seen in core classes such as File with File.open. A nice use of factories in Ruby is to use them combined with the (awesome) Ruby blocks. E.g. if you want to open a file, process it and close it right after, you can do as follow:
 
 ```ruby
 File.open('/foo/bar') do |file|
-  file.read // do stuff with file
+  file.read # do stuff with file
 end
-// file is closed
+# file is closed
 ```
 
 ### Copying
@@ -46,6 +46,7 @@ Assigning of arrays only creates shallow copies. To make deep copies of arrays, 
 ```ruby
 array3 = [1,2,3]
 array4 = array3.dup
+array3.pop
 array3 # = [1,2]
 array4 # = [1,2,3]
 ```
