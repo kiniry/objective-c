@@ -13,7 +13,7 @@
 int minAssets = 1000000;
 
 @synthesize assets = _assets,
-            butler = _butler;
+butler = _butler;
 
 
 -(void) marry:(Citizen *)fiancee
@@ -50,11 +50,16 @@ int minAssets = 1000000;
         if (self.spouse)
         {
             Nobleperson *nobleSpouse = (Nobleperson *)self.spouse;
-            _assets = [NSNumber numberWithFloat:(([assets floatValue] +[nobleSpouse.assets floatValue])/2)];
+            NSNumber *newAssets = [NSNumber numberWithFloat:(([assets floatValue] +[nobleSpouse.assets floatValue])/2)];
+            _assets = newAssets;
             [nobleSpouse setAssetsWithoutSharing:_assets];
+            
+            if (self.assets != newAssets) NSLog(@"setAssets failure: your shared assets were not set");
         } else
         {
             _assets = assets;
+            
+            if (self.assets != assets) NSLog(@"setAssets failure: your unshared assets were not set");
         }
     }
 }
@@ -68,6 +73,8 @@ int minAssets = 1000000;
     } else
     {
         _assets = assets;
+        
+        if (self.assets != assets) NSLog(@"setAssetsWithoutSharing failure: your unshared assets were not set");
     }
 }
 

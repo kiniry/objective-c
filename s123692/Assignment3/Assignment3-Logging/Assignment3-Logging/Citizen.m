@@ -72,12 +72,14 @@ parents = _parents;
         self.parents = [tmp copy];
         
         if (![parent.children containsObject:self]) [parent addChild:self];
+        
+        if (![self.parents containsObject:parent]) NSLog(@"addParent failure: parent was not added");
     }
     
 }
 
 -(void) removeParent:(Citizen *)parent
-{    
+{
     if (![self.parents containsObject:parent])
     {
         NSLog(@"removeParent constraint failure: Cannot remove unexisting parent");
@@ -89,6 +91,8 @@ parents = _parents;
         self.parents = [tmp copy];
         
         if ([parent.children containsObject:self]) [parent removeChild:self];
+        
+        if ([self.parents containsObject:parent]) NSLog(@"removeParent failure: parent was not removed");
     }
 }
 
@@ -114,6 +118,8 @@ parents = _parents;
         self.children = [tmp copy];
         
         if (![child.parents containsObject:self]) [child addParent:self];
+        
+        if (![self.children containsObject:child]) NSLog(@"addChild failure: child was not added");
     }
 }
 
@@ -129,6 +135,8 @@ parents = _parents;
         self.children = [tmp copy];
         
         if ([child.parents containsObject:self]) [child removeParent:self];
+        
+        if ([self.children containsObject:child]) NSLog(@"removeChild failure: child was not removed");
     }
 }
 
@@ -161,6 +169,8 @@ parents = _parents;
         self.spouse = fiancee;
         
         if (!fiancee.spouse) [fiancee marry:self];
+        
+        if (self.spouse != fiancee) NSLog(@"marry failure: you were not married");
     }
 }
 
@@ -180,6 +190,8 @@ parents = _parents;
         self.spouse = nil;
         
         if (spouse.spouse) [spouse divorce:self];
+        
+        if (self.spouse == spouse) NSLog(@"divorce failure: you were not divorced");
     }
 }
 
