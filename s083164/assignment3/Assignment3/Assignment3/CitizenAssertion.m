@@ -12,28 +12,33 @@
 
 -(void)marry:(Citizen *)citizen
 {
-    NSAssert([super marry:citizen], @"Can't marry!");
-    NSAssert(self.spouse == citizen && citizen.spouse == self, @"Marry Postcondition failure");
+    NSAssert([super eligibleToMarry:citizen], @"Precondition failure: Not eligible to get married");
+    
+    [super marry:citizen];
+    
+    NSAssert(self.spouse == citizen && citizen.spouse == self, @"Postcondition failure");
 }
 
 -(void) addChild:(Citizen*) child
 {
+    NSAssert(![self.children containsObject:child], @"Precondition failure: Cant add an aldready existing child");
+    
     if (!self.children) self.children = [[NSMutableSet alloc] init];
     
     NSInteger initNumberOfChiildren = [self.children count];
     
     [super addChild:child];
     
-    NSAssert([self.children count] > initNumberOfChiildren, @"addChild postcondition failure");
+    NSAssert([self.children count] > initNumberOfChiildren, @"Postcondition failure: No child was added");
 }
 
 -(void)divorce:(Citizen *)citizen
 {
-    NSAssert(self.spouse == nil, @"divorce precondition failure");
+    NSAssert(self.spouse != nil, @"Precondition failure: You can't divorce when you arent married");
     
     [super divorce:citizen];
     
-    NSAssert(self.spouse != nil, @"divorce postcondition failure");
+    NSAssert(self.spouse == nil, @"Postcondition failure");
 }
 
 @end

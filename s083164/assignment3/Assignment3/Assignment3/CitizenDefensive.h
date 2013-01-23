@@ -1,14 +1,13 @@
 //
-//  CitizenAssertion.h
+//  CitizenDefensive.h
 //  Assignment3
 //
-//  Created by Emil Klarskov Kristensen on 1/22/13.
+//  Created by Emil Klarskov Kristensen on 1/23/13.
 //  Copyright (c) 2013 Emil Klarskov Kristensen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "Citizen.h"
 
-@interface CitizenAssertion : Citizen
+@interface CitizenDefensive : NSObject
 
 @end
