@@ -118,7 +118,7 @@ Which essentially is a read-only setting.
 
 Immutability
 -------------
- - ... how is immutability used and why as compared with the
+- ... how is immutability used and why as compared with the
    OTLTYAFW.  (Hint: What are the immutable base types in your other
    languages(s)?  Are they *really* immutable?  What good are
    immutable data types?)
@@ -130,33 +130,47 @@ Inheritance
 
 Logging
 -------
- - ... the built-in methods for logging as compared to the OTLTYAFW.
+- ... the built-in methods for logging as compared to the OTLTYAFW.
    (Hint: There is more to the world than printf in logging and
    debugging.)
 
 Method overloading
 ------------------
- - ... how method overloading works (or doesn't) as compared to the
-   OTLTYAFW.  (Hint: Is overloading permitted?  Is it a best practice?
-   What are the pros and cons?)
+- ... how method overloading works (or doesn't) as compared to the OTLTYAFW.  (Hint: Is overloading permitted? Is it a best practice? What are the pros and cons?)
 
-Polymorpism
+Overloading in Objective-C is not permitted. The compiler will return an error that look like
+
+	Duplicate declaration of method: methodName
+	
+The method name consists of the names of each parameter, called the signatures. If the programmer wishes to create something overload alike methods, then he or she muist change the signature names instead.
+
+In other OO-languages such as C# and Java is it quite easily to create overloads for methods, you just simply create a method with the same name and change the parameters in any way you wish. For instance there could be the methods
+
+	methodName(int number);
+	methodName(int number, string name);
+	methodName(int number, string name, bool check);
+
+Polymorphism
 ------------
- - ... how polymorphism works (or doesn't) as compared to the
-   OTLTYAFW.  (Hint: Note that I did not say what *kind* of
-   polymorphism.)
+- ... how polymorphism works (or doesn't) as compared to the OTLTYAFW. (Hint: Note that I did not say what *kind* of polymorphism.)
 
+Polymorphism is a special expression of a *contract* that allows certain data types to take advantage of e.g. in C# two strings can be concatenated by using the **+** addition symbol i.e. it combines two different string objects into one.
+
+It is not supported in Objective-C.
+ 
 NSArray
 -----------
- - ... how NSArray compared with (typically monomorphic) arrays in the
-   OTLTYAFW.  (Hint: Look up monomorphic and consider the typical
-   anti-patterns for array use.)
+- ... how NSArray compared with (typically monomorphic) arrays in the OTLTYAFW.  (Hint: Look up monomorphic and consider the typical anti-patterns for array use.)
+
+The `NSArray` allowes all data types that inherits from `NSObject`, meaning almost all data types in Objective-C. As opposed to C# and Java that only allows an array with the same type of content e.g. `List<string> list = new List<string>();` only allows `string` objects as its contents.
+
+The `NSArray` is also immutable just like in C# and Java, meaning once the objects has been pushed into the array, they cannot be modified or changed.
 
 nil
 ----------
- - ... how does nil work as compared to the semi-equivalent construct
-   in the OTLTYAFW.  (Hint: What are the programming errors relating
-   to such?  Can one call methods on/send messages to nil/null/0?)
+- ... how does nil work as compared to the semi-equivalent construct in the OTLTYAFW. (Hint: What are the programming errors relating to such?  Can one call methods on/send messages to nil/null/0?)
+
+
 
 Primitive types
 ---------------
