@@ -1,0 +1,4 @@
+Assesment by Søren Olofsson of assignment 2 made by Philip Nielsen.
+Implementation and reflections look good.
+
+You might have a small error in your marryToCitizen-method: it is possible that your _spouse property gets set but the newSpouse does not get his _spouse property set. It happens if the newSpouse is already married but you are single.
