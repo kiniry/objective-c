@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Citizen.h"
 
-@interface CitizenDefensive : NSObject
+@interface CitizenDefensive : Citizen
 
 @end
