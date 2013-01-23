@@ -118,22 +118,26 @@ Which essentially is a read-only setting.
 
 Immutability
 -------------
-- ... how is immutability used and why as compared with the
-   OTLTYAFW.  (Hint: What are the immutable base types in your other
-   languages(s)?  Are they *really* immutable?  What good are
-   immutable data types?)
+- ... how is immutability used and why as compared with the OTLTYAFW.  (Hint: What are the immutable base types in your other languages(s)?  Are they *really* immutable?  What good are immutable data types?)
+
+Mutability is when an objet can be edited and modified, just like normal, and immutability is the quite opposite, meaning that it cannot be modified and is rather *static* (locked).
+
+An example of this is `NSArray` that contains data of the type `NSObject`, that cannot be modified, once it has been pushed into the array. However, if the object `NSMutableArray` is used instead, then it is possible to modify the objects while they are in the array.
 
 Inheritance
 -----------
 - ... how inheritance works as compared to the OTLTYAFW. (Hint: Consider single vs. multiple inheritance and behavioral vs. code inheritance.  How does class inheritance work and how does type inheritance work?)
 
+Inheritance is delared in the header file instead of the class file in C# and Java. Multiple inheritance is not supported, nor is it supported in C#. So instead single inheritance is used to implement objects from some super class. 
 
 Logging
 -------
-- ... the built-in methods for logging as compared to the OTLTYAFW.
-   (Hint: There is more to the world than printf in logging and
-   debugging.)
+- ... the built-in methods for logging as compared to the OTLTYAFW.(Hint: There is more to the world than printf in logging and debugging.)
 
+One of the Core Foundation Frameworks is the ``NSLog` that can be used to write out messages into the console, that could be used for debugging. Very much similar to the `System.out.println` from Java and `Console.Write` from C#. 
+However, there are also other ways of logging. In C# it is also possible to use the library `log4net` that offers messages to be stored in a configurable and safe way. 
+Objective-C also has this capablity in some of its other frameworks e.g Apple has a framework called *Apple System Logger* (ASL), that is somewhat similar to `log4net`.
+   
 Method overloading
 ------------------
 - ... how method overloading works (or doesn't) as compared to the OTLTYAFW.  (Hint: Is overloading permitted? Is it a best practice? What are the pros and cons?)
@@ -164,7 +168,7 @@ NSArray
 
 The `NSArray` allowes all data types that inherits from `NSObject`, meaning almost all data types in Objective-C. As opposed to C# and Java that only allows an array with the same type of content e.g. `List<string> list = new List<string>();` only allows `string` objects as its contents.
 
-The `NSArray` is also immutable just like in C# and Java, meaning once the objects has been pushed into the array, they cannot be modified or changed.
+The `NSArray` is also immutable just like in Java, meaning once the objects has been pushed into the array, they cannot be modified or changed.
 
 nil
 ----------
