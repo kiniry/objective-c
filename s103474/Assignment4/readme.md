@@ -123,4 +123,43 @@ Here it is clear to see the complexities of the various methods. The `NSString` 
 
 These are all expected complexities. There is really nothing significant here.
 
+## Part 7: Blocks
+
+"Blocks" are blocks of code that can be called later. Basically, they're anonymous functions in Objective-C. In this part of the assignment, the task is to figure out whether calling them is faster or slower than simply running their contents in the code, or in a method call. Also, does it matter how many variables they read or use? Does it matter how many variables they declare? Does the type of these variables matter? The command line output below will tell us:
+
+	2013-01-23 17:08:55.882 Ass4Blocks[29393:303] Starting part 1 (Simply running the calls).
+	2013-01-23 17:08:55.991 Ass4Blocks[29393:303] Done with part 1! Time passed: 106.63 ms.
+	2013-01-23 17:08:55.991 Ass4Blocks[29393:303] Starting part 2 (Doing above calls in a method).
+	2013-01-23 17:08:56.123 Ass4Blocks[29393:303] Done with part 2! Time passed: 131.54 ms.
+	2013-01-23 17:08:56.124 Ass4Blocks[29393:303] Starting part 3 (Doing above calls in a simple block).
+	2013-01-23 17:08:56.254 Ass4Blocks[29393:303] Done with part 3! Time passed: 129.61 ms.
+	2013-01-23 17:08:56.255 Ass4Blocks[29393:303] Starting part 4 (Block accessing primitive variable).
+	2013-01-23 17:08:56.362 Ass4Blocks[29393:303] Done with part 4! Time passed: 106.40 ms.
+	2013-01-23 17:08:56.362 Ass4Blocks[29393:303] Starting part 5 (Block accessing outside object).
+	2013-01-23 17:08:56.507 Ass4Blocks[29393:303] Done with part 5! Time passed: 144.75 ms.
+	2013-01-23 17:08:56.508 Ass4Blocks[29393:303] Starting part 6 (Block with arguments).
+	2013-01-23 17:08:56.620 Ass4Blocks[29393:303] Done with part 6! Time passed: 111.54 ms.
+	2013-01-23 17:08:56.620 Ass4Blocks[29393:303] Starting part 7 (Block with inner variables).
+	2013-01-23 17:08:57.120 Ass4Blocks[29393:303] Done with part 7! Time passed: 499.04 ms.
+
+And here it is clear to see that, **no**, largely this does not matter. It only makes a difference when we define variables inside the block, although this can be defined to say that it happens simply because we're running more code inside the block, and running this code outside a block would yield almost the exact same times (as per test 1-3).
+
+## Part 8: Protocols
+
+"Protocols" in Objective-C are like "interfaces" in Java; blueprints for classes, of which classes can choose to "implement" one or many. Question is: Does it come at a performance cost to use protocols? Does it make a difference if it's a very big protocol? Does it make a difference if we're using a LOT of protocols? The command line output below will tell us:
+
+	2013-01-23 17:42:06.815 Ass4Protocols[30158:303] Starting part 1 (no protocols).
+	2013-01-23 17:42:06.817 Ass4Protocols[30158:303] Hello from Foo1
+	2013-01-23 17:42:06.818 Ass4Protocols[30158:303] Done with part 1! Time passed: 0.42 ms.
+	2013-01-23 17:42:06.818 Ass4Protocols[30158:303] Starting part 2 (one protocol).
+	2013-01-23 17:42:06.818 Ass4Protocols[30158:303] Hello from Foo 2!
+	2013-01-23 17:42:06.819 Ass4Protocols[30158:303] Done with part 2! Time passed: 0.45 ms.
+	2013-01-23 17:42:06.819 Ass4Protocols[30158:303] Starting part 3 (one long protocol).
+	alfa bravo charlie delta echo foxtrot golf hotel india juliet kilo lima mike november oscar papa quebec romeo sierra tango uniform victor whiskey xray yankee zulu
+	2013-01-23 17:42:06.820 Ass4Protocols[30158:303] Done with part 3! Time passed: 0.08 ms.
+	2013-01-23 17:42:06.820 Ass4Protocols[30158:303] Starting part 4 (26 protocols).
+	alfa bravo charlie delta echo foxtrot golf hotel india juliet kilo lima mike november oscar papa quebec romeo sierra tango uniform victor whiskey xray yankee zulu
+	2013-01-23 17:42:06.820 Ass4Protocols[30158:303] Done with part 4! Time passed: 0.07 ms.
+
+And, as is clear to see, the answer is a big, solid, resounding **NO**. The first two examples call the same methods, with and without a use of protocols. No noticable difference. The other two examples call the same methods, with them inherited from either one big protocol or many small ones. No noticable difference here, either. We can happily use protocols without a problem.
 
