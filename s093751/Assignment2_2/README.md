@@ -230,7 +230,9 @@ An exception can be thrown with the Foundation `NSException` Framework, which lo
 
 ```
 @try {
-    NSException *e = [NSException exceptionWithName:@"FileNotFoundException" reason:@"File Not Found on System" userInfo:nil];
+    NSException *e = [NSException exceptionWithName:@"FileNotFoundException" 
+											 reason:@"File Not Found on System" 
+										   userInfo:nil];
 	@throw e;
 }
 @catch(NSException *e) {
