@@ -13,7 +13,7 @@
 -(void)marry:(Citizen *)citizen
 {
     NSAssert([super marry:citizen], @"Can't marry!");
-    NSAssert(self.spouse == citizen && citizen.spouse == self, @"Postcondition failure");
+    NSAssert(self.spouse == citizen && citizen.spouse == self, @"Marry Postcondition failure");
 }
 
 -(void) addChild:(Citizen*) child
@@ -25,6 +25,15 @@
     [super addChild:child];
     
     NSAssert([self.children count] > initNumberOfChiildren, @"addChild postcondition failure");
+}
+
+-(void)divorce:(Citizen *)citizen
+{
+    NSAssert(self.spouse == nil, @"divorce precondition failure");
+    
+    [super divorce:citizen];
+    
+    NSAssert(self.spouse != nil, @"divorce postcondition failure");
 }
 
 @end

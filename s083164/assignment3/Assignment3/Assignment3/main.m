@@ -14,17 +14,23 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
         
-        Citizen *firstCitizen = [[CitizenAssertion alloc] initWithFirstName:@"Abraham" lastName:@"Lincoln" sex:male andAge:@50];
-        CitizenAssertion *secondCitizen = [[CitizenAssertion alloc] initWithFirstName:@"Mary" lastName:@"Todd" sex:female andAge:@45];
+        //Assertions
+        
+        Citizen *firstA = [[CitizenAssertion alloc] initWithFirstName:@"Abraham" lastName:@"Lincoln" sex:male andAge:@50];
+        CitizenAssertion *secondA = [[CitizenAssertion alloc] initWithFirstName:@"Mary" lastName:@"Todd" sex:female andAge:@45];
         
         // Get married
-        [firstCitizen marry:secondCitizen];
-        NSLog(@"%@ is married to %@", firstCitizen.firstName, firstCitizen.spouse.firstName);
+        [firstA marry:secondA];
         
         // Make a baby
         CitizenAssertion *baby = [[CitizenAssertion alloc] initWithFirstName:@"Robert" lastName:@"Lincoln" sex:male andAge:@50];
-        [firstCitizen addChild:baby];
-        [secondCitizen addChild:baby];
+        [firstA addChild:baby];
+        [secondA addChild:baby];
+        
+        //Divorce
+        [firstA divorce:secondA];
+        
+        //Logging
         
     }
     return 0;
