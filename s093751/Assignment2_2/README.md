@@ -246,26 +246,58 @@ Value boxing
 -------------
 - ... how does value boxing and unboxing work as compared to the OTLTYAFW.  (Hint: Note that I did not just say *primitive* value boxing.)
 
+Value boxing is similar to other OO-languages and it looks like:
 
+`float foo = 12.5f;
+NSNumber* bar;
+
+bar = @(foo);
+bar = @12.5f;`
+
+It is basically *casting* an object and using an *container* object.
 
 Introspection
 --------------
 - ... how introspection in Objective-C compares to built-in support for dynamic type checking (e.g., Java's instanceof keyword) and reflection in the OTLTYAFW.  (Consider the types id and SEL as compared to java.lang.reflect and .Net's reflective types in the System namespace.)
 
+Some of the built-in methods of `NSObject` is `isKindOfClass` and `isMemberOfClass` that can be used to dynamic type checking. The selector can be used to check if an object is capable of *performing* a given method. So something like `respondsToSelector:@selector(methodName:)]` will return `YES` if that object is capable of performing that method. 
+
+In Java this method is called `instanceOf`, which is similar to `isKindOfClass`.
 
 Enumerations
 --------------
 - ... how do enumerations work as compared with the OTLTYAFW.  (Hint: Compare Objective-C's fast enumerations with those of the language(s) you know.  How do immutability and exceptions work with    regards to enumerations?)
 
+Enumerations can be done with in two ways.
 
+Fast enumeration:
+
+`for (id item in myArray)
+{
+	// Do stuff with item
+}`
+
+And normal enumeration:
+
+`for (index = 0; index < myArray.count; index++) {
+    id item = [myArray objectAtIndex:index];
+	// Do stuff with item
+}`
+
+This is similar to other OO-languages, but they might use the keyword `foreach` as the fast enumerator. Performance-wise the Fast enumeration is actually not faster than the normal one, but it is faster to code, which is why it has the given name. 
 
 Property lists
 ---------------
 - ... how do Properly Lists look as compared to the semi-equivalent construct in the OTLTYAFW.  (Hint: Think about Java's java.util.ResourceBundle and java.util.Properties and the similar classes in .Net. Also think about JSON, if you know it.)
 
-
+No answer yet.
 
 Blocks
 --------
-- ... how do Blocks compare with the semi-equivalent construct in the OTLTYAFW.  (Hint: Think about Java's anonymous   classes and C#'s lambdas.)
+- ... how do Blocks compare with the semi-equivalent construct in the OTLTYAFW.  (Hint: Think about Java's anonymous classes and C#'s lambdas.)
 
+A `block` is a block of code with statements i.e. they fuction very much similar to a method, but they have not been given a name. They take their parameters as a list: `(type para1,..,..,type para2)`.
+
+Inside the scoop of a `block` the out-of-scope variables can only be *read*, which means that they are immutable. However, if the programmer wants to mutate variables outside of the block, then the keyword `__block` can be added infront of that variable, to make it mutable inside the block.
+
+Blocks are similar to C#'s lambdas expressions where `=>` defines a LINQ-expressions to be executed on the input, whereas the `^` carrot operator is used in Objective-C.
