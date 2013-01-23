@@ -229,14 +229,8 @@ Since `nil` does not return any exceptions in Objective-C, they have been decide
 An exception can be thrown with the Foundation `NSException` Framework, which looks like:
 
 `@try {
-
-    NSException *e = [NSException
-        exceptionWithName:@"FileNotFoundException"
-		
-        reason:@"File Not Found on System"
-		
-        userInfo:nil];
-    @throw e;
+    NSException *e = [NSException exceptionWithName:@"FileNotFoundException" reason:@"File Not Found on System" userInfo:nil];
+	@throw e;
 }
 @catch(NSException *e) {
     @throw; // rethrows e implicitly
