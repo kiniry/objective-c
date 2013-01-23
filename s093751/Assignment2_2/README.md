@@ -1,5 +1,5 @@
-Assignment 2 - Part 2
-================
+Assignment 2 - Part 2 -- Carsten Nilsson - s093751
+==================================================
 
 INTRODUCTION
 ------------
@@ -13,7 +13,7 @@ REFLECTIONS
 
 The Foundation Framework
 ------------------------
- - ... the Foundation framework with the core classes of the
+- ... the Foundation framework with the core classes of the
    language(s) that you are familiar with? (abbreviated henceforth as
    OTLTYAFW) (Hint: Compare the classes in Foundation, and in
    particular their fundamental design idioms, with classes in
@@ -29,7 +29,7 @@ However, they do all have one thing in common and that is that almost all of the
 
 Aliasing
 ----------
- - ... how common aliasing is and how it is avoided compared to the
+- ... how common aliasing is and how it is avoided compared to the
    OTLTYAFW.  (Hint: The keyword here is "ownership".)
 
 Aliasing is when two or more pointers (e.g. references in C# and Java) refer to the same location or object.
@@ -38,7 +38,7 @@ The design of Objective-C has been made in such a way that the programmer often 
 
 Alloc/init
 ----------
- - ... the alloc/init pattern of object instantiation with how objects
+- ... the alloc/init pattern of object instantiation with how objects
    are constructed in the OTLTYAFW.  (Hint: What are best practices
    for constructors in the language of your choice.)
 
@@ -56,7 +56,7 @@ The new `description` method that is used to give a string representation of the
 
 Class types
 ------------
- - ... how class types are used with those in the OTLTYAFW.
+- ... how class types are used with those in the OTLTYAFW.
 
 The **.h** header file can consists of the class types `@interface` and `@protocol`, where `@protocol` is more or less similar to the `interface` of C# and Java. The interface is used to make properties and methods *public*, whereas if they are not in the header file, then they are regarded as *private*.
 Then there is the implementation files called **.m** in Objective-C and they are required to implement an header file. This has it its ups and downs. It makes the code easier to understand, but it also requires even things to keep track of when coding, which can become quite tedious.
@@ -64,7 +64,7 @@ In C# and Java it is only required to followed the structure of a given interfac
 
 Factories
 --------------------------
- - ... how constructors and factories are realized as compared to the
+- ... how constructors and factories are realized as compared to the
    OTLTYAFW.  (Hint: Compare best practices in factories.)
 
  A factory is used to allocate memory and initialize an object, so that the invoker/caller can use it immediately. 
@@ -76,7 +76,7 @@ Factories
 
 Copying and cloning
 -------------------
- - ... how copying and cloning of objects works (see NSObject's API)
+- ... how copying and cloning of objects works (see NSObject's API)
    as compared to the OTLTYAFW.  (Hint: Deep vs. shallow copies,
    twinning, cloning, mutability of iterations, etc.)
 
@@ -85,14 +85,14 @@ To be able to clone/copy any other given object, it was required to implement th
    
 Dynamic typing
 --------------
- - ... how dynamic typing of pointers compare with the OTLTYAFW.
+- ... how dynamic typing of pointers compare with the OTLTYAFW.
    (Hint: When/how is type information lost?)
 
 
    
 Dynamic typing of ids
 -----------------------  
- - ... how dynamic typing of ids compare with the OTLTYAFW.  Is there a comparable construct in your other language(s)?  (Hint: When/how is type information lost?)
+- ... how dynamic typing of ids compare with the OTLTYAFW.  Is there a comparable construct in your other language(s)?  (Hint: When/how is type information lost?)
    
 `id` is a pointer to a basic struct of the Objective-C language, that is inherited from C. The compiler will not give warning, since it is a weakly typred variable and it assumes the programmer knows what he or she is doing. This seem very scary! So it is often recommended to use a strong type whenever possible. 
 
@@ -104,7 +104,7 @@ Expanded types
 ------------------
 - ... how expanded types are declared and used with the OTLTYAFW.(Hint: Can you alias expanded types? Can user-defined types be expanded?)
  
-No Answer.
+No answer yet.
 
 Field hiding
 ------------
@@ -174,85 +174,100 @@ nil
 ----------
 - ... how does nil work as compared to the semi-equivalent construct in the OTLTYAFW. (Hint: What are the programming errors relating to such?  Can one call methods on/send messages to nil/null/0?)
 
-
+`nil` is very similar to `null` in C# and Java. Whenever an object is allocated it is set to `nil` until it has been initialized, very much similar to the other OO-languages. However, one peculiar difference is that Objective-C's compiler will not crash the program if an object is set to `nil` , it will simple just ignore it. As opposed to C# and Java that will crash and return an `NullPointerException`.
 
 Primitive types
 ---------------
- - ... how do the primitive types look in Objective-C as compared to
-   the OTLTYAFW.  (Hint: Consider those types that are fundamental and
-   part of the language definition and those that are actually deemed
-   "primitive".)
+- ... how do the primitive types look in Objective-C as compared to the OTLTYAFW.  (Hint: Consider those types that are fundamental and part of the language definition and those that are actually deemed   "primitive".)
+
+The primitive types in Objective-C is inherited from `NSNumber`, which are the following: `BOOL, char, double, float, int, long, short`. Of which all of them come in unsigned and signed varieties (by adding a 'u' infront e.g. `uint`). The `BOOL` type is a tad different from C# and Java, that has the values `true` and `false`, because this struct uses `YES` and `NO` instead. 
+
+Some might think that the `string` object of C# and Java is a primitive type, but it is actually an object (array of chars), which is the same case with `NSString`.
 
 Protocols
 -----------
- - ... how do protocols work and how do they compare with the
-   semi-equivalent construct in the OTLTYAFW.  (Hint: Consider classes
-   that implement multiple protocols and how protocols and class &
-   type inheritance work.)
+- ... how do protocols work and how do they compare with the semi-equivalent construct in the OTLTYAFW.  (Hint: Consider classes that implement multiple protocols and how protocols and class & type inheritance work.)
+
+A `protocol` is very similar to an `interface` of OO-languages -- it basically states what fields and methods should be created, whereas an `@interface` in Objective-C serves the purpose of defining what methods should be *public*.
+A protocol can also be used when other objects wants to communicate with an object, because they follow the same *"orders"*, so it is very much similar to the `interface` from C# and Java.
 
 Singletons
 ------------
- - ... how are singletons defined and used as compared with the
-   OTLTYAFW.  (Hint: Do the patterns for defining and using singletons
-   maps to/from your other language(s)?)
+- ... how are singletons defined and used as compared with the OTLTYAFW.  (Hint: Do the patterns for defining and using singletons maps to/from your other language(s)?)
 
+Not answer yet.
 
- - ... how does (static and dynamic) method resolution work as
-   compared to the OTLTYAFW.  (Hint: In Java and C# the compiler knows
-   exactly which method will be called, just not which *version* of
-   that method will be called at runtime.)
+Method resolution
+-----------------
+- ... how does (static and dynamic) method resolution work as compared to the OTLTYAFW.  (Hint: In Java and C# the compiler knows exactly which method will be called, just not which *version* of that method will be called at runtime.)
+
+No answer yet.
 
 Strong vs. weak pointers
 ------------------------
- - ... how do strong vs. weak pointers work as compared with
-   semi-equivalent construct in the OTLTYAFW.  (Hint: Look into
-   java.lang.ref and .Net's System.WeakReference if you have never
-   done so before.)
+- ... how do strong vs. weak pointers work as compared with semi-equivalent construct in the OTLTYAFW. (Hint: Look into java.lang.ref and .Net's System.WeakReference if you have never done so before.)
+
+The `strong` and `weak` pointers are declared in the `@property` to help the Automatic Reference Counting (ARC), that keep track of what objects to retain and/or release.
+
+If an object has been assigned to `strong`, when it will never be released automatically, but must instead be set to `nil` in code, whenever it should be released.
+A `weak` assignment of the pointer mean that as long as the object is not in use by anything, then the ARC can release the object to save memory i.e. it gets set to `nil` automatically.
+
+In C# and Java this is called garbage collection and is done automatically. This will clean (set to `null`) all up all objects that is out of scope.
 
 Variance
 ----------
- - ... how does variance work as compared with the OTLTYAFW.  (Hint:
-   If you have never heard of method covariance, contravariance, and
-   invariance, you have some fun reading to do.  E.g., Consider how return
-   types in method definitions can change wrt inheritance.)
+- ... how does variance work as compared with the OTLTYAFW. (Hint: If you have never heard of method covariance, contravariance, and invariance, you have some fun reading to do.  E.g., Consider how return types in method definitions can change wrt inheritance.)
+
+No answer yet.
 
 Exceptions
 ------------
- - ... how do exceptions work as compared with the OTLTYAFW.  (Hint:
-   What do method declarations look like with regards to exceptional
-   behavior?)
+- ... how do exceptions work as compared with the OTLTYAFW.  (Hint: What do method declarations look like with regards to exceptional behavior?)
+
+Since `nil` does not return any exceptions in Objective-C, they have been decided to not be used as much as in C# and Java, which throws an exception all the time.
+
+An exception can be thrown with the Foundation `NSException` Framework, which looks like:
+
+
+
+`@try {
+    NSException *e = [NSException
+        exceptionWithName:@"FileNotFoundException"
+        reason:@"File Not Found on System"
+        userInfo:nil];
+    @throw e;
+}
+@catch(NSException *e) {
+    @throw; // rethrows e implicitly
+}`
+
+And similar to C# and Java, a try-n-catch will be used.
+
 
 Value boxing
 -------------
- - ... how does value boxing and unboxing work as compared to the
-   OTLTYAFW.  (Hint: Note that I did not just say *primitive* value
-   boxing.)
+- ... how does value boxing and unboxing work as compared to the OTLTYAFW.  (Hint: Note that I did not just say *primitive* value boxing.)
+
 
 
 Introspection
 --------------
- - ... how introspection in Objective-C compares to built-in support
-   for dynamic type checking (e.g., Java's instanceof keyword) and
-   reflection in the OTLTYAFW.  (Consider the types id and SEL as
-   compared to java.lang.reflect and .Net's reflective types in the
-   System namespace.)
+- ... how introspection in Objective-C compares to built-in support for dynamic type checking (e.g., Java's instanceof keyword) and reflection in the OTLTYAFW.  (Consider the types id and SEL as compared to java.lang.reflect and .Net's reflective types in the System namespace.)
+
 
 Enumerations
 --------------
- - ... how do enumerations work as compared with the OTLTYAFW.  (Hint:
-   Compare Objective-C's fast enumerations with those of the
-   language(s) you know.  How do immutability and exceptions work with
-   regards to enumerations?)
+- ... how do enumerations work as compared with the OTLTYAFW.  (Hint: Compare Objective-C's fast enumerations with those of the language(s) you know.  How do immutability and exceptions work with    regards to enumerations?)
+
+
 
 Property lists
 ---------------
- - ... how do Properly Lists look as compared to the semi-equivalent
-   construct in the OTLTYAFW.  (Hint: Think about Java's
-   java.util.ResourceBundle and java.util.Properties and the similar
-   classes in .Net.  Also think about JSON, if you know it.)
+- ... how do Properly Lists look as compared to the semi-equivalent construct in the OTLTYAFW.  (Hint: Think about Java's java.util.ResourceBundle and java.util.Properties and the similar classes in .Net. Also think about JSON, if you know it.)
+
+
 
 Blocks
 --------
- - ... how do Blocks compare with the semi-equivalent
-   construct in the OTLTYAFW.  (Hint: Think about Java's anonymous
-   classes and C#'s lambdas.)
+- ... how do Blocks compare with the semi-equivalent construct in the OTLTYAFW.  (Hint: Think about Java's anonymous   classes and C#'s lambdas.)
+
