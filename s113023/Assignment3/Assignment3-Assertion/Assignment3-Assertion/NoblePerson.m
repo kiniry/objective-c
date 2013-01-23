@@ -26,58 +26,57 @@ static int priceForNobleMarriage = 50000;
 }
 - (void)marry:(Citizen *)APerson
 {
-    // Check preconditions
+    // Check if a valid Citizen is passed in
     NSAssert(APerson,@"Precondition violation: You didn't specify a Citizen to marry");
     
     // Check if possible spouse is a Noble Person
-    if([APerson isKindOfClass:[NoblePerson class]]){
-        //Person is a NoblePerson, we create such an instance:
-        NoblePerson *ANoblePerson = (NoblePerson *)APerson;
-        
-        //Check wheter the two persons can be married
-        if ([super canMarry:APerson]){
-            //Check whether any of the Noble persons prepared for marriage have a butler
-            if((ANoblePerson.butler || self.butler)){
-                NSLog(@"sweethearts butler: %@",ANoblePerson.butler);
-                NSLog(@"own butler: %@",self.butler);
-                [super marry:ANoblePerson];
-                double oldAssets = self.assets + ANoblePerson.assets;
-                double newAssets = oldAssets - priceForNobleMarriage;
-                ANoblePerson.assets = newAssets;
-                self.assets = newAssets;
-                //Share butler if i have a butler already
-                if (self.butler){
-                    ANoblePerson.butler = self.butler;
-                } else if (ANoblePerson.butler){
-                    self.butler = ANoblePerson.butler;
-                }
-                NSLog(@"Combined assets: %f",ANoblePerson.assets);
-                
-                //Check postconditions
-                NSAssert(self.butler && ANoblePerson.butler,@"Postcondition violation: The butler wasn't set correctly for both noble persons after wedding");
-                NSAssert(self.assets <= oldAssets - priceForNobleMarriage, @"Postcondition violation: Your assets were not updated correctly");
-                NSAssert(ANoblePerson.assets <= oldAssets - priceForNobleMarriage, @"Postcondition violation: Your sweethearts assets were not updated correctly");
-            } else {
-                NSLog(@"No butler - No Marriage!");
-            }
-        }
-        else {
-            NSLog(@"Not a legal marriage - leads to incest or homosexuality or polygyni");
-        }
-    } else {
-        NSLog(@"No nobility - No Marriage!");
+    NSAssert([APerson isKindOfClass:[NoblePerson class]],@"Precondition violation: Your spouse is not a noble person");
+    
+    //Person is a NoblePerson, we create such an instance:
+    NoblePerson *ANoblePerson = (NoblePerson *)APerson;
+    
+    //Check wheter the two persons can be married
+    NSAssert([super canMarry:APerson],@"Not a legal marriage - leads to incest or homosexuality or polygyni");
+    
+    //Check whether any of the Noble persons prepared for marriage have a butler specfied
+    NSAssert((ANoblePerson.butler || self.butler),@"No butler - No Marriage!");
+    
+    //We mary the two noble persons using the Citizen marry method
+    [super marry:ANoblePerson];
+    
+    //We update their new assets
+    double oldAssets = self.assets + ANoblePerson.assets;
+    double newAssets = oldAssets - priceForNobleMarriage;
+    ANoblePerson.assets = newAssets;
+    self.assets = newAssets;
+    
+    //The one that has a butler shares it with his/her new noble spouse
+    if (self.butler){
+        ANoblePerson.butler = self.butler;
+    } else if (ANoblePerson.butler){
+        self.butler = ANoblePerson.butler;
     }
+                
+    //Check postconditions
+    NSAssert(self.butler && ANoblePerson.butler,@"Postcondition violation: The butler wasn't set correctly for both noble persons after wedding");
+    NSAssert(self.assets <= oldAssets - priceForNobleMarriage, @"Postcondition violation: Your assets were not updated correctly");
+    NSAssert(ANoblePerson.assets <= oldAssets - priceForNobleMarriage, @"Postcondition violation: Your sweethearts assets were not updated correctly");
+  
 }
 - (void)setButler:(Citizen *)APerson
 {
+    // Check whether a valid Citizen was passed in
     NSAssert(APerson,@"Precondition violatin: You didn't specify a Citizen as butler");
-    if (![APerson isKindOfClass:[NoblePerson class]]){
-        _butler = APerson;
-        NSLog(@"The butler has been set to %@",self.butler.name);
-    }
+    // Check that the butler is not of noble class
+    NSAssert(![APerson isKindOfClass:[NoblePerson class]],@"Precondition violation: You can't add a noble butler");
+    _butler = APerson;
+    NSLog(@"The butler has been set to %@",self.butler.name);
+    // Check postconditions
+    NSAssert(self.butler == APerson,@"Postcondition violation: The butler wasn't set correctly");
 }
 - (NSString *)description
 {
+    // Print NoblePerson discription using Citizen description method and adding assets and butler
     NSString *citizenDescription = [super description];
     NSString *currentAssets = [NSString stringWithFormat:@", Current assets: %f",self.assets];
     NSString *butlerName = [NSString stringWithFormat:@", Butler name: %@", self.butler.name];

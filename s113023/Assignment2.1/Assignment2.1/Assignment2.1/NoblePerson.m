@@ -38,6 +38,10 @@ static int priceForNobleMarriage = 50000;
                 [super marry:ANoblePerson];
                 ANoblePerson.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage);
                 self.assets = (self.assets+ANoblePerson.assets-priceForNobleMarriage);
+                double oldAssets = self.assets + ANoblePerson.assets;
+                double newAssets = oldAssets - priceForNobleMarriage;
+                ANoblePerson.assets = newAssets;
+                self.assets = newAssets;
                 //Share butler if i have a butler already
                 if (self.butler){
                     ANoblePerson.butler = self.butler;

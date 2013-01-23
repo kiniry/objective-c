@@ -9,27 +9,26 @@
 
 #import "mem_Test.h"
 
-@interface mem_Test ()
+#define MINIMUM(a,b,c) MIN(MIN(a,b),c)
 
-@property (readwrite, nonatomic, assign) NSMutableArray* test;
+@interface mem_Test ()
 
 @end
 
 @implementation mem_Test
 
-@synthesize test = _test;
-
-- (id) initWithName:(NSString*)name withSex:(NSString*)sex withAge:(NSNumber*)age
++ (int)LevenshteinDistanceBetween:(NSString*)s and:(NSString*)t
 {
-    self = [super init];
-    if (self)
-    {
-        _name = name;
-        _sex = sex;
-        _age = age;
-        _children = [[NSMutableArray alloc] init];
-    }
-    return self;
+	int len_s = (int)[s length];
+    int len_t = (int)[t length];
+    int cost = 0;
+
+	if (len_s == 0) return len_t;
+	if (len_t == 0) return len_s;
+	if ([s characterAtIndex:0] != [t characterAtIndex:0]) cost = 1;
+	return MINIMUM([mem_Test LevenshteinDistanceBetween:[s substringFromIndex:1] and:t] + 1,
+					[mem_Test LevenshteinDistanceBetween:s and:[t substringFromIndex:1]] + 1,
+					[mem_Test LevenshteinDistanceBetween:[s substringFromIndex:1] and:[t substringFromIndex:1]] + cost);
 }
 
 @end
