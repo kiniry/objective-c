@@ -41,27 +41,34 @@
         //Noble persons have a butler and can marry
         if ([super can_marry:APerson])
 		{
-            if(ANoblePerson.butler || self.butler)
+            if (ANoblePerson.butler || self.butler)
 			{
                 [super marry:ANoblePerson];
-                ANoblePerson.assets = (self.assets + ANoblePerson.assets - PRICE_FOR_NOBLE_MARRIAGE) / 2;
-				self.assets = (self.assets + ANoblePerson.assets - PRICE_FOR_NOBLE_MARRIAGE) / 2;
-                NSLog(@"Combined assets: %f",ANoblePerson.assets);
+                 ANoblePerson.assets = (self.assets + ANoblePerson.assets - PRICE_FOR_NOBLE_MARRIAGE);
+				self.assets = (self.assets + ANoblePerson.assets - PRICE_FOR_NOBLE_MARRIAGE);
+				// Set butler
+				if (self.butler)
+					ANoblePerson.butler = self.butler;
+				else if (ANoblePerson.butler)
+					self.butler = ANoblePerson.butler;
+				NSLog(@"Combined assets: %f",ANoblePerson.assets);
             } 
 			else 
-                NSLog(@"No butler - No Marriage!");
+                NSLog(@"No marriage. You don't have a Butler!");
         }
         else
-            NSLog(@"Not a legal marriage - leads to incest or homosexuality or polygyni");
+            NSLog(@"Not a legal marriage. Invalid spouse!");
     } 
 	else
-        NSLog(@"No nobility - No Marriage!");
+        NSLog(@"No marriage. You are not Noble!");
 }
 
 - (void)setButler:(Citizen*)APerson
 {
     if (![APerson isKindOfClass:[NoblePerson class]])
         _butler = APerson;
+	else
+		NSLog(@"You are not allowed to have a Noble Butler!");
 }
 
 @end

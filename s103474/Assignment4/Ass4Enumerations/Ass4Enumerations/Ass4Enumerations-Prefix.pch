@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Ass4Enumerations' target in the 'Ass4Enumerations' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+#endif
