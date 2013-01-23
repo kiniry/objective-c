@@ -13,6 +13,7 @@
 #import "MatchResult.h"
 #import "Matcher.h"
 #import "RegexPattern.h"
+#import "NSString+Regex.h"
 
 @interface RegexTests : SenTestCase
 @end
