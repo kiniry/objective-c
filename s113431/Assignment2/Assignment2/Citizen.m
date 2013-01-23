@@ -17,16 +17,17 @@
 - (BOOL) can_marry:(Citizen*)other {
     if ( // should not be your mother, father, self or same sex.
         [other isSingle] &&
-        [other isNotEqualTo:self.mother] &&
-        [other isNotEqualTo:self.father] &&
-        [other isNotEqualTo:self] &&
-        [other.sex isNotEqualTo:self.sex]
-        ) {
+        self.sex != other.sex &&
+        self.father != other &&
+        self.mother != other)
+    {
         return YES;
     }
     return NO;
 }
 
-
+- (void) divorce {
+    self.spouse = nil;
+}
 
 @end

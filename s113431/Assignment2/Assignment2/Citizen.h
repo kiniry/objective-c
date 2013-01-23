@@ -20,6 +20,7 @@
 @property (nonatomic) Citizen* spouse;
 
 - (void) marry:(Citizen *)sweetheart;
+- (void) divorce;
 
 - (BOOL) can_marry:(Citizen*)other;
 - (BOOL) isSingle;
