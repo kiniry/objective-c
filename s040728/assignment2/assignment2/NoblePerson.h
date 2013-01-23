@@ -8,7 +8,7 @@
 
 #import "Citizen.h"
 
-@interface NoblePerson : Citizen
+@interface NoblePerson : Citizen 
 
 @property int assets;
 @property Citizen *butler;

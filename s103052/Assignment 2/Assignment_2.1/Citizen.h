@@ -22,23 +22,20 @@
 
 - (id) initWithName:(NSString*)name withSex:(NSString*)sex withAge:(NSNumber*)age;
 
-@property (copy) NSString* name;
-@property (copy) NSString* sex;
-@property (copy) NSNumber* age;
-@property (assign) Citizen* spouse;
+@property (readonly, nonatomic) NSString* name;
+@property (readonly, nonatomic) NSString* sex;
+@property (readonly, nonatomic) NSNumber* age;
+@property (readonly, nonatomic) Citizen* spouse;
 @property (readonly, nonatomic) NSMutableArray* children;
 @property (readonly, nonatomic) Citizen* mother;
 @property (readonly, nonatomic) Citizen* father;
 
-- (void)addChild:(Citizen*)Achild;
-- (void)setMother:(Citizen*)Amother;
-- (void)setFather:(Citizen*)Afather;
-
+- (void)addChild:(Citizen*)Aperson;
 - (void)marry:(Citizen*)Aperson;
 - (void)divorce:(Citizen*)Aperson;
 
-- (BOOL)IllegalMarriage:(Citizen *)Aperson;
-- (NSString*)generateChildrenString;
-- (NSString*)printInfo;
+- (BOOL)can_marry:(Citizen*)Aperson;
+- (NSString*)getChildrenString;
+- (NSString*)description;
 
 @end

@@ -19,6 +19,8 @@ int main(int argc, const char * argv[])
 	/**
 	* 1.0 - CONTAINS TESTS FOR THE SCENARIOS: MARRIAGE BETWEEN REGULAR CITIZENS.
 	*/
+	
+	NSLog(@"START TEST 1.0");
 		
 	// a) Create new regular citizens
     Citizen* HansJensen = [[Citizen alloc] initWithName:@"Hans Jensen" withSex:@"Male" 
@@ -30,34 +32,41 @@ int main(int argc, const char * argv[])
 	Citizen* MiaNielsen = [[Citizen alloc] initWithName:@"Mia Nielsen" withSex:@"Female" 
 											withAge:[NSNumber numberWithInt:18]];
     // Step 1)
-	[MartinJensen setFather:HansJensen];
-	[MartinJensen setMother:AnnaNielsen];
+	NSLog(@"STEP 1)");
     [HansJensen addChild:MartinJensen];
     [AnnaNielsen addChild:MartinJensen];
 	
-    NSLog(@"%@",[HansJensen printInfo]);
-    NSLog(@"%@",[AnnaNielsen printInfo]);
-	NSLog(@"%@",[MartinJensen printInfo]);
-	NSLog(@"%@",[MiaNielsen printInfo]);   
+	// Print description of citizens
+    NSLog(@"%@",[HansJensen description]);
+    NSLog(@"%@",[AnnaNielsen description]);
+	NSLog(@"%@",[MartinJensen description]);
+	NSLog(@"%@",[MiaNielsen description]);   
 	
     // Step 2) Not legal marriage
+	NSLog(@"STEP 2)");
     [MartinJensen marry:AnnaNielsen];	// FAIL!
     [HansJensen marry:MartinJensen];	// FAIL!
         
     // Step 3) Legal marriage
+	NSLog(@"STEP 3)");
     [AnnaNielsen marry:HansJensen];		// OK!
     [MiaNielsen marry:MartinJensen];	// OK!
    
     // Step 4) Not possible divorces
+	NSLog(@"STEP 4)");
     [MiaNielsen divorce:HansJensen];	// FAIL!
         
     // Step 5) Possible divorce
+	NSLog(@"STEP 5)");
     [MiaNielsen divorce:MartinJensen];	// OK!
         
-		
+	NSLog(@"END TEST 1.0");
+	
 	/**
 	* 1.1 - CONTAINS TESTS FOR THE SCENARIOS: MARRIAGE BETWEEN NOBLE PERSONS
 	*/	
+	
+	NSLog(@"START TEST 1.1");
 	
     // a) Create new noble persons
     NoblePerson* MetteHansen = [[NoblePerson alloc] initWithName:@"Mette Hansen" withSex:@"Female" 
@@ -72,18 +81,27 @@ int main(int argc, const char * argv[])
     Citizen* Butler = [[Citizen alloc] initWithName:@"Butler" 
 										withSex:@"Male" withAge:[NSNumber numberWithInt:30]];
 	// Step 1) Not legal marriage
+	NSLog(@"STEP 1)");
     [AmandaAndersen addChild:JensKristensen];
     [AmandaAndersen marryNoble:JensKristensen];   	// FAIL!
     [AmandaAndersen setButler:Butler];
     [AmandaAndersen marryNoble:JensKristensen];		// FAIL!
         
     // Step 2 Legal marriage
+	NSLog(@"STEP 2)");
     [AmandaAndersen marryNoble:OleHansen];			// OK!
     [MetteHansen setButler:Butler];
     [MetteHansen marryNoble:JensKristensen];		// OK!
 
-	NSLog(@"Test Done!");
+	// Print description of noble persons
+    NSLog(@"%@",[MetteHansen description]);
+    NSLog(@"%@",[OleHansen description]);
+	NSLog(@"%@",[AmandaAndersen description]);
+	NSLog(@"%@",[JensKristensen description]);  
 	
+	/********** TEST DONE **********/
+	
+	NSLog(@"Test Done!");
 	[pool drain];
     return 0;
 }

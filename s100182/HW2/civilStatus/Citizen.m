@@ -37,7 +37,7 @@
         !(self.sex == aSpouse.sex))                                 //and not same sex 
     {
         self.spouse = aSpouse;
-//        aSpouse.spouse = self;      //spouse's spouse is self !!CANNOT MAKE THIS WORK!!ARGH!!!!!!!
+        aSpouse.spouse = self;      //spouse's spouse is self !!CANNOT MAKE THIS WORK!!ARGH!!!!!!!
     }
 }
 
@@ -75,6 +75,6 @@
             self.sex,
             self.age,
             self.isSingle,
-            self.spouse];
+            self.spouse.firstName];
 }
 @end

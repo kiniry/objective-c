@@ -10,7 +10,7 @@
 
 @interface Citizen : NSObject
 
-
+@property(readonly, atomic,strong) NSString *name;
 
 //Initialize object
 - (Citizen *)initWithName:(NSString *)name

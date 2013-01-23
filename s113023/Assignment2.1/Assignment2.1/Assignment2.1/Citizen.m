@@ -9,7 +9,6 @@
 #import "Citizen.h"
 @interface Citizen()
 
-@property(atomic,strong) NSString *name;
 @property(atomic,strong) NSString *sex;
 @property(atomic,strong) NSNumber *age;
 @property(atomic,strong) Citizen *spouse;
@@ -111,7 +110,7 @@
 }
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@",self.name,self.sex,self.age,[self single],[self generateChildrenString],self.mother.name,self.father.name];
+    return [NSString stringWithFormat:@"\nName: %@, Sex: %@, Age: %@, Single?: %@, Children: %@ Parents: %@ & %@, Spouse: %@",self.name,self.sex,self.age,[self single],[self generateChildrenString],self.mother.name,self.father.name,self.spouse.name];
 }
 
 @end

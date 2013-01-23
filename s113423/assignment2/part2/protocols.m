@@ -58,6 +58,7 @@
   return self = [super initWithDate:date message:@"Something stupid!"];
 }
 
+// implement the optional method
 - (void)ignore {
   NSLog(@"Event ignored :'(");
 }
@@ -83,6 +84,8 @@
   [self.delegate processEvent:[[StupidEvent alloc] initWithDate:[NSDate date]]];
   [self.delegate processEvent:[[StupidEvent alloc] initWithDate:[NSDate date]]];
   [self.delegate processEvent:[[ActualEvent alloc] initWithDate:[NSDate date] message:@"Goodbye World!"]];
+  // it's not necessary to check if the delegate is nil
+  // as sending messages to nil simply does nothing
 }
 
 @end
@@ -95,7 +98,7 @@
 @implementation Foo
 
 - (void)processEvent:(id <Event>)event {
-  // ignore all events that can be ignored :)
+  // ignore all events that can be ignored using introspection
   if ([event respondsToSelector:@selector(ignore)]) {
     [event ignore];
     return;

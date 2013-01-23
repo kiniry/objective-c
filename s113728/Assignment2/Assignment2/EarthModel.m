@@ -20,6 +20,7 @@
 
 - (NSMutableArray *)personStack {
     if (!_personStack) _personStack = [[NSMutableArray alloc] init];
+    return _personStack;
 }
 - (void)pushPerson:(Citizen *)person {
     [self.personStack addObject:person];
@@ -37,7 +38,7 @@
     } else if ([operation isEqualToString:@"divorce"]) {
         [ [self popPerson] divorce:[self popPerson]];
     } else if ([operation isEqualToString:@"breed"]){
-        
+            // TODO
     }
 }
 

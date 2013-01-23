@@ -20,5 +20,6 @@
 
 - (void)marry:(Citizen *)APerson;
 - (void)setButler:(Citizen *)APerson;
+- (NSString *)description;
 
 @end
