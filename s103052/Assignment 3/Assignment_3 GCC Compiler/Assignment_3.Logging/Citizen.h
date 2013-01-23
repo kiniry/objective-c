@@ -24,10 +24,10 @@ static BOOL DEBUG = YES;
 
 - (id) initWithName:(NSString*)name withSex:(NSString*)sex withAge:(NSNumber*)age;
 
-@property (copy) NSString* name;
-@property (copy) NSString* sex;
-@property (copy) NSNumber* age;
-@property (assign) Citizen* spouse;
+@property (readonly, nonatomic) NSString* name;
+@property (readonly, nonatomic) NSString* sex;
+@property (readonly, nonatomic) NSNumber* age;
+@property (readonly, nonatomic) Citizen* spouse;
 @property (readonly, nonatomic) NSMutableArray* children;
 @property (readonly, nonatomic) Citizen* mother;
 @property (readonly, nonatomic) Citizen* father;
