@@ -11,11 +11,11 @@
 @implementation NoblePerson 
 
 - (void) setSpouse:(NoblePerson *)spouse {
-        spouse = spouse;
+        super.spouse = spouse;
 }
 
 - (void) setCan_marry:(BOOL *)can_marry {
-        if(!self && self.sex != _spouse.sex && _spouse != _mother && _spouse != _father) {
+        if(!self && self.sex != spouse.sex && spouse != mother && spouse != father) {
         
         }
 }

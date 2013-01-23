@@ -10,30 +10,14 @@
 
 @implementation Citizen
 
-- (void) setMother:(Citizen *)mother {
-    if(!self) {
-        _mother = mother;
-    }
+- (BOOL) isSingle {
+    return !self.spouse; // return the negated value of a spouse
 }
 
-- (void) setFather:(Citizen *)father {
-    if(!self && _father != _mother) {
-        _father = father;
-    }
-}
-
-- (void) setCan_marry:(BOOL *)can_marry {
-    if(!self && self.sex != _spouse.sex && _spouse != _mother && _spouse != _father) {
-        BOOL can_marry = YES;
-        _can_marry = &can_marry;
+- (void) can_marry:(BOOL *)other {
         
-    }
 }
 
-- (void) setMarry:(Citizen *)marry {
-    if(_can_marry) {
-        
-    }
-}
+
 
 @end

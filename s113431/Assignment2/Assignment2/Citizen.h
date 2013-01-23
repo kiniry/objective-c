@@ -14,17 +14,14 @@
 @property NSString* firstName;
 @property NSString* lastName;
 @property NSString* sex;
-@property BOOL* single;
-@property (nonatomic) BOOL* can_marry;
 @property (nonatomic) Citizen* marry;
 @property (nonatomic) Citizen* mother;
 @property (nonatomic) Citizen* father;
 @property (nonatomic) Citizen* spouse;
 
-- (void) setCan_marry:(BOOL *)can_marry;
-- (void) setMarry:(Citizen *)marry;
-- (void) setMother:(Citizen*) mother;
-- (void) setFather:(Citizen*) father;
+- (void) can_marry:(Citizen*)other; 
+- (void) marry:(Citizen *)sweetheart;
 
+- (BOOL) isSingle;
 
 @end

@@ -13,7 +13,6 @@
 
 @property NSValue* assets;
 @property Citizen* butler;
-@property (nonatomic) NoblePerson* spouse;
 @property (nonatomic) NoblePerson* marry;
 
 - (void) setMarry:(NoblePerson *)marry;
