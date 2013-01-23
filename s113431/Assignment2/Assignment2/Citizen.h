@@ -19,9 +19,9 @@
 @property (nonatomic) Citizen* father;
 @property (nonatomic) Citizen* spouse;
 
-- (void) can_marry:(Citizen*)other; 
 - (void) marry:(Citizen *)sweetheart;
 
+- (BOOL) can_marry:(Citizen*)other;
 - (BOOL) isSingle;
 
 @end

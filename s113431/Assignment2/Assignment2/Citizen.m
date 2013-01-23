@@ -14,8 +14,17 @@
     return !self.spouse; // return the negated value of a spouse
 }
 
-- (void) can_marry:(BOOL *)other {
-        
+- (BOOL) can_marry:(Citizen*)other {
+    if ( // should not be your mother, father, self or same sex.
+        [other isSingle] &&
+        [other isNotEqualTo:self.mother] &&
+        [other isNotEqualTo:self.father] &&
+        [other isNotEqualTo:self] &&
+        [other.sex isNotEqualTo:self.sex]
+        ) {
+        return YES;
+    }
+    return NO;
 }
 
 
