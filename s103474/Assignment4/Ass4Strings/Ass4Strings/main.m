@@ -20,7 +20,7 @@ int main(int argc, const char * argv[])
 		// Variables -------------------------------------------------------------------------------------
 		
 		NSMutableString *s = [NSMutableString string]; // the string
-		unsigned int iterations; // iterations in millions
+		unsigned int iterations;
 		BOOL adding = YES; // adding or removing from string
 		
 		int additions = 0; int removals = 0;

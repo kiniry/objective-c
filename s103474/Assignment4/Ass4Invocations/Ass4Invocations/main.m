@@ -20,7 +20,7 @@ int main(int argc, const char * argv[])
 		// Variables -------------------------------------------------------------------------------------
 
 		Foo *foo = [[Foo alloc] init]; // the foo object on which we test
-		unsigned int iterations; // iterations in millions
+		unsigned int iterations;
 		
 		// Preparation -----------------------------------------------------------------------------------
 		
