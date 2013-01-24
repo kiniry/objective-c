@@ -16,14 +16,14 @@
     
     [super marry:citizen];
     
-    NSAssert(self.spouse == citizen && citizen.spouse == self, @"Postcondition failure");
+    NSAssert(self.spouse == citizen || citizen.spouse == self, @"Postcondition failure");
 }
 
 -(void) addChild:(Citizen*) child
 {
-    NSAssert(![self.children containsObject:child], @"Precondition failure: Cant add an aldready existing child");
-    
     if (!self.children) self.children = [[NSMutableSet alloc] init];
+    
+    NSAssert(![self.children containsObject:child], @"Precondition failure: Cant add an aldready existing child");
     
     NSInteger initNumberOfChiildren = [self.children count];
     

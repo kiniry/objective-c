@@ -21,11 +21,11 @@
 
 -(void) addChild:(Citizen*) child
 {
+    if (!self.children) self.children = [[NSMutableSet alloc] init];
+    
     if (![self.children containsObject:child]) {
         [NSException raise:@"Can't add child" format:@"%@ cannot be the child of %@", child.firstName, self.firstName];
     }
-    
-    if (!self.children) self.children = [[NSMutableSet alloc] init];
     
     [super addChild:child];
 }
