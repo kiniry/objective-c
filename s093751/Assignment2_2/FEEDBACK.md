@@ -3,7 +3,9 @@ Peer-review on assignment 2 part 2
 ### To Carsten Nilsson (s093751) from Sivanujann Selliah (s093042)
 
 * The code for the experiments (or just code fragments) would have been nice to have, just to see how each concept is implemented in Objective-C.
+
 Regarding the section about...
+
 * The Foundation Framework: Everything in Objective-C is *not* instantiated as instances of the core Foundation framework classes, most of the Foundation framework and most classes one makes oneself inherent from the Foundation framework classes (but does not have to); there is much more than objects and the Foundation framework in Objective-C, since it is a superset of C.
 * Aliasing: Consider the following:
 ```objective-c
