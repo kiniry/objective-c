@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "CitizenAssertion.h"
+#import "CitizenLogging.h"
+#import "CitizenDefensive.h"
 
 int main(int argc, const char * argv[])
 {
@@ -16,21 +18,51 @@ int main(int argc, const char * argv[])
         
         //Assertions
         
-        Citizen *firstA = [[CitizenAssertion alloc] initWithFirstName:@"Abraham" lastName:@"Lincoln" sex:male andAge:@50];
-        CitizenAssertion *secondA = [[CitizenAssertion alloc] initWithFirstName:@"Mary" lastName:@"Todd" sex:female andAge:@45];
+        CitizenAssertion *firstAssertionCitizen = [[CitizenAssertion alloc] initWithFirstName:@"Abraham" lastName:@"Lincoln" sex:male andAge:@50];
+        CitizenAssertion *secondAssertionCitizen = [[CitizenAssertion alloc] initWithFirstName:@"Mary" lastName:@"Todd" sex:female andAge:@45];
         
         // Get married
-        [firstA marry:secondA];
+        [firstAssertionCitizen marry:secondAssertionCitizen];
         
         // Make a baby
-        CitizenAssertion *baby = [[CitizenAssertion alloc] initWithFirstName:@"Robert" lastName:@"Lincoln" sex:male andAge:@50];
-        [firstA addChild:baby];
-        [secondA addChild:baby];
+        CitizenAssertion *babyAssertionCitizen = [[CitizenAssertion alloc] initWithFirstName:@"Robert" lastName:@"Lincoln" sex:male andAge:@50];
+        [firstAssertionCitizen addChild:babyAssertionCitizen];
+        [secondAssertionCitizen addChild:babyAssertionCitizen];
         
         //Divorce
-        [firstA divorce:secondA];
+        [firstAssertionCitizen divorce:secondAssertionCitizen];
         
         //Logging
+        
+        CitizenLogging *firstLoggingCitizen = [[CitizenLogging alloc] initWithFirstName:@"Abraham" lastName:@"Lincoln" sex:male andAge:@50];
+        CitizenLogging *secondLoggingCitizen = [[CitizenLogging alloc] initWithFirstName:@"Mary" lastName:@"Todd" sex:female andAge:@45];
+        
+        // Get married
+        [firstLoggingCitizen marry:secondLoggingCitizen];
+        
+        // Make a baby
+        CitizenLogging *babyLoggingCitizen = [[CitizenLogging alloc] initWithFirstName:@"Robert" lastName:@"Lincoln" sex:male andAge:@50];
+        [firstLoggingCitizen addChild:babyLoggingCitizen];
+        [secondLoggingCitizen addChild:babyLoggingCitizen];
+        
+        //Divorce
+        [firstLoggingCitizen divorce:secondLoggingCitizen];
+        
+        //Defensive
+        
+        CitizenDefensive *firstDefensiveCitizen = [[CitizenDefensive alloc] initWithFirstName:@"Abraham" lastName:@"Lincoln" sex:male andAge:@50];
+        CitizenDefensive *secondDefensiveCitizen = [[CitizenDefensive alloc] initWithFirstName:@"Mary" lastName:@"Todd" sex:female andAge:@45];
+        
+        // Get married
+        [firstDefensiveCitizen marry:secondDefensiveCitizen];
+        
+        // Make a baby
+        CitizenDefensive *babyDefensiveCitizen = [[CitizenDefensive alloc] initWithFirstName:@"Robert" lastName:@"Lincoln" sex:male andAge:@50];
+        [firstDefensiveCitizen addChild:babyDefensiveCitizen];
+        [secondDefensiveCitizen addChild:babyDefensiveCitizen];
+        
+        //Divorce
+        [firstDefensiveCitizen divorce:secondDefensiveCitizen];
         
     }
     return 0;
