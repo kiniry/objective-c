@@ -12,7 +12,7 @@
 
 -(void)marry:(Citizen *)spouse
 {
-    NSAssert((self.canMarry), @"marry assert fail: is not in a relationship, only if you are in a first relationship then you are allow to get married in this program, sorry");
+    NSAssert((self.canMarry), @"marry assert fail: is not in a relationship, only if you first are in a relationship then you are allow to get married in this program, sorry");
     [super marry:spouse];
     NSAssert((self.spouse == spouse && spouse.spouse == self), @"marry post assert fail: you are marrying the wrong");
 }
