@@ -3,7 +3,7 @@ Assignment2-2 Reflections
 
 Reflect upon...
 
-**Foundation Framework**
+**Foundation Framework**  
  The Foundation Framework contain an OO API, extending the predecessor
  C. This means that you can port original C programs directly into
  Objective-C.
@@ -11,10 +11,10 @@ Reflect upon...
  from the super-class Object, as all Objective-C objects inherits from
  NSObject.
 
-**Aliasing**
+**Aliasing**  
  Aliasing is when several pointers reference the same location (object).
 
-**Instantiation**
+**Instantiation**  
  Alloc/init is the standard way of initializing new varibles in
  Objective-C. Here the alloc is a class method that returns and
  uninitialized instance of the chosen object, and init, which is a
@@ -22,7 +22,7 @@ Reflect upon...
  kind of constructor. As instance variable they are initialized to 0.
  As a local variable they are initialized to an undefined value.
 
-**Constructors and factories**
+**Constructors and factories**  
  As I have come to learn, the best practive when it comes to
  contructors in Objective-C, is to override the init instance
  method, as mentioned above. Here you declare the selectors instance
@@ -31,19 +31,19 @@ Reflect upon...
  usually passed to alloc, that stores it in the heap.
  Factories are static methods, commonly used by the framework.
 
-**Class types**
+**Class types**  
  In both Object-C and Java objects are allocated on the heap. The
  difference is the way the are referenced to. Objective-C uses
  pointers, where the values can be manipulated directly, while Java
  uses referencing and cannot be directly referenced.
 
-**Copying and cloning**
+**Copying and cloning**  
  For an object in Object-C to be copyable it must implement the the
  NSCopying or NSMutableCopyting protocol. First then can the NSObject's
  copy and mutableCopy be used to create a shallow copy (without getting
  an exception, anyway). Most Objective-C classes conform NSCopying.
 
-**Dynamic typing**
+**Dynamic typing**  
  As mentioned elsewhere in this readme, Objective-C implements an
  object type called 'id', which is a random object of a random class.
  This creates the use for introspection. At run time all objects are
@@ -51,7 +51,7 @@ Reflect upon...
  Objects of type id can be cast to whatever, possibly resulting in a
  crash.
 
-**Encapsulation**
+**Encapsulation**  
  The point of encapsulation is hiding sertant information and thereby
  insulating the programmer from inadvertent access of unintentional
  actions. Therefor an interface must encapsulate the
@@ -61,7 +61,7 @@ Reflect upon...
  Java har simular conventions, but it is possible to access fields
  directly through public instance variables, though it is seen as bad practice.
 
-**Immutability**
+**Immutability**  
  In Objective-C, objects are by default mutable, meaning you could
  change a pointers value after it first have being set. When an object
  is immutable, this is not possible. Firstly this would seem
@@ -75,40 +75,40 @@ Reflect upon...
  comiler optimization.
  NSString, a part of the Foundation framework, are immutable.
 
-**Inheritance**
+**Inheritance**  
  Objects in Java and Objective-C work in a simular way. Objects are
  instances of Classes, and can extend a maximum of one super-class.
 
-**Logging**
+**Logging**  
  Objective-C does not use C's printf() function, but implements it's
  own NSLog method, found in the Foundation framework. This is usually
  used with a formatted NSString, with '%' as identifier.
 
-**Polymorphism**
+**Polymorphism**  
  Objective-C implements polymorphism of method names, which means
  that classes can have mothods with the same name.
 
-**Overloading**
+**Overloading**  
  Objective-C does not implement parameter or operator overloading.
  Though, Objective-C takes use of the id type, which is a pointer to
  a arbitrary type. id can therefore be used with introspection,
  removing the need for overloading.
 
-**Arrays**
+**Arrays**  
  Like most OO languages the NSArray, which is a part of the
  Foundation framework, is a immutable, ordered set of elements. In
  Java fx., an array i declared with a content object type, where it
  only can contain elements of this type. In Objective-C, elements
  are always return as id type.
 
-**Nil-reference**
+**Nil-reference**  
  When referencing nil/null-values in Java, a NullPointerException is
  thrown. In Objective-C this is not looked upon as an error, rather
  it is the default value of a pointer. This is commonly looked at as
  an advantage. If you reference a method with a nil argument, you
  would simply get nil in return.
 
-**Primitive dataypes**
+**Primitive dataypes**  
  Java contains small set of primitive data types, which the compiled
  treats explicitly. Objective-C inherits all C's types. Some details
  are:
@@ -118,23 +118,23 @@ Reflect upon...
    bits on today's platforms. Usually the 32 bits platform you'll use
    with Objective-C.
 
-**Protocols**
+**Protocols**  
  Protocols are the Objective-C equivalent to Java's interfaces; they
  declare interfaces which other classes can implement, thus creating
  a communication link through the given protocol.
 
-**Singletons**
+**Singletons**  
  ... how are singletons defined and used as compared with the
  OTLTYAFW. (Hint: Do the patterns for defining and using singletons maps
  to/from your other language(s)?)
 
-**Method resolution (Dynamism)**
+**Method resolution (Dynamism)**  
  ... how does (static and dynamic) method resolution work as
  compared to the OTLTYAFW.  (Hint: In Java and C# the compiler knows
  exactly which method will be called, just not which *version* of
  that method will be called at runtime.)
 
-**Strong vs. Weak Pointers (ARC)**
+**Strong vs. Weak Pointers (ARC)**  
  Automatic Reference Counting (ARC), which was introduced in Xcode
  4.2, is a memory management enhancement where the burden of keeping
  track of an object's reference count is lifted from the programmer
@@ -151,7 +151,7 @@ Reflect upon...
  being released when it's parent is being released (technically,
  before so it can't reference something that's not there).
 
-**Excpeptions**
+**Excpeptions**  
  Formerly Objective-C inherited the functions setjmp() and longjmp()
  from C. These were very expensive and supported no cleanup. Newer
  implementations use C++ GNU's zero-cost exception model. Here you
@@ -163,7 +163,7 @@ Reflect upon...
  NSError object, in as an extra argument to methods that are likely
  to fail.
 
-**Value boxing**
+**Value boxing**  
  Boxing is the process as sending values of a given type 'boxed' as another
  type. E.g. NSLog takes a NSString as its argument, but we normally
  just type @"something". The '@' represents the process of boxing with
@@ -173,14 +173,14 @@ Reflect upon...
  float, BOOL, int, etc.
  Java implements automatic boxing of data types.
 
-**Introspection**
+**Introspection**  
  Objective-C implements the data type id, which is actually a
  reference to a random object, of a random class. This is what makes
  the need for introspection. A method can recieve an object of a
  unknown class, and self deciede what to with it, depending on the
  object's class. (Mentioned earlier regarding overloading)
 
-**Enumeration**
+**Enumeration**  
  Enumeration in Objective-C is often expensive and inefficient as
  new variables are allocated room for, initiatied, done something
  with, and released, over and over. Fast enumeration is essentially
@@ -193,12 +193,12 @@ Reflect upon...
  crash).
  (See example in source code)
 
-**Property lists**
+**Property lists**  
  Propertry lists are a unordered collection of named values of
  different types. This is normally implemented through Objective-C's
  NSDictionary.
 
-**Blocks**
+**Blocks**  
  Blocks work as an inline function that can be passed around. This
  is a very powerful feature, but also presents itself with som
  challenges. E.g. you have to be careful to avoid retain cycles with

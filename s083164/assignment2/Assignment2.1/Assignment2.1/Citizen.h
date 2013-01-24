@@ -18,14 +18,14 @@ typedef enum
 
 // Name, Sex, Spouse, Children, Parents, Age, Single
 
-@property NSString *firstName;
-@property NSString *lastName;
+@property (strong) NSString *firstName;
+@property (strong) NSString *lastName;
 @property Sex sex;
 @property (strong) Citizen *spouse;
 @property (strong) Citizen *mother;
 @property (strong) Citizen *father;
 @property (strong) NSMutableSet *children;
-@property NSNumber *age;
+@property (strong) NSNumber *age;
 @property (readonly, getter=isSingle)BOOL single;
 
 -(Citizen *)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName sex:(Sex)sex andAge:(NSNumber *)age;
@@ -36,6 +36,6 @@ typedef enum
 
 -(void) addChild:(Citizen*) child;
 
--(NSSet *) getChildren;
+-(NSString *) fullName;
 
 @end

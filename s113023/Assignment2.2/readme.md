@@ -179,6 +179,21 @@ Exceptions
 
 Value boxing and unboxing
 -------------------------
+In Objective-C boxing of primitive types is done by using factory methods (class methods) for creating objects to contain the primitive type. If you want to do boxing on an double value for example you can use the factory method:
+
+	[NSNumber numberWithDouble:someDoubleValue];
+	
+Unboxing is done by using instance methods on the object containing the primitive type. F.x. to unbox the NSNumber containing a double value you can use the method:
+
+	[NSNumber doubleValue];
+	
+In the clang compiler you have the possibility to do quicker boxing of objects like NSArrays, NSStrings, NSNumbers etc. F.x. to create an NSArray containing the strings @"Hello" and @"World" you could write:
+
+	@[@"Hello", @"World"]
+	
+This would be translated by the compiler into the following:
+
+	[NSArray arrayWithObjects:Hello,World,nil]
 
 Introspection
 -------------

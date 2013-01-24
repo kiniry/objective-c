@@ -17,6 +17,7 @@ int main(int argc, char* argv[]) {
     [[DDTTYLogger sharedInstance] setLogFormatter:formatter];
     [DDLog addLogger:[DDASLLogger sharedInstance]]; // send to Apple System Logger
     [DDLog addLogger:[DDTTYLogger sharedInstance]]; // send to Xcode console
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES]; // enable colors
 
     // Create two objects of NoblePerson
     NoblePerson *john = [[NoblePerson alloc] initWithName:@"John" sex:SexMale age:34 children:nil assets:@40000.0 butler:nil];

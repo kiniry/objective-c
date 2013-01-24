@@ -14,6 +14,7 @@
 @property (nonatomic, weak) NSArray *somePeople;
 
 - (void)pushPerson:(Citizen *)person;
+- (Citizen*)popPerson;
 - (void)performOperation:(NSString *)operation;
 
 @end

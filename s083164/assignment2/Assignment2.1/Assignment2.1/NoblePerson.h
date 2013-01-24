@@ -12,7 +12,9 @@
 @interface NoblePerson : Citizen
 
 @property NSInteger numberOfAssets;
-@property Citizen *butler;
+@property (strong)Citizen *butler;
 @property (strong) NoblePerson *spouse;
+
+-(void)marry:(Citizen *)citizen;
 
 @end

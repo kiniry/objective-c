@@ -91,6 +91,10 @@
 
 - (BOOL) marry: (Citizen *) person
 {
+    if([person getFather] == self || [person getMother] == self) {
+        return NO;
+    }
+    
     if([person getGender] != [self getGender] && [self isSingle] && [person isSingle]) {
         // Let these two people be united in whatever faith they believe in.
         [person setSpouse:self];
@@ -101,6 +105,15 @@
     return NO;
 }
 
+- (Citizen *) getFather
+{
+    return self.father;
+}
+
+- (Citizen *) getMother
+{
+    return self.mother;
+}
 
 - (BOOL) divorce
 {

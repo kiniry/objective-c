@@ -17,10 +17,10 @@
     self = [super init];
     
     if (self) {
-        self.firstName = firstName;
-        self.lastName = lastName;
-        self.sex = sex;
-        self.age = age;
+        _firstName = firstName;
+        _lastName = lastName;
+        _sex = sex;
+        _age = age;
     }
     return self;
 }
@@ -28,7 +28,15 @@
 -(void)marry:(Citizen *)citizen
 {
     //Can only get married if both are single
-    if (self.isSingle && citizen.isSingle) {
+    if (self.isSingle &&
+        citizen.isSingle &&
+        ![self isEqual:citizen] &&
+        ![citizen isEqual:self.father] &&
+        ![citizen isEqual:self.mother] &&
+        ![citizen isEqual:self.father] &&
+        ![self.children containsObject:citizen] &&
+        self.sex != citizen.sex) {
+        
         self.spouse = citizen;
         citizen.spouse = self;
     }
@@ -61,10 +69,9 @@
     }
 }
 
--(NSSet *) getChildren
+-(NSString *) fullName
 {
-    if (!self.children) self.children = [[NSMutableSet alloc] init];
-    return (NSSet *)[self.children mutableCopy];
+    return [NSString stringWithFormat:@"%@ %@", _firstName, _lastName];
 }
 
 @end

@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Ass4Blocks' target in the 'Ass4Blocks' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+#endif
