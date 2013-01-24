@@ -27,13 +27,13 @@
 }
 
 - (BOOL)canMarry:(Citizen*)fiance {
-    return self.sex != fiance.sex &&
+    return self.spouse == nil && self.sex != fiance.sex &&
       (![self.children containsObject:fiance]) &&
       (![self.parents containsObject:fiance]);
 }
 
 - (void)marry:(Citizen*)spouse {
-    if (self.spouse == nil) {
+    if ([self canMarry:spouse]) {
         self.spouse = spouse;
         spouse.spouse = self;
     }
