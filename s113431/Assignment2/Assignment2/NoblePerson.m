@@ -15,12 +15,17 @@
 }
 
 
-- (void) setMarry:(NoblePerson *)sweetheart {
-    if(self.spouse != nil && (self.butler || sweetheart.butler)) {
-        self.spouse = sweetheart;
-        sweetheart.spouse = self;
+//- (void) setMarry:(NoblePerson *)sweetheart {
+//    if(self.spouse != nil && (self.butler || sweetheart.butler)) {
+//        self.spouse = sweetheart;
+//        sweetheart.spouse = self;
+//    }
+//}
+
+- (void) marry:(NoblePerson *)sweetheart {
+    if(self.butler || sweetheart.butler) {
+        
     }
 }
-
 
 @end
