@@ -23,7 +23,7 @@
 {
     if (!self.children) self.children = [[NSMutableSet alloc] init];
     
-    if (![self.children containsObject:child]) {
+    if ([self.children containsObject:child]) {
         [NSException raise:@"Can't add child" format:@"%@ cannot be the child of %@", child.firstName, self.firstName];
     }
     
