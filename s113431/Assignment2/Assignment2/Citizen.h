@@ -10,19 +10,20 @@
 
 @interface Citizen : NSObject
 
-@property NSValue* age;
-@property NSString* firstName;
-@property NSString* lastName;
-@property NSString* sex;
-@property (nonatomic) Citizen* marry;
-@property (nonatomic) Citizen* mother;
-@property (nonatomic) Citizen* father;
-@property (nonatomic) Citizen* spouse;
+@property NSValue *age;
+@property NSString *firstName;
+@property NSString *lastName;
+@property NSString *sex;
+@property (nonatomic) Citizen *marry;
+@property (nonatomic) Citizen *spouse;
+@property Citizen *mother;
+@property Citizen *father;
+@property NSMutableArray *children;
 
 - (void) marry:(Citizen *)sweetheart;
 - (void) divorce;
 
-- (BOOL) can_marry:(Citizen*)other;
+- (BOOL) can_marry:(Citizen *)other;
 - (BOOL) isSingle;
 
 @end

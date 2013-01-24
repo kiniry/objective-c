@@ -14,15 +14,11 @@
         super.spouse = spouse;
 }
 
-- (void) setCan_marry:(BOOL *)can_marry {
-        if(!self && self.sex != spouse.sex && spouse != mother && spouse != father) {
-        
-        }
-}
 
-- (void) setMarry:(NoblePerson *)marry {
-    if(true) {
-        self.marry = marry; // don't understand what to do here.
+- (void) setMarry:(NoblePerson *)sweetheart {
+    if(self.spouse != nil && (self.butler || sweetheart.butler)) {
+        self.spouse = sweetheart;
+        sweetheart.spouse = self;
     }
 }
 
