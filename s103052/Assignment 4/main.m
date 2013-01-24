@@ -18,8 +18,8 @@ int main(int argc, const char * argv[])
 	* 1.0 - CONTAINS TESTS FOR THE SCENARIOS: LEVENSHTEIN DISTANCE.
 	*/
 	
-    NSString* s1 = @"kitten";
-    NSString* s2 = @"sitting";
+    NSString* s1 = @"haesjdzfla"; 	//
+    NSString* s2 = @"zahaejsldf"; 	//
 	
     int distance = [mem_Test LevenshteinDistanceBetween:s1 and:s2];
 	NSLog(@"String 1: %@", s1);

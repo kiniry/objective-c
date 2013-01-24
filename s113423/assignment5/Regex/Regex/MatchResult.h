@@ -11,9 +11,9 @@
 @protocol MatchResult <NSObject>
 
 - (NSUInteger)start;
-- (NSUInteger)startOfGroup:(NSUInteger)groupIndex;
+- (NSInteger)startOfGroup:(NSUInteger)groupIndex;
 - (NSUInteger)end;
-- (NSUInteger)endOfGroup:(NSUInteger)groupIndex;
+- (NSInteger)endOfGroup:(NSUInteger)groupIndex;
 - (NSString*)group;
 - (NSString*)groupWithIndex:(NSUInteger)groupIndex;
 - (NSUInteger)groupCount;

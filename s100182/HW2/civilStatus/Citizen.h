@@ -30,7 +30,7 @@ typedef enum {male, female} gender;
 @property Citizen *mother;
 @property Citizen *father;
 
-@property (nonatomic) Citizen *spouse;
+@property Citizen *spouse;
 @property (nonatomic) NSMutableArray *children;
 
 //@property BOOL *impedimentToMarriage; //can't work out what this should be

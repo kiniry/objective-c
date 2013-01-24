@@ -25,7 +25,7 @@
 
 - (NSString*)description {
   NSString *sexString = ( self.sex == SexMale ? @"male" : @"female" );
-  return [NSString stringWithFormat:@"( NoblePerson, name: %@, age: %lu, sex: %@ )", self.name, self.age, sexString];
+  return [NSString stringWithFormat:@"( Commoner, name: %@, age: %lu, sex: %@ )", self.name, self.age, sexString];
 }
 
 @end

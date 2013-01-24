@@ -19,24 +19,24 @@
 @property (nonatomic) RegexPattern* pattern;
 @property (setter=useAnchoringBounds:, getter=hasAnchoringBounds) BOOL anchoringBounds;
 @property (setter=useTransparentBounds:, getter=hasTransparentBounds) BOOL transparentBounds;
-@property (readonly) BOOL matches;
 
 + (NSString*)quoteReplacement:(NSString*)replacement;
 
-- (void)appendReplacement:(NSString*)replacement toString:(NSMutableString*)aMutableString;
-- (void)appendTailToString:(NSMutableString*)aMutableString;
+- (id <MatchResult>)toMatchResult;
+- (void)reset;
+- (void)resetWithInput:(NSString*)input;
+- (BOOL)matches;
 - (BOOL)find;
 - (BOOL)findFromIndex:(NSUInteger)start;
-- (BOOL)hasHitEnd;
-- (BOOL)lookingAt; // weird method name...
+- (BOOL)lookingAt;
+- (void)appendReplacement:(NSString*)replacement toString:(NSMutableString*)aMutableString;
+- (void)appendTailToString:(NSMutableString*)aMutableString;
+- (NSString*)replaceAllWithReplacement:(NSString*)replacement;
+- (NSString*)replaceFirstWithReplacement:(NSString*)replacement;
 - (void)setRegionFromIndex:(NSUInteger)start toIndex:(NSUInteger)end;
 - (NSUInteger)regionStart;
 - (NSUInteger)regionEnd;
-- (NSString*)replaceAllWithReplacement:(NSString*)replacement;
-- (NSString*)replaceFirstWithReplacement:(NSString*)replacement;
+- (BOOL)hasHitEnd;
 - (BOOL)requiresEnd;
-- (void)reset;
-- (void)resetWithInput:(NSString*)input;
-- (id <MatchResult>)toMatchResult; // is this necessary? upcast would do the same
 
 @end

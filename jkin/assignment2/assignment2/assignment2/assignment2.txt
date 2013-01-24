@@ -1,0 +1,187 @@
+Programming in Objective-C
+Homework Assignment #2:
+First Implementation of a Design & Language Experimentation
+Joseph Kiniry (jkin@imm.dtu.dk)
+
+This homework assignment's purpose is to get you to write an
+implementation of a provided language-independent specification and to
+do some objective exploration of the language features of Objective-C.
+
+In this homework assignment, and all future assignments, you need to
+create a new project in the right place in the repository.  You should
+name your projects in a rational fashion so that I can find each
+submission.  I suggest "assignment2" or "homework2" or similar.  The
+Hello, World that you already submitted was the (trivial) programming
+assignment #1.  You need not rename it unless you feel driven to do
+so.
+
+For the first part of this assignment, you must write an
+implementation of a formal specification which focuses on the notion
+of "civil status".  The two classifiers that you must implement are
+the notion of a "Citizen" and the notion of a "Noble Person".
+
+This is a classic example used in my teaching of the BON method, a
+competitor to UML that I use in teaching and research.  Pages 34,
+44-46, and 365 of the "BON book", _Seamless Object-Oriented Software
+Architecture_ by Kim Walden and Jean-Marc Nerson covers this
+particular example.  See the References on the course website for a
+copy of the book.  The informal specification of this system is also
+available as an example for my research group's BONc tool suite:
+ http://kindsoftware.com/products/opensource/BONc/examples/
+
+After implementing these two concepts in Objective-C, you must do the
+second part of the assignment, which is to implement a set of classes
+to experiment directly with different language features.  The goal of
+these experiments is to provide objective evidence for your learning
+about various language features in Objective-C.  You are free to
+organize your experiments any way you wish, but I expect that you will
+have to implement a small set of classes.
+
+To document your discovery and thinking, you must both write inline
+documentation in your source code as well as write a README.txt file
+in your project that includes a reflective discussion of as many of
+the questions below.  Please write the README file in ASCII.  
+
+You must compare what you discover about Objective-C to what you know
+in at least one other OO language.  I expect most of you will compare
+Objective-C to either Java or C#, but feel free to use any OO language
+that I know.  Recall that I wrote about my "Background Knowledge" in
+the course spreadsheet.
+
+The purpose of recording your reflections and writing your
+implementation in a public forum (that of the repository) is for
+peer-assessment (you'll be giving each other formative feedback) and
+to encourage more inter-student cooperation and learning.  Please feel
+free to communicate in public in the course website about this and all
+other assignments, but write your code and reflections yourself and
+respect others' work.
+
+The language aspects that you need to explore in your implementation
+are the following.  Each question should should address comes with a
+hint.  Hints are not prescriptive or complete.
+
+Reflect upon...
+
+ - ... the Foundation framework with the core classes of the
+   language(s) that you are familiar with? (abbreviated henceforth as
+   OTLTYAFW) (Hint: Compare the classes in Foundation, and in
+   particular their fundamental design idioms, with classes in
+   java.lang/java.util and .Net's System namespace.)
+
+ - ... how common aliasing is and how it is avoided compared to the
+   OTLTYAFW.  (Hint: The keyword here is "ownership".)
+
+ - ... the alloc/init pattern of object instantiation with how objects
+   are constructed in the OTLTYAFW.  (Hint: What are best practices
+   for constructors in the language of your choice.)
+
+ - ... how class types are used with those in the OTLTYAFW.
+
+ - ... how constructors and factories are realized as compared to the
+   OTLTYAFW.  (Hint: Compare best practices in factories.)
+
+ - ... how copying and cloning of objects works (see NSObject's API)
+   as compared to the OTLTYAFW.  (Hint: Deep vs. shallow copies,
+   twinning, cloning, mutability of iterations, etc.)
+
+ - ... how dynamic typing of pointers compare with the OTLTYAFW.
+   (Hint: When/how is type information lost?)
+
+ - ... how dynamic typing of ids compare with the OTLTYAFW.  Is there
+   a comparable construct in your other language(s)?  (Hint: When/how
+   is type information lost?)
+
+ - ... how expanded types are declared and used with the OTLTYAFW.
+   (Hint: Can you alias expanded types?  Can user-defined types be
+   expanded?)
+
+ - ... how does field hiding work as compared with the OTLTYAFW.
+   (Hint: Does hiding/shadowing work, is it a good practice, do the
+   types matter?)
+
+ - ... how is immutability used and why as compared with the
+   OTLTYAFW.  (Hint: What are the immutable base types in your other
+   languages(s)?  Are they *really* immutable?  What good are
+   immutable data types?)
+
+ - ... how inheritance works as compared to the OTLTYAFW.  (Hint:
+   Consider single vs. multiple inheritance and behavioral vs. code
+   inheritance.  How does class inheritance work and how does type
+   inheritance work?)
+
+ - ... the built-in methods for logging as compared to the OTLTYAFW.
+   (Hint: There is more to the world than printf in logging and
+   debugging.)
+
+ - ... how method overloading works (or doesn't) as compared to the
+   OTLTYAFW.  (Hint: Is overloading permitted?  Is it a best practice?
+   What are the pros and cons?)
+
+ - ... how polymorphism works (or doesn't) as compared to the
+   OTLTYAFW.  (Hint: Note that I did not say what *kind* of
+   polymorphism.)
+
+ - ... how NSArray compared with (typically monomorphic) arrays in the
+   OTLTYAFW.  (Hint: Look up monomorphic and consider the typical
+   anti-patterns for array use.)
+
+ - ... how does nil work as compared to the semi-equivalent construct
+   in the OTLTYAFW.  (Hint: What are the programming errors relating
+   to such?  Can one call methods on/send messages to nil/null/0?)
+
+ - ... how do the primitive types look in Objective-C as compared to
+   the OTLTYAFW.  (Hint: Consider those types that are fundamental and
+   part of the language definition and those that are actually deemed
+   "primitive".)
+
+ - ... how do protocols work and how do they compare with the
+   semi-equivalent construct in the OTLTYAFW.  (Hint: Consider classes
+   that implement multiple protocols and how protocols and class &
+   type inheritance work.)
+
+ - ... how are singletons defined and used as compared with the
+   OTLTYAFW.  (Hint: Do the patterns for defining and using singletons
+   maps to/from your other language(s)?)
+
+ - ... how does (static and dynamic) method resolution work as
+   compared to the OTLTYAFW.  (Hint: In Java and C# the compiler knows
+   exactly which method will be called, just not which *version* of
+   that method will be called at runtime.)
+
+ - ... how do strong vs. weak pointers work as compared with
+   semi-equivalent construct in the OTLTYAFW.  (Hint: Look into
+   java.lang.ref and .Net's System.WeakReference if you have never
+   done so before.)
+
+ - ... how does variance work as compared with the OTLTYAFW.  (Hint:
+   If you have never heard of method covariance, contravariance, and
+   invariance, you have some fun reading to do.  E.g., Consider how return
+   types in method definitions can change wrt inheritance.)
+
+ - ... how do exceptions work as compared with the OTLTYAFW.  (Hint:
+   What do method declarations look like with regards to exceptional
+   behavior?)
+
+ - ... how does value boxing and unboxing work as compared to the
+   OTLTYAFW.  (Hint: Note that I did not just say *primitive* value
+   boxing.)
+
+ - ... how introspection in Objective-C compares to built-in support
+   for dynamic type checking (e.g., Java's instanceof keyword) and
+   reflection in the OTLTYAFW.  (Consider the types id and SEL as
+   compared to java.lang.reflect and .Net's reflective types in the
+   System namespace.)
+
+ - ... how do enumerations work as compared with the OTLTYAFW.  (Hint:
+   Compare Objective-C's fast enumerations with those of the
+   language(s) you know.  How do immutability and exceptions work with
+   regards to enumerations?)
+
+ - ... how do Properly Lists look as compared to the semi-equivalent
+   construct in the OTLTYAFW.  (Hint: Think about Java's
+   java.util.ResourceBundle and java.util.Properties and the similar
+   classes in .Net.  Also think about JSON, if you know it.)
+
+ - ... how do Blocks compare with the semi-equivalent
+   construct in the OTLTYAFW.  (Hint: Think about Java's anonymous
+   classes and C#'s lambdas.)
