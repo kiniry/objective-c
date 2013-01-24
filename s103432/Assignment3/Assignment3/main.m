@@ -16,20 +16,6 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
         
-        Citizen *citizen = [[Citizen alloc] initWithName: @"Morten"];
-        [citizen setSex: male];
-        [citizen setAge: @18];
-        [citizen setRelationshipStatus: single];
-        NSLog(@"%@", citizen);
-        
-        NoblePerson *noblePerson = [[NoblePerson alloc] initWithName: @"Gert"];
-        [noblePerson setSex: male];
-        [noblePerson setAge: @18];
-        [noblePerson setRelationshipStatus: itIsComplicated];
-        [noblePerson setAssets: @14000];
-        [noblePerson setButler: @"Hans"];
-        NSLog(@"%@", noblePerson);
-        
     }
     return 0;
 }

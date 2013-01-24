@@ -12,8 +12,7 @@
 
 @synthesize name, sex, age, relationshipStatus;
 
--(Citizen *)initWithName:(NSString *)aName
-{
+-(Citizen *)initWithName:(NSString *)aName {
     self = [super init];
     if (self) {
         self.name = aName;
@@ -43,6 +42,34 @@
         case 3:
             return @"itIsComplicated";
 	}
+}
+
+- (BOOL)isSingle {
+    if(self.relationshipStatus == single) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)canMarry {
+    if(self.relationshipStatus == inRelationship) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+//You have to be in a relationship to get married
+- (void)marry:(Citizen *)spouse {
+    if (self.relationshipStatus == inRelationship){
+        self.spouse = spouse;
+        spouse.spouse = self;
+    }
+}
+
+- (void)divorce {
+    self.spouse = nil;
 }
 
 -(NSString*) description {
