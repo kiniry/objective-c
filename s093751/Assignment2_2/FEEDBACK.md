@@ -8,11 +8,11 @@ Regarding the section about...
 
 * The Foundation Framework: Everything in Objective-C is *not* instantiated as instances of the core Foundation framework classes, most of the Foundation framework and most classes one makes oneself inherent from the Foundation framework classes (but does not have to); there is much more than objects and the Foundation framework in Objective-C, since it is a superset of C.
 * Aliasing: Consider the following:
-```objective-c
-NSMutableString *t = [NSMutableString stringWithString:@"Test"];
-NSMutableString *s = t;
-[t appendString:@"ing"];
-```
+
+	NSMutableString *t = [NSMutableString stringWithString:@"Test"];
+	NSMutableString *s = t;
+	[t appendString:@"ing"];
+
 Here the two pointers `t` and `s` are pointing to the string containing "Testing", this code does not crash in Objective-C and this type of aliasing is also possible in C# and Java.
 * Class types: this section talks about interface and implementation files, does this belong here?
 * Factories: Factories in C# and Java are used just like they are used in Objective-C, i.e. not *typically* for conversion, but as you say to make a new object that a caller can use immediately afterwards.
@@ -27,12 +27,11 @@ Here the two pointers `t` and `s` are pointing to the string containing "Testing
 * Exceptions: Are you sure your Java and C# programs throw exceptions all the time? ;)
 * Enumerations: Are you sure that fast enumeration is not faster than iteration in a `for`-loop?
 * Blocks: Blocks do not have to be "anonymous", i.e. they can also have names, and be called like any other function, consider:
-```objective-c
-void (^blockName)(void) = ^{
-  NSLog(@"This is a test");
-};
-blockName();
-```
+
+	void (^blockName)(void) = ^{
+	  NSLog(@"This is a test");
+	};
+	blockName();
 
 ### Overall assessment
 Your reflections on Objective-C are okay. The above comments would only perfect them. :)
