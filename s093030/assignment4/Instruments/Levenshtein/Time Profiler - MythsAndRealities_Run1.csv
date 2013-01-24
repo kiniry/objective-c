@@ -1,0 +1,4 @@
+Running Time,Self,,Symbol Name
+10.0ms  100.0%,0, ,Main Thread  0x5158
+8.0ms   80.0%,1, , _dyld_start
+2.0ms   20.0%,0, , start

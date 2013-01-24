@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+    </dependencies>
+    <scenes>
+        <!--Assignment2 View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="Assignment2ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vun-CD-3bA">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="264" id="F68-ys-adT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZb-jc-i0T">
+                                <items>
+                                    <barButtonItem title="marry" id="axj-Zo-gfs">
+                                        <connections>
+                                            <action selector="actionPressed:" destination="2" id="jj9-5T-dAK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="divorce" id="KeY-b3-g8C">
+                                        <connections>
+                                            <action selector="divorce:" destination="2" id="r9u-Q1-lBh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="breed" id="5lx-KA-AmC">
+                                        <connections>
+                                            <action selector="breed:" destination="2" id="PPe-pl-f4v"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vun-CD-3bA" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Bgu-KR-AIJ"/>
+                            <constraint firstItem="Vun-CD-3bA" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Qca-xK-U5n"/>
+                            <constraint firstItem="vZb-jc-i0T" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="llN-3F-WHx"/>
+                            <constraint firstItem="vZb-jc-i0T" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="uKg-Sv-xMx"/>
+                            <constraint firstItem="vZb-jc-i0T" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="yAT-QP-1ME"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="GHW-6W-wDp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

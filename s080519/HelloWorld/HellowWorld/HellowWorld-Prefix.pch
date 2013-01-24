@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'HellowWorld' target in the 'HellowWorld' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
