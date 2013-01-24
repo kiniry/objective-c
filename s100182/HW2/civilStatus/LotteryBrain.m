@@ -17,8 +17,5 @@
     return Matthis;
 }
 
-- (void)winnerSelection:(void (^)(NSString *, int, BOOL *))block
-{
-    
-}
+
 @end

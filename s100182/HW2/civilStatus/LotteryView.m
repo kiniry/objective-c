@@ -11,9 +11,10 @@
 
 
 @implementation LotteryView
+
 - (void)displayWinnerName
 {
-    NSString *winner = [self.delegate winnerName];
+    NSString *winner = [self.delegate winnerName];  //sends msg to delegate method winnerName
     NSLog(@"%@",winner);
 }
 @end
