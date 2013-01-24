@@ -17,14 +17,15 @@
 }
 
 - (void)marry:(Citizen *)spouse {
-    if([self canMarry:spouse])
-        self.spouse = spouse;
-    NoblePerson *np = (NoblePerson*)spouse;
-    spouse.spouse = self;
-    np.butler = self.butler;
-    long totalAssets = self.assets + np.assets - self.costOfWedding;
-    self.assets = totalAssets / 2;
-    np.assets = self.assets;
+    if([self canMarry:spouse]) {
+      self.spouse = spouse;
+      NoblePerson *np = (NoblePerson*)spouse;
+      spouse.spouse = self;
+      np.butler = self.butler;
+      long totalAssets = self.assets + np.assets - self.costOfWedding;
+      self.assets = totalAssets / 2;
+      np.assets = self.assets;
+    }
 }
 
 - (NoblePerson*)init:(NSString *)a_name
