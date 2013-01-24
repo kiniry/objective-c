@@ -11,9 +11,9 @@
 @interface Citizen : NSObject
 
 @property NSValue *age;
-@property NSString *firstName;
-@property NSString *lastName;
-@property NSString *sex;
+@property (copy) NSString *firstName; // set (copy) so an
+@property (copy) NSString *lastName;  // NSMutableArray can't
+@property (copy) NSString *sex;       // be passed to override it.
 @property (nonatomic) Citizen *marry;
 @property (nonatomic) Citizen *spouse;
 @property Citizen *mother;
