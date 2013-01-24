@@ -223,3 +223,25 @@ Property Lists
 
 Blocks
 ------
+A block is a segment of code that can be passed around to methods or functions as if it was a value. A block is an objective-C object. You can declare a block that takes no arguments and returns no value and name it simpleBlock in the following way:
+
+	void (^simpleBlock)(void) = ^{
+		NSLog(@"This is a block just printing out some text");
+	}
+	
+The block is then used like this:
+
+	simpleBlock();
+	
+You can add arguments and return values the following way. In the example below the return type is double and it takes and argument of the type double (you don't have to sepcify the return type explicitly)):
+
+	double (^blockWithArguments)(double, double) = 
+	^(double firstValue, double secondValue){
+		return firstValue * secondValue
+	}
+	
+The block can afterwars be used:
+
+double result = blockWithArguments(5,3);
+
+Examples of the use of blocks in the main file
