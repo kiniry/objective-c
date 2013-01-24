@@ -14,14 +14,14 @@ int minAssets = 1000000;
 
 @synthesize assets = _assets, butler = _butler;
 
--(void) marryTo:(Citizen *)fiancee
+-(void) marry:(Citizen *)fiancee
 {
     if (![fiancee isKindOfClass:[Nobleperson class]]) return;
     Nobleperson *nobleFiancee = (Nobleperson *)fiancee;
     
     if (nobleFiancee.butler || self.butler)
     {
-        [super marryTo:fiancee];
+        [super marry:fiancee];
         NSLog(@"Congratulations, %@ & %@! You are now married with style...",self.name,fiancee.name);
         
         [self setAssets:self.assets];

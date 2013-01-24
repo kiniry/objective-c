@@ -9,48 +9,11 @@
 #import "Matrix.h"
 
 @interface Matrix ()
-@property (readonly) BOOL random;
 -(id)initWithSizeN:(NSUInteger)aN M:(NSUInteger)aM random:(BOOL)isRandom;
 
 @end
 
 @implementation Matrix
-
--(NSMutableArray *)d
-{
-    if(!_d)
-    {
-        _d = [NSMutableArray array];
-        if(self.random)
-        {
-            for (int i = 0; i < self.n; i++) {
-                NSMutableArray *tmp = [NSMutableArray array];
-                
-                for (int j = 0; j < self.m; j++) {
-                    double val = arc4random_uniform(100);
-                    [tmp insertObject:[NSNumber numberWithDouble:val] atIndex:0];
-                }
-                
-                [_d insertObject:tmp atIndex:0];
-            }
-        }
-        else
-        {
-            for (int i = 0; i < self.n; i++) {
-                NSMutableArray *tmp = [NSMutableArray array];
-                
-                for (int j = 0; j < self.m; j++) {
-                    double val = 0.0;
-                    [tmp insertObject:[NSNumber numberWithDouble:val] atIndex:0];
-                }
-                
-                [_d insertObject:tmp atIndex:0];
-            }
-        }
-    }
-    
-    return _d;
-}
 
 +(id)matrixWithSizeN:(NSUInteger)aN M:(NSUInteger)aM random:(BOOL)isRandom
 {
@@ -62,9 +25,17 @@
     self = [super init];
     if(self)
     {
-        _n = aN;
-        _m = aM;
-        _random = isRandom;
+        _d = [NSMutableArray array];
+        for (int i = 0; i < aN; i++) {
+            NSMutableArray *tmp = [NSMutableArray array];
+                    
+            for (int j = 0; j < aM; j++) {
+                double val = (isRandom ? arc4random_uniform(100) : 0.0);
+                [tmp insertObject:[NSNumber numberWithDouble:val] atIndex:0];
+            }
+                    
+            [_d insertObject:tmp atIndex:0];
+        }
     }
     return self;
 }

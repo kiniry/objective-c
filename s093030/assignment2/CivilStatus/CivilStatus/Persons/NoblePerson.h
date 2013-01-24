@@ -10,7 +10,7 @@
 
 @interface NoblePerson : Citizen
 
-// Propertiers
+// Properties
 @property (nonatomic) NSNumber *assets;
 @property (nonatomic) Citizen *butler;
 
