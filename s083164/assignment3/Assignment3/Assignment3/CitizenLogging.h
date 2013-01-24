@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Citizen.h"
 
-@interface CitizenLogging : NSObject
+@interface CitizenLogging : Citizen
+
++(void)setDebug:(bool)val;
 
 @end
