@@ -31,6 +31,7 @@
 }
 
 - (void) marry:(Citizen *)sweetheart {
+    NSAssert(sweetheart.isSingle, @"marry precondition failed");
     sweetheart.spouse = self;
     self.spouse = sweetheart;   // I don't know
 }
