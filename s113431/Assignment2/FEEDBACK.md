@@ -1,7 +1,7 @@
 # Peer-review on assignment 2 part 1
 ### To Jamie (s113431) from Salvador (s113423)
 
-The marry: is overriden with a covariant argument type.
+The `marry:` method is overriden with a covariant argument type.
 This could cause problems when upcasting a NoblePerson to a Citizen.
 ```objective-c
 // A NoblePerson is a Citizen
