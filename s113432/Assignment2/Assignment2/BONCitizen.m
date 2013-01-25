@@ -3,13 +3,15 @@
 //  BONCITIZEN
 //
 //  Created by Bastian Buch on 1/21/13.
-//  Copyright (c) 2013 Bastian Buch. All rights reserved.
+//  Copyright (c) 2013 Bastian Buch, s113432, and Jacob Gjerstrup, s113440. All rights reserved.
 //
 
 #import "BONCitizen.h"
 #import "BONNoble.h"
 
 @implementation BONCitizen
+
+// At first, all properties are synthesized.
 @synthesize name = _name;
 @synthesize sex = _sex;
 @synthesize age = _age;
@@ -20,6 +22,8 @@
 @synthesize parent1 = _parent1;
 @synthesize parent2 = _parent2;
 
+// The next part is the lazy instantiation of the getters and setters
+// of the various properties
 + (id) create {
     return [[self alloc] init];
 }
@@ -57,6 +61,15 @@
     return self;
 }
 
+// The marry function takes one argument, the person the citizen is supposed to marry.
+// It then proceeds to check if the person the citizen is marrying is a child, if you
+// are married already, if your comming spouse is married, if you are his/her parent,
+// if he/she is your parent, and if he/she is the same class - that is, has the same
+// civil status - as you do, and it does so in that order. If it passes all these checks,
+// you are allowed to marry and as such, the input civilian is set to be your spouse and
+// you are set to be his/her spouse and the function then returns "true" to register that
+// the persons have actually married.
+
 - (bool) marry:(BONCitizen *)personToMarry{
     if (![personToMarry.sex isEqualToString: self.sex]){
         if (personToMarry.age > 18) {
@@ -69,7 +82,6 @@
                                 self.hasSpouse = YES;
                                 personToMarry.spouse = self;
                                 personToMarry.hasSpouse = YES;
-                                NSLog(@"%@",self.spouse.name);
                                 return YES;
                             }
                         }
@@ -80,6 +92,13 @@
     }
     return NO;
 }
+
+
+// Divorce checks if the person that calls the function actually has a spouse.
+// If the person does have that, the spouse's spouse is converted to a null-pointer,
+// and the spouse's spouse is set to have no spouse. Then we repeat the process for
+// the citizen himself. Finally, the function returns true to show that the divorce
+// has gone through.
 
 - (bool) divorce{
     if (self.hasSpouse){
