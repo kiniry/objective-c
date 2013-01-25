@@ -29,6 +29,9 @@ int main(int argc, const char * argv[])
         // Creating instance of randomObject object to test instance method on
         RandomObject *randomObject = [[RandomObject alloc] init];
         long iterations = 100000000;
+        NSLog(@"Enter number of iterations");
+        scanf("%ld",&iterations);
+        NSLog(@"You have chosen %ld iterations",iterations);
 
         //-------------------------------------------\\
         //     Call object's instance method test    \\

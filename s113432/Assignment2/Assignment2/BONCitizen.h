@@ -3,11 +3,13 @@
 //  BONCITIZEN
 //
 //  Created by Bastian Buch on 1/21/13.
-//  Copyright (c) 2013 Bastian Buch. All rights reserved.
+//  Copyright (c) 2013 Bastian Buch, s113432, and Jacob Gjerstrup, s113440. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
+// Below is the definition of the various properties a citizen needs.
+// They are all strongly bound and nonatomic, and their various types.
 @interface BONCitizen : NSObject
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *sex;
@@ -18,6 +20,9 @@
 @property (nonatomic) NSMutableArray *children;
 @property (nonatomic) BONCitizen *parent1;
 @property (nonatomic) BONCitizen *parent2;
+
+// Also, the two functions nescesary for the class, marry and divorce, 
+// are defined along with their input parameters.
 
 + (id) create;
 - (bool) marry:(BONCitizen *)personToMarry;

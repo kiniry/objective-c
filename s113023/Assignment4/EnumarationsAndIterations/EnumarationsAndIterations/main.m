@@ -27,6 +27,9 @@ int main(int argc, const char * argv[])
         
         // Creating array to test on
         long iterations = 100000000;
+        NSLog(@"Enter number of iterations");
+        scanf("%ld",&iterations);
+        NSLog(@"You have chosen %ld iterations",iterations);
         
         NSLog(@"Initializing array for tests");
 

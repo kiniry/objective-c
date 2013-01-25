@@ -1,5 +1,5 @@
-Assignment3
-===========
+Assignment3 - Programming approaches
+====================================
 
 In this Assignment3 folder exists 3 different project-folders each containing 3 different approaches on the check of preconditions and postconditions of the civil class program written in Assignment 2.1. The 3 different styles of condition-checking has been split into 3 different projects to clarify the differences between them. The three different approaches are: Defensive variant, Assertion variant & Logging variant. More info about these programming approaches below:
 
@@ -33,6 +33,29 @@ The logging approach is to send error messages to the log when some constraints 
 
 Like with assertions the logging approach checks for both precondition and postcondition violations. The difference is that the program wont crash or halt if a constraint is violated, instead an error message is printed to the console explaining the error but that doesn't prevent the user from actually violating the constraints. Also logging error messages to the console doesn't fix the error - it only explains it. Posting a lot of error messages to the console wont help the user fixing the error and might confuse more than help, this is also the case with my logging variant of the civil status program. This can be helped by implementing a variable that can be used to toggle these error messages on and off like in our program. That beeing said, sometimes logging can be a good thing to make sure that different aspects of your code is functionning well while implementing them. It is often the easiest way to make sure that different parts of the method that you are writing just now are functionning as expected. But since it doesn't prevent you from violating the constraints it might lead to inconsistencies in your program. In some situations error logs might be preferable to program crashes.
 
+Assignment3 - Compilers
+=======================
+
+For this assignment we were supposed to use both the clang compiler (the one that Xcode is using by default) and the gcc compiler to see whether our program were compatible with different environments:
+
+Clang
+-----
+The Clang/LLVM is the compiler which is used by Xcode by default. To compile an objective-c main file together with the files it include we can just use the built in compiler in Xcode. If we want to use the terminal though, we can write the following command:
+
+	clang -fobjc-arc -framework Foundation main.m Citizen.m NoblePerson.m -o Assignment3-CLANG
+	
+This will create a binary file which can be run through the terminal in OSX.
+
+I compiled all three approaches in clang and all of them worked fine when running the binary files created.
+
+Gcc
+---
+The Gcc compiler is able to compile for different platforms including OSX, Windows and Linux. This compiler is a bit more tricky than Clang since it doesn't support many of the quick implementation stuff/shorter syntax that you have in modern objective-c. And you have to use allocate and init an instance of the NSAutoreleasePool object in the beginning of the main file and use [pool drain] in the end, this is done automatically in clang. I also found some problems when trying to compile my assertion variant in gcc, and after some tries I gave up. The two other variants compiled successfully after some modifications (mostly by changing the declarations of the properties and also by synthesizing all the properties before using them).
+
+To compile with gcc in command line, use the following command:
+
+	gcc -framework Foundation main.m Citizen.m NoblePerson.m -o Assignment3-GCC
+
 Conclusion
 ----------
-The defensive programming approach seems like the most preferable to me. The logging approach might be a good idea for temporary use when implementing the program, assertion might be a good idea to make sure that other programmers wont be able to destroy your code and violate preconditions and postconditions without getting a warning and a program crash, and also for testing purposes. But defensive programming combined with methods for error handling when an exception is thrown will lead to the most reliable programs and apps, since you wont be able to cause inconsistency in your methods and classes. Which one of the programming styles you should use is always a question about protection against inconsistency vs avoiding crashes. The defensive style is most used in desktop and mobile environments where a system crash caused by a violated constraint wont have consequences for a lot of users at the same time. Often exceptions are handled in the back without the user ever finding out. Logging might be a better approach for some server-systems where you aren't interested in many program crashes that will effect many users at the same time. But this still depends on how critical it will be for the system to get its constraints violated. Assertions should mostly be used for testing purposes.
+The defensive programming approach seems like the most preferable to me. The logging approach might be a good idea for temporary use when implementing the program, assertion might be a good idea to make sure that other programmers wont be able to destroy your code and violate preconditions and postconditions without getting a warning and a program crash, and also for testing purposes. But defensive programming combined with methods for error handling when an exception is thrown will lead to the most reliable programs and apps, since you wont be able to cause inconsistency in your methods and classes. Which one of the programming styles you should use is always a question about protection against inconsistency vs avoiding crashes. The defensive style is most used in desktop and mobile environments where a system crash caused by a violated constraint wont have consequences for a lot of users at the same time. Often exceptions are handled in the back without the user ever finding out. Logging might be a better approach for some server-systems where you aren't interested in many program crashes that will effect many users at the same time. But this still depends on how critical it will be for the system to get its constraints violated. Assertions should mostly be used for testing purposes. Regarding the two different compilers i found out that gcc can be a bit tricky sometimes since it requires a much more strict syntax (The good thing though is that things can be compiled and run on different platforms compared to clang), and since our main purpose of learning and using the objective-C language is for designing and implementing apps for iOS devices i find the clang compiler to be the best and easiest to use for this purpose. 
