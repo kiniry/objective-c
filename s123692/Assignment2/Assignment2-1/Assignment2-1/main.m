@@ -29,7 +29,7 @@ int main(int argc, const char * argv[])
         [m setAssets:[NSNumber numberWithInt:3000000]];
         
         
-        [a marryTo:m];
+        [a marry:m];
         
         NSLog(@"%@ assets: %@", a.name, a.assets);
         NSLog(@"%@ assets: %@", m.name, m.assets);

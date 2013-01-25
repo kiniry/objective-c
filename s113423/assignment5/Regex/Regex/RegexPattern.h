@@ -13,28 +13,28 @@
 @class Matcher;
 
 typedef NS_OPTIONS(NSUInteger, RegexPatternOptions) {
-  RegexPatternCanonicalEquivalence = 1 << 0,
+  RegexPatternUnixLines            = 1 << 0,
   RegexPatternCaseInsensitive      = 1 << 1,
   RegexPatternComments             = 1 << 2,
-  RegexPatternDotAll               = 1 << 3,
+  RegexPatternMutiline             = 1 << 3,
   RegexPatternLiteral              = 1 << 4,
-  RegexPatternMutiline             = 1 << 5,
+  RegexPatternDotAll               = 1 << 5,
   RegexPatternUnicodeCase          = 1 << 6,
-  RegexPatternUnixLines            = 1 << 7
+  RegexPatternCanonicalEquivalence = 1 << 7
 };
 
 @interface RegexPattern : NSObject
 
-@property (readonly) RegexPatternOptions options;
 @property (readonly) NSString* pattern;
+@property (readonly) RegexPatternOptions options;
 
 + (RegexPattern*)compileRegularExpression:(NSString*)regularExpression error:(NSError**)error;
 + (RegexPattern*)compileRegularExpression:(NSString*)regularExpression options:(RegexPatternOptions)options error:(NSError**)error;
-+ (BOOL)regularExpression:(NSString*)regularExpression matchesString:(NSString*)aString;
++ (BOOL)regularExpression:(NSString*)regularExpression matchesString:(NSString*)aString error:(NSError**)error;
 + (NSString*)quoteString:(NSString*)aString;
 
 - (Matcher*)matcherWithInput:(NSString*)input;
-- (NSArray*)splitUsingString:(NSString*)aString;
-- (NSArray*)splitUsingString:(NSString*)aString withLimit:(NSUInteger)limit;
+- (NSArray*)splitString:(NSString*)aString withLimit:(NSUInteger)limit;
+- (NSArray*)splitString:(NSString*)aString;
 
 @end

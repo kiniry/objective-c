@@ -53,7 +53,9 @@
 
 -(void)divorce {
     if(!self.single) {
+        self.spouse.single = true;
         self.spouse.spouse = nil;
+        self.single = true;
         self.spouse = nil;
     }
 }

@@ -49,52 +49,63 @@ parents = _parents;
 // Parents
 -(void) addParent:(Citizen *)parent
 {
-    [parent addChild:self];
-    if ([self.parents count] < 2
-        && ![self.parents containsObject:parent])
+    if ([self.parents count] > 2
+        || [self.parents containsObject:parent]
+        || [self.children containsObject:parent]
+        || (parent == self.spouse))
     {
-        NSMutableSet* tmp = [self.parents mutableCopy];
-        [tmp addObject:parent];
-        self.parents = [tmp copy];
+        return;
     }
+    
+    NSMutableSet* tmp = [self.parents mutableCopy];
+    [tmp addObject:parent];
+    self.parents = [tmp copy];
+    
+    [parent addChild:self];
 }
 -(void) removeParent:(Citizen *)parent
 {
-    [parent removeChild:self];
     if ([self.parents containsObject:parent])
     {
+        
         NSMutableSet* tmp = [self.parents mutableCopy];
         [tmp removeObject:parent];
         self.parents = [tmp copy];
+        
+        [parent removeChild:self];
     }
 }
 
 // Children
 -(void) addChild:(Citizen *)child
 {
-    [child addParent:self];
-    if (![self.parents containsObject:child]
-        && ![self.children containsObject:child]
-        && self.spouse != child)
+    if ([self.parents containsObject:child]
+        || [self.children containsObject:child]
+        || (child == self.spouse))
     {
-        NSMutableSet* tmp = [self.children mutableCopy];
-        [tmp addObject:child];
-        self.children = [tmp copy];
+        return;
     }
+    
+    NSMutableSet* tmp = [self.children mutableCopy];
+    [tmp addObject:child];
+    self.children = [tmp copy];
+    
+    [child addParent:self];
 }
 -(void) removeChild:(Citizen *)child
 {
-    [child removeParent:self];
     if ([self.children containsObject:child])
     {
         NSMutableSet* tmp = [self.children mutableCopy];
         [tmp removeObject:child];
         self.children = [tmp copy];
+        
+        [child removeParent:self];
     }
 }
 
 // Civil status
--(void) marryTo: (Citizen *)fiancee
+-(void) marry: (Citizen *)fiancee
 {
     if (self.single &&
         !self.spouse &&
@@ -109,13 +120,28 @@ parents = _parents;
     }
 }
 
--(void) divorceFrom: (Citizen *)spouse
+-(void) divorce: (Citizen *)spouse
 {
     if (self.spouse)
     {
         self.single = YES;
         self.spouse = nil;
-        [spouse divorceFrom:self];
+        [spouse divorce:self];
+    }
+}
+
++(NSString*) sexToString: (Sex)sex
+{
+    switch (sex) {
+        case Male:
+            return @"Male";
+            break;
+        case Female:
+            return @"Female";
+            break;
+        default:
+            return nil;
+            break;
     }
 }
 

@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RegexPattern.h"
-#import "Matcher.h"
-
-#import "assert.h"
-
 int main(int argc, const char * argv[]) {
   @autoreleasepool {
     NSLog(@"Hello World!");

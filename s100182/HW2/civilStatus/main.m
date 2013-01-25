@@ -71,16 +71,19 @@ int main(int argc, const char * argv[])
         
         [lotCont.lotView displayWinnerName];
         
-        NSLog(@"*******************BLOCK TESTING******************");
-        
-        BlocksPeoplePool *inst = [[BlocksPeoplePool alloc] init];
-        [inst choosePersonWithBlock:^(Citizen *person, BOOL *stop) {
-            NSLog(@"Block %@",person.firstName);
-        }];
-        
-        BlocksCollectionOfBlocks *bcb = [[BlocksCollectionOfBlocks alloc] init];
-        NSLog(@"%@", bcb.blockDisplays);
-        [bcb goOverDictOfBlock:bcb.blockDisplays];
+/*
+BLOCKS TEST IS NOT WORKING
+ */
+//        NSLog(@"*******************BLOCK TESTING******************");
+//        
+//        BlocksPeoplePool *inst = [[BlocksPeoplePool alloc] init];
+//        [inst choosePersonWithBlock:^(Citizen *person, BOOL *stop) {
+//            NSLog(@"Block %@",person.firstName);
+//        }];
+//        
+//        BlocksCollectionOfBlocks *bcb = [[BlocksCollectionOfBlocks alloc] init];
+//        NSLog(@"%@", bcb.blockDisplays);
+//        [bcb goOverDictOfBlock:bcb.blockDisplays];
         
     }
     return 0;

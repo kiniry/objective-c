@@ -25,6 +25,7 @@ typedef enum : NSUInteger {
 
 - (id)initWithName:(NSString *)name sex:(Sex)sex age:(int)age;
 - (id)initWithName:(NSString *)name sex:(Sex)sex age:(int)age parents:(NSArray *)parents;
+
 - (void)marryToCitizen:(Citizen *)newSpouse;
 - (void)divorce;
 

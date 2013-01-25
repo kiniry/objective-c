@@ -13,6 +13,10 @@
 
 @interface Citizen ()
 
+@property (readwrite, nonatomic, assign) NSString* name;
+@property (readwrite, nonatomic, assign) NSString* sex;
+@property (readwrite, nonatomic, assign) NSNumber* age;
+@property (readwrite, nonatomic, assign) Citizen* spouse;
 @property (readwrite, nonatomic, assign) NSMutableArray* children;
 @property (readwrite, nonatomic, assign) Citizen* mother;
 @property (readwrite, nonatomic, assign) Citizen* father;

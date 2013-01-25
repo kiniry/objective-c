@@ -1,5 +1,5 @@
-*** README ***
-==============
+README
+======
 Date: 15/01/13
 
 Name: Christian Poulsen
