@@ -10,6 +10,7 @@
 #import "TimeTask.h"
 #import "Recursion.h"
 #import "Enumeration.h"
+#import "StringManipulation.h"
 
 int main(int argc, const char * argv[])
 {
@@ -29,6 +30,12 @@ int main(int argc, const char * argv[])
         TimeTask([enumarator classicEnumeration], @"Classic enumeration");
         TimeTask([enumarator fastEnumeration], @"Fast enumeration");
         
+        // String Manipulation
+        StringManipulation *manipulator = [[StringManipulation alloc] initWithIterations:100000];
+        TimeTask([manipulator manipulateImmutableString],
+                 @"Manipulate immutable string");
+        TimeTask([manipulator manipulateMutableString],
+                 @"Manipulate mutable string");
         
     }
     return 0;
