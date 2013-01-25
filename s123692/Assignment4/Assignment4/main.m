@@ -7,14 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TimeTask.h"
+#import "Recursion.h"
+#import "Enumeration.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
         
-        // insert code here...
-        NSLog(@"Hello, World!");
+        // Recursion
+        int limit = 40;
+        NSLog(@"Fibonacci limit: %d", limit);
+        TimeTask([Recursion fibonacci:limit], @"Fibonacci");
+        TimeTask([Recursion fibonacciTailRecursive:limit],
+                 @"Fibonacci, tail recursive");
+        
+        // Enumeration
+        Enumeration *enumarator = [[Enumeration alloc] initWithLimit:1000000];
+        TimeTask([enumarator classicIteration], @"Classic iteration");
+        TimeTask([enumarator classicEnumeration], @"Classic enumeration");
+        TimeTask([enumarator fastEnumeration], @"Fast enumeration");
+        
         
     }
     return 0;
