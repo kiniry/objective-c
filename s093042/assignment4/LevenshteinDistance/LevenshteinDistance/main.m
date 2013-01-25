@@ -13,7 +13,7 @@
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        NSUInteger lengthOfStrings = 4;
+        NSUInteger lengthOfStrings = 10;
         
         if(argc > 1)
             lengthOfStrings = atoi(argv[1]);
