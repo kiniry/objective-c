@@ -25,9 +25,12 @@ int main(int argc, const char * argv[])
         //     Prepare for tests    \\
         //----------------------------------------------------------------------------------------------------------------//
         
-        // Creating string to test on
+        // Creating string to test on1
         NSMutableString *string = [NSMutableString string];
-        long iterations = 100000;
+        long iterations = 50000;
+        NSLog(@"Enter number of iterations");
+        scanf("%ld",&iterations);
+        NSLog(@"You have chosen %ld iterations",iterations);
         int additions = 0;
         int removals = 0;
         
