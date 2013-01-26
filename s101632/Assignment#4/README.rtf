@@ -61,4 +61,72 @@ Finished removing the chars time passed: 8832.252979, now we will double the ite
 \f0\b0 We can see that the time consumption will approximately double every time we double the amount of char's we append, remove and change in the String,\
 From this we can conclude that manipulation with at mutable string performance can be described with the following O-notation, O(n).\
 \
+\ul Method Invocation\
+\
+\ulnone I followed the same procedure for checking runtimes on method invocation as I did on string manipulation.\
+As with String manipulation it can be seen that the runtime is increasing linearly in all kinds of invocations.\
+we cam also see that it is significantly slower to invocate selectors than sending messages. And that performing blocks is the tastes.\
+All of this can be seen in the following logging output:\ul \
+\
+\pard\tx529\pardeftab529\pardirnatural
+
+\f1\b \cf0 \ulnone The time consumption for calling a instance method 1000000 times is: 10.73 ms\
+The time consumption for calling a class method 1000000 times is: 6.99 ms\
+The time consumption for invoking a selector of a instance method 1000000 times is: 20.53 ms\
+The time consumption for invoking a selector of a class method 1000000 times is: 12.42 ms\
+The time consumption for calling a block 1000000 times is: 3.96 ms\
+The time consumption for calling a instance method 2000000 times is: 20.53 ms\
+The time consumption for calling a class method 2000000 times is: 14.75 ms\
+The time consumption for invoking a selector of a instance method 2000000 times is: 79.56 ms\
+The time consumption for invoking a selector of a class method 2000000 times is: 24.20 ms\
+The time consumption for calling a block 2000000 times is: 7.25 ms\
+The time consumption for calling a instance method 4000000 times is: 48.95 ms\
+The time consumption for calling a class method 4000000 times is: 33.05 ms\
+The time consumption for invoking a selector of a instance method 4000000 times is: 120.40 ms\
+The time consumption for invoking a selector of a class method 4000000 times is: 47.79 ms\
+The time consumption for calling a block 4000000 times is: 15.85 ms\
+The time consumption for calling a instance method 8000000 times is: 79.57 ms\
+The time consumption for calling a class method 8000000 times is: 59.37 ms\
+The time consumption for invoking a selector of a instance method 8000000 times is: 220.90 ms\
+The time consumption for invoking a selector of a class method 8000000 times is: 99.99 ms\
+The time consumption for calling a block 8000000 times is: 25.90 ms\
+The time consumption for calling a instance method 16000000 times is: 186.87 ms\
+The time consumption for calling a class method 16000000 times is: 191.53 ms\
+The time consumption for invoking a selector of a instance method 16000000 times is: 456.16 ms\
+The time consumption for invoking a selector of a class method 16000000 times is: 276.97 ms\
+The time consumption for calling a block 16000000 times is: 121.02 ms\
+The time consumption for calling a instance method 32000000 times is: 341.15 ms\
+The time consumption for calling a class method 32000000 times is: 211.58 ms\
+The time consumption for invoking a selector of a instance method 32000000 times is: 835.29 ms\
+The time consumption for invoking a selector of a class method 32000000 times is: 667.74 ms\
+The time consumption for calling a block 32000000 times is: 105.39 ms\
+The time consumption for calling a instance method 64000000 times is: 670.00 ms\
+The time consumption for calling a class method 64000000 times is: 414.39 ms\
+The time consumption for invoking a selector of a instance method 64000000 times is: 1281.42 ms\
+The time consumption for invoking a selector of a class method 64000000 times is: 770.93 ms\
+The time consumption for calling a block 64000000 times is: 207.41 ms\
+The time consumption for calling a instance method 128000000 times is: 1275.57 ms\
+The time consumption for calling a class method 128000000 times is: 826.09 ms\
+The time consumption for invoking a selector of a instance method 128000000 times is: 2531.30 ms\
+The time consumption for invoking a selector of a class method 128000000 times is: 1564.77 ms\
+The time consumption for calling a block 128000000 times is: 424.56 ms\
+The time consumption for calling a instance method 256000000 times is: 2535.95 ms\
+The time consumption for calling a class method 256000000 times is: 1684.20 ms\
+The time consumption for invoking a selector of a instance method 256000000 times is: 5403.74 ms\
+The time consumption for invoking a selector of a class method 256000000 times is: 3125.70 ms\
+The time consumption for calling a block 256000000 times is: 869.85 ms\
+The time consumption for calling a instance method 512000000 times is: 5074.39 ms\
+The time consumption for calling a class method 512000000 times is: 3372.87 ms\
+The time consumption for invoking a selector of a instance method 512000000 times is: 10391.72 ms\
+The time consumption for invoking a selector of a class method 512000000 times is: 6073.29 ms\
+The time consumption for calling a block 512000000 times is: 1662.13 ms\
+The time consumption for calling a instance method 1024000000 times is: 10156.30 ms\
+The time consumption for calling a class method 1024000000 times is: 6715.93 ms\
+The time consumption for invoking a selector of a instance method 1024000000 times is: 20254.65 ms\
+The time consumption for invoking a selector of a class method 1024000000 times is: 12101.61 ms\
+The time consumption for calling a block 1024000000 times is: 3379.62 ms\
+\pard\tx529\pardeftab529\pardirnatural
+
+\f0\b0 \cf0 \
+\
 }
