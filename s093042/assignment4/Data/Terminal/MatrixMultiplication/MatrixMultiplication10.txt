@@ -1,0 +1,1 @@
+2013-01-26 21:00:24.034 MatrixMultiplication[2382:707] Multiplication of two random 10 x 10 sized matrices took 7.808030 ms

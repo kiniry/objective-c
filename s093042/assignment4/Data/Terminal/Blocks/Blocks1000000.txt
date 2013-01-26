@@ -1,0 +1,10 @@
+2013-01-26 21:31:46.338 Blocks[2738:707] 1000000 iterations of using small blocks took 256.715000 ms
+2013-01-26 21:31:46.479 Blocks[2738:707] 1000000 iterations of using large blocks took 136.793017 ms
+2013-01-26 21:31:46.823 Blocks[2738:707] 1000000 iterations of declaring and calling blocks with bound variables took 342.490971 ms
+2013-01-26 21:31:46.881 Blocks[2738:707] 1000000 iterations of declaring and calling blocks with internal variables took 57.322979 ms
+2013-01-26 21:31:46.966 Blocks[2738:707] 1000000 iterations of using internal variables took 83.950996 ms
+2013-01-26 21:31:47.128 Blocks[2738:707] 1000000 iterations of using external variables took 160.742998 ms
+2013-01-26 21:31:47.335 Blocks[2738:707] 1000000 iterations of using bound primtive type variables took 205.576003 ms
+2013-01-26 21:31:47.408 Blocks[2738:707] 1000000 iterations of using free primtive type variables took 72.216988 ms
+2013-01-26 21:31:47.614 Blocks[2738:707] 1000000 iterations of using bound reference type variables took 202.429950 ms
+2013-01-26 21:31:47.800 Blocks[2738:707] 1000000 iterations of using free reference type variables took 184.678972 ms

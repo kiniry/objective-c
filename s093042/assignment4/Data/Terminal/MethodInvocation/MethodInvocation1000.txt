@@ -1,0 +1,8 @@
+2013-01-26 21:08:45.171 MethodInvocation[2503:707] 1000 iterations of calling an instance method using brackets took 0.038028 ms
+2013-01-26 21:08:45.179 MethodInvocation[2503:707] 1000 iterations of calling a class method using brackets took 0.032008 ms
+2013-01-26 21:08:45.180 MethodInvocation[2503:707] 1000 iterations of calling an instance method using selectors took 0.030994 ms
+2013-01-26 21:08:45.191 MethodInvocation[2503:707] 1000 iterations of calling a class method using selectors took 0.037968 ms
+2013-01-26 21:08:45.221 MethodInvocation[2503:707] 1000 iterations of calling an instance method using selectors and verifying using introspection took 0.110030 ms
+2013-01-26 21:08:45.222 MethodInvocation[2503:707] 1000 iterations of calling a class method using selectors and verifying using introspection took 0.058055 ms
+2013-01-26 21:08:45.223 MethodInvocation[2503:707] 1000 iterations of getting a property using dot-syntax took 0.019014 ms
+2013-01-26 21:08:45.223 MethodInvocation[2503:707] 1000 iterations of getting a property using method call style took 0.015020 ms

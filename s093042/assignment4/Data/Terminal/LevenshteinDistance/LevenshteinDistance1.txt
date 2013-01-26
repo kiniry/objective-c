@@ -1,0 +1,1 @@
+2013-01-26 20:52:11.784 LevenshteinDistance[2305:707] The Levenshtein distance between D and U is 1. And finding it took 0.038981 ms

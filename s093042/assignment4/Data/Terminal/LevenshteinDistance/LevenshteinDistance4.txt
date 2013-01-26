@@ -1,0 +1,1 @@
+2013-01-26 20:53:07.649 LevenshteinDistance[2309:707] The Levenshtein distance between UDBE and UNGT is 3. And finding it took 0.340998 ms
