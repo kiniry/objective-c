@@ -13,12 +13,12 @@
 @interface SmartyPantsParser : NSObject
 
 // Object-oriented creation and string transformation using object
--(id) initWithOldSchoolDashShortcuts;
--(id) initWithInvertedOldSchoolDashShortcuts;
--(id) initWithAttributes:(int)attr;
--(id) initWithAttributeString:(NSString *)attrString;
--(void) setAttributes:(int)attr;
--(void) setAttributeString:(NSString *)attrString;
+-(id)initWithOldSchoolDashShortcuts;
+-(id)initWithInvertedOldSchoolDashShortcuts;
+-(id)initWithAttributes:(int)attr;
+-(id)initWithAttributeString:(NSString *)attrString;
+-(void)setAttributes:(int)attr;
+-(void)setAttributeString:(NSString *)attrString;
 -(NSString *)transformString:(NSString *)input;
 
 // Quick string transformation
