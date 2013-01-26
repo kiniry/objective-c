@@ -1,8 +1,0 @@
-2013-01-26 21:34:30.355 Protocols[2778:707] 10000 iterations of using small protocol took 0.306964 ms
-2013-01-26 21:34:30.359 Protocols[2778:707] 10000 iterations of using large protocol took 0.162005 ms
-2013-01-26 21:34:30.365 Protocols[2778:707] 10000 iterations of allocating and using small protocols took 5.547047 ms
-2013-01-26 21:34:30.432 Protocols[2778:707] 10000 iterations of allocating and using large protocols took 65.569997 ms
-2013-01-26 21:34:30.490 Protocols[2778:707] 10000 iterations of using only one protocol took 0.198960 ms
-2013-01-26 21:34:30.492 Protocols[2778:707] 10000 iterations of using multiple protocols took 0.104964 ms
-2013-01-26 21:34:30.497 Protocols[2778:707] 10000 iterations of allocating and using only one protocol took 4.450977 ms
-2013-01-26 21:34:30.503 Protocols[2778:707] 10000 iterations of allocating and using multiple protocols took 4.530966 ms

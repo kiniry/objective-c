@@ -1,4 +1,0 @@
-2013-01-26 21:18:19.665 EnumerationIteration[2610:707] Enumeration using normal iteration (for loop), using bracket syntax, with 100000 ordered elements took 6.365001 ms
-2013-01-26 21:18:19.674 EnumerationIteration[2610:707] Enumeration using normal iteration (for loop) using 'objectAtIndex' method, with 100000 ordered elements took 5.752981 ms
-2013-01-26 21:18:19.689 EnumerationIteration[2610:707] Enumeration using enumeration with 100000 ordered elements took 12.898028 ms
-2013-01-26 21:18:19.691 EnumerationIteration[2610:707] Enumeration using fast enumeration with 100000 ordered elements took 0.844955 ms
