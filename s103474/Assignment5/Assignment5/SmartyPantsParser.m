@@ -147,7 +147,7 @@ typedef enum {
 	
 	// Tokenize!
 	for (NSString *part in parts) {
-		if (++index % 2 && part != @"") {
+		if (++index % 2 && ![part isEqualToString:@""]) {
 			[tokens addObject: @[ @"text", part ]];
 		} else {
 			[tokens addObject: @[ @"tag", part ]];
