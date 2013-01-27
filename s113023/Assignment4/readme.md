@@ -61,6 +61,17 @@ The next thing i wanted to examine was which way of looping from 0 to the number
 
 In the last part of the Foundation Framework test i wanted to test how fast it would be to loop through an immutable dictionary compared to a mutable dictionary. So first i allocated a mutable dictionary and instantiated it with the numbers from 0 to the number of iterations. As keys i used the same numbers just wrapped inside a NSString object:
 
+	2013-01-27 13:15:13.576 FoundationClasses[99268:303] Enter number of iterations
+	100000
+	2013-01-27 13:15:15.936 FoundationClasses[99268:303] You have chosen 100000 iterations
+	2013-01-27 13:15:16.351 FoundationClasses[99268:303] Counted 100000 objects in immutable array in 0.000346 seconds
+	2013-01-27 13:15:16.351 FoundationClasses[99268:303] Counted 100000 objects in mutable array in 0.000342 seconds
+	2013-01-27 13:15:16.352 FoundationClasses[99268:303] Created 100000 normal C integers in 0.000240 seconds
+	2013-01-27 13:15:16.352 FoundationClasses[99268:303] Wrapped 100000 normal integers in NSNumbers using factory method in 0.003630 seconds
+	2013-01-27 13:15:16.352 FoundationClasses[99268:303] Wrapped 100000 normal integers in NSNumbers using instance method in 0.001219 seconds
+	2013-01-27 13:15:16.353 FoundationClasses[99268:303] Looped through 100000 objects in immutable dictionary in 0.110288 seconds
+	2013-01-27 13:15:16.353 FoundationClasses[99268:303] Looped through 100000 objects in mutable dictionary in 0.111872 seconds
+	
 	2013-01-27 13:13:17.846 FoundationClasses[98638:303] Enter number of iterations
 	1000000
 	2013-01-27 13:13:20.633 FoundationClasses[98638:303] You have chosen 1000000 iterations
@@ -87,6 +98,34 @@ From the results we see it is actually a bit faster to loop through the elements
 
 Blocks
 ------
+In this part of the test i will have a look at the time consumption when using blocks. I will run a few simple operations. First i will do this directly in the main file, second i will do this using an instance method and third i will do this inside a block. I will do these three steps to see if it's faster to use blocks than placing the operations inside a method for itself.
+
+	2013-01-27 15:12:09.343 Blocks[20338:303] Enter number of iterations
+	1000000
+	2013-01-27 15:12:11.437 Blocks[20338:303] You have chosen 1000000 iterations
+	2013-01-27 15:12:11.455 Blocks[20338:303] Performed normal operations 1000000 times and spent 0.003013 seconds doing it
+	2013-01-27 15:12:11.455 Blocks[20338:303] Performed method calls for normal operation 1000000 times and spent 0.006814 seconds doing it
+	2013-01-27 15:12:11.455 Blocks[20338:303] Performed operations in block 1000000 times and spent 0.003479 seconds doing it
+	
+The results above speak for themself. It is almost twice as fast to place the operations inside a block than sending a message to an instance of an object performing them. We see as well that it only takes a tiny bit of extra time to place the code inside a block compared to having the code directly in the main. This is why blocks are such a powerful tool in objective-C. They are kinda like object methods but they are much faster.
 
 Protocols
 ---------
+In this part of the test we will have a look at whether it will cost extra time to use protocols. First we will compare the time spent when calling an instance method on an object that doesn't implement any protocols against one that does. Hereafter we will compare the performance results of using one long protocol against using several smaller ones that combined does the same thing.
+
+	2013-01-27 20:28:12.453 Protocols[51167:303] Calling instance method with no protocols started
+	2013-01-27 20:28:12.454 Protocols[51167:303] I ain't bound by any protocols
+	2013-01-27 20:28:12.455 Protocols[51167:303] Calling instance method with no protocols finished
+	2013-01-27 20:28:12.455 Protocols[51167:303] Calling instance method with one small protocol started
+	2013-01-27 20:28:12.455 Protocols[51167:303] One protocol is what i responds to
+	2013-01-27 20:28:12.456 Protocols[51167:303] Calling instance method with one small protocol finished
+	2013-01-27 20:28:12.456 Protocols[51167:303] Calling instance methods from one long protocol started
+	and i will strike own upon thee with great vengeance and furious anger those who attempt to poisen and destroy my brothers and you will know my name is the lord when i lay my vengeance upon you 2013-01-27 20:28:12.457 Protocols[51167:303] Calling instance methods from one long protocol finished
+	2013-01-27 20:28:12.457 Protocols[51167:303] Calling  instance methods with many protocols started
+	and i will strike own upon thee with great vengeance and furious anger those who attempt to poisen and destroy my brothers and you will know my name is the lord when i lay my vengeance upon you 2013-01-27 20:28:12.458 Protocols[51167:303] Calling  instance methods with many protocols finished
+	2013-01-27 20:28:12.458 Protocols[51167:303] Time spent calling instance method with no protocols: 0.000392
+	2013-01-27 20:28:12.458 Protocols[51167:303] Time spent calling instance method with one protocol: 0.000405
+	2013-01-27 20:28:12.459 Protocols[51167:303] Time spent calling several instance methods with one long protocol: 0.000116
+	2013-01-27 20:28:12.459 Protocols[51167:303] Time spent calling several instance methods with many protocols: 0.000126
+	
+From the result above we can see why protocols are so often used in objective-C. It only takes a tiny amount of extra time to implement a method from a protocol than without a protocol. The same result applies to when we are implementing many methods at the same time. It takes almost the same time to spread the methods into several smaller protocols instead of having all of them in one large protocol. So this is often preferable to do.
