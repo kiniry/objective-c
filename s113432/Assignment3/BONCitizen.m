@@ -3,7 +3,7 @@
 //  BONCITIZEN
 //
 //  Created by Bastian Buch on 1/21/13.
-//  Copyright (c) 2013 Bastian Buch. All rights reserved.
+//  Copyright (c) 2013 Bastian Buch, s113432, and Jacob Gjerstrup, s113440. All rights reserved.
 //
 
 #import "BONCitizen.h"
@@ -20,6 +20,7 @@
 @synthesize parent1 = _parent1;
 @synthesize parent2 = _parent2;
 
+// Below is lazy instantiation of all the normal getters.
 + (id) create {
     return [[self alloc] init];
 }
@@ -65,23 +66,29 @@
     return _age;
 }
 
+// Then follows a list of setters with assertion.
+// The sex-assertion checks if the citizen belongs to one of the
+// normal sexes on this earth, or if the citizen is an extraterrestrial being.
 - (void) setSexWithAssertion: (NSString*) sex{
-    NSAssert([sex isEqualToString: @"male"] || [sex isEqualToString: @"female"] || [sex isEqualToString: @"alien"] || [sex isEqualToString: @"programmer"], @"Invalid sex. Please specify either male or female.");
+    NSAssert([sex isEqualToString: @"male"] || [sex isEqualToString: @"female"] || [sex isEqualToString: @"alien"] || [sex isEqualToString: @"programmer"] || [sex isEqualToString: @"Male"] || [sex isEqualToString: @"Female"], @"Invalid sex. Please specify either male or female.");
     self.sex = sex;
 }
-
+//  The name-assertion makes sure one does not input an empty text string.
 - (void) setNameWithAssertion: (NSString*) name{
     NSAssert(![name isEqualToString: @""], @"Please set a valid name.")
     self.sex = sex;
 }
-
+// The age-assertion makes sure you enter an age within acceptable limits,
+// that is, a none-negative number that is also below the age of the oldest
+// (verified) person whom has lived on the earth so far.
 - (int) setAgeWithAssertion: (int) age{
-    NSAssert(0 < age < 110, @"Age is set to a nonvalid number. Please set an age between 0 and 110.");
+    NSAssert(0 < age < 122, @"Age is set to a nonvalid number. Please set an age between 0 and 110.");
     self.age = age;
 }
 
+// Below follows the same three setterrs, though this time with exceptions.
 - (void) setSexWithException: (NSString*) sex{
-    if(!([sex isEqualToString: @"male"] || [sex isEqualToString: @"female"] || [sex isEqualToString: @"alien"] || [sex isEqualToString: @"programmer"])){
+    if(!([sex isEqualToString: @"male"] || [sex isEqualToString: @"female"] || [sex isEqualToString: @"alien"] || [sex isEqualToString: @"programmer"] || [sex isEqualToString: @"Male"] || [sex isEqualToString: @"Female"])){
         [NSException raise:@"Invalid sex" format: @"Sex is not male or female", sex];
     }
     self.sex = sex;
@@ -100,7 +107,7 @@
     }
     self.age = age;
 }
-
+// Below follows the same two setterrs, though this time with logging.
 - (void) setSexWithLogging: (NSString*) sex{
     if(!([sex isEqualToString: @"male"] || [sex isEqualToString: @"female"] || [sex isEqualToString: @"alien"] || [sex isEqualToString: @"programmer"])){
         sysLog(@"Sex was set to an invalid value, should be male or female.");
@@ -134,6 +141,15 @@
     return self;
 }
 
+// The marry function takes one argument, the person the citizen is supposed to marry.
+// It then proceeds to check if the person the citizen is marrying is a child, if you
+// are married already, if your comming spouse is married, if you are his/her parent,
+// if he/she is your parent, and if he/she is the same class - that is, has the same
+// civil status - as you do, and it does so in that order. If it passes all these checks,
+// you are allowed to marry and as such, the input civilian is set to be your spouse and
+// you are set to be his/her spouse and the function then returns "true" to register that
+// the persons have actually married.
+
 - (bool) marryWithAssert:(BONCitizen *)personToMarry{
     if (![personToMarry.sex isEqualToString: self.sex]){
         if (personToMarry.age > 18) {
@@ -158,6 +174,11 @@
     return NO;
 }
 
+// Divorce checks if the person that calls the function actually has a spouse.
+// If the person does have that, the spouse's spouse is converted to a null-pointer,
+// and the spouse's spouse is set to have no spouse. Then we repeat the process for
+// the citizen himself. Finally, the function returns true to show that the divorce
+// has gone through.
 
 - (bool) divorce{
     if (self.hasSpouse){
