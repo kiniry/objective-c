@@ -26,7 +26,7 @@ No testing was done to profile the performance of heavy use of recursion.
 
 Heap trashing and thrashing
 ---------------------------
-No testing was done to profile the performance of the heavy use of the heap.
+No testing was done to profile the performance of heavy use of the heap.
 
 Method invocation costs
 -----------------------
