@@ -1,0 +1,1 @@
+2013-01-26 20:52:38.666 LevenshteinDistance[2307:707] The Levenshtein distance between FW and IV is 2. And finding it took 0.053048 ms

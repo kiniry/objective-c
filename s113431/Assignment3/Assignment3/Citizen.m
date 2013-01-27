@@ -15,22 +15,16 @@
 }
 
 - (BOOL) can_marry:(Citizen *)other {
-    if ( // should not be your mother, father, self or same sex.
-        [other isSingle] &&
-        self.sex != other.sex &&
-        self.father != other &&
-        self.mother != other)
-    {
-        return YES;
-    }
-    return NO;
+    NSAssert(other.isSingle && self.sex != other.sex && self.father != other && self.mother != other, @"can_marry precondition failed");
+    return YES;
 }
 
-- (void) divorce {
+- (void) divorce {  
     self.spouse = nil;
 }
 
 - (void) marry:(Citizen *)sweetheart {
+    NSAssert(sweetheart.isSingle, @"marry precondition failed");
     sweetheart.spouse = self;
     self.spouse = sweetheart;   // I don't know
 }

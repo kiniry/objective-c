@@ -17,10 +17,9 @@
 
 
 - (void) marry:(NoblePerson *)sweetheart {
-    if(self.butler || sweetheart.butler) {
+    NSAssert(self.butler && sweetheart.butler, @"marry precondition failed");
         self.spouse = sweetheart;
         sweetheart.spouse = self;
-    }
 }
 
 @end

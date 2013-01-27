@@ -1,0 +1,1 @@
+2013-01-26 20:53:26.861 LevenshteinDistance[2312:707] The Levenshtein distance between BLBAHR and TELNYQ is 6. And finding it took 8.273005 ms

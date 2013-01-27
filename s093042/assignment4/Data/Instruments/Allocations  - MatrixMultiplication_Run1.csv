@@ -1,0 +1,49 @@
+Graph, Category,Live Bytes,# Living,# Transitory,Overall Bytes,# Overall,# Allocations (Net / Overall)
+1,* All Allocations *,47,95 KB,164,33801,1,36 MB,33965,<XRRatioObject: 0x7fde7c068f70>  %0.00, %1.02
+0,CFNumber,0 Bytes,0,33125,1,01 MB,33125,<XRRatioObject: 0x7fde7c068f70>  %0.00, %1.00
+0,Malloc 48 Bytes,1,64 KB,35,80,5,39 KB,115,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 32 Bytes,608 Bytes,19,82,3,16 KB,101,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 16 Bytes,272 Bytes,17,84,1,58 KB,101,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 128 Bytes,2,25 KB,18,83,12,62 KB,101,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 80 Bytes,640 Bytes,8,78,6,72 KB,86,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 208 Bytes,208 Bytes,1,80,16,45 KB,81,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,__NSArrayM,0 Bytes,0,78,3,66 KB,78,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 4,00 KB,16,00 KB,4,64,272,00 KB,68,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 64 Bytes,1,12 KB,18,7,1,56 KB,25,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 192 Bytes,0 Bytes,0,14,2,62 KB,14,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 112 Bytes,1,20 KB,11,0,1,20 KB,11,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFDictionary (mutable),192 Bytes,3,2,320 Bytes,5,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 144 Bytes,432 Bytes,3,2,720 Bytes,5,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 160 Bytes,640 Bytes,4,0,640 Bytes,4,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 256 Bytes,0 Bytes,0,3,768 Bytes,3,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 96 Bytes,96 Bytes,1,2,288 Bytes,3,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Matrix,0 Bytes,0,3,48 Bytes,3,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFBasicHash (value-store),64 Bytes,2,1,96 Bytes,3,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFBasicHash (key-store),64 Bytes,2,1,96 Bytes,3,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 1,00 KB,1,00 KB,1,1,2,00 KB,2,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFString (immutable),48 Bytes,1,1,144 Bytes,2,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 224 Bytes,0 Bytes,0,2,448 Bytes,2,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 304 Bytes,0 Bytes,0,2,608 Bytes,2,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 3,00 KB,6,00 KB,2,0,6,00 KB,2,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,NSPlaceholderValue,16 Bytes,1,0,16 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,NSPlaceholderNumber,16 Bytes,1,0,16 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,__NSPlaceholderDate,16 Bytes,1,0,16 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,__NSDate,0 Bytes,0,1,16 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFString (mutable),0 Bytes,0,1,64 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFString (store),0 Bytes,0,1,128 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFCalendar,0 Bytes,0,1,80 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFLocale,64 Bytes,1,0,64 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,__NSPlaceholderTimeZone,16 Bytes,1,0,16 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 384 Bytes,384 Bytes,1,0,384 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,NSCache,64 Bytes,1,0,64 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 320 Bytes,320 Bytes,1,0,320 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,__NSTimeZone,48 Bytes,1,0,48 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFNotificationCenter,80 Bytes,1,0,80 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFSet (mutable),48 Bytes,1,0,48 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 2,00 KB,2,00 KB,1,0,2,00 KB,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFDictionary (immutable),0 Bytes,0,1,64 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 656 Bytes,0 Bytes,0,1,656 Bytes,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 11,00 KB,11,00 KB,1,0,11,00 KB,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,Malloc 1,50 KB,1,50 KB,1,0,1,50 KB,1,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFString,0 Bytes,0,0,0 Bytes,0,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00
+0,CFBasicHash,0 Bytes,0,0,0 Bytes,0,<XRRatioObject: 0x7fde7c068f70>  %0.00, %0.00

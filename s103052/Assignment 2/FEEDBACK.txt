@@ -1,0 +1,22 @@
+/*
+ * Review performed by:
+ * Jacob Espersen
+ * s101632
+ */
+
+
+
+addChild Method:
+
+You don't check if "self" is single. And you don't set "self's" spouse to be the other parent of the child.
+
+can_marry Method:
+
+To check if Aperson is contained in the children array I'm using the containsObject method, I don't know if it is more effective or not.
+
+marryNoble Method:
+
+To make the method more readable I would have made at least one helper method that would distribute the noble persons assets.
+
+
+There is not really anything to review on the second part of the assignment.

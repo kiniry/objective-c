@@ -61,6 +61,7 @@ Reflextions:
  - ... the built-in methods for logging as compared to the OTLTYAFW.
    (Hint: There is more to the world than printf in logging and
    debugging.)
+	For logging, Apple has generally just used NSLog for some time, but at 10.4, they decided they could do one better and introduced ASL - Apple System Logger. Generally, it's a logging API with all the capabilities of syslog(3) (void syslog(int priority, const char *format, ...) is the format for syslog(3)) 
 
  - ... how method overloading works (or doesn't) as compared to the
    OTLTYAFW.  (Hint: Is overloading permitted?  Is it a best practice?
