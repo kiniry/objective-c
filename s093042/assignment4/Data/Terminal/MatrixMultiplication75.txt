@@ -1,0 +1,1 @@
+2013-01-26 21:02:11.701 MatrixMultiplication[2401:707] Multiplication of two random 75 x 75 sized matrices took 1617.775023 ms

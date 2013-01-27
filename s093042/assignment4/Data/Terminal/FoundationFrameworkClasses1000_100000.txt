@@ -1,0 +1,8 @@
+2013-01-26 21:26:29.479 FoundationFrameworkClasses[2690:707] 1000 iterations using NSUInteger and using NSNumbers to hold the value took 0.200987 ms
+2013-01-26 21:26:29.516 FoundationFrameworkClasses[2690:707] 1000 iterations using int and using int to hold the value took 0.018001 ms
+2013-01-26 21:26:29.687 FoundationFrameworkClasses[2690:707] 1000 iterations of NSString copying took 0.140965 ms
+2013-01-26 21:26:29.699 FoundationFrameworkClasses[2690:707] 1000 iterations of calling the double number factory of NSNumber took 0.458002 ms
+2013-01-26 21:26:29.721 FoundationFrameworkClasses[2690:707] 1000 iterations of counting the elements of a NSMutableArray with 100000 elements took 0.020027 ms
+2013-01-26 21:26:29.748 FoundationFrameworkClasses[2690:707] 1000 iterations of counting the elements of a NSArray with 100000 elements took 0.015020 ms
+2013-01-26 21:26:30.491 FoundationFrameworkClasses[2690:707] 1000 iterations of getting an object for a key in a NSMutableDictionary with 100000 elements took 3.427982 ms
+2013-01-26 21:26:30.513 FoundationFrameworkClasses[2690:707] 1000 iterations of getting an object for a key in a NSDictionary with 100000 elements took 3.548980 ms
