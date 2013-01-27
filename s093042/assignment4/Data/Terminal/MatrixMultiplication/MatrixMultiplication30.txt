@@ -1,1 +1,0 @@
-2013-01-26 21:01:44.449 MatrixMultiplication[2395:707] Multiplication of two random 30 x 30 sized matrices took 349.601984 ms

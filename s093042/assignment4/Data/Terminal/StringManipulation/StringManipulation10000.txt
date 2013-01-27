@@ -1,1 +1,0 @@
-2013-01-26 21:05:17.950 StringManipulation[2452:707] 10000 iterations of string manipulation took 11.364996 ms

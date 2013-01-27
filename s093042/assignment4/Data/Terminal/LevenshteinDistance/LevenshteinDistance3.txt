@@ -1,1 +1,0 @@
-2013-01-26 20:52:45.797 LevenshteinDistance[2308:707] The Levenshtein distance between YFY and UBF is 3. And finding it took 0.096977 ms

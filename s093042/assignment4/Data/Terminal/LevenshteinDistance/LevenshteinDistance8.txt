@@ -1,1 +1,0 @@
-2013-01-26 20:53:43.550 LevenshteinDistance[2314:707] The Levenshtein distance between VVUGCOHC and YJBMKWQQ is 8. And finding it took 283.787012 ms

@@ -1,1 +1,0 @@
-2013-01-26 20:53:34.074 LevenshteinDistance[2313:707] The Levenshtein distance between WFUMJSR and YDYJXAQ is 7. And finding it took 82.556009 ms

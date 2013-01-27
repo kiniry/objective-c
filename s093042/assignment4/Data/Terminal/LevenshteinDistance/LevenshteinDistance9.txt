@@ -1,1 +1,0 @@
-2013-01-26 20:53:52.884 LevenshteinDistance[2315:707] The Levenshtein distance between TXEXHKCNL and HLEGKIRIF is 8. And finding it took 1344.875991 ms

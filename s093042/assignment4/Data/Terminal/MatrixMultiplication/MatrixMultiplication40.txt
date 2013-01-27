@@ -1,1 +1,0 @@
-2013-01-26 21:01:52.166 MatrixMultiplication[2397:707] Multiplication of two random 40 x 40 sized matrices took 435.298979 ms

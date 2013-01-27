@@ -1,1 +1,0 @@
-2013-01-26 21:02:00.449 MatrixMultiplication[2399:707] Multiplication of two random 50 x 50 sized matrices took 777.255952 ms

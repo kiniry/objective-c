@@ -1,1 +1,0 @@
-2013-01-26 20:54:54.215 LevenshteinDistance[2317:707] The Levenshtein distance between DUTHMTJUOQU and VUGCGNANTQQ is 9. And finding it took 38639.697969 ms
