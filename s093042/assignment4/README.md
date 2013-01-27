@@ -10,7 +10,7 @@ The tools used were Instruments, where the Time profiler and the Allocations ins
 
 Regarding the data from the Time profiler from Instruments, because both the Time profiler and the Allocations instruments were put in the same suite and run simultaneously, the computation times takes a little longer than usually, this is because the Allocation instrument, injects code to be executed, when objects are allocated or de-allocated, the times can still however be used to figure out where the execution control uses the most time. But to be able to get more precise computation timing on the different features, they have also been run in the Terminal, where each operation has been timed using the `NSDate` and `NSTimeInterval` objects, which will print out the execution time of a set of operations in milliseconds.
 
-Code for the profiling is found in this directory. Data from the profiling is found in the Data folder: the data from Instruments is found in [Data/Instruments/](Data/Instruments/ "Link to Data/Instruments/") and output from the Terminal is found in [Data/Terminal/](Data/Terminal/ "Link to Data/Terminal/").
+Code for the profiling is found in this directory. Data from the profiling is found in the Data folder: the data from Instruments is found in [Data/Instruments/](assignment4/Data/Instruments/ "Link to Data/Instruments/") and output from the Terminal is found in [Data/Terminal/](assignment4/Data/Terminal/ "Link to Data/Terminal/").
 
 It might be a good idea to look at least at the "main.m" file in each project to see what is being profiled, when reading the following, and maybe looking at the raw data, maybe just the output from the Terminal.
 
