@@ -14,20 +14,12 @@
 
 @implementation Random
 
+//MOVE SOME BELOW TO PROPERTIES, THIS IS JUST TO TEST
 static const long multiplier = 0x5DEECE66DL;
 static const long addend = 0xBL;
 static const long mask = (1L << 48) - 1;
-
--(id)initWithSeed:(long)seed{
-    self = [super init];
-    if (self)
-    {
-        //Init class
-        _seed = seed;
-
-    }
-    return self;
-}
+static double nextNextGaussian;
+static BOOL haveNextNextGaussian = NO;
 
 -(BOOL)compare:(long)seed with:(long)oldseed andSet:(long)nextseed
 {
@@ -40,7 +32,33 @@ static const long mask = (1L << 48) - 1;
         return NO;
     }
 }
+// INIT METHOD WITHOUT SEED BELOW NEEDS IMPLEMENTATION
+/*
+-(id)init
+{
+    for (;;){
+     //   long current = seedUniquifier;
+        //long next = current * 181783497276652981L;
+        if (!nil){
+            
+        }
+    }
+}
+*/
+// TO HERE...
 
+-(id)initWithSeed:(long)seed{
+    self = [super init];
+    if (self)
+    {
+        //Init class
+        _seed = (seed ^multiplier) & mask;
+        haveNextNextGaussian = NO;
+    }
+    return self;
+}
+
+// Takes random bits as input. Output next pseudorandom value.
 -(int)next:(int)bits
 {
     long oldseed, nextseed;
@@ -53,18 +71,76 @@ static const long mask = (1L << 48) - 1;
     return (int)(nextseed >> (48 - bits));
 }
 
--(void)nextBytes:(NSMutableData *)bytes
+-(void)nextBytes:(NSMutableData*)bytes
 {
-    for (int i = 0; i < [bytes length];){
-        for (int rnd = [self nextInt], n = MIN((int)[bytes length]-i, 4); n-- > 0; rnd >>= 8){
-            NSRange byteRange = NSMakeRange(i++, [bytes length]);
-            //bytes = [bytes replaceBytesInRange:byteRange withBytes:(Byte)rnd];
-        }
+    NSLog(@"Not implemented yet");
+}
+
+//Return next pseudorandom integer
+-(int)nextInt
+{
+    return [self next:32];
+}
+
+//Return next pseudorandom integer between 0 and the input integer n
+-(int)nextInt:(int) n
+{
+    if (n <= 0){
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"n must be positive" userInfo:nil];
+    }
+    if ((n & -n) == n){
+        return (int)((n * (long)[self next:31]) >> 31);
+    }
+    
+    int bits, val;
+    do {
+        bits = [self next:31];
+        val = bits  %n;
+    } while (bits - val + (n-1) < 0);
+    return val;
+}
+
+//Return next pseudorandom long value
+-(long)nextLong
+{
+    return ((long)([self next:32]) << 32) + [self next:32];
+}
+
+//Return next pseudorandom boolean value
+-(BOOL)nextBoolean
+{
+    return [self next:1]  != 0;
+}
+
+//Return next pseudorandom float value
+-(float)nextFloat
+{
+    return [self next:24]/((float)(1<<24));
+}
+
+//Return next pseudorandom double value
+-(double)nextDouble
+{
+    return (((long)([self next:26]) << 27) + [self next:27])/ (double)(1L << 53);
+}
+
+-(double)nextGaussian
+{
+    if(haveNextNextGaussian){
+        haveNextNextGaussian = NO;
+        return nextNextGaussian;
+    } else {
+        double v1,v2,s;
+        do {
+            v1 = 2 * [self nextDouble] - 1;
+            v2 = 2 * [self nextDouble] - 1;
+            s = v1 * v1 + v2 * v2;
+        } while (s >= 1 || s == 0);
+        double multiplier = sqrt(-2*log(s)/s);
+        nextNextGaussian = v2 * multiplier;
+        haveNextNextGaussian = YES;
+        return v1 * multiplier;
     }
 }
 
--(int)nextInt
-{
-    
-}
 @end
