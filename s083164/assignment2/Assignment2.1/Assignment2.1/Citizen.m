@@ -10,7 +10,7 @@
 
 @implementation Citizen
 
-//Running Xcode 4.4+ so no need to synthesize properties
+//Running Xcode 4.4+ so no need to synthesize properties - Autosynthesis!
 
 -(Citizen *)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName sex:(Sex)sex andAge:(NSNumber *)age
 {

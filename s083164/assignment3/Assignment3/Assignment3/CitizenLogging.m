@@ -8,7 +8,7 @@
 
 #import "CitizenLogging.h"
 
-static bool debug = NO;
+static bool debug = YES;
 
 @implementation CitizenLogging
 
