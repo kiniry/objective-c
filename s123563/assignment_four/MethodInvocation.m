@@ -41,41 +41,6 @@ const int NUM_CALLS_METH = 100000000;
   NSLog(@"");
 }
 
-
-// (void) runDirect
-//
-// for (int i = 0; i < NUM_CALLS; ++i)
-// {
-//   [self noop];
-// }  
-//
-//
-//- (void) runStaticDirect
-//{
-//  for (int i = 0; i < NUM_CALLS; ++i)
-//  {
-//    [MethodInvocation staticNoop];
-//  }  
-//}
-//
-//- (void) runStaticSelector
-//{
-//  SEL sel = @selector(staticNoop);
-//  for (int i = 0; i < NUM_CALLS; ++i)
-//  {
-//    [MethodInvocation performSelector:sel];
-//  }  
-//}
-//
-//- (void) runSelector
-//{
-//  SEL sel = @selector(noop);
-//  for (int i = 0; i < NUM_CALLS; ++i)
-//  {
-//    [self performSelector:sel];
-//  }  
-//}
-//
 + (void) staticNoop {}
 - (void) noop {}
 
