@@ -10,31 +10,35 @@
 
 @implementation NoblePerson
 
--(void)marry:(NoblePerson *)noblePerson
+-(bool)marry:(NoblePerson *)noblePerson
 {
     if ([noblePerson isKindOfClass:[NoblePerson class]]) {
         
         // Can they afford the wedding?
-        if ((self.numberOfAssets + noblePerson.numberOfAssets) < 20000) return;
+        if ((self.numberOfAssets + noblePerson.numberOfAssets) < 20000) return NO;
         
         // Can only get married if both are single
-        if (!self.isSingle || !noblePerson.isSingle) return;
+        if (!self.isSingle || !noblePerson.isSingle) return NO;
         
-        // Share butler if they have any
-        if (self.butler != nil) {
-            noblePerson.butler = self.butler;
-        } else if(noblePerson.butler != nil) {
-            self.butler = noblePerson.butler;
+        if ([super marry:noblePerson]) {
+            // Share butler if they have any
+            if (self.butler != nil) {
+                noblePerson.butler = self.butler;
+            } else if(noblePerson.butler != nil) {
+                self.butler = noblePerson.butler;
+            }
+            
+            // Share assets
+            NSInteger costOfWedding = 20000;
+            NSInteger sharedAssets = self.numberOfAssets + noblePerson.numberOfAssets - costOfWedding;
+            self.numberOfAssets = sharedAssets;
+            noblePerson.numberOfAssets = sharedAssets;
+            
+            return YES;
         }
-        
-        // Share assets
-        NSInteger costOfWedding = 20000;
-        NSInteger sharedAssets = self.numberOfAssets + noblePerson.numberOfAssets - costOfWedding;
-        self.numberOfAssets = sharedAssets;
-        noblePerson.numberOfAssets = sharedAssets;
-        
-        [super marry:noblePerson];
     }
+    
+    return NO;
 }
 
 @end

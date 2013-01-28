@@ -10,7 +10,7 @@
 
 @implementation Citizen
 
-//Running Xcode 4.4+ so no need to synthesize properties - Autosynthesis!
+//Running Xcode 4.4+ so no need to synthesize properties
 
 -(Citizen *)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName sex:(Sex)sex andAge:(NSNumber *)age
 {
@@ -25,9 +25,21 @@
     return self;
 }
 
--(bool)marry:(Citizen *)citizen
+-(void)marry:(Citizen *)citizen
 {
-    //Can only get married if both are single
+    
+    if ([self eligibleToMarry:citizen]) {
+
+        self.spouse = citizen;
+        citizen.spouse = self;
+
+    }
+    
+}
+
+-(bool)eligibleToMarry:(Citizen *)citizen
+{
+    
     if (self.isSingle &&
         citizen.isSingle &&
         ![self isEqual:citizen] &&
@@ -36,9 +48,6 @@
         ![citizen isEqual:self.father] &&
         ![self.children containsObject:citizen] &&
         self.sex != citizen.sex) {
-        
-        self.spouse = citizen;
-        citizen.spouse = self;
         
         return YES;
     }
