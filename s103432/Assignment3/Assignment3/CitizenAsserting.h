@@ -10,6 +10,6 @@
 
 #import "Citizen.h"
 
-@interface CitizenAsserting : NSObject
+@interface CitizenAsserting : Citizen
 
 @end

@@ -1,0 +1,29 @@
+There is no README file so i haven't got much to go on besides code. Also there are very few comments in the code.
+
+Citizen.m:
+- Implementations are very similar. Jacob has chosen to separate impediments to marriage and the actual marry method. I have them in the same method. 
+I think separating the two is the right design choice. Impediment could be thought of as a query and marry is a command, thus breaking the "command query separation principle" by putting both in the same method.
+Also Joe's solution has an invariant which is kind of the same thing. 
+
+Jacob's solution does not have a divorce method.
+I have chosen to auto set gender of a childs parents and added a description method for easier debugging with NSLog. None of those functions are necessary.      
+
+NoblePerson.m:
+- These are almost identical
+
+FunWithBlocks.m:
+- The first test under blocks in main.h looks right to me. I don't know how to import the files to Xcode (and don't have to time to figure it out) and therefore I can't see if it's working. 
+I don't know about the last part. 
+
+I guess it's all working, but there are very few comments and I don't know objective-c well enough to know if it works.
+
+FunWithProtocols:
+- Implementations are somewhat similar. We both use the delegate pattern for testing protocols. 
+
+FunWithNil:
+- Good little experiment for showing difference between Java and Objective-c in this field. I don't have anything to compare this to.   
+
+
+Jesper
+s100182
+ 

@@ -13,7 +13,7 @@
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        NSUInteger sizeOfMatrix = 4;
+        NSUInteger sizeOfMatrix = 25;
         
         if(argc > 1)
             sizeOfMatrix = atoi(argv[1]);

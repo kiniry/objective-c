@@ -11,6 +11,7 @@
 #import "Boy.h"
 #import "AustinPowers.h"
 #import "PersonAlternative.h"
+#import "TVShows.h"
 
 int main(int argc, const char * argv[])
 {
@@ -437,6 +438,35 @@ int main(int argc, const char * argv[])
         
         //+-----------------------------------------------------------------------------------------------------------+\\
         //--[COMPARISON 29: How do blocks work?]-----------------------------------------------------------------------\\
+        
+        NSLog(@".oO( Comparison 29 )Oo.");
+        
+        //Using blocks for fast enumaration:
+        
+        TVShows *animatedTVShowList = [[TVShows alloc] initWithTVShows:@[@"Futurama",@"The Simpsons",@"Family Guy"]];
+        
+        __block NSString *showToSearchFor = @"Californication";
+        
+        [animatedTVShowList enumerateTVShowsWithBlock:^(NSString *name, int index, BOOL *stop) {
+            if ([name isEqualToString:showToSearchFor]){
+                NSLog(@"Yeaah, we found %@",showToSearchFor);
+                *stop = YES;
+            } else {
+                NSLog(@"Found %@ but that wasn't: %@",name,showToSearchFor);
+            }
+        }];
+        
+        TVShows *normalTVShowList = [[TVShows alloc] initWithTVShows:@[@"Breaking Bad",@"Game of Thrones",@"HIMYM",@"Californication"]];
+        
+        [normalTVShowList enumerateTVShowsWithBlock:^(NSString *name, int index, BOOL *stop) {
+            if ([name isEqualToString:showToSearchFor]){
+                NSLog(@"Yeaah, we found %@",showToSearchFor);
+                *stop = YES;
+            } else {
+                NSLog(@"Found %@ but that wasn't: %@",name,showToSearchFor);
+            }
+        }];
+        
         
         
     }

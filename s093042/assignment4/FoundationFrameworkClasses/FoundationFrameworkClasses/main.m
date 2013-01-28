@@ -11,8 +11,8 @@
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        NSUInteger numberOfIterations = 1000000;
-        NSUInteger numberOfElements = 100000;
+        NSUInteger numberOfIterations = 10000;
+        NSUInteger numberOfElements = 100;
         
         if(argc > 1)
         {

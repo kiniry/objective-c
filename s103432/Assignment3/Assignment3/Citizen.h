@@ -20,9 +20,17 @@ typedef enum { undefined1, single, inRelationship, itIsComplicated } relationshi
 @property SEX sex;
 @property relationshipStatus relationshipStatus;
 
+@property Citizen *spouse;
+@property NSMutableArray *children;
+
 -(Citizen *)initWithName:(NSString *)aName;
 -(NSString*) sexString;
 -(NSString*) relationshipStatusString;
 -(NSString*) description;
+
+- (void)divorce;
+- (void)marry:(Citizen*)spouse;
+- (BOOL)canMarry;
+- (BOOL)isSingle;
 
 @end

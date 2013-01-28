@@ -1,0 +1,9 @@
+Running Time,Self,,Symbol Name
+594.0ms   66.1%,0, ,Main Thread  0x9ec6
+354.0ms   39.4%,354, , +[NSObject allocWithZone:]
+214.0ms   23.8%,214, , -[NSObject dealloc]
+19.0ms    2.1%,19, , -[NSObject release]
+3.0ms    0.3%,3, , -[NSObject init]
+2.0ms    0.2%,2, , +[NSObject alloc]
+1.0ms    0.1%,1, , +[NSObject load]
+1.0ms    0.1%,0, , +[NSTimeZone defaultTimeZone]

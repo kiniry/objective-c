@@ -20,7 +20,6 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         
         // Scenario with
-        //Citizen *theFather = [[Citizen alloc] initWithName:@"John Sr." Sex:@"Male" age:45];
         Citizen *aFather = [Citizen alloc];
         aFather = [aFather initWithName:@"John Sr." Sex:@"Male" Age:45];
         NSLog(@"%@",aFather);
