@@ -10,6 +10,11 @@
 
 @implementation EKKPerson
 
++(EKKPerson *)initWithFactory:(NSString *)name
+{
+    return [[EKKPerson alloc] initWithName:name];
+}
+
 -(EKKPerson *)initWithName:(NSString *)name
 {
     self = [super init];

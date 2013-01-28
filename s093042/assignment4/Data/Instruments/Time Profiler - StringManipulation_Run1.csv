@@ -1,0 +1,6 @@
+Running Time,Self,,Symbol Name
+8.0ms   11.9%,0, ,Main Thread  0x9006
+6.0ms    8.9%,5, , -[StringManipulation compute]
+1.0ms    1.4%,1, ,  -[__NSCFString appendString:]
+1.0ms    1.4%,1, , +[NSObject(NSObject) initialize]
+1.0ms    1.4%,1, , +[NSObject allocWithZone:]

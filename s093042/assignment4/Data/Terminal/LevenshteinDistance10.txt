@@ -1,0 +1,1 @@
+2013-01-26 20:54:08.501 LevenshteinDistance[2316:707] The Levenshtein distance between VUBIIEDIGJ and LGSVROGUXY is 10. And finding it took 7295.733988 ms

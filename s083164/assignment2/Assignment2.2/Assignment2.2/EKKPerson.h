@@ -12,6 +12,8 @@
 
 @property (strong) NSString *name;
 
++(EKKPerson *)initWithFactory:(NSString *)name;
+
 -(EKKPerson *)initWithName:(NSString *)name;
 
 @end

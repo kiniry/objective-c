@@ -18,7 +18,7 @@ alloc/init
 In Objective-C object are created using the alloc/init pattern. First memory is
 allocated using the alloc method. It is defined in the NSObject, which all
 objects in Objective-C inherits from. The alloc method returns a pointer to the
-memory allocated. The pointer is given to the init method which makes sure that
+memory allocated. The pointer is given to the init method (which returns an id) which makes sure that
 the class properties are initielized. The pattern looks like this:
 
 [[Object alloc] init]

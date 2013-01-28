@@ -13,7 +13,7 @@
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        NSUInteger lengthOfStrings = 10;
+        NSUInteger lengthOfStrings = 7;
         
         if(argc > 1)
             lengthOfStrings = atoi(argv[1]);
@@ -23,7 +23,7 @@ int main(int argc, const char * argv[])
         NSMutableString *mStr2 = [NSMutableString string];
         for(NSUInteger i = 0; i < lengthOfStrings; i++)
         {
-            char c1 = 65 + arc4random_uniform(90-65);
+            char c1 = 65 + arc4random_uniform(90-65);  // get a character between A-Z
             char c2 = 65 + arc4random_uniform(90-65);
             [mStr1 appendString:[NSString stringWithFormat:@"%c", c1]];
             [mStr2 appendString:[NSString stringWithFormat:@"%c", c2]];
