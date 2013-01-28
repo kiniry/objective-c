@@ -12,22 +12,27 @@ Method invocations
 
 Invoking class methods is a lot more expensive than instance methods. And using selectors is again much more expensive. The output should be self-explanatory.
 
+One interesting thing I found was that it is much faster to call methods by directly invoking the Objective-C implementation. This is because by doing it that way, you bypass the dynamic message responder lookup, and it's about 60% faster!
+
 #### Output:
 
 ```
-13:00:44.924: --- Running method invocation tests ---
-13:00:44.928: run task: method access
-13:00:46.037: > finished in 1.109 sec
-13:00:46.037: run task: performSelector
-13:00:48.141: > finished in 2.104 sec
-13:00:48.141: run task: static method access
-13:00:53.170: > finished in 5.029 sec
-13:00:53.170: run task: static performSelector
-13:00:59.800: > finished in 6.63 sec
-13:00:59.800: comparison: 'method access' is 1.897205 faster than 'performSelector'
-13:00:59.800: comparison: 'static method access' is 1.318354 faster than 'static performSelector'
-13:00:59.801: comparison: 'method access' is 4.534716 faster than 'static method access'
-13:00:59.801: comparison: 'performSelector' is 3.151141 faster than 'static performSelector'
+2013-01-28 19:25:02.513 Four[6304] --- Running method invocation tests ---
+2013-01-28 19:25:02.517 Four[6304] run task: direct IMP call
+2013-01-28 19:25:03.370 Four[6304] > finished in 0.8519998 sec
+2013-01-28 19:25:03.370 Four[6304] run task: method access
+2013-01-28 19:25:04.775 Four[6304] > finished in 1.405 sec
+2013-01-28 19:25:04.775 Four[6304] run task: performSelector
+2013-01-28 19:25:07.421 Four[6304] > finished in 2.646 sec
+2013-01-28 19:25:07.421 Four[6304] run task: static method access
+2013-01-28 19:25:13.805 Four[6304] > finished in 6.384 sec
+2013-01-28 19:25:13.806 Four[6304] run task: static performSelector
+2013-01-28 19:25:21.767 Four[6304] > finished in 7.961 sec
+2013-01-28 19:25:21.768 Four[6304] comparison: 'direct IMP call' is 1.649062 faster than 'method access'
+2013-01-28 19:25:21.768 Four[6304] comparison: 'method access' is 1.883274 faster than 'performSelector'
+2013-01-28 19:25:21.768 Four[6304] comparison: 'static method access' is 1.247024 faster than 'static performSelector'
+2013-01-28 19:25:21.768 Four[6304] comparison: 'method access' is 4.543771 faster than 'static method access'
+2013-01-28 19:25:21.768 Four[6304] comparison: 'performSelector' is 3.008693 faster than 'static performSelector'
 ```
 
 String manipulations
