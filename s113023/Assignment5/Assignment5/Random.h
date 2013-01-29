@@ -10,7 +10,14 @@
 
 @interface Random : NSObject
 
--(void)nextBytes:(NSArray *)bytes;
+-(id)initWithSeed:(long)seed;
+-(void)nextBytes:(NSMutableData*)bytes;
 -(int)nextInt;
+-(int)nextInt:(int)n;
+-(long)nextLong;
+-(BOOL)nextBoolean;
+-(float)nextFloat;
+-(double)nextDouble;
+-(double)nextGaussian;
 
 @end
