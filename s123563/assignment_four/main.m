@@ -7,11 +7,24 @@
 int main(int argc, const char * argv[])
 {
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+  NSMutableSet* arg = [[NSMutableSet alloc] init];
+  for (int i = 0; i < argc; ++i)
+  {
+    [arg addObject:[NSString stringWithCString:argv[i]]];
+  }
 
-  [[[MethodInvocation alloc] init] run];
-  [[[StringManipulation alloc] init] run];
-  [[[Blocks alloc] init] run];
-  [[[Enumeration alloc] init] run];
+  BOOL all = [arg containsObject:@"all"] || [arg count] == 1;
+  if (all || [arg containsObject:@"methods"])
+    [[[MethodInvocation alloc] init] run];
+
+  if (all || [arg containsObject:@"strings"])
+    [[[StringManipulation alloc] init] run];
+
+  if (all || [arg containsObject:@"blocks"])
+    [[[Blocks alloc] init] run];
+
+  if (all || [arg containsObject:@"enums"])
+    [[[Enumeration alloc] init] run];
 
   [pool drain];
   return 0;
