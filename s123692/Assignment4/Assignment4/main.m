@@ -11,6 +11,7 @@
 #import "Recursion.h"
 #import "Enumeration.h"
 #import "StringManipulation.h"
+#import "Blocks.h"
 
 int main(int argc, const char * argv[])
 {
@@ -36,6 +37,11 @@ int main(int argc, const char * argv[])
                  @"Manipulate immutable string");
         TimeTask([manipulator manipulateMutableString],
                  @"Manipulate mutable string");
+        
+        // Blocks
+        Blocks *blox = [[Blocks alloc] initWithLimit:5000000];
+        TimeTask([blox runBlock], @"Blocks");
+        TimeTask([blox runNonBlock], @"Nonblock");
         
     }
     return 0;

@@ -10,4 +10,11 @@
 
 @interface Blocks : NSObject
 
+@property int limit;
+
+-(id) initWithLimit:(int)limit;
+
+-(void) runBlock;
+-(void) runNonBlock;
+
 @end
