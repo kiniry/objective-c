@@ -19,13 +19,13 @@
 
 -(NSInteger)computeLevenshteinDistanceOf:(NSString *)str1 andString:(NSString*)str2
 {
+    if (!self.memo) self.memo = [[NSMutableDictionary alloc] init];
     NSInteger dis = [self compute:str1 withIndex:0 withLength:str1.length andString:str2 withIndex:0 withLength:str2.length];
     return dis;
 }
 
 -(NSInteger)compute:(NSString *)str1 withIndex:(NSInteger)index1 withLength:(NSInteger)length1 andString:(NSString*)str2 withIndex:(NSInteger)index2 withLength:(NSInteger)length2
 {
-    if (!self.memo) self.memo = [[NSMutableDictionary alloc] init];
     
     NSString *key = [NSString stringWithFormat:@"%d,%d,%d,%d",(int)index1, (int)length1, (int)index2, (int)length2];
     NSNumber *obj = [self.memo objectForKey:key];
