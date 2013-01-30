@@ -12,22 +12,27 @@ Method invocations
 
 Invoking class methods is a lot more expensive than instance methods. And using selectors is again much more expensive. The output should be self-explanatory.
 
+One interesting thing I found was that it is much faster to call methods by directly invoking the Objective-C implementation. This is because by doing it that way, you bypass the dynamic message responder lookup, and it's about 60% faster!
+
 #### Output:
 
 ```
-13:00:44.924: --- Running method invocation tests ---
-13:00:44.928: run task: method access
-13:00:46.037: > finished in 1.109 sec
-13:00:46.037: run task: performSelector
-13:00:48.141: > finished in 2.104 sec
-13:00:48.141: run task: static method access
-13:00:53.170: > finished in 5.029 sec
-13:00:53.170: run task: static performSelector
-13:00:59.800: > finished in 6.63 sec
-13:00:59.800: comparison: 'method access' is 1.897205 faster than 'performSelector'
-13:00:59.800: comparison: 'static method access' is 1.318354 faster than 'static performSelector'
-13:00:59.801: comparison: 'method access' is 4.534716 faster than 'static method access'
-13:00:59.801: comparison: 'performSelector' is 3.151141 faster than 'static performSelector'
+2013-01-28 19:25:02.513 Four[6304] --- Running method invocation tests ---
+2013-01-28 19:25:02.517 Four[6304] run task: direct IMP call
+2013-01-28 19:25:03.370 Four[6304] > finished in 0.8519998 sec
+2013-01-28 19:25:03.370 Four[6304] run task: method access
+2013-01-28 19:25:04.775 Four[6304] > finished in 1.405 sec
+2013-01-28 19:25:04.775 Four[6304] run task: performSelector
+2013-01-28 19:25:07.421 Four[6304] > finished in 2.646 sec
+2013-01-28 19:25:07.421 Four[6304] run task: static method access
+2013-01-28 19:25:13.805 Four[6304] > finished in 6.384 sec
+2013-01-28 19:25:13.806 Four[6304] run task: static performSelector
+2013-01-28 19:25:21.767 Four[6304] > finished in 7.961 sec
+2013-01-28 19:25:21.768 Four[6304] comparison: 'direct IMP call' is 1.649062 faster than 'method access'
+2013-01-28 19:25:21.768 Four[6304] comparison: 'method access' is 1.883274 faster than 'performSelector'
+2013-01-28 19:25:21.768 Four[6304] comparison: 'static method access' is 1.247024 faster than 'static performSelector'
+2013-01-28 19:25:21.768 Four[6304] comparison: 'method access' is 4.543771 faster than 'static method access'
+2013-01-28 19:25:21.768 Four[6304] comparison: 'performSelector' is 3.008693 faster than 'static performSelector'
 ```
 
 String manipulations
@@ -104,18 +109,18 @@ Something annoying is that the GNUstep implementation does not have some `block`
 
 Blocks
 ------
-Blocks execute pretty fast. Doing a simple operation (where the operation is close to free) is almost twice as fast when executed by a block, than by messaging. 
+Blocks execute pretty fast. Doing a simple operation (where the operation is close to free, and the block is defined as an ivar) is almost three times as fast when executed by a block, than by messaging.
 
 #### Output: 
 
 ```
-12:58:37.475: --- Running block tests ---
-12:58:37.479: -- performing simple operation 200000000 times
-12:58:37.479: run task: simple op as msg send
-12:58:39.660: > finished in 2.18 sec
-12:58:39.660: run task: simple op as block
-12:58:40.876: > finished in 1.216 sec
-12:58:40.876: comparison: 'simple op as block' is 1.792763 faster than 'simple op as msg send'
+11:01:26.198: --- Running block tests ---
+11:01:26.198: -- performing simple operation 200000000 times
+11:01:26.199: run task: simple op as msg send
+11:01:27.370: > finished in 1.171 sec
+11:01:27.370: run task: simple op as block
+11:01:27.738: > finished in 0.3669999 sec
+11:01:27.738: comparison: 'simple op as block' is 3.190737 faster than 'simple op as msg send'
 ```
 
 
