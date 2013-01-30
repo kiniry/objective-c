@@ -10,4 +10,8 @@
 
 @interface LevenshteinDistance : NSObject
 
+@property NSMutableDictionary *memo;
+
+-(NSInteger)computeLevenshteinDistanceOf:(NSString *)str1 andString:(NSString*)str2;
+
 @end
