@@ -1,5 +1,5 @@
-Assertions and logging
-
+Assignment 3
+Three classes have been implemented that shows the three approaches defensive programming, logging and assertions.
 
 Defensive programming
 
