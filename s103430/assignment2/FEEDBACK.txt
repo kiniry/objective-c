@@ -1,0 +1,10 @@
+/***** Peer Review performed by: Christian Poulsen, S103052 *****/
+
+Part 1:
++ Overall it seems like a good implementation. It's a simple and readable code, that actually doesn't need comments to understand.
+
+- The test of your classes in the main could have been a little bit more readable and structured in my opinion.
+
+
+Part 2:
+- Not many of the reflection questions are answered and no classes for experiments are implemented, so I don't have much to review in the second part.

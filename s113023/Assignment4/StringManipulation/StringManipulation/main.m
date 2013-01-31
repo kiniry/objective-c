@@ -26,54 +26,48 @@ int main(int argc, const char * argv[])
         //----------------------------------------------------------------------------------------------------------------//
         
         // Creating string to test on1
-        NSMutableString *string = [NSMutableString string];
+        NSMutableString *stringMutable = [NSMutableString string];
+        NSString *stringImmutable = [stringMutable copy];
         unsigned int iterations = 50000;
         NSLog(@"Enter number of iterations");
         scanf("%d",&iterations);
         //NSLog(@"You have chosen %ld iterations",iterations);
-        int additions = 0;
-        int removals = 0;
         
         
-        //----------------------------------\\
-        //     Run string appending test    \\
+        //-----------------------------------------\\
+        //     Run mutableString appending test    \\
         //----------------------------------------------------------------------------------------------------------------//
         
-        //NSLog(@"String appending test started");
+        NSLog(@"mutableString appending test started");
         NSDate *start = [NSDate date];
         
         for (unsigned int i=0; i < iterations; i++){
-            [string appendString:@"a"];
-            //additions++;
+            [stringMutable appendString:@"a"];
         }
-        //NSLog(@"String appending test finished");
-        double timePassedAppending = [[NSDate date] timeIntervalSinceDate:start];
-                
-        NSString *filledString = [string mutableCopy];
-        
-        //--------------------------------\\
-        //     Run string removal test    \\
+        NSLog(@"mutableString appending test finished");
+        double timePassedAppendingMutable = [[NSDate date] timeIntervalSinceDate:start];
+                    
+        //-------------------------------------------\\
+        //     Run immutableString appending test    \\
         //----------------------------------------------------------------------------------------------------------------//
         
-        NSMutableString *stringForRemoval = [filledString mutableCopy];
-
-        NSRange firstChar = NSMakeRange(0,1);
-        //NSLog(@"String removal test started");
+        NSLog(@"immutableString appending test started");
         start = [NSDate date];
-        for (unsigned int i=0; i< iterations; i++){
-            [stringForRemoval replaceCharactersInRange:firstChar withString:@""];
-            //removals++;
+        
+        for (unsigned int i=0; i < iterations; i++){
+            [stringImmutable stringByAppendingString:@"a"];
         }
-        //NSLog(@"String removal test finished");
-        double timePassedRemoval = [[NSDate date] timeIntervalSinceDate:start];
+        NSLog(@"immutableString appending test finished");
+        double timePassedAppendingImmutable = [[NSDate date] timeIntervalSinceDate:start];
                 
         //----------------\\
         //     Summary    \\
         //----------------------------------------------------------------------------------------------------------------//
         
-        NSLog(@"String appending took %f seconds doing %d additions",timePassedAppending,additions);
-        NSLog(@"String removal took %f seconds doing %d removals",timePassedRemoval,removals);
-        NSLog(@"Overall manipulations took %f seconds",timePassedAppending+timePassedRemoval);
+        NSLog(@"MutableString appending took %f seconds doing %d additions",timePassedAppendingMutable,iterations);
+        NSLog(@"ImmutableString appending took %f seconds doing %d additions",timePassedAppendingImmutable,iterations);
+        NSLog(@"MutableString time spent pr char appended: %f ms",timePassedAppendingMutable/iterations*1000);
+        NSLog(@"ImmutableString time spent pr char appended: %f ms",timePassedAppendingImmutable/iterations*1000);
         
     }
     return 0;
