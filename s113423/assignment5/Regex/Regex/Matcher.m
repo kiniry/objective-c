@@ -26,7 +26,7 @@
 
 @interface RegexPattern ()
 
-// expose setter from RegexPattern
+// expose property from RegexPattern
 @property NSRegularExpression* regex;
 
 @end
@@ -107,7 +107,7 @@
 
 - (void)setPattern:(RegexPattern *)pattern {
   if (!pattern)
-    [NSException raise:NSInvalidArgumentException format:@"No match available"];
+    [NSException raise:NSInvalidArgumentException format:@"Pattern cannot be nil"];
 
   _pattern = pattern;
 
@@ -142,7 +142,6 @@
 
   NSError* error = NULL;
   NSRegularExpression* greedyRegex = [NSRegularExpression regularExpressionWithPattern:[self.pattern.pattern stringByAppendingString:@"$"] options:0 error:&error]; // no options specified
-
   if (error)
     [NSException raise:NSInternalInconsistencyException format:@"Greedy hack didn't work :("];
 
@@ -255,10 +254,12 @@
 }
 
 - (void)setRegionFromIndex:(NSUInteger)start toIndex:(NSUInteger)end {
-  // raise exceptions directly instead of using NSAssert to be more consistent???
-  NSAssert(start <= self.input.length, @"start should be less than or equal to length of input string");
-  NSAssert(end <= self.input.length, @"end should be less than or equal to length of input string");
-  NSAssert(start <= end, @"start should be less than or equal to end");
+  if (start > self.input.length)
+    [NSException raise:NSRangeException format:@"Start index out of bounds"];
+  if (end > self.input.length)
+    [NSException raise:NSRangeException format:@"End index out of bounds"];
+  if (start > end)
+    [NSException raise:NSRangeException format:@"Start index is greater than end index"];
 
   [self reset];
   self.range = NSMakeRange(start, end - start);
