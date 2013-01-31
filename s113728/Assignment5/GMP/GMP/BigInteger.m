@@ -18,7 +18,6 @@
     self = [super init];
     if (!self) return nil;
     mpz_init(integ);
-    mpf_init(floa); 
     return self;
 }
 - (BigInteger *)initWithString:(NSString *)str{
@@ -37,11 +36,7 @@
     mpz_set_si(integ, nsint);
     return self;
 }
-- (BigInteger *)initWithMpf:(mpf_t)aFloat{
-    self = self.init;
-    mpf_set(floa, aFloat);
-    return self;
-}
+
 - (BigInteger *)initWithTwoPoweredToThe:(NSInteger)exponent{
     NSAssert(exponent > 0, @"Precondition exponent not 0 cause 0^0=1");
     self = self.init;
@@ -71,28 +66,23 @@
     numBits = mpz_hamdist(integ, op2->integ);
     return (NSInteger) numBits;
 }
+- (NSInteger)getNumberOfSharedLeadingBits:(BigInteger *)op2{
+    NSAssert(integ != 0 || op2->integ != 0, @"One op was 0");
+    mpz_t temp;
+    mpz_init(temp);
+    mpz_xor(temp, integ, op2->integ);
+    mp_bitcnt_t index;
+    index = mpz_scan1(temp, 0);
+    mpz_clear(temp);
+    unsigned int long numBits;
+    numBits = mpz_sizeinbase(integ, 2) - index;
+    return (NSInteger) numBits;
+}
 - (NSString *)getIntString{
     char *cString = NULL;
     cString = mpz_get_str(cString, 10, integ);
     return [NSString stringWithUTF8String:cString];
     }
-
-// THIS METHOD STILL SUCKS BALLS. SORRY DUDE DON'T USE IT YET
-- (NSString *)getFloatString{
-    NSAssert(floa != NULL, @"Precondition for getFloatString not satisfied, floa is NULL");
-    
-    size_t sz = mpf_size(floa);
-    char cString[sz];
-    mp_exp_t exponent = 3;
-    //  mpf_get_str (char *str, mp_exp_t *expptr, int base, size_t n_digits, mpf_t op)
-    mpf_get_str(cString, &exponent, 10, sz, floa);
-    NSLog(@"yesss sir what now?? %.@",[NSString stringWithUTF8String:cString]);
-    
-    // The following c style from gmp works well though
-    gmp_printf ("fixed point mpf %.*Ff with %d digits\n", sz, floa, sz);
-    
-    return [NSString stringWithUTF8String:cString];
-}
 
 // assigns (2. param + 3. param) to 1. param
 - (BigInteger *)addition:(BigInteger *)op2{
@@ -127,6 +117,7 @@
     mpz_clear(num1);
     return mpz_get_si(res);
 }
+// Not referentially transparent, when it alters integ based on \old???
 - (BigInteger *)increment{
     NSAssert(integ, @"integ not existing");
     mpz_add_ui(integ,integ, 1);
@@ -137,52 +128,21 @@
 - (BigInteger *)divideByBigInteger:(BigInteger *)op2{
     NSAssert(integ && mpz_cmp_si(op2->integ, 0), @"Precondition failed");
     BigInteger *retObj = [[BigInteger alloc] init];
-    mpf_t temp;
-    mpf_init(temp);
-    mpf_set_z(retObj->floa,integ);
-    mpf_set_z(temp,op2->integ);
-    mpf_div(retObj->floa,retObj->floa,temp);
-    mpf_clear(temp);
-    return retObj;
+       return retObj;
 }
 - (BigInteger *)divideByNSInteger:(NSInteger)nsint{
     NSAssert(integ && nsint !=0, @"Precondition for divideByIntfailed");
-    mpf_t temp; mpf_init(temp);
     BigInteger *retObj = [[BigInteger alloc] init];
-    mpf_set_z(retObj->floa, integ);
-    mpf_set_si(temp, nsint);
-    mpf_div(retObj->floa, retObj->floa, temp);
-    mpf_clear(temp);
     return retObj;
 }
 - (BigInteger *)ceil{
-    NSAssert(floa != NULL, @"Precondition failed, floa not initialized");
-    mpf_ceil(floa, floa);
-    mpz_set_f(integ, floa);
-    mpf_clear(floa); // maybe this fucks us up?
-    mpf_init(floa); // hacky fix dunno if works
-    return self;
+      return self;
 }
+// Sets integ to the truncated integer part of sqrt
 - (BigInteger *)sqrt{
     BigInteger *retObj = [[BigInteger alloc] init];
-    mpf_set_z(retObj->floa, integ); // converts the int to float
-    mpf_sqrt(retObj->floa, retObj->floa);
+    mpz_sqrt(retObj->integ, integ);
     return retObj;
-}
-- (BigInteger *)copyFloatToIntegIfNaturalNumber{
-    NSAssert(floa, @"Precondition failed, no float value holded by object");
-    mpf_t tempFloat;
-    mpf_init(tempFloat);
-    mpf_ceil(tempFloat, floa);
-    if (mpf_cmp(floa, tempFloat) == 0){
-        mpz_set_f(integ, floa);
-        mpf_clear(floa); // POSSIBLE PROBLEM!
-        mpf_clear(tempFloat);
-    } else {
-        NSLog(@"The float did not seem to hold an int value: %@", self.getFloatString);
-        mpf_clear(tempFloat);
-    }
-    return self;
 }
 - (BOOL)isPerfectSquare{
     NSAssert(integ != 0, @"Precondition failed, bad integ val");

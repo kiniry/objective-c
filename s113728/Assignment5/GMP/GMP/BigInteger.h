@@ -13,13 +13,11 @@
 
 @interface BigInteger : NSObject {
     mpz_t integ;
-    mpf_t floa;
 }
 
 - (BigInteger *)init;
 - (BigInteger *)initWithString:(NSString *)str;
 - (BigInteger *)initWithLongInt:(NSInteger)nsint;
-- (BigInteger *)initWithMpf:(mpf_t)aFloat;
 - (BigInteger *)initWithTwoPoweredToThe:(NSInteger)exponent;
 // Precondition: initialized with init()
 // Ensures value set correctly
@@ -27,8 +25,8 @@
 
 - (NSInteger)getNumberOfBits;
 - (NSInteger)getNumberOfDifferingBits:(BigInteger *)op2;
+- (NSInteger)getNumberOfSharedLeadingBits:(BigInteger *)op2;
 - (NSString *)getIntString;
-- (NSString *)getFloatString; // NOT WORKING!!!
 
 // The basic arithmetic operations
 - (BigInteger *)addition:(BigInteger *)op2;
@@ -43,7 +41,6 @@
 - (BigInteger *)divideByNSInteger:(NSInteger)nsint;
 - (BigInteger *)ceil;
 - (BigInteger *)sqrt;
-- (BigInteger *)copyFloatToIntegIfNaturalNumber;
 
 // Number Theoretic Operations
 - (BOOL)isPerfectSquare;
