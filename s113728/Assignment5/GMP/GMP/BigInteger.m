@@ -20,6 +20,9 @@
     mpz_init(integ);
     return self;
 }
+
+            // Init methods //
+
 - (BigInteger *)initWithString:(NSString *)str{
     NSAssert([str isKindOfClass:[NSString class]], @"Precondition not met, input not NSString or integ allready initialized");
     
@@ -54,6 +57,8 @@
     NSAssert(mpz_set_str(integ, cString, 10) == 0, @"Postconditionin not satisfied, integ not initialized");
     }
 
+            // Getter methods //
+
 - (NSInteger)getNumberOfBits{
     size_t btsz;
     btsz = mpz_sizeinbase(integ, 2);
@@ -71,18 +76,27 @@
     mpz_t temp;
     mpz_init(temp);
     mpz_xor(temp, integ, op2->integ);
-    mp_bitcnt_t index;
-    index = mpz_scan0(temp, 0);
+    char *cString = NULL;
+    cString = mpz_get_str(cString, 2, temp);
     mpz_clear(temp);
-    unsigned int long numBits;
-    numBits = mpz_sizeinbase(integ, 2) - index;
-    return (NSInteger) numBits;
+    
+    NSUInteger index, length, numBits = 0;
+    NSString *xored = [NSString stringWithUTF8String:cString];
+    length = [xored length];
+    for (index = 0; index < length; index++){
+        if ([xored characterAtIndex:index] == 1){
+            return numBits = length - index;
+        }
+    }
+    return numBits;
 }
 - (NSString *)getIntString{
     char *cString = NULL;
     cString = mpz_get_str(cString, 10, integ);
     return [NSString stringWithUTF8String:cString];
     }
+
+            // Arithmetic operations //
 
 // assigns (2. param + 3. param) to 1. param
 - (BigInteger *)addition:(BigInteger *)op2{
@@ -124,7 +138,7 @@
     return self;
 }
 
-            ////////////////////////////
+            // More arithmetic operations //
 
 // Precondition integ initialized and op2->integ != 0
 - (BigInteger *)divideByBigInteger:(BigInteger *)op2{
@@ -137,15 +151,15 @@
     BigInteger *retObj = [[BigInteger alloc] init];
     return retObj;
 }
-- (BigInteger *)ceil{
-      return self;
-}
 // Sets integ to the truncated integer part of sqrt
 - (BigInteger *)sqrt{
     BigInteger *retObj = [[BigInteger alloc] init];
     mpz_sqrt(retObj->integ, integ);
     return retObj;
 }
+
+            // Number theoretic operations //
+
 - (BOOL)isPerfectSquare{
     NSAssert(integ != 0, @"Precondition failed, bad integ val");
     // Returns non-zero if op is a perfect power

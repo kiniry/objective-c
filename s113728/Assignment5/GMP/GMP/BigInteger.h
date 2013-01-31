@@ -39,7 +39,6 @@
 // More arithmetic operations //
 - (BigInteger *)divideByBigInteger:(BigInteger *)op2;
 - (BigInteger *)divideByNSInteger:(NSInteger)nsint;
-- (BigInteger *)ceil;
 - (BigInteger *)sqrt;
 
 // Number Theoretic Operations
@@ -48,7 +47,5 @@
 - (BigInteger *)nextPrime:(BigInteger *)numberOfBits;
 - (BigInteger *)greatestCommonDivisorBetweenSelfAnd:(BigInteger *)op2;
 + (BigInteger *)randRangeWithBtsz:(NSInteger)bitCnt;
-
-// Accessing Type Information
 
 @end
