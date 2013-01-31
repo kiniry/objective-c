@@ -36,7 +36,6 @@
     mpz_set_si(integ, nsint);
     return self;
 }
-
 - (BigInteger *)initWithTwoPoweredToThe:(NSInteger)exponent{
     NSAssert(exponent > 0, @"Precondition exponent not 0 cause 0^0=1");
     self = self.init;
@@ -66,13 +65,14 @@
     numBits = mpz_hamdist(integ, op2->integ);
     return (NSInteger) numBits;
 }
+// Not implemented yet mpz_scan runs from index toward more significant bits, so maybe i need to run through a c string
 - (NSInteger)getNumberOfSharedLeadingBits:(BigInteger *)op2{
     NSAssert(integ != 0 || op2->integ != 0, @"One op was 0");
     mpz_t temp;
     mpz_init(temp);
     mpz_xor(temp, integ, op2->integ);
     mp_bitcnt_t index;
-    index = mpz_scan1(temp, 0);
+    index = mpz_scan0(temp, 0);
     mpz_clear(temp);
     unsigned int long numBits;
     numBits = mpz_sizeinbase(integ, 2) - index;
@@ -123,7 +123,9 @@
     mpz_add_ui(integ,integ, 1);
     return self;
 }
-// Converts the integers mpz to floats mpf
+
+            ////////////////////////////
+
 // Precondition integ initialized and op2->integ != 0
 - (BigInteger *)divideByBigInteger:(BigInteger *)op2{
     NSAssert(integ && mpz_cmp_si(op2->integ, 0), @"Precondition failed");

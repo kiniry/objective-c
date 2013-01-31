@@ -36,7 +36,7 @@
 - (NSInteger)modulusWithNSInteger:(NSInteger)anInt;
 - (BigInteger *)increment;
 
-// Float arithmetic operations //
+// More arithmetic operations //
 - (BigInteger *)divideByBigInteger:(BigInteger *)op2;
 - (BigInteger *)divideByNSInteger:(NSInteger)nsint;
 - (BigInteger *)ceil;
