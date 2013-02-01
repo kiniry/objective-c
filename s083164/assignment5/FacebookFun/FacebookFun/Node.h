@@ -10,4 +10,19 @@
 
 @interface Node : NSObject
 
+@property(nonatomic, copy) NSString* secret;
+
+-(id)initWithClientId:(NSString *)identifier;
+
+-(id)initWithClientId:(NSString *)identifier andClientSecret:(NSString *)secret;
+
+-(void)fetch:(NSString*)secretOrNil;
+
+@end
+
+//To indicate that this is only used by subclasses
+@interface Node (Protected)
+
+-(void) handleData:(NSDictionary*)data;
+
 @end

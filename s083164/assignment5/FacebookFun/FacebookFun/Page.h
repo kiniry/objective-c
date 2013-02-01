@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Node.h"
 
-@interface Page : NSObject
+@interface Page : Node
 
 @end

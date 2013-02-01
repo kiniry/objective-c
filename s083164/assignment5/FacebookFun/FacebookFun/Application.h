@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Node.h"
 
-@interface Application : NSObject
+@interface Application : Node
+
+@property(nonatomic, strong) NSString* name;
+@property(nonatomic, strong) NSString* appDescription;
+@property(nonatomic, strong) NSString* category;
+@property(nonatomic, strong) NSString* company;
+@property(nonatomic, strong) NSString* iconURL;
+@property(nonatomic, strong) NSString* link;
+@property(nonatomic, strong) NSString* logoURL;
+@property(nonatomic, strong) NSString* dailyActiveUsers;
 
 @end

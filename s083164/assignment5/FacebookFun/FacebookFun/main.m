@@ -7,14 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Application.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
         
-        // insert code here...
-        NSLog(@"Hello, World!");
+        Application  *a = [[Application alloc] initWithClientId:@"400085286748513"];
+        
+        [a fetch:nil];
+        
+        NSLog(@"%@", a.appDescription);
+        NSLog(@"%@", a.link);
         
     }
     return 0;

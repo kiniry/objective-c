@@ -10,4 +10,8 @@
 
 @interface Auth : NSObject
 
+-(NSString *)loadAccessTokenUsingClientId:(NSString *)identifier andSecret:(NSString *)secret;
+
+-(NSDictionary *)loadPublicInfoUsingIdentifier:(NSString *)identifier;
+
 @end

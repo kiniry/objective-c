@@ -10,4 +10,8 @@
 
 @interface User : NSObject
 
+@property(nonatomic, strong) NSString* firstName;
+@property(nonatomic, strong) NSString* middleName;
+@property(nonatomic, strong) NSString* lastName;
+
 @end
