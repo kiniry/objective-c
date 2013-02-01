@@ -138,7 +138,7 @@ obj/Assignment4.obj/main.m.o: main.m \
  C:/GNUstep/GNUstep/System/Library/Headers/Foundation/NSXMLDTDNode.h \
  C:/GNUstep/GNUstep/System/Library/Headers/Foundation/NSXMLElement.h \
  C:/GNUstep/GNUstep/System/Library/Headers/Foundation/NSXMLParser.h \
- mem_Test.h
+ ClassNoProtocol.h ProtocolOne.h ProtocolBig.h
 
 C:/GNUstep/GNUstep/System/Library/Headers/Foundation/Foundation.h:
 
@@ -418,4 +418,8 @@ C:/GNUstep/GNUstep/System/Library/Headers/Foundation/NSXMLElement.h:
 
 C:/GNUstep/GNUstep/System/Library/Headers/Foundation/NSXMLParser.h:
 
-mem_Test.h:
+ClassNoProtocol.h:
+
+ProtocolOne.h:
+
+ProtocolBig.h:

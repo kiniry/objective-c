@@ -1,4 +1,4 @@
-obj/Assignment4.obj/mem_Test.m.o: mem_Test.m mem_Test.h \
+obj/Assignment4.obj/ProtocolBig.m.o: ProtocolBig.m ProtocolBig.h \
  C:/GNUstep/GNUstep/System/Library/Headers/Foundation/Foundation.h \
  C:/GNUstep/GNUstep/System/Library/Headers/GNUstepBase/GSVersionMacros.h \
  C:/GNUstep/GNUstep/System/Library/Headers/GNUstepBase/GSConfig.h \
@@ -139,7 +139,7 @@ obj/Assignment4.obj/mem_Test.m.o: mem_Test.m mem_Test.h \
  C:/GNUstep/GNUstep/System/Library/Headers/Foundation/NSXMLElement.h \
  C:/GNUstep/GNUstep/System/Library/Headers/Foundation/NSXMLParser.h
 
-mem_Test.h:
+ProtocolBig.h:
 
 C:/GNUstep/GNUstep/System/Library/Headers/Foundation/Foundation.h:
 

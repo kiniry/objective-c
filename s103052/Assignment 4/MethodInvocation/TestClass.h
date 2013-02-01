@@ -1,18 +1,17 @@
 /*************************************************************************
- *  File name   : mem_Test.h
- *  Description : Memory Test headerfile
+ *  File name   : TestClass.h
+ *  Description : TestClass class headerfile.
  *
- *  Created on  : 21/01/2013
+ *  Created on  : 31/01/2013
  *  Author	  	: Christian Poulsen
  *
  *************************************************************************/
 
 #import <Foundation/Foundation.h>
 
-@interface mem_Test : NSObject
-{ 
-}
+@interface TestClass : NSObject
 
-+ (int)LevenshteinDistanceBetween:(NSString*)s and:(NSString*)t;
+- (void)InstanceMethod;
++ (void)ClassMethod;
 
 @end
