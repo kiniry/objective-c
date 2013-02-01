@@ -2,7 +2,7 @@
 //  main.m
 //  Assignment2
 //
-//  Created by Bastian Buch on 1/22/13.
+//  Created by Bastian Buch and Jacob Gjerstrup on 1/22/13.
 //  Copyright (c) 2013 Bastian Buch. All rights reserved.
 //
 
