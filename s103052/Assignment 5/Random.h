@@ -2,7 +2,7 @@
  *  File name   : Random.h
  *  Description : Random Class headerfile
  *
- *  Created on  : 25/01/2013
+ *  Created on  : 31/01/2013
  *  Author	  	: Christian Poulsen
  *
  *************************************************************************/
@@ -12,9 +12,12 @@
 @interface Random : NSObject
 { 
   long _seed;
+  long _seedUniquifier;
+  
 }
 
 @property (readonly) long seed;
+@property (readonly) long seedUniquifier;
 
 - (id) initWithSeed:(long)new_seed;
 - (void) nextBytes:(NSMutableData*)bytes;
