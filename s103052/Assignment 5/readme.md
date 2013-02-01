@@ -10,13 +10,6 @@ The java.util.Random class is a API to create random numbers in Java.
 Implementation
 --------------
 So far have I implemented most of the methods of the Random API Class. I have not implemented the nextBytes method do to it's syntax. I'm not sure how to implemented since it's a void method that does not return any value. It's taking in a pointer to an array of bytes and then chance the values in the array.
-    public void nextBytes(byte[] bytes) {
-        for (int i = 0, len = bytes.length; i < len; )
-            for (int rnd = nextInt(),
-                     n = Math.min(len - i, Integer.SIZE/Byte.SIZE);
-                 n-- > 0; rnd >>= Byte.SIZE)
-                bytes[i++] = (byte)rnd;
-    }
 
 The Java implementation of the Random API are using AtomicLong values which is a special java class for long values that are atomic. In Objective-C, we have the possiblity to make properties atomic, so I have made two properties for the AtomicLong variables 'seed' and 'seedUniquifier'. These two properties are private. The Java AtomicLong class have the method 'compareAndSet' which are used in the 'next:(int)bits' method, so I have implemeted the 'compareAndSet' method in the Random class as well.
 	
