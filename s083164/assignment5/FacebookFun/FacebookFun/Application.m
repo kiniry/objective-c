@@ -56,7 +56,6 @@ static NSString *const EKKAccessAppTermsOfService = @"terms_of_service_url";
 static NSString *const EKKAccessAppUserSupportEmail = @"user_support_email";
 static NSString *const EKKAccessAppUserSupportURL = @"user_support_url";
 static NSString *const EKKAccessAppWebsiteURL = @"website_url";
-static NSString *const EKKAccessAppAuthReferralResponseType = @"auth_referral_response_type";
 
 @implementation Application
 
@@ -70,8 +69,8 @@ static NSString *const EKKAccessAppAuthReferralResponseType = @"auth_referral_re
     if ([data objectForKey:EKKAccessAppLink]) self.link = [data objectForKey:EKKAccessAppLink];
     if ([data objectForKey:EKKAccessAppIconURL]) self.iconURL = [data objectForKey:EKKAccessAppIconURL];
     if ([data objectForKey:EKKAccessAppLogoURL]) self.logoURL = [data objectForKey:EKKAccessAppLogoURL];
-    if ([data objectForKey:EKKAccessAppLogoURL]) self.logoURL = [data objectForKey:EKKAccessAppLogoURL];
-    if ([data objectForKey:EKKAccessAppCategory]) self.logoURL = [data objectForKey:EKKAccessAppCategory];
+    if ([data objectForKey:EKKAccessAppDailyActiveUsers]) self.dailyActiveUsers = [data objectForKey:EKKAccessAppLogoURL];
+    if ([data objectForKey:EKKAccessAppCategory]) self.category = [data objectForKey:EKKAccessAppCategory];
 
 }
 

@@ -34,15 +34,15 @@
 @property(nonatomic, strong) NSArray* authReferralUserPerms;
 @property(nonatomic, strong) NSArray* authReferralFriendPerms;
 @property(nonatomic, strong) NSString* authReferralDefaultActivityPrivacy;
-@property(nonatomic, strong) BOOL authReferralEnabled;
+@property(nonatomic) BOOL authReferralEnabled;
 @property(nonatomic, strong) NSArray* authReferralExtendedPerms;
 @property(nonatomic, strong) NSString* authReferralResponseType;
-@property(nonatomic, strong) BOOL canvasFluidHeigh;
-@property(nonatomic, strong) BOOL canvasFluidWidth;
+@property(nonatomic) BOOL canvasFluidHeigh;
+@property(nonatomic) BOOL canvasFluidWidth;
 @property(nonatomic, strong) NSString* canvasURL;
 @property(nonatomic, strong) NSString* contactEmail;
-@property(nonatomic, strong) NSInteger createdTime;
-@property(nonatomic, strong) NSInteger creatorUID;
+@property(nonatomic) NSInteger createdTime;
+@property(nonatomic) NSInteger creatorUID;
 @property(nonatomic, strong) NSString* deauthCallbackURL;
 @property(nonatomic, strong) NSString* iphoneAppStoreID;
 @property(nonatomic, strong) NSString* hostingURL;
@@ -53,12 +53,11 @@
 @property(nonatomic, strong) NSString* secureCanvasURL;
 @property(nonatomic, strong) NSString* securePageTabURL;
 @property(nonatomic, strong) NSString* serverIpWhitelist;
-@property(nonatomic, strong) BOOL socialDiscovery;
+@property(nonatomic) BOOL socialDiscovery;
 @property(nonatomic, strong) NSString* termsOfService;
 @property(nonatomic, strong) NSString* userSupportEmail;
 @property(nonatomic, strong) NSString* userSupportURL;
 @property(nonatomic, strong) NSString* websiteURL;
-@property(nonatomic, strong) NSString* authReferralResponseType;
 
 
 @end
