@@ -29,13 +29,13 @@ int main(int argc, const char * argv[])
         printf("-------------------------\n\n");
         
         printf("---/ Random integers with specified max /---\n");
-        int max1 = 5;
+        int max1 = 2;
         int fifthRandom = [randomNumber nextInt:max1];
         printf("%d (max: %d)\n",fifthRandom,max1);
-        int max2 = 4;
+        int max2 = 30;
         int sixthRandom = [randomNumber nextInt:max2];
         printf("%d (max: %d)\n",sixthRandom,max2);
-        int max3 = 3;
+        int max3 = 10;
         int seventhRandom = [randomNumber nextInt:max3];
         printf("%d (max: %d)\n",seventhRandom,max3);
         printf("--------------------------------------------\n\n");

@@ -95,9 +95,9 @@ From the implementations i got the following numbers when using seed '454545'. J
 	-------------------------								-------------------------
 	
 	---/ Random integers with specified max /---			---/ Random integers with specified max /---
-	0														4 (max: 5)
-	7														0 (max: 4)
-	4														0 (max: 3)
+	0														0 (max: 2)
+	7														7 (max: 30)
+	4														4 (max: 10)
 	--------------------------------------------			--------------------------------------------
 	
 	---/ Random longs /---									---/ Random longs /---
