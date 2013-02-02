@@ -15,7 +15,7 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         
         // Create instance of Random object
-        Random *randomNumber = [[Random alloc]init];
+        Random *randomNumber = [[Random alloc]initWithSeed:454545];
         
         printf("---/ Random integers /---\n");
         int firstRandom = [randomNumber nextInt];
@@ -69,23 +69,23 @@ int main(int argc, const char * argv[])
         
         printf("---/ Random doubles /---\n");
         double seventeenth = [randomNumber nextDouble];
-        printf("%f\n",seventeenth);
+        printf("%0.16f\n",seventeenth);
         double eigtheen = [randomNumber nextDouble];
-        printf("%f\n",eigtheen);
+        printf("%0.16f\n",eigtheen);
         double nineteenth = [randomNumber nextDouble];
-        printf("%f\n",nineteenth);
+        printf("%0.16f\n",nineteenth);
         printf("-------------------------\n\n");
         
         printf("---/ Random gaussian doubles /---\n");
         double twenty = [randomNumber nextGaussian];
-        printf("%f\n",twenty);
+        printf("%0.16f\n",twenty);
         double twentyone = [randomNumber nextGaussian];
-        printf("%f\n",twentyone);
+        printf("%0.16f\n",twentyone);
         double twentytwo = [randomNumber nextGaussian];
-        printf("%f\n",twentytwo);
+        printf("%0.16f\n",twentytwo);
         printf("---------------------------------\n\n");
         
-        /*
+        /*printf("---/ Random integers /---\n");
         Random *randomNumber2 = [[Random alloc]init];
         int firstRandom2 = [randomNumber2 nextInt];
         printf("%d\n",firstRandom2);
@@ -95,7 +95,19 @@ int main(int argc, const char * argv[])
         printf("%d\n",thirdRandom2);
         int fourthRandom2 = [randomNumber2 nextInt];
         printf("%d\n",fourthRandom2);
-        */
+        printf("-------------------------\n\n");
+        
+        printf("---/ Random integers /---\n");
+        Random *randomNumber3 = [[Random alloc]init];
+        int firstRandom3 = [randomNumber3 nextInt];
+        printf("%d\n",firstRandom3);
+        int secondRandom3 = [randomNumber3 nextInt];
+        printf("%d\n",secondRandom3);
+        int thirdRandom3 = [randomNumber3 nextInt];
+        printf("%d\n",thirdRandom3);
+        int fourthRandom3 = [randomNumber3 nextInt];
+        printf("%d\n",fourthRandom3);
+        printf("-------------------------\n\n");*/
     
              
     }
