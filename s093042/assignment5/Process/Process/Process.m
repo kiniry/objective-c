@@ -14,9 +14,6 @@
 @end
 
 @implementation Process
-
-
-
 -(void)destroy
 {
     [self.task terminate];
