@@ -12,7 +12,7 @@
 // properties
 @property (nonatomic) NSArray *command;
 @property (nonatomic) NSString *directory;
-@property (nonatomic) NSDictionary *enviroment;
+@property (nonatomic) NSDictionary *environment;
 @property BOOL redirectErrorStream;
 
 // designated initializer

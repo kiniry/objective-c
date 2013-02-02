@@ -21,14 +21,14 @@
 }
 
 // enviroment property getter
--(NSDictionary *)enviroment
+-(NSDictionary *)environment
 {
-    if(!_enviroment)
+    if(!_environment)
     {
         // if no enviroment is set use, the enviroment used to execute this application
-        _enviroment = [[NSProcessInfo processInfo] environment];
+        _environment = [[NSProcessInfo processInfo] environment];
     }
-    return _enviroment;
+    return _environment;
 }
 
 -(id)init

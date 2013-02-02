@@ -57,7 +57,7 @@
             // set working directory
             [_task setCurrentDirectoryPath:self.processBuilder.directory];
             // set the environment
-            [_task setEnvironment:self.processBuilder.enviroment];
+            [_task setEnvironment:self.processBuilder.environment];
             
             // create a new pipe for stderr and set it to the task
             self.errPipe = [NSPipe pipe];
