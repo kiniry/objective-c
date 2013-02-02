@@ -10,16 +10,25 @@
 #import "ProcessBuilder.h"
 
 @interface Process : NSObject
+// property to hold process builder
 @property ProcessBuilder *processBuilder;
 
+// designated initializer
 -(id)initWithProcessBuilder:(ProcessBuilder *)aProcessBuilder;
 
--(void) start;
--(void) destroy;
--(int) exitValue;
--(NSFileHandle *) getErrorStream;
--(NSFileHandle *) getInputStream;
--(NSFileHandle *) getOutputStream;
--(int) waitFor;
+// start a process
+-(void)start;
+// kill the process
+-(void)destroy;
+// get the exit code
+-(int)exitValue;
+// get stderr
+-(NSFileHandle *)getErrorStream;
+// get stdin
+-(NSFileHandle *)getInputStream;
+// get gtdout
+-(NSFileHandle *)getOutputStream;
+// block execution until process finishes and get exit code
+-(int)waitFor;
 
 @end

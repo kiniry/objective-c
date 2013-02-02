@@ -9,7 +9,7 @@
 #import "ProcessBuilder.h"
 
 @implementation ProcessBuilder
-
+// directory property getter
 -(NSString *)directory
 {
     if(!_directory)
@@ -20,6 +20,7 @@
     return _directory;
 }
 
+// enviroment property getter
 -(NSDictionary *)enviroment
 {
     if(!_enviroment)
@@ -32,6 +33,7 @@
 
 -(id)init
 {
+    // not used to much unless the command array is filled after the call to init
     return [self initWithCommandStringArray:nil];
 }
 
@@ -40,17 +42,20 @@
     self = [super init];
     if(self)
     {
+        // set the command array
         _command = commandArray;
     }
     return self;
 }
 -(id)initWithCommandStrings:(NSString *)firstCommand, ...
 {
+    // make a variable list pointer
     va_list commands;
     va_start(commands, firstCommand);
     
     NSMutableArray *commandArray = [[NSMutableArray alloc] init];
     
+    // and add each element to the mutable array
     for (NSString *command = firstCommand; command != nil; command = va_arg(commands, NSString*))
     {
         [commandArray addObject:command];
@@ -58,16 +63,20 @@
     
     va_end(commands);
     
+    // return using the designated initializer
     return [self initWithCommandStringArray:[commandArray copy]];
 }
 
+// command property setter using list of strings
 -(void)setCommands:(NSString *)firstCommand, ...
 {
+    // make a variable list pointer
     va_list commands;
     va_start(commands, firstCommand);
     
     NSMutableArray *commandArray = [[NSMutableArray alloc] init];
     
+    // and add each element to the mutable array
     for (NSString *command = firstCommand; command != nil; command = va_arg(commands, NSString*))
     {
         [commandArray addObject:command];
@@ -75,6 +84,7 @@
     
     va_end(commands);
     
+    // set the command property with a immutable copy of the array
     _command = [commandArray copy];
 }
 
