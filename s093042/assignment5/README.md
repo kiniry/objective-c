@@ -17,7 +17,7 @@ C# has designed the API much like Java, but has only the Process object and a Pr
 
 Translation to an Objective-C API
 ------------------------------------------
-The port of the Java API is very straight forward since most of the language constructs are the same. But there are some subtle differences, e.g. ...
+The port of the API is very straight forward since most of the language constructs are the same. But there are some differences. With regard to the design: the ported version is a combination of the Java and C# API. With regard to the method signatures: these have been changed a slightly so that the "look and feel" of them comply with the coding and naming conventions of Objective-C.
 
 Implementation
 --------------
