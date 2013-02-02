@@ -4,11 +4,11 @@ README.md - Sivanujann Selliah - s093042 - 02/02/13
 
 API fragment
 ------------
-The chosen API is the API for handling operating system processes.
+The chosen API is the API for handling operating system processes (other applications).
 In Java this API includes the classes: java.lang.Runtime, java.lang.ProcessBuilder, java.lang.ProcessBuilder.Redirect, java.lang.ProcessBuilder and java.lang.Process.
 In C# this API includes the classes: System.Diagnostics.ProcessStartInfo and System.Diagnostics.Process.
 
-The fragment of the API that will be ported is the methods relevant for executing (and controlling) a process (another application) on the operating system, and redirect the standard I/O, i.e. stdin, stdout, stderr.
+The fragments of the API that will be ported are the methods relevant for setting up a process, executing (and controlling) a process on the operating system, redirect the standard I/O, i.e. stdin, stdout, stderr.
 
 Operating Sytem Process API
 ---------------------------
@@ -17,7 +17,15 @@ C# has designed the API much like Java, but has only the Process object and a Pr
 
 Translation to an Objective-C API
 ------------------------------------------
-The port of the API is very straight forward since most of the language constructs are the same. But there are some differences. With regard to the design: the ported version is a combination of the Java and C# API. With regard to the method signatures: these have been changed a slightly so that the "look and feel" of them comply with the coding and naming conventions of Objective-C.
+The port of the API is very straight forward since most of the language constructs are the same. But there are some differences.
+
+With regard to the design:
+The ported version is a combination of the Java and C# API, because it would not make sense to "start" a new process with the constructor (the init method), hence the start method has been moved from the ProcessBuilder in Java to the Process class like it is done in C#, this makes the design more like the design of Java Threads.
+The ProcessBuilder is a little different than Java's ProcessBuilder: the different accessor methods have been replaced with Objective-C properties, much like the ProcessStartInfo class from C#, where fields are used; the only accessor method left is the variable list style setter for the commands list. 
+And of cause the Java objects used to hold the data have been replaced with the Objective-C "equivalent" objects.
+
+With regard to the method signatures:
+These have been changed slightly so that the "look and feel" of them comply with the coding and naming conventions of Objective-C.
 
 Implementation
 --------------
