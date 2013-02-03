@@ -14,7 +14,7 @@
 //@property(nonatomic, copy) NSString* accesToken;
 @property(nonatomic, copy) NSString* identifier;
 @property(nonatomic, strong) Auth* auth;
-@property(nonatomic, strong) NSArray* attributes;
+
 
 @end
 
@@ -45,7 +45,7 @@
 -(void)fetchUsingAccessTokenOrNil:(NSString*)accessTokenOrNil
 {
     if (!self.auth) self.auth = [[Auth alloc] init];
-    if (!self.attributes) [self initAttributes];
+
     
     if (!self.identifier) {
         [NSException raise:@"No identifier provided" format:@"Please provide an identifier for your node"];
@@ -53,7 +53,9 @@
     
     if (accessTokenOrNil) {
         
-        NSDictionary *data = [self.auth loadPrivateInfoUsingIdentifier:self.identifier andAccessToken:accessTokenOrNil];
+        if (!self.attributes) [self initAttributes];
+        
+        NSDictionary *data = [self.auth loadPrivateInfoUsingIdentifier:self.identifier accessToken:accessTokenOrNil andAttributes:[self attributesAsString]];
         [self handleData:data];
         
         
@@ -65,7 +67,12 @@
 
 -(NSString *)getAccessTokenUsingSecret:(NSString *)secret
 {
-    return [self.auth loadAccessTokenUsingClientId:self.identifier andSecret:self.secret];
+    
+    if (!self.auth) self.auth = [[Auth alloc] init];
+    
+    NSString *str = [self.auth loadAccessTokenUsingClientId:self.identifier andSecret:secret];
+
+    return str;
 }
 
 //Only used by subclasses
@@ -78,6 +85,12 @@
 -(void) initAttributes
 {
     
+}
+
+-(NSString *) attributesAsString
+{
+    NSString *result = [[self.attributes valueForKey:@"description"] componentsJoinedByString:@","];
+    return result;
 }
 
 @end

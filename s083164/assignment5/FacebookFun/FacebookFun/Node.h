@@ -11,6 +11,7 @@
 @interface Node : NSObject
 
 @property(nonatomic, copy) NSString* secret;
+@property(nonatomic, strong) NSArray* attributes;
 
 -(id)initWithClientId:(NSString *)identifier;
 
