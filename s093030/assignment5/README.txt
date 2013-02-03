@@ -40,3 +40,8 @@ has been used in order to create "extension methods" for the NSImmutableArray cl
 This allows the extension methods to work with the self keyword as a reference to an
 NSImmutableArray instance. Due to this pattern all extension methods implementations
 are located in a single file called NSImmutableArrayExtensions.m.
+
+All higher order functions use blocks in order to work with the lists. A slight
+disadvantage of the API compared to its .NET equivalent is the loss of strong typing
+but that is rather an effect of the NSMutableArray-class in Objective-C than the API
+itself.
