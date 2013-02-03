@@ -1,10 +1,10 @@
 Language-Integrated Query (LINQ)
 
-The chosen API for this assignment is Language Integrated Query (LINQ), which is
-a part of the .NET framework, since version 3.5. LINQ extends enumerables by adding
-query-like  functionality to work with enumerables. This includes filtering, ordering,
-selecting, mapping, extracting and processing tasks. The most of the API uses higher
-order functions in order to do so.
+The chosen API for this assignment is "Language Integrated Query (LINQ)", which has been
+a part of the .NET framework since version 3.5. LINQ extends enumerables by adding
+query-like functionality to them. This includes filtering, ordering, selecting, mapping,
+extracting and processing tasks. The most of the API uses higher order functions in
+order to do so.
 
 The architecture of LINQ is defined by a set of standard query operators which
 are accessible as extension methods for enumerable types. The query operators include
@@ -28,8 +28,9 @@ but are not limited to:
 
 All of the above operators have higher order versions which performs the
 same operation but applies a certain function first. An example is the
-higher order version of max which can be used to extract a numeric
-value from all elements in the enumerable.
+higher order version of Max which can be used to extract a numeric
+value from each element in the enumerable and use this value to determine
+the maximum value in the enumerable.
 
 All operators are provided in a functional style, i.e. they do not mutate
 the enumerable they are working on, rather they return a new instance.
