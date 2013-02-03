@@ -11,9 +11,10 @@
 
 @interface Node ()
 
-@property(nonatomic, copy) NSString* accesToken;
+//@property(nonatomic, copy) NSString* accesToken;
 @property(nonatomic, copy) NSString* identifier;
 @property(nonatomic, strong) Auth* auth;
+@property(nonatomic, strong) NSArray* attributes;
 
 @end
 
@@ -41,11 +42,20 @@
 }
 
 
--(void)fetch:(NSString*)secretOrNil
+-(void)fetchUsingAccessTokenOrNil:(NSString*)accessTokenOrNil
 {
     if (!self.auth) self.auth = [[Auth alloc] init];
+    if (!self.attributes) [self initAttributes];
     
-    if (secretOrNil) {
+    if (!self.identifier) {
+        [NSException raise:@"No identifier provided" format:@"Please provide an identifier for your node"];
+    }
+    
+    if (accessTokenOrNil) {
+        
+        NSDictionary *data = [self.auth loadPrivateInfoUsingIdentifier:self.identifier andAccessToken:accessTokenOrNil];
+        [self handleData:data];
+        
         
     } else {
         NSDictionary *data = [self.auth loadPublicInfoUsingIdentifier:self.identifier];
@@ -53,9 +63,21 @@
     }
 }
 
+-(NSString *)getAccessTokenUsingSecret:(NSString *)secret
+{
+    return [self.auth loadAccessTokenUsingClientId:self.identifier andSecret:self.secret];
+}
+
+//Only used by subclasses
 -(void) handleData:(NSDictionary*)data
 {
-    //Only used by subclasses
+    
+}
+
+//Only used by subclasses
+-(void) initAttributes
+{
+    
 }
 
 @end

@@ -16,7 +16,9 @@
 
 -(id)initWithClientId:(NSString *)identifier andClientSecret:(NSString *)secret;
 
--(void)fetch:(NSString*)secretOrNil;
+-(void)fetchUsingAccessTokenOrNil:(NSString*)accessTokenOrNil;
+
+-(NSString *)getAccessTokenUsingSecret:(NSString *)secret;
 
 @end
 
@@ -24,5 +26,7 @@
 @interface Node (Protected)
 
 -(void) handleData:(NSDictionary*)data;
+
+-(void) initAttributes;
 
 @end
