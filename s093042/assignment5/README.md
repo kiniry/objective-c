@@ -6,7 +6,7 @@ The following are reflections on porting an API to Objective-C.
 
 The code (with comments) for the ported version is found in the [Process](Process/ "Link to Process") project.
 
-The original APIs can be found on [Oracle](http://docs.oracle.com/javase/7/docs/api/java/lang/Process.html "Link to http://docs.oracle.com/javase/7/docs/api/java/lang/Process.html") and on [MSDN](http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx "Link to http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx").
+The original APIs can be found on [Oracle](http://docs.oracle.com/javase/7/docs/api/java/lang/Process.html "Link to http://docs.oracle.com/javase/7/docs/api/java/lang/Process.html") and [MSDN](http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx "Link to http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx").
 
 API fragment
 ------------
@@ -19,7 +19,7 @@ The fragments of the API that will be ported are the methods relevant for settin
 
 Operating Sytem Process API
 ---------------------------
-Java has designed the API by having several different methods for creating a Process object, which "holds" the process (application). The Process can be created using a `ProcessBuilder`, which can set up the environment with environment variables and a working directory. The `ProcessBuilder` can also be used to redirect the standard I/O, using the `ProcessBuilder.Redirect` class. When the `ProcessBuilder` object has been adjusted for the process to be executed, the process can be started, which creates a `Process` object, this object also provides input- and output-streams for the process. The `Process` object can be used to terminate the process, and get an exit code for a process, there is also a method for running the process synchronously with the Java application. In addition to the `ProcessBuilder` (which is the preferred way to create a `Process` object), Java also provides several methods for creating a `Process` object from the `Runtime` object.
+Java has designed the API by having several different methods for creating a `Process` object, which "holds" the process (application). The `Process` can be created using a `ProcessBuilder`, which can set up the environment with environment variables and a working directory. The `ProcessBuilder` can also be used to redirect the standard I/O, using the `ProcessBuilder.Redirect` class. When the `ProcessBuilder` object has been adjusted for the process to be executed, the process can be started, which creates a `Process` object, this object also provides input- and output-streams for the process. The `Process` object can be used to terminate the process, and get an exit code for a process, there is also a method for running the process synchronously with the Java application. In addition to the `ProcessBuilder` (which is the preferred way to create a `Process` object), Java also provides several methods for creating a `Process` object from the `Runtime` object.
 
 C# has designed the API much like Java, but there is only a `Process` object and a `ProcessStartInfo` object to adjust a process's environment. The main difference is that the `Process` class is not `abstract` like it is in Java, which makes it possible to use this class and object alone, to set up, execute and terminate the process, where the set up and start execution is put in the `ProcessBuilder` in Java.
 
