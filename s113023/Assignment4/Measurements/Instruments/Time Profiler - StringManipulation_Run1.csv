@@ -1,0 +1,3 @@
+Running Time,Self,,Symbol Name
+10.0ms   90.9%,0, ,Main Thread  0x21d3f
+1.0ms    9.0%,0, ,_dispatch_mgr_thread  0x21d55

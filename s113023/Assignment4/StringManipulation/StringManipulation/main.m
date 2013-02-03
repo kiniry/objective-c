@@ -28,9 +28,9 @@ int main(int argc, const char * argv[])
         // Creating string to test on1
         NSMutableString *stringMutable = [NSMutableString string];
         NSString *stringImmutable = [stringMutable copy];
-        unsigned int iterations = 50000;
-        NSLog(@"Enter number of iterations");
-        scanf("%d",&iterations);
+        unsigned int iterations = 10000;
+        //NSLog(@"Enter number of iterations");
+        //scanf("%d",&iterations);
         //NSLog(@"You have chosen %ld iterations",iterations);
         
         

@@ -17,11 +17,11 @@ int main(int argc, const char * argv[])
         //     Prepare for tests    \\
         //----------------------------------------------------------------------------------------------------------------//
         
-        long iterations = 100000000;
+        long iterations = 1000000;
 
-        NSLog(@"Enter number of iterations");
-        scanf("%ld",&iterations);
-        NSLog(@"You have chosen %ld iterations",iterations);
+        //NSLog(@"Enter number of iterations");
+        //scanf("%ld",&iterations);
+        //NSLog(@"You have chosen %ld iterations",iterations);
         
         // Creating array to test on
         

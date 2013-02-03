@@ -42,10 +42,16 @@ Afterwards the program will do the same thing just for an immutable array instea
 	2013-01-29 21:45:53.069 StringManipulation[16232:303] ImmutableString time spent pr char appended: 0.000024 ms
 
 By taking a look at the timings from the test above, we see that first of all string appending on an immutable string is almost twice as fast as appending on a mutable string in all the cases above. We can also something about the complexity by comparing the time spent pr char for the different number of iterations. We can see that for both types of append-operations the time spent pr char appended is decreasing when the number of iterations increases. 
-	
+
+When doing one million iterations we get 1077 memory allocations taking up 4,37 MB according to the instruments' memory allocations measuring tool.
+
 Heavy use of recursion
 ----------------------
-Not done yet
+I didn't do any specific test cases for this topic since it is tested in the Levenshtein Distance program.
+
+Heap trashing
+-------------
+I didn't do any specific test cases for this topic.
 
 Method Invocation cost
 ----------------------
@@ -139,7 +145,7 @@ In the last part of the Foundation Framework test i wanted to test how fast it w
 
 From the results we see it is actually a bit faster to loop through the elements in an immutable array compared to a mutable array. This should also be the case since mutable objects are normally faster to loop through because of their fixed size. But we see as well that it is actually quite fast to use a mutable form as well, so it is not a massive amount of time that can be saved by switching from a mutable to a immutable. Not that suprisingly we see that it is way faster to save numbers as normal C integers compared to wrapping the number inside a NSNumber object. So this should be considered when using integers. It is also more than twice as fast to use the instance method than the factory method to create NSNumber objects. The dictionarys took much longer time than the other collection objects i have used to loop through. We see that again the immutable version is a bit faster to loop through than the mutable but the main point to state here is that it should really be considered when using a dictionary since the looping through using keys is quite slow compared to an array for example.
 
-In terms of complexity of the Foundation classes tested above, we can see that the take consumption for array operations and number operations are almost growing linearly with respect to the number of iterations. This means that the time spent pr operation is almost the same for these no matter how many iterations we are performing. The same thing applies to the dictionary operations performed until we reach between 1000000 and 10000000 operations. Then the overall time spent in these operations suddently increases rapidly and when trying to do 100000000 operations (ten times more), then the program will just become unstable and it looks like too much memory is consumed.
+In terms of complexity of the Foundation classes tested above, we can see that the time consumption for array operations and number operations are almost growing linearly with respect to the number of iterations. This means that the time spent pr operation is almost the same for these no matter how many iterations we are performing. The same thing applies to the dictionary operations performed until we reach between 1000000 and 10000000 operations. Then the overall time spent in these operations suddently increases rapidly and when trying to do 100000000 operations (ten times more), then the program will just become unstable and it looks like too much memory is consumed.
 
 Blocks
 ------
@@ -174,3 +180,45 @@ In this part of the test we will have a look at whether it will cost extra time 
 	2013-01-27 20:28:12.459 Protocols[51167:303] Time spent calling several instance methods with many protocols: 0.000126
 	
 From the result above we can see why protocols are so often used in objective-C. It only takes a tiny amount of extra time to implement a method from a protocol than without a protocol. The same result applies to when we are implementing many methods at the same time. It takes almost the same time to spread the methods into several smaller protocols instead of having all of them in one large protocol. So this is often preferable to do.
+
+Levenshtein Distance - Recursion and String Manipulation
+--------------------------------------------------------
+In this part of the test we will test the performance when using string manipulations combined with recursion.
+
+	2013-02-03 14:44:21.768 LevenshteinDistance[7794:303] The Levenshtein distance between the two strings 'A' and 'B' are: 1
+	2013-02-03 14:44:21.769 LevenshteinDistance[7794:303] The Levenshtein Distance calculation took 0.000527 seconds
+	
+	2013-02-03 14:44:00.929 LevenshteinDistance[7706:303] The Levenshtein distance between the two strings 'AB' and 'CD' are: 2
+	2013-02-03 14:44:00.930 LevenshteinDistance[7706:303] The Levenshtein Distance calculation took 0.000577 seconds
+	
+	2013-02-03 14:44:45.336 LevenshteinDistance[7890:303] The Levenshtein distance between the two strings 'ABC' and 'DEF' are: 3
+	2013-02-03 14:44:45.337 LevenshteinDistance[7890:303] The Levenshtein Distance calculation took 0.000559 seconds
+	
+	2013-02-03 14:45:03.839 LevenshteinDistance[7954:303] The Levenshtein distance between the two strings 'ABCD' and 'EFGH' are: 4
+	2013-02-03 14:45:03.840 LevenshteinDistance[7954:303] The Levenshtein Distance calculation took 0.000695 seconds
+	
+	2013-02-03 14:45:56.851 LevenshteinDistance[8162:303] The Levenshtein distance between the two strings 'ABCDE' and 'FGHIJ' are: 5
+	2013-02-03 14:45:56.852 LevenshteinDistance[8162:303] The Levenshtein Distance calculation took 0.001271 seconds
+	
+	2013-02-03 14:46:31.137 LevenshteinDistance[8304:303] The Levenshtein distance between the two strings 'ABCDEF' and 'GHIJKL' are: 6
+	2013-02-03 14:46:31.138 LevenshteinDistance[8304:303] The Levenshtein Distance calculation took 0.004208 seconds
+	
+	2013-02-03 14:47:10.173 LevenshteinDistance[8452:303] The Levenshtein distance between the two strings 'ABCDEFG' and 'HIJKLMN' are: 7
+	2013-02-03 14:47:10.174 LevenshteinDistance[8452:303] The Levenshtein Distance calculation took 0.016711 seconds
+	
+	2013-02-03 14:47:39.582 LevenshteinDistance[8560:303] The Levenshtein distance between the two strings 'ABCDEFGH' and 'IJKLMNOP' are: 8
+	2013-02-03 14:47:39.583 LevenshteinDistance[8560:303] The Levenshtein Distance calculation took 0.074087 seconds
+	
+	2013-02-03 14:48:28.106 LevenshteinDistance[8767:303] The Levenshtein distance between the two strings 'ABCDEFGHI' and 'JKLMNOPQR' are: 9
+	2013-02-03 14:48:28.107 LevenshteinDistance[8767:303] The Levenshtein Distance calculation took 0.391601 seconds
+	
+	2013-02-03 14:49:04.879 LevenshteinDistance[8928:303] The Levenshtein distance between the two strings 'ABCDEFGHIJ' and 'KLMNOPQRST' are: 10
+	2013-02-03 14:49:04.881 LevenshteinDistance[8928:303] The Levenshtein Distance calculation took 2.134952 seconds
+	
+	2013-02-03 16:48:40.582 LevenshteinDistance[21240:303] The Levenshtein distance between the two strings 'ABCDEFGHIJK' and 'LMNOPQRSTUV' are: 11
+	2013-02-03 16:48:40.583 LevenshteinDistance[21240:303] The Levenshtein Distance calculation took 12.019562 seconds
+	
+	2013-02-03 16:34:12.377 LevenshteinDistance[17990:303] The Levenshtein distance between the two strings 'ABCDEFGHIJKL' and 'MNOPQRSTUVXY' are: 12
+	2013-02-03 16:34:12.378 LevenshteinDistance[17990:303] The Levenshtein Distance calculation took 66.417823 seconds
+
+I did an exponential regression on the datapoints measured above and Maple gave me the following exponential fit: ´Time(t)=0.200233567859011e-4*exp(1.12470392708217*t)´. A graph can be found in Assignment4/Measurements/. The conclusion must be that this algorithm is growing exponentially every time we make the distance between the two input words larger. This is caused by deeper recursion combined with more string operations every time we make the distance between the words bigger.
