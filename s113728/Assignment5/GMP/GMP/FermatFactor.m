@@ -11,35 +11,38 @@
 
 @implementation FermatFactor
 
+// requires N is composite
+// N = p * q = ((p+q)/2)^2-((p-q)/2)^2
 - (NSString *)factorize:(BigInteger*)N{
+    NSAssert([N modulusWithNSInteger:2] != 0, @"Precondition: odd numbers only");
     NSDate *start = [NSDate date]; // start timer
     
-    NSString *result;
-    
-    // This is the easy case
-    if  (N.isEven){ 
-        result = [ NSString stringWithFormat:@"[2,%@]",[[N divideByNSInteger:2] getIntString] ];
-        return result;
-    }
-    
     BigInteger *a = [[BigInteger alloc] init];
-    a = [[N sqrt] ceil];
-        
-    while ( (([[[a multiply:a] subtract:N] isPerfectSquare]) ? YES : NO) == NO){
-        [a increment];
-    }
-    NSLog(@"so far so good");
+    a = [[N sqrt] increment]; // sqrt truncates the int, so increment serves as ceil
+    
+    // Block that helps us compute a*a-b
+    BigInteger* (^a_multiply_a_minus)(BigInteger*) = ^(BigInteger* n){
+        return [[a multiply:a] subtract:n];
+    };
     
     BigInteger *b = [[BigInteger alloc] init];
     // b = sqrt((a*a)-N)
-    b = [[[[a multiply:a] subtract:N] sqrt] copyFloatToIntegIfNaturalNumber];
+    b = a_multiply_a_minus(N);
+
+    // if a^2-N = b^2, then N = (a+b)(a-b)
+    while ( ![b isPerfectSquare] ){
+        [a increment];
+        b = a_multiply_a_minus(N);
+    }
     
-    NSString *retValue = [NSString stringWithFormat:@"p and q are : [%@,%@]",[[a subtract:b] getIntString],[[a addition:b] getIntString] ];
+    BigInteger *factor1 = [a addition:[b sqrt]];
+    BigInteger *factor2 = [a subtract:[b sqrt]];
+    
+    NSString *retValue = [NSString stringWithFormat:@"p and q are : [%@ , %@]",[factor1 getIntString],[factor2 getIntString]];
     
     NSDate *finish = [NSDate date];
     double timepassed_ns = [finish timeIntervalSinceDate:start];
-    NSLog(@"Time taken to factorize N = %@ : %f ns",[N getIntString], timepassed_ns);
+    NSLog(@"Time taken to factorize N = %f seconds", timepassed_ns);
     return retValue;
 }
-
 @end

@@ -2,7 +2,7 @@
  *  File name   : Random.m
  *  Description : Random Class
  *
- *  Created on  : 25/01/2013
+ *  Created on  : 31/01/2013
  *  Author	  	: Christian Poulsen
  *
  *************************************************************************/
@@ -11,29 +11,56 @@
 
 @interface Random ()
 
-@property (readwrite, assign) long seed; // Atomic seed
+@property (readwrite, assign) long seed; 			// AtomicLong seed
+@property (readwrite, assign) long seedUniquifier; 	// AtomicLong seedUniquifier
 
 @end
 
 @implementation Random
 
 @synthesize seed = _seed;
+@synthesize seedUniquifier = _seedUniquifier;
 
 static const long multiplier = 0x5DEECE66DL;
 static const long addend = 0xBL;
 static const long mask = (1L << 48) - 1;
-double nextNextGaussian;
-BOOL haveNextNextGaussian = NO;
+static double nextNextGaussian = 0;
+static BOOL haveNextNextGaussian = NO;
+
+/**
+ * Creates a new random number generator. This constructor sets
+ * the seed of the random number generator to a value very likely
+ * to be distinct from any other invocation of this constructor.
+ */
+- (id) init
+{
+    long seedUniquifierFromMethod = [self seedUniquifier];
+    NSTimeInterval timeInMiliseconds = [[NSDate date] timeIntervalSince1970];
+    long systemNanoTime = timeInMiliseconds * 1000000;
+    long seed = seedUniquifierFromMethod ^ systemNanoTime;
+    return [self initWithSeed:seed];
+}
+
++ (long) seedUniquifier
+{
+    long next;
+    for (;;)
+	{
+        long current = self.seedUniquifier;
+        next = current * 181783497276652981L;
+    }
+    return next;
+}
 
 /**
  * Creates a new random number generator using a single seed (new_seed).
  */
-- (id) initWithSeed:(long)new_seed 
+- (id) initWithSeed:(long)seed 
 {
 	self = [super init];
     if (self)
     {
-        _seed = (new_seed ^ multiplier) & mask;
+        _seed = (seed ^ multiplier) & mask;
         haveNextNextGaussian = NO;
     }
     return self;
@@ -42,7 +69,7 @@ BOOL haveNextNextGaussian = NO;
 /**
  * Private compare method for comparing and set.
  */
-- (BOOL) compare:(long)seed with:(long)oldseed andSet:(long)nextseed
+- (BOOL) compareAndSet:(long)seed with:(long)oldseed andSet:(long)nextseed
 {
 	if (seed == oldseed)
 		{ self.seed = nextseed; return YES; }
@@ -60,7 +87,7 @@ BOOL haveNextNextGaussian = NO;
 	{
 		oldseed = self.seed;
 		nextseed = (oldseed * multiplier + addend) & mask;
-	} while (![self compare:self.seed with:oldseed andSet:nextseed]);
+	} while (![self compareAndSet:self.seed with:oldseed andSet:nextseed]);
 	return (int)(nextseed >> (48 - bits));
 }
 
@@ -71,12 +98,6 @@ BOOL haveNextNextGaussian = NO;
  */	
 - (void) nextBytes:(NSMutableArray*)bytes
 {
-	/*for (int i = 0; i < [bytes count]; )
-		for(int rnd = [self nextInt], n = MIN([bytes count] - i, 4);
-			n-- > 0; rnd >>= 8)
-		bytes = [bytes replace
-		bytes[] = (Byte)rnd;
-	*/
 	NSLog(@"unimplmented");
 	NSAssert(NO, @"unimplmented!");
 	return 0;
@@ -148,7 +169,7 @@ BOOL haveNextNextGaussian = NO;
  */
 - (double) nextDouble
 {
-	return (((long)[self next:26] << 27) + [self next:27]) / (double)(1L << 53);
+	return (((long)([self next:26]) << 27) + [self next:27]) / (double)(1L << 53);
 }
 
 /**
@@ -156,11 +177,27 @@ BOOL haveNextNextGaussian = NO;
  * double value with mean 0.0 and standard deviation 1.0 from this 
  * random number generator's sequence.
  */
-- (double) NextGaussian
+- (double) nextGaussian
 {
-	NSLog(@"unimplmented");
-	NSAssert(NO, @"unimplmented!");
-	return 0;
+	if (haveNextNextGaussian)
+	{
+        haveNextNextGaussian = NO;
+        return nextNextGaussian;
+    } 
+	else 
+	{
+		double v1, v2, s;
+        do 
+		{
+            v1 = 2 * [self nextDouble] - 1;
+            v2 = 2 * [self nextDouble] - 1;
+            s = v1 * v1 + v2 * v2;
+        } while (s >= 1 || s == 0);
+        double multiplier = sqrt(-2 * log(s) / s);
+        nextNextGaussian = v2 * multiplier;
+        haveNextNextGaussian = YES;
+        return v1 * multiplier;
+    }
 }
 
 @end

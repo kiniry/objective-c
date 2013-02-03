@@ -10,6 +10,7 @@
 
 @interface Random()
 @property (atomic) long seed;
+@property (atomic) long seedUniquifier;
 @end
 
 @implementation Random
@@ -32,27 +33,34 @@ static BOOL haveNextNextGaussian = NO;
         return NO;
     }
 }
-// INIT METHOD WITHOUT SEED BELOW NEEDS IMPLEMENTATION
-/*
--(id)init
-{
-    for (;;){
-     //   long current = seedUniquifier;
-        //long next = current * 181783497276652981L;
-        if (!nil){
-            
-        }
-    }
-}
-*/
-// TO HERE...
 
+// Create next random seed
++(long)seedUniquifier
+{
+    long next;
+    for (;;){
+        long current = self.seedUniquifier;
+        next = current * 181783497276652981L;
+    }
+    return next;
+}
+
+// Init with random seed
+-(id)init{
+    long seedUniquifierFromMethod = [self seedUniquifier];
+    NSTimeInterval timeInMiliseconds = [[NSDate date] timeIntervalSince1970];
+    long systemNanoTime = timeInMiliseconds*1000000;
+    long seed = seedUniquifierFromMethod ^ systemNanoTime;
+    return [self initWithSeed:seed];
+}
+
+// Init with specific seed
 -(id)initWithSeed:(long)seed{
     self = [super init];
     if (self)
     {
-        //Init class
-        _seed = (seed ^multiplier) & mask;
+        //Init object
+        _seed = (seed ^ multiplier) & mask;
         haveNextNextGaussian = NO;
     }
     return self;

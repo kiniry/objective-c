@@ -33,10 +33,11 @@
   printf("stringByAppendingString vs. appendString\n");
   printf("====================================================================================\n");
 
-  printf("    length             stringByAppendingString:                        appendString:\n");
+  printf("| Length | `stringByAppendingString:` | ratio | `appendString:` | ratio |\n");
+  printf("| ------:| --------------------------:| -----:| ---------------:| -----:|\n");
 
   for (int n = LENGTH_START; n <= LENGTH_MAX; n *= 2) {
-    printf("%10d, ", n);
+    printf("| %6d |", n);
 
     while ([mutableString length] < n)
       [mutableString appendString:@"A"];
@@ -48,7 +49,7 @@
       [string stringByAppendingString:@"Whatever"];
       interval += mach_absolute_time() - start;
     }
-    printf("%25.2f ns (%4.2f), ", (double)interval * info.numer / info.denom / ITERATIONS, (double)interval / prevIntervalImmutable);
+    printf( "%24.2f ns | %05.2f |", (double)interval * info.numer / info.denom / ITERATIONS, (double)interval / prevIntervalImmutable);
     prevIntervalImmutable = interval;
 
     interval = 0;
@@ -58,12 +59,10 @@
       [mutableString appendString:@"Whatever"];
       interval += mach_absolute_time() - start;
     }
-    printf("%25.2f ns (%4.2f)", (double)interval * info.numer / info.denom / ITERATIONS, (double)interval / prevIntervalMutable);
+    printf(" %12.2f ns | %05.2f |\n", (double)interval * info.numer / info.denom / ITERATIONS, (double)interval / prevIntervalMutable);
     prevIntervalMutable = interval;
 
     [string release];
-
-    printf("\n");
   }
 
   printf("\n");
