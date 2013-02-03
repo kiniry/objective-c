@@ -70,6 +70,6 @@ Summary
 -------
 The porting of the Json.net API has resulted in a basic implementation which is indeed capable of (de)serializing between JSON data and custom Objective-C objects.
 
-> See the [main.m](Assignment5/main.m/) file for an example
+> See the [main.m](Assignment5/main.m/) file for an example.
 
 The key elements that have made this implementation possible are the **Objective-C Runtime Reference** library and the **Key-Value coding** protocol.
