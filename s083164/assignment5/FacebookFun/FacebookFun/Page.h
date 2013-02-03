@@ -11,4 +11,11 @@
 
 @interface Page : Node
 
+//Public
+@property(nonatomic, strong) NSString* name;
+@property(nonatomic, strong) NSString* pageDescription; //Cant use description d'ooh
+@property(nonatomic, strong) NSString* link;
+@property(nonatomic, strong) NSString* category;
+@property(nonatomic, strong) NSString* company;
+
 @end
