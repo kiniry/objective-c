@@ -28,7 +28,9 @@ int main(int argc, const char * argv[])
         // Create NSString objects from char arrays:
         NSString *stringOne = [[NSString alloc] initWithCString: stringOneCharArray encoding: NSUTF8StringEncoding];
         NSString *stringTwo = [[NSString alloc] initWithCString: stringTwoCharArray encoding: NSUTF8StringEncoding];
-        //NSLog(@"You have chosen %ld iterations",iterations);
+        
+        //NSString *stringOne = @"A";
+        //NSString *stringTwo = @"B";
         
         NSLog(@"Levenshtein Distance calculation started");
         NSDate *start = [NSDate date];
