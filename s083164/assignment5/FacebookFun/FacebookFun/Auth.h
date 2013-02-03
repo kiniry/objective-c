@@ -14,4 +14,6 @@
 
 -(NSDictionary *)loadPublicInfoUsingIdentifier:(NSString *)identifier;
 
+-(NSDictionary *)loadPrivateInfoUsingIdentifier:(NSString *)identifier andAccessToken:(NSString *)accessToken;
+
 @end
