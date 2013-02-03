@@ -4,7 +4,7 @@ README.md - Sivanujann Selliah - s093042 - 02/02/13
 
 The following are reflections on porting an API to Objective-C.
 
-The code (with comments) for the ported version is found in the [Process](assignment5/Process/ "Link to Process") project.
+The code (with comments) for the ported version is found in the [Process](Process/ "Link to Process") project.
 
 The original APIs can be found on [Oracle](http://docs.oracle.com/javase/7/docs/api/java/lang/Process.html "Link to http://docs.oracle.com/javase/7/docs/api/java/lang/Process.html") and on [MSDN](http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx "Link to http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx").
 
