@@ -32,7 +32,7 @@
 // Finds the maximum in the array using a function to retrieve a numeric value from each element in the array
 -(long)max: (long (^)(id))func
 {
-    long max = (long)[self objectAtIndex:0];
+    long max = func([self objectAtIndex:0]);
     for (id obj in self) {
         long value = func(obj);
         if(value > max) value = value;
@@ -54,10 +54,10 @@
 // Finds the minimum in the array using a function to retrieve a numeric value from each element in the array
 -(long)min: (long (^)(id))func
 {
-    long min = (long)[self objectAtIndex:0];
+    long min = func([self objectAtIndex:0]);
     for (id obj in self) {
         long value = func(obj);
-        if(value < min) value = value;
+        if(value < min) min = value;
     }
     return min;
 }
