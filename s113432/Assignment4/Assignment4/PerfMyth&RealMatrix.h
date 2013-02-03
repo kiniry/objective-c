@@ -7,5 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PerfMyth_RealMatrix
-- (NSArray*)multiplication:(NSArray*)firstArray: (NSArray*)secondArray;
+@interface PerfMyth_RealMatrix;
+- (NSMutableArray*)multiplication:(NSMutableArray*)firstArray: (NSMutableArray*)secondArray;
+
+@end
