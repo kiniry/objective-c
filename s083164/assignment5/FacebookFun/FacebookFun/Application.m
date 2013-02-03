@@ -57,7 +57,6 @@ static NSString *const EKKAccessAppUserSupportEmail = @"user_support_email";
 static NSString *const EKKAccessAppUserSupportURL = @"user_support_url";
 static NSString *const EKKAccessAppWebsiteURL = @"website_url";
 
-
 @implementation Application
 
 -(void) handleData:(NSDictionary*)data
@@ -114,6 +113,11 @@ static NSString *const EKKAccessAppWebsiteURL = @"website_url";
     if ([data objectForKey:EKKAccessAppUserSupportURL]) self.userSupportURL = [data objectForKey:EKKAccessAppUserSupportURL];
     if ([data objectForKey:EKKAccessAppWebsiteURL]) self.websiteURL = [data objectForKey:EKKAccessAppWebsiteURL];
     
+}
+
+-(void) initAttributes
+{
+    self.attributes = @[EKKAccessAppName,EKKAccessAppDescription,EKKAccessAppLink,EKKAccessAppIconURL,EKKAccessAppLogoURL,EKKAccessAppDailyActiveUsers,EKKAccessAppWeeklyActiveUsers,EKKAccessAppMonthlyActiveUsers,EKKAccessAppCategory,EKKAccessAppCompany,EKKAccessAppSubcategory,EKKAccessAppNamespace,EKKAccessAppMigrations,EKKAccessAppRestrictions,EKKAccessAppAppDomains,EKKAccessAppAuthDialogDataHelpURL,EKKAccessAppAuthDialogHeadline,EKKAccessAppAuthDialogPermsExplanation,EKKAccessAppAuthReferralUserPerms,EKKAccessAppAuthReferralFriendPerms,EKKAccessAppAuthReferralDefaultActivityPrivacy,EKKAccessAppAuthReferralEnabled,EKKAccessAppAuthReferralExtendedPerms,EKKAccessAppAuthReferralResponseType,EKKAccessAppCanvasFluidHeight,EKKAccessAppCanvasFluidWidth,EKKAccessAppCanvasURL,EKKAccessAppContactEmail,EKKAccessAppCreatedTime,EKKAccessAppCreatorUID,EKKAccessAppDeauthCallbackURL,EKKAccessAppIphoneAppStoreID,EKKAccessAppHostingURL,EKKAccessAppMobileWebURL,EKKAccessAppPageTabDefaultName,EKKAccessAppPageTabURL,EKKAccessAppPrivacyPolicyURL,EKKAccessAppSecureCanvasURL,EKKAccessAppSecurePageTabURL,EKKAccessAppServerIpWhitelist,EKKAccessAppSocialDiscovery,EKKAccessAppTermsOfServiceURL,EKKAccessAppUserSupportEmail,EKKAccessAppUserSupportURL,EKKAccessAppWebsiteURL];
 }
 
 
