@@ -29,13 +29,35 @@
     return max;
 }
 
+// Finds the maximum in the array using a function to retrieve a numeric value from each element in the array
+-(long)max: (long (^)(id))func
+{
+    long max = (long)[self objectAtIndex:0];
+    for (id obj in self) {
+        long value = func(obj);
+        if(value > max) value = value;
+    }
+    return max;
+}
+
 // Finds the minimum in the array
 -(long)min
 {
     long min = (long)[self objectAtIndex:0];
     for (id obj in self) {
         long lObj = (long) obj;
-        if(lObj > min) min = lObj;
+        if(lObj < min) min = lObj;
+    }
+    return min;
+}
+
+// Finds the minimum in the array using a function to retrieve a numeric value from each element in the array
+-(long)min: (long (^)(id))func
+{
+    long min = (long)[self objectAtIndex:0];
+    for (id obj in self) {
+        long value = func(obj);
+        if(value < min) value = value;
     }
     return min;
 }
@@ -43,8 +65,16 @@
 // Calculates the sum in the array
 -(long)sum
 {
-    long sum =0;
+    long sum = 0;
     for (id obj in self) sum +=(long) obj;
+    return sum;
+}
+
+// Calculates the sum in the array using function to retrieve a numeric value from each element in the array
+-(long)sum: (long (^)(id))func
+{
+    long sum = 0;
+    for (id obj in self) sum +=func(obj);
     return sum;
 }
 
@@ -52,6 +82,12 @@
 -(double)average
 {
     return ((double)self.sum) / ((double)self.count);
+}
+
+// Calculates the average in the array using function to retrieve a numeric value from each element in the array
+-(double)average: (long (^)(id))func
+{
+    return ((double) [self sum:func]) / ((double)self.count);
 }
 
 // Filters the array according to a predicate
@@ -63,7 +99,7 @@
 }
 
 // Checks whether an element in the array fulfills a predicate
--(BOOL)exists: (BOOL (^)(id))predicate
+-(BOOL)contains: (BOOL (^)(id))predicate
 {
     for (id obj in self) if (predicate(obj)) return true;
     return false;
@@ -76,7 +112,7 @@
     return true;
 }
 
-// Iterates through an array and creates a new element using a constructor function
+// Iterates through an array and creates a new element using a constructor function (map)
 -(NSMutableArray*)select: (id (^)(id))constructor
 {
     NSMutableArray *array = [NSMutableArray array];
@@ -84,7 +120,7 @@
     return array;
 }
 
-// Filters an array and creates a new element using a constructor function
+// Filters an array and creates a new element using a constructor function (filter and map)
 -(NSMutableArray*)select: (id (^)(id))constructor where:(BOOL (^)(id))predicate
 {
     NSMutableArray *array = [NSMutableArray array];
@@ -157,7 +193,7 @@
     return [[dictionary allValues] mutableCopy];
 }
 
-// Gets all elements that is not present in the array passed as argument
+// Gets all elements that is not present in the array passed as argument (difference)
 -(NSMutableArray*)except:(NSMutableArray*)array
 {
     NSMutableSet *set = [array toSet];
