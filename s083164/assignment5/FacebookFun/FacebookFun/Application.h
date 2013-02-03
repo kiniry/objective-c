@@ -21,12 +21,13 @@
 @property(nonatomic, strong) NSString* logoURL;
 @property(nonatomic, strong) NSString* dailyActiveUsers;
 @property(nonatomic, strong) NSString* weeklyActiveUsers;
-@property(nonatomic, strong) NSString* MonthlyActiveUsers;
+@property(nonatomic, strong) NSString* monthlyActiveUsers;
 @property(nonatomic, strong) NSString* subcategory;
 @property(nonatomic, strong) NSString* appNamespace;
 
 //Needs accesstoken
 @property(nonatomic, strong) NSArray* migrations;
+@property(nonatomic, strong) NSArray* restrictions;
 @property(nonatomic, strong) NSArray* appDomains;
 @property(nonatomic, strong) NSString* authDialogDataHelpURL;
 @property(nonatomic, strong) NSString* authDialogHeadline;
@@ -37,7 +38,7 @@
 @property(nonatomic) BOOL authReferralEnabled;
 @property(nonatomic, strong) NSArray* authReferralExtendedPerms;
 @property(nonatomic, strong) NSString* authReferralResponseType;
-@property(nonatomic) BOOL canvasFluidHeigh;
+@property(nonatomic) BOOL canvasFluidHeight;
 @property(nonatomic) BOOL canvasFluidWidth;
 @property(nonatomic, strong) NSString* canvasURL;
 @property(nonatomic, strong) NSString* contactEmail;
@@ -54,7 +55,7 @@
 @property(nonatomic, strong) NSString* securePageTabURL;
 @property(nonatomic, strong) NSString* serverIpWhitelist;
 @property(nonatomic) BOOL socialDiscovery;
-@property(nonatomic, strong) NSString* termsOfService;
+@property(nonatomic, strong) NSString* termsOfServiceURL;
 @property(nonatomic, strong) NSString* userSupportEmail;
 @property(nonatomic, strong) NSString* userSupportURL;
 @property(nonatomic, strong) NSString* websiteURL;

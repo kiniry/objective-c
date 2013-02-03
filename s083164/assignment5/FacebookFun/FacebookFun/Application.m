@@ -19,7 +19,7 @@ static NSString *const EKKAccessAppWeeklyActiveUsers = @"weekly_active_users";
 static NSString *const EKKAccessAppMonthlyActiveUsers = @"monthly_active_users";
 static NSString *const EKKAccessAppCategory = @"category";
 static NSString *const EKKAccessAppCompany = @"company";
-static NSString *const EKKAccessAppSubCategory = @"subcategory";
+static NSString *const EKKAccessAppSubcategory = @"subcategory";
 static NSString *const EKKAccessAppNamespace = @"namespace";
 
 //Private fields - needs accesstoken. String returned otherwise indicated
@@ -52,26 +52,70 @@ static NSString *const EKKAccessAppSecureCanvasURL = @"secure_canvas_url";
 static NSString *const EKKAccessAppSecurePageTabURL = @"secure_page_tab_url";
 static NSString *const EKKAccessAppServerIpWhitelist = @"server_ip_whitelist";
 static NSString *const EKKAccessAppSocialDiscovery = @"social_discovery"; //BOOL
-static NSString *const EKKAccessAppTermsOfService = @"terms_of_service_url";
+static NSString *const EKKAccessAppTermsOfServiceURL = @"terms_of_service_url";
 static NSString *const EKKAccessAppUserSupportEmail = @"user_support_email";
 static NSString *const EKKAccessAppUserSupportURL = @"user_support_url";
 static NSString *const EKKAccessAppWebsiteURL = @"website_url";
+
 
 @implementation Application
 
 -(void) handleData:(NSDictionary*)data
 {
-    NSLog(@"%@", data);
     
-    //Very ugly.
+//    if ([data objectForKey:EKKAccessApp]) self. = [data objectForKey:EKKAccessApp];
+    
+//    Public facebook properties
     if ([data objectForKey:EKKAccessAppName]) self.name = [data objectForKey:EKKAccessAppName];
     if ([data objectForKey:EKKAccessAppDescription]) self.appDescription = [data objectForKey:EKKAccessAppDescription];
     if ([data objectForKey:EKKAccessAppLink]) self.link = [data objectForKey:EKKAccessAppLink];
     if ([data objectForKey:EKKAccessAppIconURL]) self.iconURL = [data objectForKey:EKKAccessAppIconURL];
     if ([data objectForKey:EKKAccessAppLogoURL]) self.logoURL = [data objectForKey:EKKAccessAppLogoURL];
-    if ([data objectForKey:EKKAccessAppDailyActiveUsers]) self.dailyActiveUsers = [data objectForKey:EKKAccessAppLogoURL];
+    if ([data objectForKey:EKKAccessAppDailyActiveUsers]) self.dailyActiveUsers = [data objectForKey:EKKAccessAppDailyActiveUsers];
     if ([data objectForKey:EKKAccessAppCategory]) self.category = [data objectForKey:EKKAccessAppCategory];
-
+    if ([data objectForKey:EKKAccessAppWeeklyActiveUsers]) self.weeklyActiveUsers = [data objectForKey:EKKAccessAppWeeklyActiveUsers];
+    if ([data objectForKey:EKKAccessAppMonthlyActiveUsers]) self.monthlyActiveUsers = [data objectForKey:EKKAccessAppMonthlyActiveUsers];
+    if ([data objectForKey:EKKAccessAppCompany]) self.company = [data objectForKey:EKKAccessAppCompany];
+    if ([data objectForKey:EKKAccessAppSubcategory]) self.subcategory = [data objectForKey:EKKAccessAppSubcategory];
+    if ([data objectForKey:EKKAccessAppNamespace]) self.appNamespace = [data objectForKey:EKKAccessAppNamespace];
+    
+//    Private
+    if ([data objectForKey:EKKAccessAppMigrations]) self.migrations = [data objectForKey:EKKAccessAppMigrations];
+    if ([data objectForKey:EKKAccessAppRestrictions]) self.restrictions = [data objectForKey:EKKAccessAppRestrictions];
+    if ([data objectForKey:EKKAccessAppAppDomains]) self.appDomains = [data objectForKey:EKKAccessAppAppDomains];
+    if ([data objectForKey:EKKAccessAppAuthDialogDataHelpURL]) self.authDialogDataHelpURL = [data objectForKey:EKKAccessAppAuthDialogDataHelpURL];
+    if ([data objectForKey:EKKAccessAppAuthDialogHeadline]) self.authDialogHeadline = [data objectForKey:EKKAccessAppAuthDialogHeadline];
+    if ([data objectForKey:EKKAccessAppAuthDialogPermsExplanation]) self.authDialogPermsExplanation = [data objectForKey:EKKAccessAppAuthDialogPermsExplanation];
+    if ([data objectForKey:EKKAccessAppAuthReferralUserPerms]) self.authReferralUserPerms = [data objectForKey:EKKAccessAppAuthReferralUserPerms];
+    if ([data objectForKey:EKKAccessAppAuthReferralFriendPerms]) self.authReferralFriendPerms = [data objectForKey:EKKAccessAppAuthReferralFriendPerms];
+    if ([data objectForKey:EKKAccessAppAuthReferralDefaultActivityPrivacy]) self.authReferralDefaultActivityPrivacy = [data objectForKey:EKKAccessAppAuthReferralDefaultActivityPrivacy];
+    if ([data objectForKey:EKKAccessAppAuthReferralEnabled]) self.authReferralEnabled = [[data objectForKey:EKKAccessAppAuthReferralEnabled] boolValue];
+    if ([data objectForKey:EKKAccessAppAuthReferralExtendedPerms]) self.authReferralExtendedPerms = [data objectForKey:EKKAccessAppAuthReferralExtendedPerms];
+    if ([data objectForKey:EKKAccessAppAuthReferralResponseType]) self.authReferralResponseType = [data objectForKey:EKKAccessAppAuthReferralResponseType];
+    if ([data objectForKey:EKKAccessAppCanvasFluidHeight]) self.canvasFluidHeight = [[data objectForKey:EKKAccessAppCanvasFluidHeight] boolValue];
+    if ([data objectForKey:EKKAccessAppCanvasFluidWidth]) self.canvasFluidWidth = [[data objectForKey:EKKAccessAppCanvasFluidWidth] boolValue];
+    if ([data objectForKey:EKKAccessAppCanvasURL]) self.canvasURL = [data objectForKey:EKKAccessAppCanvasURL];
+    if ([data objectForKey:EKKAccessAppContactEmail]) self.contactEmail = [data objectForKey:EKKAccessAppContactEmail];
+    if ([data objectForKey:EKKAccessAppCreatedTime]) self.createdTime = [[data objectForKey:EKKAccessAppCreatedTime] integerValue];
+    if ([data objectForKey:EKKAccessAppCreatorUID]) self.creatorUID = [[data objectForKey:EKKAccessAppCreatorUID] integerValue];
+    if ([data objectForKey:EKKAccessAppDeauthCallbackURL]) self.deauthCallbackURL = [data objectForKey:EKKAccessAppDeauthCallbackURL];
+    if ([data objectForKey:EKKAccessAppIphoneAppStoreID]) self.iphoneAppStoreID = [data objectForKey:EKKAccessAppIphoneAppStoreID];
+    if ([data objectForKey:EKKAccessAppHostingURL]) self.hostingURL = [data objectForKey:EKKAccessAppHostingURL];
+    if ([data objectForKey:EKKAccessAppMobileWebURL]) self.mobileWebURL = [data objectForKey:EKKAccessAppMobileWebURL];
+    if ([data objectForKey:EKKAccessAppPageTabDefaultName]) self.pageTabDefaultName = [data objectForKey:EKKAccessAppPageTabDefaultName];
+    if ([data objectForKey:EKKAccessAppPageTabURL]) self.pageTabURL = [data objectForKey:EKKAccessAppPageTabURL];
+    if ([data objectForKey:EKKAccessAppPrivacyPolicyURL]) self.privacyPolicyURL = [data objectForKey:EKKAccessAppPrivacyPolicyURL];
+    if ([data objectForKey:EKKAccessAppSecureCanvasURL]) self.secureCanvasURL = [data objectForKey:EKKAccessAppSecureCanvasURL];
+    if ([data objectForKey:EKKAccessAppSecurePageTabURL]) self.securePageTabURL = [data objectForKey:EKKAccessAppSecurePageTabURL];
+    if ([data objectForKey:EKKAccessAppServerIpWhitelist]) self.serverIpWhitelist = [data objectForKey:EKKAccessAppServerIpWhitelist];
+    if ([data objectForKey:EKKAccessAppSocialDiscovery]) self.socialDiscovery = [[data objectForKey:EKKAccessAppSocialDiscovery] boolValue];
+    if ([data objectForKey:EKKAccessAppTermsOfServiceURL]) self.termsOfServiceURL = [data objectForKey:EKKAccessAppTermsOfServiceURL];
+    if ([data objectForKey:EKKAccessAppUserSupportEmail]) self.userSupportEmail = [data objectForKey:EKKAccessAppUserSupportEmail];
+    if ([data objectForKey:EKKAccessAppUserSupportURL]) self.userSupportURL = [data objectForKey:EKKAccessAppUserSupportURL];
+    if ([data objectForKey:EKKAccessAppWebsiteURL]) self.websiteURL = [data objectForKey:EKKAccessAppWebsiteURL];
+    
 }
+
+
 
 @end
