@@ -13,17 +13,16 @@
 -(NSString *)loadAccessTokenUsingClientId:(NSString *)identifier andSecret:(NSString *)secret
 {
     NSString *URL = [NSString stringWithFormat:@"https://graph.facebook.com/oauth/access_token?client_id=%@&client_secret=%@&grant_type=client_credentials",identifier, secret];
-
     NSError *error;
-    
     NSString *data = [NSString stringWithContentsOfURL:[NSURL URLWithString: URL] encoding:NSUTF8StringEncoding error:&error];
-    
     return data;
 }
 
 -(NSDictionary *)loadPublicInfoUsingIdentifier:(NSString *)identifier
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@",identifier]];
+    NSString *stringURL =[NSString stringWithFormat:@"https://graph.facebook.com/%@",identifier];
+    NSString* webStringURL = [stringURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:webStringURL];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     
@@ -33,10 +32,12 @@
     return dict;
 }
 
--(NSDictionary *)loadPrivateInfoUsingIdentifier:(NSString *)identifier andAccessToken:(NSString *)accessToken
+-(NSDictionary *)loadPrivateInfoUsingIdentifier:(NSString *)identifier accessToken:(NSString *)accessToken andAttributes:(NSString *)attributes
 {
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@?fields=&access_token=%@",identifier,accessToken]];
+ 
+    NSString *stringURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@?fields=%@&%@",identifier,attributes,accessToken];
+    NSString* webStringURL = [stringURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL* url = [NSURL URLWithString:webStringURL];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     
