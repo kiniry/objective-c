@@ -44,7 +44,7 @@ In order to convert *any* Objective-C object into a JSON string, one must of cou
 
 With this information one can then iterate through each of these `objc_property_t` and use the `property_getName` function to get a string representation of the property name. Each of these can then be put into an `NSArray` and voilà one has an Objective-C representation of all properties of any object. This can of course be expanded to include the type of each property, which would then call for a dictionary representation instead of an array.
 
-All of this functionality has been put into a category of `NSObject` and can be found in [NSObject+Properties.m](NSObject+Properties.m/).
+All of this functionality has been put into a category of `NSObject` and can be found in [NSObject+Properties.m](Assignment5/NSObject+Properties.m/).
 
 Now all one has to do is to iterate through each of the properties of the object and populate a dictionary with propery names as keys and their instance values as values. In order to get the current value of any property one can use the so called **Key-Value coding** and described by [Apple](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html) as follows
 
@@ -70,6 +70,6 @@ Summary
 -------
 The porting of the Json.net API has resulted in a basic implementation which is indeed capable of (de)serializing between JSON data and custom Objective-C objects.
 
-> See the [main.m](main.m/) file for an example
+> See the [main.m](Assignment5/main.m/) file for an example
 
 The key elements that have made this implementation possible are the **Objective-C Runtime Reference** library and the **Key-Value coding** protocol.
