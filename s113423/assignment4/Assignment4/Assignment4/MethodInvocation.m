@@ -47,7 +47,7 @@ double multiplyFunction(double a, double b) {
   printf("method invocation\n");
   printf("===========================================================\n");
 
-  char* formatString = "%45s %10.2f ns\n";
+  char* formatString = "| %45s | %5.2f ns |\n";
 
   start = mach_absolute_time();
   for (int i = 0; i < ITERATIONS; i++)
