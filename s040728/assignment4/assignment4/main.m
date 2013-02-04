@@ -33,7 +33,10 @@ int main(int argc, const char * argv[])
         NSLog(@"the running time for distanceBetween: is %0.4f ms", elapsedTime1);
         NSLog(@"the running time for distanceUsingRecursion is %0.4f ms", elapsedTime2);
         
-        
+        // The difference is very remarkable. It can be seen that in the first method where a loop is used
+        // the only thing that seem to cost is string manipulation.
+        // The second method where recursion is used, it can be seen that method calls cost a lot.
+        // the screenshot form intruments show that.
         
     }
     return 0;
