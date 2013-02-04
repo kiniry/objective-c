@@ -17,6 +17,13 @@
 
 @implementation TimerThread
 
+/*
+ 
+ Is not uses currently!!!!
+ 
+ */
+
+
 - (id)initWithTaskQueue:(PriorityQueue*)taskQueue{
     if(self = [super init]){
         self.newTaskMayBeScheduled = YES;

@@ -33,10 +33,10 @@
 
 
 
-
+/*
+ Schedules a task and signals to the run loop that the queue is not empty anynore
+ */
 - (void)scheduleAtDate:(NSDate *)date withTask:(void (^)(void))task{
-    NSAssert([[[NSDate date] laterDate:date] isEqualToDate:date],@"illegal executiondate");
-  //  NSAssert(self.myThread.newTaskMayBeScheduled,@"Timer is cancelled");
     TimerTask* newTask;
     newTask = [[TimerTask alloc] initWith:task executionTime:date andPeriod:nil];
     newTask.state = SCHEDULED;
@@ -54,23 +54,28 @@
             TimerTask* task;
             BOOL taskFire;
             BOOL isEmpty = [self.queue isEmpty];
-            if (isEmpty && self.newTaskMayBeScheduled) [self.queue wait];
-            if (isEmpty && !self.newTaskMayBeScheduled) break;
-            task = self.queue.peek;
+            if (isEmpty && self.newTaskMayBeScheduled) [self.queue wait];       //If the queue is empty and it is allowed to schedule tasks the thread is set on hold till there will be scheduled a task.
+            if (isEmpty && !self.newTaskMayBeScheduled) break;      //If the queue is empty and it is not allowed to schedule, it will break the threads run loop and terminate
+            
+            task = self.queue.peek;     // sets the current task to the first task in the queue
             
             //Sets taskFire to YES if the execution date has come
             taskFire = [[task.nextExecution earlierDate:[NSDate date]] isEqualToDate:task.nextExecution];
             if (taskFire) {
                 if (task.period != nil) {
-                    [self.queue removeAtIndex:0];
+                    [self.queue removeAtIndex:0];       //Removes the task from the queue
                 }
-                //Reschedule is unimplemented
-            if (!taskFire) [self.queue waitUntilDate:task.nextExecution];
+                
+                //Reschedule is unimplemented!!!
+            }            
+            if (!taskFire) {
+                [self.queue waitUntilDate:task.nextExecution];       //If the execution time has not come yet the thread will wait till the execution date comes
+                taskFire = YES;
             }
             if (taskFire){
                 dispatch_async(dispatch_get_main_queue(),^{
-                task.task();
-                });
+                    [task run];
+                });         //executes the task
             }
         }
         @catch (NSException *exception) {

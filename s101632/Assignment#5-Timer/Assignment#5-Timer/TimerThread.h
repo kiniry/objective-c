@@ -12,6 +12,13 @@
 @interface TimerThread : NSObject
 
 
+/*
+ 
+ Is not uses currently!!!!
+ 
+ */
+
+
 
 @property BOOL newTaskMayBeScheduled;
 
