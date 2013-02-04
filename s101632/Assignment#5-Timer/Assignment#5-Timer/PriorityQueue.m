@@ -1,8 +1,8 @@
 //
 //  PriorityQueue.m
-//  Assignment#5
+//  Assignment#5-Timer
 //
-//  Created by Jacob Espersen on 28/01/13.
+//  Created by Jacob Espersen on 01/02/13.
 //  Copyright (c) 2013 Jacob Espersen. All rights reserved.
 //
 
@@ -59,6 +59,7 @@
     NSAssert(object != nil, @"The object you want to enqueue can not be nil");
     [self.pQueue addObject:object];
     [self.pQueue sortUsingComparator:self.comperator];
+    self.size++;
     NSAssert([self contains:object], @"The object was not added probably");
     return YES;
     
@@ -141,6 +142,10 @@
 - (BOOL)isEmpty{
     if (self.size == 0) return YES;
     else return NO;
+}
+
+- (void)removeAtIndex:(NSInteger)index{
+    [self.pQueue removeObjectAtIndex:index];
 }
 
 
