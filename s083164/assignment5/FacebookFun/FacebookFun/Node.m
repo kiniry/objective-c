@@ -12,7 +12,7 @@
 @interface Node ()
 
 //@property(nonatomic, copy) NSString* accesToken;
-@property(nonatomic, copy) NSString* identifier;
+
 @property(nonatomic, strong) Auth* auth;
 
 
@@ -42,7 +42,7 @@
 }
 
 
--(void)fetchUsingAccessTokenOrNil:(NSString*)accessTokenOrNil
+-(void)fetchUsingAccessTokenOrNil:(NSString*)accessTokenOrNil error:(NSError **)error
 {
     if (!self.auth) self.auth = [[Auth alloc] init];
 
@@ -55,22 +55,22 @@
         
         if (!self.attributes) [self initAttributes];
         
-        NSDictionary *data = [self.auth loadPrivateInfoUsingIdentifier:self.identifier accessToken:accessTokenOrNil andAttributes:[self attributesAsString]];
+        NSDictionary *data = [self.auth loadPrivateInfoUsingIdentifier:self.identifier accessToken:accessTokenOrNil andAttributes:[self attributesAsString] error:error];
         [self handleData:data];
         
         
     } else {
-        NSDictionary *data = [self.auth loadPublicInfoUsingIdentifier:self.identifier];
+        NSDictionary *data = [self.auth loadPublicInfoUsingIdentifier:self.identifier error:error];
         [self handleData:data];
     }
 }
 
--(NSString *)getAccessTokenUsingSecret:(NSString *)secret
+-(NSString *)getAccessTokenUsingSecret:(NSString *)secret error:(NSError **)error
 {
     
     if (!self.auth) self.auth = [[Auth alloc] init];
     
-    NSString *str = [self.auth loadAccessTokenUsingClientId:self.identifier andSecret:secret];
+    NSString *str = [self.auth loadAccessTokenUsingClientId:self.identifier andSecret:secret error:error];
 
     return str;
 }

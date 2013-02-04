@@ -12,22 +12,23 @@
 
 @property(nonatomic, copy) NSString* secret;
 @property(nonatomic, strong) NSArray* attributes;
+@property(nonatomic, copy) NSString* identifier;
 
 -(id)initWithClientId:(NSString *)identifier;
 
 -(id)initWithClientId:(NSString *)identifier andClientSecret:(NSString *)secret;
 
--(void)fetchUsingAccessTokenOrNil:(NSString*)accessTokenOrNil;
+-(void)fetchUsingAccessTokenOrNil:(NSString*)accessTokenOrNil error:(NSError **)error;
 
--(NSString *)getAccessTokenUsingSecret:(NSString *)secret;
+-(NSString *)getAccessTokenUsingSecret:(NSString *)secret error:(NSError **)error;
 
 @end
 
 //To indicate that this is only used by subclasses
 @interface Node (Protected)
 
--(void) handleData:(NSDictionary*)data;
+//-(void) handleData:(NSDictionary*)data;
 
--(void) initAttributes;
+//-(void) initAttributes;
 
 @end
