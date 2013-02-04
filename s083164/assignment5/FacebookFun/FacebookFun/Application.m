@@ -62,8 +62,6 @@ static NSString *const EKKAccessAppWebsiteURL = @"website_url";
 -(void) handleData:(NSDictionary*)data
 {
     
-//    if ([data objectForKey:EKKAccessApp]) self. = [data objectForKey:EKKAccessApp];
-    
 //    Public facebook properties
     if ([data objectForKey:EKKAccessAppName]) self.name = [data objectForKey:EKKAccessAppName];
     if ([data objectForKey:EKKAccessAppDescription]) self.appDescription = [data objectForKey:EKKAccessAppDescription];

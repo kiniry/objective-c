@@ -17,9 +17,6 @@ static NSString *const EKKAccessPageCategory = @"category";
 
 -(void) handleData:(NSDictionary*)data
 {
-    
-    //    if ([data objectForKey:]) self. = [data objectForKey:];
-    
     //    Public facebook properties
     if ([data objectForKey:EKKAccessPageName]) self.name = [data objectForKey:EKKAccessPageName];
     if ([data objectForKey:EKKAccessPageDescription]) self.pageDescription = [data objectForKey:EKKAccessPageDescription];
@@ -27,6 +24,11 @@ static NSString *const EKKAccessPageCategory = @"category";
     if ([data objectForKey:EKKAccessPageCategory]) self.category = [data objectForKey:EKKAccessPageCategory];
     
     
+}
+
+-(void) initAttributes
+{
+    self.attributes = @[EKKAccessPageName,EKKAccessPageDescription,EKKAccessPageLink,EKKAccessPageCategory];
 }
 
 @end
