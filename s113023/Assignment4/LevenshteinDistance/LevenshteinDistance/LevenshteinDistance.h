@@ -10,6 +10,8 @@
 
 @interface LevenshteinDistance : NSObject
 
+@property (atomic, readwrite) int recursionDepth;
+
 +(int)distanceFromString:(NSString *)stringOne toString:(NSString *)stringTwo;
 
 @end
