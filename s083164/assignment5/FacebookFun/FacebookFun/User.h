@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Node.h"
 
-@interface User : NSObject
+@interface User : Node
 
 @property(nonatomic, strong) NSString* firstName;
 @property(nonatomic, strong) NSString* middleName;
 @property(nonatomic, strong) NSString* lastName;
+@property(nonatomic, strong) NSString* gender;
+@property(nonatomic, strong) NSString* username;
 
 @end
