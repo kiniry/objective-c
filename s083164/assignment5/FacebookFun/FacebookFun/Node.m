@@ -30,16 +30,16 @@
     return self;
 }
 
--(id)initWithClientId:(NSString *)identifier andClientSecret:(NSString *)secret
-{
-    self = [super init];
-    
-    if (self) {
-        _identifier = identifier;
-        _secret = secret;
-    }
-    return self;
-}
+//-(id)initWithClientId:(NSString *)identifier andClientSecret:(NSString *)secret
+//{
+//    self = [super init];
+//    
+//    if (self) {
+//        _identifier = identifier;
+//        _secret = secret;
+//    }
+//    return self;
+//}
 
 
 -(void)fetchUsingAccessTokenOrNil:(NSString*)accessTokenOrNil error:(NSError **)error

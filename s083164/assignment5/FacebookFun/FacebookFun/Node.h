@@ -16,7 +16,7 @@
 
 -(id)initWithClientId:(NSString *)identifier;
 
--(id)initWithClientId:(NSString *)identifier andClientSecret:(NSString *)secret;
+//-(id)initWithClientId:(NSString *)identifier andClientSecret:(NSString *)secret;
 
 -(void)fetchUsingAccessTokenOrNil:(NSString*)accessTokenOrNil error:(NSError **)error;
 
