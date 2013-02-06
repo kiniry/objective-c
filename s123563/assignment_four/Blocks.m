@@ -13,7 +13,7 @@ const long long NUM_CALLS_BLX = 200000000;
   TimeTaskFor([self simpleOp], t1, NUM_CALLS_BLX);
   
   TimedTask* t2 = [TimedTask taskWithName:@"simple op as block"];
-  void (^simpleBlock)(void) = ^{		
+  simpleBlock = ^{		
     int a = 2;							
     int b = a;							
     a = b + a;							

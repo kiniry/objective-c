@@ -109,18 +109,18 @@ Something annoying is that the GNUstep implementation does not have some `block`
 
 Blocks
 ------
-Blocks execute pretty fast. Doing a simple operation (where the operation is close to free) is almost twice as fast when executed by a block, than by messaging. 
+Blocks execute pretty fast. Doing a simple operation (where the operation is close to free, and the block is defined as an ivar) is almost three times as fast when executed by a block, than by messaging.
 
 #### Output: 
 
 ```
-12:58:37.475: --- Running block tests ---
-12:58:37.479: -- performing simple operation 200000000 times
-12:58:37.479: run task: simple op as msg send
-12:58:39.660: > finished in 2.18 sec
-12:58:39.660: run task: simple op as block
-12:58:40.876: > finished in 1.216 sec
-12:58:40.876: comparison: 'simple op as block' is 1.792763 faster than 'simple op as msg send'
+11:01:26.198: --- Running block tests ---
+11:01:26.198: -- performing simple operation 200000000 times
+11:01:26.199: run task: simple op as msg send
+11:01:27.370: > finished in 1.171 sec
+11:01:27.370: run task: simple op as block
+11:01:27.738: > finished in 0.3669999 sec
+11:01:27.738: comparison: 'simple op as block' is 3.190737 faster than 'simple op as msg send'
 ```
 
 

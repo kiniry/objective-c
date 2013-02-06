@@ -1,0 +1,9 @@
+Assignment 2 feedback for s082598
+
+- From Xcode 4.4 and on you don't need to synthezise your properties. The will automatically be initalized.
+
+- I think that the Apple way is to use only istance variables (_property) in the inilialize methods and self.property everywhere else.
+
+- You declare both children and spouse both as public and private properties?
+
+Other than that everything looks fine!
