@@ -19,20 +19,17 @@ int main(int argc, const char * argv[])
         
         TimerTask *task = [[TimerTask alloc] initWithTask: ^{
             
-            fprintf(stdout,"TIMER TASK");
+            for (int i = 0; i < 5; i++) {
+                fprintf(stdout,"TIMER TASK");
+            }
             
         }];
         
         int delay = 1000;
-        
-//        [timer scheduleTask: ^
-//        {
-//             
-//            NSLog(@"IT RUNZ");
-//             
-//        } withDelay:delay];
 
         [timer scheduleTask:task withDelay:delay];
+        
+        [task run]; 
     
     }
     return 0;
