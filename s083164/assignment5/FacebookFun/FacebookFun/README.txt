@@ -51,3 +51,13 @@ NSString *s = [a getAccessTokenUsingSecret:@"5e7598112f87d2c6fd0d9bdec0c2e300" e
 //provides
 NSLog(@"%@",a.contactEmail);
 
+---TODO---
+-- Remodel the network part so it becomes asynchronous. In this state commucation
+takes place on the main thread, which means that while the program is retrieving
+data from the Facebook API nothing else can happen. So in this state its only
+good for CLI programs.
+-- Implement friends
+-- The possibility to post to apps, timelines etc.
+-- Messages
+-- Pagination
+
