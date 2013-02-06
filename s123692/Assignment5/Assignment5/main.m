@@ -7,15 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Timer.h"
+#import "TimerTask.h"
 
 int main(int argc, const char * argv[])
 {
-
+    
     @autoreleasepool {
         
-        // insert code here...
-        NSLog(@"Hello, World!");
+        Timer *timer = [[Timer alloc] init];
         
+        TimerTask *task = [[TimerTask alloc] initWithTask: ^{
+            
+            fprintf(stdout,"TIMER TASK");
+            
+        }];
+        
+        int delay = 1000;
+        
+//        [timer scheduleTask: ^
+//        {
+//             
+//            NSLog(@"IT RUNZ");
+//             
+//        } withDelay:delay];
+
+        [timer scheduleTask:task withDelay:delay];
+    
     }
     return 0;
 }
