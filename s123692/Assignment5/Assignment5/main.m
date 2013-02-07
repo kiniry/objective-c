@@ -20,16 +20,16 @@ int main(int argc, const char * argv[])
         TimerTask *task = [[TimerTask alloc] initWithTask: ^{
             
             for (int i = 0; i < 5; i++) {
-                fprintf(stdout,"TIMER TASK");
+                fprintf(stdout,"TIMER TASK ");
             }
             
         }];
         
-        int delay = 1000;
+        int delay = 500;
 
         [timer scheduleTask:task withDelay:delay];
         
-        [task run]; 
+//        [task cancel];
     
     }
     return 0;

@@ -15,12 +15,16 @@ typedef void(^Task)(void);
 @interface TimerTask()
 
 @property (nonatomic, copy) Task task;
+@property BOOL cancelled;
 
 @end
+
 
 @implementation TimerTask
 
 @synthesize task = _task;
+@synthesize cancelled = _cancelled;
+
 
 - (id) initWithTask:(void (^)(void))task
 {
@@ -28,13 +32,25 @@ typedef void(^Task)(void);
     if (self)
     {
         _task = task;
+        _cancelled = NO;
     }
     return self;
 }
 
+
 - (void) run
 {
     self.task();
+}
+
+- (void) cancel
+{
+    self.cancelled = YES;
+}
+
+- (BOOL) isCancelled
+{
+    return self.cancelled;
 }
 
 @end

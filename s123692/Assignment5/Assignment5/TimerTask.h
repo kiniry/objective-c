@@ -15,4 +15,8 @@
 
 - (void) run;
 
+- (void) cancel;
+
+- (BOOL) isCancelled;
+
 @end

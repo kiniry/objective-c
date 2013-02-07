@@ -51,23 +51,32 @@
 //    callback();
 //}
 
-//- (void) scheduleTask:(void (^)(void))task withDelay:(int)delay
-//{
-//    sleep(delay/1000);
-//    
-//    dispatch_async(self.queue, ^{
-//        task();
-//    });
-//}
-
-- (void) scheduleTask: (TimerTask *)task withDelay:(int)delay
+- (void) runTask: (TimerTask *)task withDelay: (int)delay
 {
-    NSLog(@"In schedule");
+    NSLog(@"In run");
     sleep(delay/1000);
-    
     dispatch_async(self.queue, ^{
         [task run];
     });
 }
+
+- (void) scheduleTask: (TimerTask *)task
+            withDelay:(int)delay
+{
+    NSLog(@"In schedule");
+    if (!task.isCancelled)
+        [self runTask:task withDelay:delay];
+}
+
+- (void) scheduleTask:(TimerTask *)task
+            withDelay:(int)delay
+            andPeriod:(long)period
+{
+    NSLog(@"In schedule");
+    if (!task.isCancelled)
+        [self runTask:task withDelay:delay];
+}
+
+
 
 @end
