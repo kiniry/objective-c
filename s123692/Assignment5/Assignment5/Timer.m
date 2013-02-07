@@ -12,6 +12,7 @@
 @interface Timer()
 
 @property dispatch_queue_t queue;
+@property NSMutableArray *tmpQueues;
 
 @end
 
@@ -19,6 +20,7 @@
 @implementation Timer
 
 @synthesize queue = _queue;
+@synthesize tmpQueues = _tmpQueues;
 
 
 #pragma mark - Initialization
@@ -29,6 +31,7 @@
     if (self)
     {
         _queue = dispatch_queue_create("com.mafaer.timer.queue", NULL);
+        _tmpQueues = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -55,41 +58,54 @@
 - (void) scheduleTask: (TimerTask *)task
             withDelay: (NSNumber *)delay
 {
-    [self runBlock:^{
-        sleep([delay intValue]);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)([delay doubleValue] * NSEC_PER_SEC));
+    dispatch_after(popTime, self.queue, ^(void){
         [task run];
-    }];
+    });
 }
 
 - (void) scheduleTask: (TimerTask *)task
             withDelay: (NSNumber *)delay
             andPeriod: (NSNumber *)period
 {
-    [self runBlock: ^{
-        if (!task.isCancelled)
+    // Fire initial with delay
+    [self scheduleTask:task withDelay:delay];
+    
+    // Creating temp thread with unique name
+    NSString *timestamp = [NSString stringWithFormat:@"%0.0f", [[NSDate date] timeIntervalSince1970]];
+    dispatch_queue_t tmp = dispatch_queue_create([timestamp UTF8String], NULL);
+    [self.tmpQueues addObject:tmp];
+    
+    // Create periodical loop in new tmp thread
+    // which fires back in timer-thread
+    dispatch_async(tmp, ^{
+        while (!task.isCancelled)
         {
-            NSLog(@"In PERIOD DELAY:");
-            sleep([delay intValue]);
-            [task run];
-            
-            while (!task.isCancelled)
-            {
-                sleep([period intValue]);
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)([period doubleValue] * NSEC_PER_SEC));
+            dispatch_after(popTime, self.queue, ^(void){
                 NSLog(@"In PERIOD:");
                 [task run];
-            }
+            });
         }
-    }];
+    });
 }
 
 - (void) cancel
 {
     dispatch_suspend(self.queue);
+    for (dispatch_queue_t tmpQueue in self.tmpQueues)
+    {
+        dispatch_suspend(tmpQueue);
+    }
 }
 
 - (void) resume // feature!
 {
     dispatch_resume(self.queue);
+    for (dispatch_queue_t tmpQueue in self.tmpQueues)
+    {
+        dispatch_resume(tmpQueue);
+    }
 }
 
 
