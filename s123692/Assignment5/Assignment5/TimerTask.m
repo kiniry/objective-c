@@ -24,6 +24,7 @@ typedef void(^Task)(void);
 
 @synthesize task = _task;
 @synthesize cancelled = _cancelled;
+@synthesize timesRun = _timesRun;
 
 
 - (id) initWithTask:(void (^)(void))task
@@ -33,6 +34,7 @@ typedef void(^Task)(void);
     {
         _task = task;
         _cancelled = NO;
+        _timesRun = 0;
     }
     return self;
 }
@@ -40,7 +42,11 @@ typedef void(^Task)(void);
 
 - (void) run
 {
-    self.task();
+    if (!self.cancelled)
+    {
+        self.task();
+        self.timesRun++;
+    }
 }
 
 - (void) cancel

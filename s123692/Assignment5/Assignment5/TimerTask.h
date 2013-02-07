@@ -11,6 +11,9 @@
 
 @interface TimerTask : NSObject
 
+@property int timesRun;
+
+
 - (id) initWithTask: (void (^)(void))task;
 
 - (void) run;

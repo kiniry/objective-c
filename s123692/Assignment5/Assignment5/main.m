@@ -15,7 +15,7 @@ int main(int argc, const char * argv[])
     
     @autoreleasepool {
         
-        Timer *timer = [[Timer alloc] init];
+        Timer *timer = [[Timer alloc] initWithThreadName:@"com.mafaer.timer.queue"];
         
         TimerTask *periodicalTask = [[TimerTask alloc] initWithTask: ^{
             fprintf(stdout,"TIMER TASK \n");
@@ -24,20 +24,22 @@ int main(int argc, const char * argv[])
             fprintf(stdout,"ONE TIME TASK \n");
         }];
         
-        // This one-timer hogs the timer-thread til it has been run
-        // To avoid, run in it in another timer instance.
-        [timer scheduleTask:oneTimeTask withDelay:@3];
-        NSLog(@"Hogz much?"); // Should print immediately
+        
+        [timer scheduleTask:oneTimeTask withDelay:@1];
         
         [timer scheduleTask:periodicalTask
                   withDelay:@2
                   andPeriod:@1];
+
         NSLog(@"Hogz much?"); // Should print immediately
 
         
-        sleep(10);
+        sleep(5);
         NSLog(@"CANCEL");
         [periodicalTask cancel];
+
+        NSLog(@"Periodical: %d", periodicalTask.timesRun);
+        NSLog(@"OneTime: %d", oneTimeTask.timesRun);
         
         while (YES) {
             // Infinite loop

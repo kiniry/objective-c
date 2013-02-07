@@ -16,6 +16,7 @@
 @interface Timer : NSObject
 
 - (id) init;
+- (id) initWithThreadName: (NSString *)name;
 
 //- (void) schedule: (Callback)callback withDelay: (int)delay;
 
