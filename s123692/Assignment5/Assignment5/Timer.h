@@ -16,16 +16,14 @@
 @interface Timer : NSObject
 
 - (id) init;
-//- (void) dealloc;
-// Handled by ARC on iOS 6.0 and Mac OS X 1.8, and later
 
 //- (void) schedule: (Callback)callback withDelay: (int)delay;
 
 - (void) scheduleTask: (TimerTask *)task
-            withDelay: (int)delay;
+            withDelay: (NSNumber *)delay;
 
 - (void) scheduleTask: (TimerTask *)task
-            withDelay: (int)delay
-            andPeriod: (long)period;
+            withDelay: (NSNumber *)delay
+            andPeriod: (NSNumber *)period;
 
 @end

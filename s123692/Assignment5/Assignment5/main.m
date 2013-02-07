@@ -19,17 +19,32 @@ int main(int argc, const char * argv[])
         
         TimerTask *task = [[TimerTask alloc] initWithTask: ^{
             
-            for (int i = 0; i < 5; i++) {
-                fprintf(stdout,"TIMER TASK ");
+            for (int i = 0; i < 1; i++) {
+                fprintf(stdout,"TIMER TASK \n");
             }
             
         }];
         
-        int delay = 500;
+        NSNumber *delay = @2;
 
-        [timer scheduleTask:task withDelay:delay];
+//        [timer scheduleTask:task withDelay:delay];
+//        NSLog(@"Hogz much?"); // Should print immediately
         
-//        [task cancel];
+        [timer scheduleTask:task
+                  withDelay:delay
+                  andPeriod:@1];
+        NSLog(@"Hogz much?"); // Should print immediately
+        
+        sleep(6);
+        NSLog(@"CANCEL");
+        [task cancel];
+        
+        while (YES) {
+            // Infinite loop
+            // So the app doesnt terminate before
+            // the task has been run.
+        }
+        
     
     }
     return 0;

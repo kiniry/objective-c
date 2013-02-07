@@ -33,11 +33,7 @@
     return self;
 }
 
-// Handled by ARC on iOS 6.0 and Mac OS X 1.8, and later
-//- (void) dealloc
-//{
-//    dispatch_release(_queue);
-//}
+// dispatch_release(_queue) is handled by ARC
 
 
 #pragma mark - Methods
@@ -51,31 +47,49 @@
 //    callback();
 //}
 
-- (void) runTask: (TimerTask *)task withDelay: (int)delay
+- (void) runBlock: (void (^)(void))block
 {
-    NSLog(@"In run");
-    sleep(delay/1000);
-    dispatch_async(self.queue, ^{
-        [task run];
-    });
+    dispatch_async(self.queue, ^{ block(); });
 }
 
 - (void) scheduleTask: (TimerTask *)task
-            withDelay:(int)delay
 {
-    NSLog(@"In schedule");
-    if (!task.isCancelled)
-        [self runTask:task withDelay:delay];
+    [self runBlock:^{
+        [task run];
+    }];
 }
 
-- (void) scheduleTask:(TimerTask *)task
-            withDelay:(int)delay
-            andPeriod:(long)period
+- (void) scheduleTask: (TimerTask *)task
+            withDelay: (NSNumber *)delay
 {
-    NSLog(@"In schedule");
-    if (!task.isCancelled)
-        [self runTask:task withDelay:delay];
+    [self runBlock:^{
+        sleep([delay intValue]);
+        [task run];
+    }];
 }
+
+- (void) scheduleTask: (TimerTask *)task
+            withDelay: (NSNumber *)delay
+            andPeriod: (NSNumber *)period
+{
+    [self runBlock: ^{
+        if (!task.isCancelled)
+        {
+            NSLog(@"In PERIOD DELAY:");
+            sleep([delay intValue]);
+            [task run];
+            
+            while (!task.isCancelled)
+            {
+                sleep([period intValue]);
+                NSLog(@"In PERIOD:");
+                [task run];
+            }
+        }
+    }];
+}
+
+
 
 
 
