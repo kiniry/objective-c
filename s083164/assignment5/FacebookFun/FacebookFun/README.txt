@@ -8,7 +8,7 @@ Application - https://developers.facebook.com/docs/reference/api/application/
 User - https://developers.facebook.com/docs/reference/api/user/
 Page - https://developers.facebook.com/docs/reference/api/page/
 
-Though only all small subset of what the Facebook Graph API provides has been
+Only a small subset of what the Facebook Graph API provides has been
 implemented. You can only GET information. Its not possible in its current form
 to POST, search and use Facebook connections. 
 
