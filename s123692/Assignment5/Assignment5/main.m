@@ -17,27 +17,27 @@ int main(int argc, const char * argv[])
         
         Timer *timer = [[Timer alloc] init];
         
-        TimerTask *task = [[TimerTask alloc] initWithTask: ^{
-            
-            for (int i = 0; i < 1; i++) {
-                fprintf(stdout,"TIMER TASK \n");
-            }
-            
+        TimerTask *periodicalTask = [[TimerTask alloc] initWithTask: ^{
+            fprintf(stdout,"TIMER TASK \n");
+        }];
+        TimerTask *oneTimeTask = [[TimerTask alloc] initWithTask: ^{
+            fprintf(stdout,"ONE TIME TASK \n");
         }];
         
-        NSNumber *delay = @2;
-
-//        [timer scheduleTask:task withDelay:delay];
-//        NSLog(@"Hogz much?"); // Should print immediately
-        
-        [timer scheduleTask:task
-                  withDelay:delay
-                  andPeriod:@1];
+        // This one-timer hogs the timer-thread til it has been run
+        // To avoid, run in it in another timer instance.
+        [timer scheduleTask:oneTimeTask withDelay:@3];
         NSLog(@"Hogz much?"); // Should print immediately
         
-        sleep(6);
+        [timer scheduleTask:periodicalTask
+                  withDelay:@2
+                  andPeriod:@1];
+        NSLog(@"Hogz much?"); // Should print immediately
+
+        
+        sleep(10);
         NSLog(@"CANCEL");
-        [task cancel];
+        [periodicalTask cancel];
         
         while (YES) {
             // Infinite loop

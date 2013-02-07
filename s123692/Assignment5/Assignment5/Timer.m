@@ -53,13 +53,6 @@
 }
 
 - (void) scheduleTask: (TimerTask *)task
-{
-    [self runBlock:^{
-        [task run];
-    }];
-}
-
-- (void) scheduleTask: (TimerTask *)task
             withDelay: (NSNumber *)delay
 {
     [self runBlock:^{
@@ -89,8 +82,15 @@
     }];
 }
 
+- (void) cancel
+{
+    dispatch_suspend(self.queue);
+}
 
-
+- (void) resume // feature!
+{
+    dispatch_resume(self.queue);
+}
 
 
 @end
