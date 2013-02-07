@@ -8,7 +8,7 @@ Application - https://developers.facebook.com/docs/reference/api/application/
 User - https://developers.facebook.com/docs/reference/api/user/
 Page - https://developers.facebook.com/docs/reference/api/page/
 
-Though only all small subset of what the Facebook Graph API provides has been
+Only a small subset of what the Facebook Graph API provides has been
 implemented. You can only GET information. Its not possible in its current form
 to POST, search and use Facebook connections. 
 
@@ -50,4 +50,14 @@ NSString *s = [a getAccessTokenUsingSecret:@"5e7598112f87d2c6fd0d9bdec0c2e300" e
 //The application object will have all the private properties that facebook
 //provides
 NSLog(@"%@",a.contactEmail);
+
+---TODO---
+-- Remodel the network part so it becomes asynchronous. In this state commucation
+takes place on the main thread, which means that while the program is retrieving
+data from the Facebook API nothing else can happen. So in this state its only
+good for CLI programs.
+-- Implement friends
+-- The possibility to post to apps, timelines etc.
+-- Messages
+-- Pagination
 
