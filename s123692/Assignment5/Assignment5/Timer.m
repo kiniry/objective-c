@@ -60,6 +60,7 @@
 {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)([delay doubleValue] * NSEC_PER_SEC));
     dispatch_after(popTime, self.queue, ^(void){
+        NSLog(@"In DELAY ONLY");
         [task run];
     });
 }
