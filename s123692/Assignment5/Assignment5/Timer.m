@@ -88,8 +88,8 @@
         return (void) nil;
 
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)([delay doubleValue] * NSEC_PER_SEC));
-    dispatch_after(popTime, self.queue, ^(void){
-        NSLog(@"In DELAY ONLY");
+    dispatch_after(popTime, self.queue, ^(void)
+    {
         [task run];
     });
 }
@@ -111,7 +111,8 @@
     
     // Create periodical loop in new tmp thread
     // which fires back in timer-thread
-    dispatch_async(tmp, ^{
+    dispatch_async(tmp, ^
+    {
         [self whileTask:task withPeriod:period];
     });
 }

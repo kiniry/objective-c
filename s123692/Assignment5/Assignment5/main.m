@@ -24,6 +24,9 @@ int main(int argc, const char * argv[])
             fprintf(stdout,"ONE TIME TASK \n");
         }];
         
+        if ([[NSDate alloc] init] == [[NSDate alloc] init])
+            NSLog(@"IT WORKZ");
+        
         
         [timer scheduleTask:oneTimeTask withDelay:@1];
         
@@ -32,7 +35,7 @@ int main(int argc, const char * argv[])
                   andPeriod:@1];
 
         NSLog(@"Hogz much?"); // Should print immediately
-
+        
         
         sleep(5);
         NSLog(@"CANCEL");
@@ -40,12 +43,6 @@ int main(int argc, const char * argv[])
 
         NSLog(@"Periodical: %d", periodicalTask.timesRun);
         NSLog(@"OneTime: %d", oneTimeTask.timesRun);
-        
-        while (YES) {
-            // Infinite loop
-            // So the app doesnt terminate before
-            // the task has been run.
-        }
         
     
     }
