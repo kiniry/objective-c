@@ -18,6 +18,9 @@
 - (id) init;
 - (id) initWithThreadName: (NSString *)name;
 
+- (void) suspend;
+- (void) resume;
+
 //- (void) schedule: (Callback)callback withDelay: (int)delay;
 
 - (void) scheduleTask: (TimerTask *)task

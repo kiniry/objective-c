@@ -84,8 +84,8 @@
 - (void) scheduleTask: (TimerTask *)task
             withDelay: (NSNumber *)delay
 {
-    if (self.isSuspended)
-        return (void) nil;
+    NSAssert(!self.isSuspended,
+             @"scheduleTask constraint failure: cannot schedule when Timer is suspended.");
 
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)([delay doubleValue] * NSEC_PER_SEC));
     dispatch_after(popTime, self.queue, ^(void)
@@ -98,8 +98,8 @@
             withDelay: (NSNumber *)delay
             andPeriod: (NSNumber *)period
 {
-    if (self.isSuspended)
-        return (void) nil;
+    NSAssert(!self.isSuspended,
+             @"scheduleTask constraint failure: cannot schedule when Timer is suspended.");
 
     // Fire initial with delay
     [self scheduleTask:task withDelay:delay];
@@ -117,13 +117,14 @@
     });
 }
 
-- (void) cancel
+- (void) suspend
 {
     dispatch_suspend(self.queue);
     for (dispatch_queue_t tmpQueue in self.tmpQueues)
     {
         dispatch_suspend(tmpQueue);
     }
+    self.isSuspended = YES;
 }
 
 - (void) resume // feature!
@@ -133,6 +134,7 @@
     {
         dispatch_resume(tmpQueue);
     }
+    self.isSuspended = NO;
 }
 
 

@@ -27,6 +27,7 @@ int main(int argc, const char * argv[])
         if ([[NSDate alloc] init] == [[NSDate alloc] init])
             NSLog(@"IT WORKZ");
         
+        [timer suspend];
         
         [timer scheduleTask:oneTimeTask withDelay:@1];
         
