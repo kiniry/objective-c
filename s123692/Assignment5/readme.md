@@ -42,11 +42,31 @@ simple class to implement.
 Implementation
 ==============
 
+__Timer class__
+Private properties:
+* dispatch_queue_t queue - The Timer's thread
+* NSMutableArray *tmpQueues - Temporary queues for repeating
+  excecuting tasks.
+* BOOL isSuspended - Boolean indicating if the Timer is suspended.
+
+Private methods:
+* whileTask:withPeriod: - A while loop checking for repeating
+  execution of repeating tasks.
+
+Public methods:
+* scheduleTask:withDelay: - Fires task after spesified delay.
+* scheduleTask:withDelay:andPeriod: - Fires delayed task with repeated
+  execution.
+* cancel - Suspends the Timer's and temporary threads.
+* resume - Resumes the Timer's and temporary threads.
+
+__scheduleTask:WithDelay:__
 C has the method 'sleep(int)', which run in a thread, hogs it til the
 sleep-timer is out. This is not so good if it delays other tasks from
 executing on time. Therefor I have taken advantage of of the Grand
 Central Dispatch's (GCD) 'dispatch_after(dispatch_time_t, ..)'.
 
+__scheduleTask:WithDelay:andPeriod:__
 For methods executing periodically I have chosen to have a loop
 checking for periodical/exact executions, in a separate thread. Else,
-nothing would come through in the Timer's thread.
+nothing would come through in the Timer's thread. Those temporary queues are added to a class array, so they can be suspended and resumed.
