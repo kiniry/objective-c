@@ -27,17 +27,20 @@ int main(int argc, const char * argv[])
         if ([[NSDate alloc] init] == [[NSDate alloc] init])
             NSLog(@"IT WORKZ");
         
-        [timer suspend];
-        
+
         [timer scheduleTask:oneTimeTask withDelay:@1];
         
         [timer scheduleTask:periodicalTask
                   withDelay:@2
                   andPeriod:@1];
 
-        NSLog(@"Hogz much?"); // Should print immediately
+        
+        NSLog(@"Hogz much?");
+        // Should print immediately
+        // Proves that the main thread is not hogged
         
         
+        // Prevent the app from terminating before we can test
         sleep(5);
         NSLog(@"CANCEL");
         [periodicalTask cancel];
