@@ -57,7 +57,7 @@ Public methods:
 * scheduleTask:withDelay: - Fires task after spesified delay.
 * scheduleTask:withDelay:andPeriod: - Fires delayed task with repeated
   execution.
-* cancel - Suspends the Timer's and temporary threads.
+* suspend - Suspends the Timer's and temporary threads.
 * resume - Resumes the Timer's and temporary threads.
 
 __scheduleTask:WithDelay:__
