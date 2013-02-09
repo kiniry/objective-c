@@ -1,0 +1,17 @@
+Greetings from your (well, almost) study number neighbour, Andy Graulund, s103474!
+
+I looked over everything, and your assignment 2 indeed seems very thorough, good job on it!
+
+Your version of 2.1 seems good, although there are elements specified in the BON chart that cannot be inspected in your version, like "single" because such a method is not defined in the Citizen class and "spouse", "children" & "parents" because these properties are not made publicly accessible (you can only change them, not get their value). Additionally, it seems like you do not @synthesize any of your object's @properties for some reason -- this would probably be handy for some of them in order to get some accessor methods.
+
+However, I'm impressed by the tests you add in the 2.1's main.m to prove and show the properties and behaviors of the objects you've created. They are very good at showing what's legal and what's not.
+
+For 2.2, even though you do not cover all of the points specified, you get damn close, and that's great work. And pretty much everything I read is very correct and sounds good -- good eye for all the differences between Objective-C and Java concerning these points. Although watch out for the terminology sometimes, as for example, there is no "main class". It's a detail, yes, but it's also kinda important.
+
+The Objective-C main.m example code snippets for 2.2 are good, although a little goofy at times -- even though there's nothing wrong with that. ;)
+
+Overall, very good job!
+
+-- Andy
+
+P.S.: I wasn't sure where to put this file because your assignment 2 folder is split up. You can move this if you want.

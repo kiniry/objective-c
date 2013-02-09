@@ -14,7 +14,7 @@
     self = [super init];
     if (self)
     {
-        NSMutableDictionary *blockDisplays = [[NSMutableDictionary alloc] init];
+//        NSMutableDictionary *blockDisplays = [[NSMutableDictionary alloc] init];
         
         blockDisplayChoice_t blockDisplayFirstName;
         blockDisplayFirstName = ^(Citizen *person, BOOL *stop)
@@ -33,13 +33,13 @@
         {
             NSLog(@"blockDisplayAge: %@",person.age);
         };
-        [blockDisplays setObject:(blockDisplayChoice_t)blockDisplayFirstName forKey:@"blockDisplayFirstName"];
-        [blockDisplays setObject:(blockDisplayChoice_t)blockDisplayLastName forKey:@"blockDisplayLastName"];
-        [blockDisplays setObject:(blockDisplayChoice_t)blockDisplayAge forKey:@"blockDisplayAge"];
+        [_blockDisplays setObject:(blockDisplayChoice_t)blockDisplayFirstName forKey:@"blockDisplayFirstName"];
+        [_blockDisplays setObject:(blockDisplayChoice_t)blockDisplayLastName forKey:@"blockDisplayLastName"];
+        [_blockDisplays setObject:(blockDisplayChoice_t)blockDisplayAge forKey:@"blockDisplayAge"];
         
-        self.blockDisplays = blockDisplays;
+//        self.blockDisplays = blockDisplays;
         
-        NSLog(@"%@", blockDisplays);
+        NSLog(@"%@", _blockDisplays);
 
         
     }

@@ -7,13 +7,19 @@ and PatternSyntaxException.
 I've used the following Javadocs as reference:
 http://docs.oracle.com/javase/6/docs/api/java/util/regex/package-summary.html
 
-... fundemental aspects of the API (design, arch., and pattern POV) ...
+A `Pattern` is a compiled representation of a regular expression.
+It has the method `split` to break a string into components using the pattern as the delimiter.
+A `Matcher` is created from the factory method `matcher` of Pattern that takes an input string.
+The matcher can be used to simply check if the whole input matches its pattern with `matches`,
+or to step through the input string using `find` to find multiple matches.
+After a match is found, with either `find` or `matches`,
+the methods `end` and `start` can used to check where on the input string the match was found.
+Contents of capture groups can be retrieved with the `group` method.
+The `toMatchResult` method returns a `MatchResult` with the current state of the matcher
+that is not affected by subsequent operations on the matcher.
 
-The Java interface MatchResult translates to a protocol in
-Objective-C,
-and the two classes Matcher and Pattern remain classes.
-The symbol Pattern was already declared in a header file imported by
-the Foundation framework,
+The Java interface MatchResult translates to a protocol in Objective-C.
+The symbol Pattern was already declared in a header file imported by the Foundation framework,
 so I renamed it to RegexPattern.
 
 The names of methods in Objective-C is a lot different than in Java,
@@ -36,8 +42,6 @@ return their own class instance,
 for what I assume is to enable method chaining.
 Method chaining in Objective-C looks ugly,
 so I decided to have their counterparts simply return void.
-
-...
 
 The `String` class in Java provides a couple of methods to make it
 easier to work with regular expressions:
@@ -74,7 +78,12 @@ in scope of this assignment,
 so I used the Foundation class NSRegularExpression to do the actual
 pattern matching.
 
-...
-
-...
-
+I decided to have implementation of RegexPattern reference to a NSRegularExpression,
+as they both represent a compiled regular expression.
+But since the actual matching is done inside the Matcher class,
+I had to expose this private property to the Matcher implementation using a class extension.
+I also chose not to expose the initializer of the matcher,
+so that you're forced to used the `matcher` factory of RegexPattern
+in the same way as in the Java version.
+Again, I had to use a class extension to expose this initializer to implementation of RegexPattern,
+so that the factory could initialize new instances of Matcher.

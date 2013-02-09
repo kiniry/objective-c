@@ -1,0 +1,14 @@
+Peer review from your neighbor in the list, Andreas Haure, s113023.
+
+First of all: great work on your assignment 2.
+
+Regarding part 1 of assignment 2, it seems to me like a good implementation you've made. I like the way you made some extra fixes, stated in your readme, that made sure that a Commoner and a NoblePerson were not able to marry each other. I forgot to take care of this in my implementation. So for me [Noble marry:Citizen] would not be permitted, but [Citizen marry:Noble] would be allowed. Nice to see that you took care of this issue :) I didn't notice anything about another subclass called commoner in the BON example though, but i guess it doesn't matter as long as things are working properly. Might just be me misunderstanding the documentation. But great work overall.
+
+Regarding part 2 of the assignment: Even though you didn't cover all of the points from the assignment description (neither did I), you got really close to completing it. So again great work. I like your comments on the different topics and it is nice to go trough your different test-programs for the different topics to see examples on most of your comments displayed. Overall were precise sentences, nice to read.
+
+Overall great work.
+-- Andreas Haure, s113023
+
+
+
+

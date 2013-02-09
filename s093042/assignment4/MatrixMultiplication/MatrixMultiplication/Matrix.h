@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Matrix : NSObject
-
+// nonatomic so there is no overhead for locking mechanisms
 @property (nonatomic) NSMutableArray *d;
 
 +(id)matrixWithSizeN:(NSUInteger)aN M:(NSUInteger)aM random:(BOOL)isRandom;

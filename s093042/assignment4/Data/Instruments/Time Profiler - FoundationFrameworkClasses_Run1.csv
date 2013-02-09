@@ -1,0 +1,14 @@
+Running Time,Self,,Symbol Name
+208.0ms   65.0%,0, ,Main Thread  0x97cd
+178.0ms   55.6%,176, , +[NSString stringWithFormat:]
+2.0ms    0.6%,2, ,  -[NSObject autorelease]
+17.0ms    5.3%,3, , +[NSNumber numberWithDouble:]
+14.0ms    4.3%,14, ,  -[NSPlaceholderNumber initWithDouble:]
+5.0ms    1.5%,5, , -[__NSCFString retain]
+3.0ms    0.9%,3, , +[NSNumber numberWithInteger:]
+1.0ms    0.3%,1, , -[__NSCFNumber retain]
+1.0ms    0.3%,1, , -[__NSArrayM count]
+1.0ms    0.3%,1, , -[NSObject autorelease]
+1.0ms    0.3%,0, , -[NSObject copy]
+1.0ms    0.3%,0, ,  -[__NSArrayM copyWithZone:]
+1.0ms    0.3%,1, , +[NSObject(NSObject) initialize]
