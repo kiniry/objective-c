@@ -1,4 +1,4 @@
-Assignment 3 -- Carsten Nilsson - s093751
+Assignment 3 - Carsten Nilsson - s093751
 ==================================================
 
 There are three ways of handling errors with illegal arguments:
