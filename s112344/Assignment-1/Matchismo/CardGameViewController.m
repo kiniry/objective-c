@@ -18,6 +18,8 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *modeControl;
+@property (weak, nonatomic) IBOutlet UISlider *historySlider;
+@property (strong, nonatomic) NSMutableArray *flipHistory;
 @end
 
 @implementation CardGameViewController
@@ -27,6 +29,12 @@
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                           usingDeck:[[PlayingCardDeck alloc] init]];
     return _game;
+}
+
+- (NSMutableArray *)flipHistory
+{
+    if (!_flipHistory) _flipHistory = [[NSMutableArray alloc] init];
+    return _flipHistory;
 }
 
 - (void)setCardButtons:(NSArray *)cardButtons
@@ -45,7 +53,6 @@
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
         
-        // only set image if 
         [cardButton setImage:(card.isFaceUp ? nil : cardBackImage) forState:UIControlStateNormal];
         [cardButton setImageEdgeInsets:UIEdgeInsetsMake(3.0, 3.0, 3.0, 3.0)];
         
@@ -56,10 +63,21 @@
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     
-    self.resultLabel.text = self.game.flipResult;
-    
     // disable game mode controller if flips greater than 0
     self.modeControl.enabled = (self.flipCount == 0);
+    
+    [self updateHistory];
+}
+
+- (void)updateHistory
+{
+    if (self.game.flipResult)
+        [self.flipHistory addObject:self.game.flipResult];
+    self.resultLabel.text = self.game.flipResult;
+    
+    self.historySlider.enabled = ([self.flipHistory count] > 0);
+    self.historySlider.maximumValue = [self.flipHistory count];
+    [self.historySlider setValue:[self.flipHistory count]];
 }
 
 - (void)setFlipCount:(int)flipCount
@@ -78,6 +96,7 @@
 {
     self.game = nil;
     self.flipCount = 0;
+    self.flipHistory = nil;
     [self updateUI];
 }
 
@@ -90,6 +109,16 @@
     }
 }
 
+- (IBAction)slideHistory:(id)sender
+{
+    int index = self.historySlider.value - 1;
+    if ([self.flipHistory count] > 0)
+        self.resultLabel.text = [self.flipHistory objectAtIndex:index];
+    if (index < [self.flipHistory count] - 1)
+        self.resultLabel.textColor = [UIColor grayColor];
+    else
+        self.resultLabel.textColor = [UIColor blackColor];
+}
 
 
 @end
