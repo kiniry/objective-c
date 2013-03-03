@@ -20,7 +20,10 @@
 
 - (Card*) cardAtIndex:(NSUInteger)index;
 
-@property (nonatomic, readonly) int score;
-@property (strong, nonatomic, readonly) NSString *result;
+- (void) switchMode:(int)mode;
+
+@property (readonly) int score;
+@property (strong, readonly) NSString *flipResult;
+@property (readonly) int mode;
 
 @end

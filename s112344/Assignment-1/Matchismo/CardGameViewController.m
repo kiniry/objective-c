@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *modeControl;
 @end
 
 @implementation CardGameViewController
@@ -36,16 +37,29 @@
 
 - (void)updateUI
 {
+    UIImage *cardBackImage = [UIImage imageNamed:@"playing-card-back.jpg"];
+    
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+        
+        // only set image if 
+        [cardButton setImage:(card.isFaceUp ? nil : cardBackImage) forState:UIControlStateNormal];
+        [cardButton setImageEdgeInsets:UIEdgeInsetsMake(3.0, 3.0, 3.0, 3.0)];
+        
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = (card.isUnplayable ? 0.3 : 1.0);
     }
+    
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    self.resultLabel.text = self.game.result;
+    
+    self.resultLabel.text = self.game.flipResult;
+    
+    // disable game mode controller if flips greater than 0
+    self.modeControl.enabled = (self.flipCount == 0);
 }
 
 - (void)setFlipCount:(int)flipCount
@@ -60,6 +74,22 @@
     self.flipCount++;
     [self updateUI];
 }
+- (IBAction)deal
+{
+    self.game = nil;
+    self.flipCount = 0;
+    [self updateUI];
+}
+
+- (IBAction)changeMode:(id)sender
+{
+    if (self.modeControl.selectedSegmentIndex == 1) {
+        [self.game switchMode:3];
+    } else {
+        [self.game switchMode:2];
+    }
+}
+
 
 
 @end

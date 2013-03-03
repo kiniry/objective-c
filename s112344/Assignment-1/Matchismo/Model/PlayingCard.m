@@ -24,6 +24,18 @@
                 score = 4;
             }
         }
+    } else if ([otherCards count] == 2) {
+        id secondCard = [otherCards objectAtIndex:0];
+        id thirdCard = [otherCards objectAtIndex:1];
+        if ([secondCard isKindOfClass:[PlayingCard class]] && [thirdCard isKindOfClass:[PlayingCard class]]) {
+            PlayingCard *secondPlayingCard = (PlayingCard*)secondCard;
+            PlayingCard *thirdPlayingCard = (PlayingCard*)thirdCard;
+            if ([secondPlayingCard.suit isEqualToString:self.suit] && [thirdPlayingCard.suit isEqualToString:self.suit]) {
+                score = 2;
+            } else if (secondPlayingCard.rank == self.rank && thirdPlayingCard.rank == self.rank) {
+                score = 8;
+            }
+        }
     }
     
     return score;

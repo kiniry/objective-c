@@ -10,10 +10,10 @@
 
 @interface Card : NSObject
 
-@property (strong, nonatomic) NSString *contents;
+@property (strong) NSString *contents;
 
-@property (nonatomic, getter = isFaceUp) BOOL faceUp;
-@property (nonatomic, getter = isUnplayable) BOOL unplayable;
+@property (getter = isFaceUp) BOOL faceUp;
+@property (getter = isUnplayable) BOOL unplayable;
 
 - (int)match:(NSArray *)otherCards;
 
